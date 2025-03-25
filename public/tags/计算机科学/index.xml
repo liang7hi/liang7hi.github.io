@@ -1,78 +1,145 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>计算机科学 on slc3a2</title><link>https://slc3a2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/</link><description>Recent content in 计算机科学 on slc3a2</description><generator>Hugo -- 0.145.0</generator><language>zh</language><lastBuildDate>Wed, 11 Oct 2023 18:23:09 +0800</lastBuildDate><atom:link href="https://slc3a2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/index.xml" rel="self" type="application/rss+xml"/><item><title>命题逻辑真值表</title><link>https://slc3a2.github.io/blogs/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/</link><pubDate>Wed, 11 Oct 2023 18:23:09 +0800</pubDate><guid>https://slc3a2.github.io/blogs/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/</guid><description>这篇文章先给出离散数学中命题逻辑真值表，介绍了合取、析取、否定、蕴含、等价运算规则及结果，后分别以具体生活实例对每种运算进行详细说明，并特别指出蕴含运算中逻辑关系与因果关系的区别</description></item><item><title>从OSI七层模型到TCP</title><link>https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/</link><pubDate>Tue, 22 Feb 2022 23:15:06 +0800</pubDate><guid>https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/</guid><description>&lt;h2 id="为什么要写这篇博客">为什么要写这篇博客&lt;/h2>
-&lt;p>一个是感觉自己的计算机网络基础薄弱，关于七层模型和 tcp、udp 看过几次了，都不够透彻，知其然不知其所以然。再一个，最近和同事有聊到这个事，感觉自己也说不明白，又意识到很重要，所以决定整理一下，自己感觉自己会了和可以给别人讲明白这个事儿，区别还是很大的啊。就参考资料和自己理解记录一下。&lt;/p></description></item><item><title>记发布订阅和观察者模式</title><link>https://slc3a2.github.io/blogs/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link><pubDate>Tue, 01 Jun 2021 11:40:03 +0800</pubDate><guid>https://slc3a2.github.io/blogs/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</guid><description>&lt;hr>
-&lt;h2 id="发布订阅模式">发布订阅模式&lt;/h2>
-&lt;p>简单来说，需要三个角色&lt;/p>
-&lt;ul>
-&lt;li>发布者&lt;/li>
-&lt;li>事件队列&lt;/li>
-&lt;li>订阅者&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>发布者&lt;/strong> -&amp;gt; &lt;strong>事件队列&lt;/strong> &amp;lt;=&amp;gt; &lt;strong>订阅者&lt;/strong>&lt;/p>
-&lt;p>一次完整流程&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>订阅者&lt;/code>向事件队列订阅&lt;code>事件E&lt;/code>&lt;/li>
-&lt;li>&lt;code>发布者&lt;/code>向事件队列发布&lt;code>事件E&lt;/code>&lt;/li>
-&lt;li>事件队列通知&lt;code>事件E&lt;/code>的所有&lt;code>订阅者&lt;/code>，&lt;code>订阅者&lt;/code>接收&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Event&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">constructor&lt;/span>() {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 事件队列
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">listeners&lt;/span> &lt;span style="color:#f92672">=&lt;/span> {};
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 订阅方法
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">on&lt;/span>(&lt;span style="color:#a6e22e">eventType&lt;/span>, &lt;span style="color:#a6e22e">listener&lt;/span>) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#f92672">!&lt;/span>&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">listeners&lt;/span>[&lt;span style="color:#a6e22e">eventType&lt;/span>]) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">listeners&lt;/span>[&lt;span style="color:#a6e22e">eventType&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> [];
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">listeners&lt;/span>[&lt;span style="color:#a6e22e">eventType&lt;/span>].&lt;span style="color:#a6e22e">push&lt;/span>(&lt;span style="color:#a6e22e">listener&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 发布方法
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">emit&lt;/span>(&lt;span style="color:#a6e22e">eventType&lt;/span>, &lt;span style="color:#a6e22e">data&lt;/span>) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">callbacks&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">listeners&lt;/span>[&lt;span style="color:#a6e22e">eventType&lt;/span>];
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#a6e22e">callbacks&lt;/span>) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">callbacks&lt;/span>.&lt;span style="color:#a6e22e">forEach&lt;/span>((&lt;span style="color:#a6e22e">c&lt;/span>) =&amp;gt; {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">c&lt;/span>(&lt;span style="color:#a6e22e">data&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> });
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">event&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">Event&lt;/span>();
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">event&lt;/span>.&lt;span style="color:#a6e22e">on&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;open&amp;#34;&lt;/span>, (&lt;span style="color:#a6e22e">data&lt;/span>) =&amp;gt; {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">data&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>});
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">event&lt;/span>.&lt;span style="color:#a6e22e">emit&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;open&amp;#34;&lt;/span>, { &lt;span style="color:#a6e22e">open&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span> });
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="观察者模式">观察者模式&lt;/h2>
-&lt;p>需要两个角色&lt;/p></description></item><item><title>手写代码面试题合集</title><link>https://slc3a2.github.io/blogs/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/</link><pubDate>Fri, 30 Apr 2021 18:46:45 +0800</pubDate><guid>https://slc3a2.github.io/blogs/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/</guid><description>&lt;p>持续更新，为了高效率访问，也算自己复习！！把遇到的手写题，抽空都撸了一遍。满满干货，不墨迹，直接上代码。总结道这篇博客里，下次面试前快速过一遍，临阵磨刀～&lt;/p></description></item><item><title>使用jarsigner重新签名apk包</title><link>https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/</link><pubDate>Mon, 26 Oct 2020 16:41:13 +0800</pubDate><guid>https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/</guid><description>&lt;h2 id="环境">环境&lt;/h2>
-&lt;ul>
-&lt;li>macos 10.14&lt;/li>
-&lt;li>iterm 2&lt;/li>
-&lt;/ul>
-&lt;h2 id="使用">使用&lt;/h2>
-&lt;h3 id="生成密钥">生成密钥&lt;/h3>
-&lt;p>keytool -genkeypair -alias &amp;lt;别名&amp;gt; -keystore &amp;lt;密钥库存储位置和名称&amp;gt;&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>keytool -genkeypair -alias demokey -keystore demo.keystore
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>内容填写后，生成完毕&lt;/p>
-&lt;h3 id="生成签名">生成签名&lt;/h3>
-&lt;p>jarsigner -verbose -keystore &amp;lt;使用密钥库位置&amp;gt; -signedjar &amp;lt;签名后的包保存位置和名字&amp;gt; &amp;lt;要签名的包保存位置和名字&amp;gt; &amp;lt;别名，对应上面的别名&amp;gt;&lt;/p></description></item><item><title>函数柯里化(currying)</title><link>https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/</link><pubDate>Wed, 09 Sep 2020 13:13:04 +0800</pubDate><guid>https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/</guid><description>文章介绍函数柯里化，说明其将多参函数转为单参函数的概念，以 JavaScript 举例阐述原理，讲解参数复用等好处并给出 ajax 请求示例，还提供了完整实现代码及用法</description></item><item><title>常用4种排序介绍</title><link>https://slc3a2.github.io/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/</link><pubDate>Wed, 02 Sep 2020 16:07:43 +0800</pubDate><guid>https://slc3a2.github.io/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/</guid><description>&lt;h2 id="冒泡排序bubble-sort">冒泡排序（Bubble sort）&lt;/h2>
-&lt;h3 id="原理和演示">原理和演示：&lt;/h3>
-&lt;ul>
-&lt;li>依次比较数组中相邻的每一对值，如果前面的值 &lt;strong>大于&lt;/strong> 后面的值，则交换他们俩的位置。如果数组中&lt;code>5&lt;/code>个数字(length 为 5)，由于比较 &lt;strong>两个一组&lt;/strong> 的数字，那么只需要&lt;code>4次&lt;/code>(length - 1)比较，就可以实现把数组中最大的一个数放到最后。&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">bubbleSort&lt;/span>(&lt;span style="color:#a6e22e">arr&lt;/span>) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> (&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">i&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>; &lt;span style="color:#a6e22e">i&lt;/span> &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#a6e22e">arr&lt;/span>.&lt;span style="color:#a6e22e">length&lt;/span> &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>; &lt;span style="color:#a6e22e">i&lt;/span>&lt;span style="color:#f92672">++&lt;/span>) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#a6e22e">arr&lt;/span>[&lt;span style="color:#a6e22e">i&lt;/span>] &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#a6e22e">arr&lt;/span>[&lt;span style="color:#a6e22e">i&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>]) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">temp&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">arr&lt;/span>[&lt;span style="color:#a6e22e">i&lt;/span>];
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">arr&lt;/span>[&lt;span style="color:#a6e22e">i&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">arr&lt;/span>[&lt;span style="color:#a6e22e">i&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>];
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">arr&lt;/span>[&lt;span style="color:#a6e22e">i&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">temp&lt;/span>;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">`执行&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">i&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">次`&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">arr&lt;/span>;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>
-&lt;p>通过第一步得到最大的一个数放在数组最后。那么剩下的前三个数继续执行第一步，结果找到第二大的数，放在数组倒数第二位，重复此步骤，直到比对完数组中最后一组数。由于第一步骤每次得到一个最大值放最后，&lt;code>j&lt;/code>对应的正好是数组最后有多少个最大值，可以免去比较。所以上步骤每次循环可以优化一下每次少算一个最大值，每次循环总数&lt;code>- 1&lt;/code>也就是下面例子中的&lt;code>- j&lt;/code>。&lt;/p></description></item><item><title>Linux中内存交换空间(swap)的使用</title><link>https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</link><pubDate>Fri, 21 Aug 2020 16:48:04 +0800</pubDate><guid>https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</guid><description>&lt;hr>
-&lt;h2 id="什么是-swap">什么是 swap&lt;/h2>
-&lt;p>&lt;code>swap&lt;/code>分区是&lt;code>Linux&lt;/code>中特殊的一种存储，他在安装系统时被自动创建。&lt;/p>
-&lt;p>用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到&lt;code>swap&lt;/code>分区中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问&lt;code>swap&lt;/code>空间上的的数据时，&lt;code>swap&lt;/code>会把数据放回内存中供操作系统使用。&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>计算机科学 on slc3a2</title>
+    <link>http://localhost:1313/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/</link>
+    <description>Recent content in 计算机科学 on slc3a2</description>
+    <generator>Hugo -- 0.145.0</generator>
+    <language>zh</language>
+    <lastBuildDate>Wed, 11 Oct 2023 18:23:09 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>命题逻辑真值表</title>
+      <link>http://localhost:1313/blogs/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/</link>
+      <pubDate>Wed, 11 Oct 2023 18:23:09 +0800</pubDate>
+      <guid>http://localhost:1313/blogs/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/</guid>
+      <description>这篇文章先给出离散数学中命题逻辑真值表，介绍了合取、析取、否定、蕴含、等价运算规则及结果，后分别以具体生活实例对每种运算进行详细说明，并特别指出蕴含运算中逻辑关系与因果关系的区别</description>
+    </item>
+    <item>
+      <title>从OSI七层模型到TCP</title>
+      <link>http://localhost:1313/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/</link>
+      <pubDate>Tue, 22 Feb 2022 23:15:06 +0800</pubDate>
+      <guid>http://localhost:1313/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/</guid>
+      <description>&lt;h2 id=&#34;为什么要写这篇博客&#34;&gt;为什么要写这篇博客&lt;/h2&gt;
+&lt;p&gt;一个是感觉自己的计算机网络基础薄弱，关于七层模型和 tcp、udp 看过几次了，都不够透彻，知其然不知其所以然。再一个，最近和同事有聊到这个事，感觉自己也说不明白，又意识到很重要，所以决定整理一下，自己感觉自己会了和可以给别人讲明白这个事儿，区别还是很大的啊。就参考资料和自己理解记录一下。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>记发布订阅和观察者模式</title>
+      <link>http://localhost:1313/blogs/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Tue, 01 Jun 2021 11:40:03 +0800</pubDate>
+      <guid>http://localhost:1313/blogs/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
+      <description>&lt;hr&gt;
+&lt;h2 id=&#34;发布订阅模式&#34;&gt;发布订阅模式&lt;/h2&gt;
+&lt;p&gt;简单来说，需要三个角色&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;发布者&lt;/li&gt;
+&lt;li&gt;事件队列&lt;/li&gt;
+&lt;li&gt;订阅者&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;发布者&lt;/strong&gt; -&amp;gt; &lt;strong&gt;事件队列&lt;/strong&gt; &amp;lt;=&amp;gt; &lt;strong&gt;订阅者&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;一次完整流程&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;订阅者&lt;/code&gt;向事件队列订阅&lt;code&gt;事件E&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;发布者&lt;/code&gt;向事件队列发布&lt;code&gt;事件E&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;事件队列通知&lt;code&gt;事件E&lt;/code&gt;的所有&lt;code&gt;订阅者&lt;/code&gt;，&lt;code&gt;订阅者&lt;/code&gt;接收&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Event&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;constructor&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// 事件队列
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;listeners&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {};
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;// 订阅方法
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;on&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;eventType&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;listener&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;listeners&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;eventType&lt;/span&gt;]) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;listeners&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;eventType&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;listeners&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;eventType&lt;/span&gt;].&lt;span style=&#34;color:#a6e22e&#34;&gt;push&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;listener&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;// 发布方法
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;emit&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;eventType&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;callbacks&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;listeners&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;eventType&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;callbacks&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#a6e22e&#34;&gt;callbacks&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;forEach&lt;/span&gt;((&lt;span style=&#34;color:#a6e22e&#34;&gt;c&lt;/span&gt;) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;c&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      });
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;event&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Event&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;event&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;on&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;open&amp;#34;&lt;/span&gt;, (&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;event&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;emit&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;open&amp;#34;&lt;/span&gt;, { &lt;span style=&#34;color:#a6e22e&#34;&gt;open&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt; });
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;观察者模式&#34;&gt;观察者模式&lt;/h2&gt;
+&lt;p&gt;需要两个角色&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>手写代码面试题合集</title>
+      <link>http://localhost:1313/blogs/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Fri, 30 Apr 2021 18:46:45 +0800</pubDate>
+      <guid>http://localhost:1313/blogs/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/</guid>
+      <description>&lt;p&gt;持续更新，为了高效率访问，也算自己复习！！把遇到的手写题，抽空都撸了一遍。满满干货，不墨迹，直接上代码。总结道这篇博客里，下次面试前快速过一遍，临阵磨刀～&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>使用jarsigner重新签名apk包</title>
+      <link>http://localhost:1313/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/</link>
+      <pubDate>Mon, 26 Oct 2020 16:41:13 +0800</pubDate>
+      <guid>http://localhost:1313/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/</guid>
+      <description>&lt;h2 id=&#34;环境&#34;&gt;环境&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;macos 10.14&lt;/li&gt;
+&lt;li&gt;iterm 2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;使用&#34;&gt;使用&lt;/h2&gt;
+&lt;h3 id=&#34;生成密钥&#34;&gt;生成密钥&lt;/h3&gt;
+&lt;p&gt;keytool -genkeypair -alias &amp;lt;别名&amp;gt; -keystore &amp;lt;密钥库存储位置和名称&amp;gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;keytool -genkeypair -alias demokey -keystore demo.keystore
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;内容填写后，生成完毕&lt;/p&gt;
+&lt;h3 id=&#34;生成签名&#34;&gt;生成签名&lt;/h3&gt;
+&lt;p&gt;jarsigner -verbose -keystore &amp;lt;使用密钥库位置&amp;gt; -signedjar &amp;lt;签名后的包保存位置和名字&amp;gt; &amp;lt;要签名的包保存位置和名字&amp;gt; &amp;lt;别名，对应上面的别名&amp;gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>函数柯里化(currying)</title>
+      <link>http://localhost:1313/blogs/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/</link>
+      <pubDate>Wed, 09 Sep 2020 13:13:04 +0800</pubDate>
+      <guid>http://localhost:1313/blogs/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/</guid>
+      <description>文章介绍函数柯里化，说明其将多参函数转为单参函数的概念，以 JavaScript 举例阐述原理，讲解参数复用等好处并给出 ajax 请求示例，还提供了完整实现代码及用法</description>
+    </item>
+    <item>
+      <title>常用4种排序介绍</title>
+      <link>http://localhost:1313/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Wed, 02 Sep 2020 16:07:43 +0800</pubDate>
+      <guid>http://localhost:1313/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/</guid>
+      <description>&lt;h2 id=&#34;冒泡排序bubble-sort&#34;&gt;冒泡排序（Bubble sort）&lt;/h2&gt;
+&lt;h3 id=&#34;原理和演示&#34;&gt;原理和演示：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;依次比较数组中相邻的每一对值，如果前面的值 &lt;strong&gt;大于&lt;/strong&gt; 后面的值，则交换他们俩的位置。如果数组中&lt;code&gt;5&lt;/code&gt;个数字(length 为 5)，由于比较 &lt;strong&gt;两个一组&lt;/strong&gt; 的数字，那么只需要&lt;code&gt;4次&lt;/code&gt;(length - 1)比较，就可以实现把数组中最大的一个数放到最后。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;bubbleSort&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;arr&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;arr&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;length&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;arr&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;arr&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;temp&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;arr&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#a6e22e&#34;&gt;arr&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;arr&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#a6e22e&#34;&gt;arr&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;temp&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;`执行&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;次`&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;arr&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;通过第一步得到最大的一个数放在数组最后。那么剩下的前三个数继续执行第一步，结果找到第二大的数，放在数组倒数第二位，重复此步骤，直到比对完数组中最后一组数。由于第一步骤每次得到一个最大值放最后，&lt;code&gt;j&lt;/code&gt;对应的正好是数组最后有多少个最大值，可以免去比较。所以上步骤每次循环可以优化一下每次少算一个最大值，每次循环总数&lt;code&gt;- 1&lt;/code&gt;也就是下面例子中的&lt;code&gt;- j&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Linux中内存交换空间(swap)的使用</title>
+      <link>http://localhost:1313/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 21 Aug 2020 16:48:04 +0800</pubDate>
+      <guid>http://localhost:1313/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</guid>
+      <description>&lt;hr&gt;
+&lt;h2 id=&#34;什么是-swap&#34;&gt;什么是 swap&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;swap&lt;/code&gt;分区是&lt;code&gt;Linux&lt;/code&gt;中特殊的一种存储，他在安装系统时被自动创建。&lt;/p&gt;
+&lt;p&gt;用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到&lt;code&gt;swap&lt;/code&gt;分区中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问&lt;code&gt;swap&lt;/code&gt;空间上的的数据时，&lt;code&gt;swap&lt;/code&gt;会把数据放回内存中供操作系统使用。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

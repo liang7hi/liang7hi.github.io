@@ -1,33 +1,337 @@
-<!doctype html><html lang=zh dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>使用jarsigner重新签名apk包 | slc3a2</title>
-<meta name=keywords content="计算机科学"><meta name=description content="环境
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>使用jarsigner重新签名apk包 | slc3a2</title>
+<meta name="keywords" content="计算机科学">
+<meta name="description" content="环境
 
 macos 10.14
 iterm 2
 
 使用
 生成密钥
-keytool -genkeypair -alias <别名> -keystore <密钥库存储位置和名称>
+keytool -genkeypair -alias &lt;别名&gt; -keystore &lt;密钥库存储位置和名称&gt;
 keytool -genkeypair -alias demokey -keystore demo.keystore
 内容填写后，生成完毕
 生成签名
-jarsigner -verbose -keystore <使用密钥库位置> -signedjar <签名后的包保存位置和名字> <要签名的包保存位置和名字> <别名，对应上面的别名>"><meta name=author content="slc3a2"><link rel=canonical href=https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/><link crossorigin=anonymous href=/assets/css/stylesheet.03380b421b43a59cef22aa8ddc67c8077da9081a7c7a95ef8104001f8af6ac13.css integrity="sha256-AzgLQhtDpZzvIqqN3GfIB32pCBp8epXvgQQAH4r2rBM=" rel="preload stylesheet" as=style><link rel=icon href=https://slc3a2.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://slc3a2.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://slc3a2.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://slc3a2.github.io/apple-touch-icon.png><link rel=mask-icon href=https://slc3a2.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/"><meta property="og:site_name" content="slc3a2"><meta property="og:title" content="使用jarsigner重新签名apk包"><meta property="og:description" content="环境 macos 10.14 iterm 2 使用 生成密钥 keytool -genkeypair -alias <别名> -keystore <密钥库存储位置和名称>
-keytool -genkeypair -alias demokey -keystore demo.keystore 内容填写后，生成完毕
-生成签名 jarsigner -verbose -keystore <使用密钥库位置> -signedjar <签名后的包保存位置和名字> <要签名的包保存位置和名字> <别名，对应上面的别名>"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="blogs"><meta property="article:published_time" content="2020-10-26T16:41:13+08:00"><meta property="article:modified_time" content="2020-10-26T16:41:13+08:00"><meta property="article:tag" content="计算机科学"><meta property="og:image" content="https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg"><meta name=twitter:title content="使用jarsigner重新签名apk包"><meta name=twitter:description content="环境
+jarsigner -verbose -keystore &lt;使用密钥库位置&gt; -signedjar &lt;签名后的包保存位置和名字&gt; &lt;要签名的包保存位置和名字&gt; &lt;别名，对应上面的别名&gt;">
+<meta name="author" content="slc3a2">
+<link rel="canonical" href="http://localhost:1313/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.03380b421b43a59cef22aa8ddc67c8077da9081a7c7a95ef8104001f8af6ac13.css" integrity="sha256-AzgLQhtDpZzvIqqN3GfIB32pCBp8epXvgQQAH4r2rBM=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
 
-macos 10.14
-iterm 2
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
 
-使用
-生成密钥
-keytool -genkeypair -alias <别名> -keystore <密钥库存储位置和名称>
-keytool -genkeypair -alias demokey -keystore demo.keystore
-内容填写后，生成完毕
-生成签名
-jarsigner -verbose -keystore <使用密钥库位置> -signedjar <签名后的包保存位置和名字> <要签名的包保存位置和名字> <别名，对应上面的别名>"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"日志","item":"https://slc3a2.github.io/blogs/"},{"@type":"ListItem","position":2,"name":"使用jarsigner重新签名apk包","item":"https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"使用jarsigner重新签名apk包","name":"使用jarsigner重新签名apk包","description":"环境 macos 10.14 iterm 2 使用 生成密钥 keytool -genkeypair -alias \u0026lt;别名\u0026gt; -keystore \u0026lt;密钥库存储位置和名称\u0026gt;\nkeytool -genkeypair -alias demokey -keystore demo.keystore 内容填写后，生成完毕\n生成签名 jarsigner -verbose -keystore \u0026lt;使用密钥库位置\u0026gt; -signedjar \u0026lt;签名后的包保存位置和名字\u0026gt; \u0026lt;要签名的包保存位置和名字\u0026gt; \u0026lt;别名，对应上面的别名\u0026gt;\n","keywords":["计算机科学"],"articleBody":"环境 macos 10.14 iterm 2 使用 生成密钥 keytool -genkeypair -alias \u003c别名\u003e -keystore \u003c密钥库存储位置和名称\u003e\nkeytool -genkeypair -alias demokey -keystore demo.keystore 内容填写后，生成完毕\n生成签名 jarsigner -verbose -keystore \u003c使用密钥库位置\u003e -signedjar \u003c签名后的包保存位置和名字\u003e \u003c要签名的包保存位置和名字\u003e \u003c别名，对应上面的别名\u003e\njarsigner -verbose -keystore /Users/liangqi/Desktop/apk/demo.keystore -signedjar ./tap_signed.apk ./tap_unsign.apk demokey 即可拿到签名后的包\n","wordCount":"158","inLanguage":"zh","image":"https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg","datePublished":"2020-10-26T16:41:13+08:00","dateModified":"2020-10-26T16:41:13+08:00","author":{"@type":"Person","name":"slc3a2"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/"},"publisher":{"@type":"Organization","name":"slc3a2","logo":{"@type":"ImageObject","url":"https://slc3a2.github.io/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://slc3a2.github.io/ accesskey=h title="slc3a2 (Alt + H)">slc3a2</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://slc3a2.github.io/ title="🏠 首页"><span>🏠 首页</span></a></li><li><a href=https://slc3a2.github.io/blogs/ title="📚 日志"><span>📚 日志</span></a></li><li><a href=https://slc3a2.github.io/apps/ title="🚀 应用"><span>🚀 应用</span></a></li><li><a href=https://slc3a2.github.io/search/ title="🔍 搜索"><span>🔍 搜索</span></a></li><li><a href=https://slc3a2.github.io/tags/ title="🧩 分类"><span>🧩 分类</span></a></li><li><a href=https://slc3a2.github.io/archives/ title="⏱ 时间轴"><span>⏱ 时间轴</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">使用jarsigner重新签名apk包</h1><div class=post-meta><span title='2020-10-26 16:41:13 +0800 CST'>2020-10-26</span>&nbsp; ｜ &nbsp;1 分钟&nbsp; ｜ &nbsp;158 字&nbsp; ｜ &nbsp;slc3a2</div></header><figure class=entry-cover1><img loading=eager src=https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg alt="cover image"><figcaption>封面图来自 Unsplash | 作者 Jakob Owens</figcaption></figure><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>目录</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#环境>环境</a></li><li><a href=#使用>使用</a><ul><li><a href=#生成密钥>生成密钥</a></li><li><a href=#生成签名>生成签名</a></li></ul></li></ul></nav></div></details></div><div class=post-content><h2 id=环境>环境<a hidden class=anchor aria-hidden=true href=#环境>#</a></h2><ul><li>macos 10.14</li><li>iterm 2</li></ul><h2 id=使用>使用<a hidden class=anchor aria-hidden=true href=#使用>#</a></h2><h3 id=生成密钥>生成密钥<a hidden class=anchor aria-hidden=true href=#生成密钥>#</a></h3><p>keytool -genkeypair -alias &lt;别名> -keystore &lt;密钥库存储位置和名称></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>keytool -genkeypair -alias demokey -keystore demo.keystore
-</span></span></code></pre></div><p>内容填写后，生成完毕</p><h3 id=生成签名>生成签名<a hidden class=anchor aria-hidden=true href=#生成签名>#</a></h3><p>jarsigner -verbose -keystore &lt;使用密钥库位置> -signedjar &lt;签名后的包保存位置和名字> &lt;要签名的包保存位置和名字> &lt;别名，对应上面的别名></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>jarsigner -verbose -keystore /Users/liangqi/Desktop/apk/demo.keystore -signedjar ./tap_signed.apk ./tap_unsign.apk demokey
-</span></span></code></pre></div><p>即可拿到签名后的包</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://slc3a2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/>计算机科学</a></li></ul><nav class=paginav><a class=prev href=https://slc3a2.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/><span class=title>« 上一页</span><br><span>vue原理mvvm实现</span>
-</a><a class=next href=https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/><span class=title>下一页 »</span><br><span>函数的防抖和节流</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2025 <a href=https://slc3a2.github.io/>slc3a2</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
-</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="🏠 首页">
+                    <span>🏠 首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/blogs/" title="📚 日志">
+                    <span>📚 日志</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/apps/" title="🚀 应用">
+                    <span>🚀 应用</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 搜索">
+                    <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="🧩 分类">
+                    <span>🧩 分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="⏱ 时间轴">
+                    <span>⏱ 时间轴</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      使用jarsigner重新签名apk包
+    </h1>
+    <div class="post-meta"><span title='2020-10-26 16:41:13 +0800 CST'>2020-10-26</span>&nbsp; ｜ &nbsp;1 分钟&nbsp; ｜ &nbsp;158 字&nbsp; ｜ &nbsp;slc3a2
+
+</div>
+  </header> 
+<figure class="entry-cover1">
+    <img loading="eager" src="http://localhost:1313/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Jakob Owens</figcaption>
+</figure><div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#环境">环境</a></li>
+    <li><a href="#使用">使用</a>
+      <ul>
+        <li><a href="#生成密钥">生成密钥</a></li>
+        <li><a href="#生成签名">生成签名</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="环境">环境<a hidden class="anchor" aria-hidden="true" href="#环境">#</a></h2>
+<ul>
+<li>macos 10.14</li>
+<li>iterm 2</li>
+</ul>
+<h2 id="使用">使用<a hidden class="anchor" aria-hidden="true" href="#使用">#</a></h2>
+<h3 id="生成密钥">生成密钥<a hidden class="anchor" aria-hidden="true" href="#生成密钥">#</a></h3>
+<p>keytool -genkeypair -alias &lt;别名&gt; -keystore &lt;密钥库存储位置和名称&gt;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>keytool -genkeypair -alias demokey -keystore demo.keystore
+</span></span></code></pre></div><p>内容填写后，生成完毕</p>
+<h3 id="生成签名">生成签名<a hidden class="anchor" aria-hidden="true" href="#生成签名">#</a></h3>
+<p>jarsigner -verbose -keystore &lt;使用密钥库位置&gt; -signedjar &lt;签名后的包保存位置和名字&gt; &lt;要签名的包保存位置和名字&gt; &lt;别名，对应上面的别名&gt;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>jarsigner -verbose -keystore /Users/liangqi/Desktop/apk/demo.keystore -signedjar ./tap_signed.apk ./tap_unsign.apk demokey
+</span></span></code></pre></div><p>即可拿到签名后的包</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>vue原理mvvm实现</span>
+  </a>
+  <a class="next" href="http://localhost:1313/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>函数的防抖和节流</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">slc3a2</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

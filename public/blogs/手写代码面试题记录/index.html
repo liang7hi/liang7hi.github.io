@@ -1,299 +1,624 @@
-<!doctype html><html lang=zh dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>手写代码面试题合集 | slc3a2</title>
-<meta name=keywords content="计算机科学"><meta name=description content="持续更新，为了高效率访问，也算自己复习！！把遇到的手写题，抽空都撸了一遍。满满干货，不墨迹，直接上代码。总结道这篇博客里，下次面试前快速过一遍，临阵磨刀～"><meta name=author content="slc3a2"><link rel=canonical href=https://slc3a2.github.io/blogs/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/><link crossorigin=anonymous href=/assets/css/stylesheet.03380b421b43a59cef22aa8ddc67c8077da9081a7c7a95ef8104001f8af6ac13.css integrity="sha256-AzgLQhtDpZzvIqqN3GfIB32pCBp8epXvgQQAH4r2rBM=" rel="preload stylesheet" as=style><link rel=icon href=https://slc3a2.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://slc3a2.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://slc3a2.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://slc3a2.github.io/apple-touch-icon.png><link rel=mask-icon href=https://slc3a2.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://slc3a2.github.io/blogs/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://slc3a2.github.io/blogs/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/"><meta property="og:site_name" content="slc3a2"><meta property="og:title" content="手写代码面试题合集"><meta property="og:description" content="持续更新，为了高效率访问，也算自己复习！！把遇到的手写题，抽空都撸了一遍。满满干货，不墨迹，直接上代码。总结道这篇博客里，下次面试前快速过一遍，临阵磨刀～"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="blogs"><meta property="article:published_time" content="2021-04-30T18:46:45+08:00"><meta property="article:modified_time" content="2021-04-30T18:46:45+08:00"><meta property="article:tag" content="计算机科学"><meta property="og:image" content="https://slc3a2.github.io/images/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/cover.jpg"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://slc3a2.github.io/images/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/cover.jpg"><meta name=twitter:title content="手写代码面试题合集"><meta name=twitter:description content="持续更新，为了高效率访问，也算自己复习！！把遇到的手写题，抽空都撸了一遍。满满干货，不墨迹，直接上代码。总结道这篇博客里，下次面试前快速过一遍，临阵磨刀～"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"日志","item":"https://slc3a2.github.io/blogs/"},{"@type":"ListItem","position":2,"name":"手写代码面试题合集","item":"https://slc3a2.github.io/blogs/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"手写代码面试题合集","name":"手写代码面试题合集","description":"持续更新，为了高效率访问，也算自己复习！！把遇到的手写题，抽空都撸了一遍。满满干货，不墨迹，直接上代码。总结道这篇博客里，下次面试前快速过一遍，临阵磨刀～\n","keywords":["计算机科学"],"articleBody":"持续更新，为了高效率访问，也算自己复习！！把遇到的手写题，抽空都撸了一遍。满满干货，不墨迹，直接上代码。总结道这篇博客里，下次面试前快速过一遍，临阵磨刀～\n实现 sleep 函数 // 运行log函数后，希望得到结果：打印1，等待一秒钟，打印2，实现sleep函数 function log() { console.log(1); sleep(1000); console.log(2); } log(); // 解1：阻塞主线程 function sleep(time) { let t = Date.now(); while (Date.now() - t \u003c= time) {} } // 解2：async/await调用 function sleep(time) { return new Promise((res) =\u003e { setTimeOut(() =\u003e { resolve(); }, time); }); } 柯里化(currying) // 题目：实现add函数, 输出6 add(1, 2, 3); add(1)(2)(3); add(1, 2)(3); add(1)(2, 3); // 解1：不确定参数数量，一个方法 function add(...agrg1) { let t = function (...agrg2) { return add( Array.from(agrg1) .concat(Array.from(agrg2)) .reduce((a, b) =\u003e { return a + b; }) ); }; t.toString = () =\u003e { return Array.from(agrg1).reduce((a, b) =\u003e { return a + b; }); }; return t; } console.log(add(1, 2, 3)); // 6 console.log(add(1)(2)(3)); // 6 console.log(add(1, 2)(3)); // 6 console.log(add(1)(2, 3)); // 6 // 解2：确定参数数量，两个方法 function currying(fn, ...args) { if (args.length \u003e= fn.length) { return fn(...args); } else { return (...args2) =\u003e currying(fn, ...args, ...args2); } } // add只可以接受三个参数 let add = function (a, b, c) { return a + b + c; }; // 利用currying函数改造add函数，使add函数具备柯里化 const curry_add = currying(add); console.log(curry_add(1, 2, 3)); // 6 console.log(curry_add(1)(2)(3)); // 6 console.log(curry_add(1, 2)(3)); // 6 console.log(curry_add(1)(2, 3)); // 6 约瑟夫环问题 // N个人围成一圈，第一个人从1开始报数，报M的将被淘汰，下一个人接着从1开始报。如此反复，最后剩下两个，求最后的胜利者。 function f(n) { if (n \u003c= 2) { return n === 1 ? [1] : [1, 2]; } let temp = []; for (let i = 1, len = n + 1; i \u003c len; i++) { temp.push(i); } return fun_inner(temp); function fun_inner(temp, count) { if (temp.length == 2) { return temp; } count = count || 1; for (let i = 0, len = temp.wlength; i \u003c len; i++) { count++; if (count === 3) { temp.splice(i, 1); count = 1; } } return fun_inner(temp, count); } } console.log(f(10)); // [4, 10] console.log(f(11)); // [3, 9] console.log(f(12)); // [6, 9] 字符串相加 let addStrings = function (a, b) { let res = []; let temp = 0; if (a.length \u003e b.length) { let t = a.length - b.length; for (let i = 0; i \u003c t; i++) { b = \"0\" + b; } } else { let t = b.length - a.length; for (let i = 0; i \u003c t; i++) { a = \"0\" + a; } } for (let len = Math.max(a.length, b.length) - 1; len \u003e= 0; len--) { let i = len; let t_a = Number(a.charAt(i) || 0); let t_b = Number(b.charAt(i) || 0); let count = String(t_a + t_b + temp); temp = 0; if (count.length \u003e 1) { temp = Number(count.charAt(0)); res.push(count.charAt(1)); } else { res.push(count); } } if (temp !== 0) { res.push(temp); } return res.reverse().join(\"\"); }; 插入排序 let insertion = function (arr) { let len = arr.length; for (let i = 1; i \u003c len; i++) { let cur = i; let j = i - 1; while (j \u003e= 0) { if (arr[cur] \u003c arr[j]) { [arr[cur], arr[j]] = [arr[j], arr[cur]]; cur = j; // 交换后i值变了，那把交换后的i找回来就可以了 } j--; } } return arr; }; 选择排序 let selection = function (arr) { let len = arr.length; for (let i = 0; i \u003c len; i++) { let idx = i; for (let j = i + 1; j \u003c len; j++) { if (arr[j] \u003c arr[idx]) { idx = j; } } [arr[idx], arr[i]] = [arr[i], arr[idx]]; } return arr; }; 快速排序 let quickSort = function (arr) { if (arr.length \u003c= 1) { return arr; } // 递归边界条件 let pointIdx = Math.floor(arr.length / 2); // 在数组中间位置取一个基准点 let point = arr.splice(pointIdx, 1)[0]; // 通过基准点找到这个值 let left = []; let right = []; for (let i = 0, len = arr.length; i \u003c len; i++) { if (arr[i] \u003c point) { // 循环数组，小于point的放在left中，大的放在right中 left.push(arr[i]); } else { right.push(arr[i]); } } // 递归，让每一个left和right继续排序，直到left或right只有一项为止 return quickSort(left).concat(point, quickSort(right)); }; call \u0026 apply \u0026 bind 实现 window.name = 2; let obj = { name: 1, }; function fn(a, b) { console.log(this.name, a, b); return 1; } // call Function.prototype.myCall = function (context) { context = context || window; // 如果上下文是null或者undefined，那么默认为window context.fn = this; // 设置执行函数到obj上，利用谁调用，谁就是this的特性，来实现this转换 // let arg = Array.from(arguments).slice(1) 截取参数也能这么写 let arg = [...arguments].slice(1); // 截取除了第一个参数以后的参数 let t = context.fn(...arg); // 传参执行 delete context.fn; // 设置完成后删除 return t; // 并返回 }; // apply Function.prototype.myApply = function (context) { context = context || window; context.fn = this; // 设置执行函数到obj上，利用谁调用，谁就是this的特性，来实现this转换 let arg = [...arguments][1]; // 参数是一个数组 if (!arg) { // 如果没参数，那么就不传参执行 return context.fn(); } let t = context.fn(...arg); delete context.fn; return t; }; // bind Function.prototype.Mybind = function (ref, ...arg) { // 当这个函数被new调用，需要解决两个问题 // 1: 不应该使用ref为this，根据情况判断，如果new调用那么this为实例。普通调用this为ref // 2: \b因为bind返回是新函数，所有要bind新函数要继承_this的原型 let _this = this; let fun = function (...arg2) { // 1的实现：this instanceof fun表达式为true说明被new调用，那么this就是新函数的this，也就是一个新的对象，否则就是第一个参数ref thisArg = this instanceof fun ? this : ref; return _this.apply(ref, [...arg, ...arg2]); }; // 2的实现：如果有prototype，那么继承 _this.prototype \u0026\u0026 (fun.prototype = Object.create(_this.prototype)); return fun; }; console.log(fn(1, 2)); console.log(fn.myCall(obj, 1, 2)); console.log(fn.myApply(obj, [1, 2])); console.log(fn.Mybind(obj, [1, 2])()); 二叉树反转 let reverseTree = function (root) { if (!root) return null; if (root.left || root.right) { let temp = root.left; root.left = root.right; root.right = temp; reverseTree(root.left); reverseTree(root.right); } return root; }; 链表反转 var reverseList = function (head) { let [prev, curr] = [null, head]; while (curr) { let tmp = curr.next; // 1. 临时存储当前指针后续内容 curr.next = prev; // 2. 反转链表 prev = curr; // 3. 接收反转结果 curr = tmp; // 4. 接回临时存储的后续内容 } return prev; }; 二叉树遍历 以前序遍历举例\n// 递归版 function preTraverse(root) { if (root) { console.log(root.value); preOrder(root.left); preOrder(root.right); } } // 非递归版 function preTraverse(root) { if (!root) { return false; } let stack = []; let p = root; while (stack.length || p) { if (p) { console.log(p.val); stack.push(p); p = p.left; } else { p = stack.pop(); p = p.right; } } } promise 重试 Promise.retry = function(fn, num = 3){ return new Promise(function(resolve, reject){ while(num\u003e0){ try{ const res = await fn resolve(res) num = 0 } catch(e){ if(!num) reject(e) } num -- } }) } ","wordCount":"1777","inLanguage":"zh","image":"https://slc3a2.github.io/images/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/cover.jpg","datePublished":"2021-04-30T18:46:45+08:00","dateModified":"2021-04-30T18:46:45+08:00","author":{"@type":"Person","name":"slc3a2"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://slc3a2.github.io/blogs/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/"},"publisher":{"@type":"Organization","name":"slc3a2","logo":{"@type":"ImageObject","url":"https://slc3a2.github.io/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://slc3a2.github.io/ accesskey=h title="slc3a2 (Alt + H)">slc3a2</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://slc3a2.github.io/ title="🏠 首页"><span>🏠 首页</span></a></li><li><a href=https://slc3a2.github.io/blogs/ title="📚 日志"><span>📚 日志</span></a></li><li><a href=https://slc3a2.github.io/apps/ title="🚀 应用"><span>🚀 应用</span></a></li><li><a href=https://slc3a2.github.io/search/ title="🔍 搜索"><span>🔍 搜索</span></a></li><li><a href=https://slc3a2.github.io/tags/ title="🧩 分类"><span>🧩 分类</span></a></li><li><a href=https://slc3a2.github.io/archives/ title="⏱ 时间轴"><span>⏱ 时间轴</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">手写代码面试题合集</h1><div class=post-meta><span title='2021-04-30 18:46:45 +0800 CST'>2021-04-30</span>&nbsp; ｜ &nbsp;4 分钟&nbsp; ｜ &nbsp;1777 字&nbsp; ｜ &nbsp;slc3a2</div></header><figure class=entry-cover1><img loading=eager src=https://slc3a2.github.io/images/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/cover.jpg alt="cover image"><figcaption>封面图来自 Unsplash | 作者 Milad Fakurian</figcaption></figure><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>目录</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#实现-sleep-函数>实现 sleep 函数</a></li><li><a href=#柯里化currying>柯里化(currying)</a></li><li><a href=#约瑟夫环问题>约瑟夫环问题</a></li><li><a href=#字符串相加>字符串相加</a></li><li><a href=#插入排序>插入排序</a></li><li><a href=#选择排序>选择排序</a></li><li><a href=#快速排序>快速排序</a></li><li><a href=#call--apply--bind-实现>call & apply & bind 实现</a></li><li><a href=#二叉树反转>二叉树反转</a></li><li><a href=#链表反转>链表反转</a></li><li><a href=#二叉树遍历>二叉树遍历</a></li><li><a href=#promise-重试>promise 重试</a></li></ul></nav></div></details></div><div class=post-content><p>持续更新，为了高效率访问，也算自己复习！！把遇到的手写题，抽空都撸了一遍。满满干货，不墨迹，直接上代码。总结道这篇博客里，下次面试前快速过一遍，临阵磨刀～</p><h2 id=实现-sleep-函数>实现 sleep 函数<a hidden class=anchor aria-hidden=true href=#实现-sleep-函数>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// 运行log函数后，希望得到结果：打印1，等待一秒钟，打印2，实现sleep函数
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>log</span>() {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#ae81ff>1</span>);
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>sleep</span>(<span style=color:#ae81ff>1000</span>);
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#ae81ff>2</span>);
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span><span style=color:#a6e22e>log</span>();
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// 解1：阻塞主线程
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>sleep</span>(<span style=color:#a6e22e>time</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>t</span> <span style=color:#f92672>=</span> Date.<span style=color:#a6e22e>now</span>();
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>while</span> (Date.<span style=color:#a6e22e>now</span>() <span style=color:#f92672>-</span> <span style=color:#a6e22e>t</span> <span style=color:#f92672>&lt;=</span> <span style=color:#a6e22e>time</span>) {}
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span><span style=color:#75715e>// 解2：async/await调用
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>sleep</span>(<span style=color:#a6e22e>time</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> Promise((<span style=color:#a6e22e>res</span>) =&gt; {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>setTimeOut</span>(() =&gt; {
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>resolve</span>();
-</span></span><span style=display:flex><span>    }, <span style=color:#a6e22e>time</span>);
-</span></span><span style=display:flex><span>  });
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h2 id=柯里化currying>柯里化(currying)<a hidden class=anchor aria-hidden=true href=#柯里化currying>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// 题目：实现add函数, 输出6
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>add</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>);
-</span></span><span style=display:flex><span><span style=color:#a6e22e>add</span>(<span style=color:#ae81ff>1</span>)(<span style=color:#ae81ff>2</span>)(<span style=color:#ae81ff>3</span>);
-</span></span><span style=display:flex><span><span style=color:#a6e22e>add</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>)(<span style=color:#ae81ff>3</span>);
-</span></span><span style=display:flex><span><span style=color:#a6e22e>add</span>(<span style=color:#ae81ff>1</span>)(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// 解1：不确定参数数量，一个方法
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>add</span>(...<span style=color:#a6e22e>agrg1</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>t</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (...<span style=color:#a6e22e>agrg2</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>add</span>(
-</span></span><span style=display:flex><span>      Array.<span style=color:#a6e22e>from</span>(<span style=color:#a6e22e>agrg1</span>)
-</span></span><span style=display:flex><span>        .<span style=color:#a6e22e>concat</span>(Array.<span style=color:#a6e22e>from</span>(<span style=color:#a6e22e>agrg2</span>))
-</span></span><span style=display:flex><span>        .<span style=color:#a6e22e>reduce</span>((<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) =&gt; {
-</span></span><span style=display:flex><span>          <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>b</span>;
-</span></span><span style=display:flex><span>        })
-</span></span><span style=display:flex><span>    );
-</span></span><span style=display:flex><span>  };
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>toString</span> <span style=color:#f92672>=</span> () =&gt; {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> Array.<span style=color:#a6e22e>from</span>(<span style=color:#a6e22e>agrg1</span>).<span style=color:#a6e22e>reduce</span>((<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) =&gt; {
-</span></span><span style=display:flex><span>      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>b</span>;
-</span></span><span style=display:flex><span>    });
-</span></span><span style=display:flex><span>  };
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>t</span>;
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>add</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>)); <span style=color:#75715e>// 6
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>add</span>(<span style=color:#ae81ff>1</span>)(<span style=color:#ae81ff>2</span>)(<span style=color:#ae81ff>3</span>)); <span style=color:#75715e>// 6
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>add</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>)(<span style=color:#ae81ff>3</span>)); <span style=color:#75715e>// 6
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>add</span>(<span style=color:#ae81ff>1</span>)(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>)); <span style=color:#75715e>// 6
-</span></span></span><span style=display:flex><span><span style=color:#75715e>// 解2：确定参数数量，两个方法
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>currying</span>(<span style=color:#a6e22e>fn</span>, ...<span style=color:#a6e22e>args</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>args</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>&gt;=</span> <span style=color:#a6e22e>fn</span>.<span style=color:#a6e22e>length</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>fn</span>(...<span style=color:#a6e22e>args</span>);
-</span></span><span style=display:flex><span>  } <span style=color:#66d9ef>else</span> {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> (...<span style=color:#a6e22e>args2</span>) =&gt; <span style=color:#a6e22e>currying</span>(<span style=color:#a6e22e>fn</span>, ...<span style=color:#a6e22e>args</span>, ...<span style=color:#a6e22e>args2</span>);
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span><span style=color:#75715e>// add只可以接受三个参数
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>add</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>, <span style=color:#a6e22e>c</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>c</span>;
-</span></span><span style=display:flex><span>};
-</span></span><span style=display:flex><span><span style=color:#75715e>// 利用currying函数改造add函数，使add函数具备柯里化
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>curry_add</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>currying</span>(<span style=color:#a6e22e>add</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>curry_add</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>)); <span style=color:#75715e>// 6
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>curry_add</span>(<span style=color:#ae81ff>1</span>)(<span style=color:#ae81ff>2</span>)(<span style=color:#ae81ff>3</span>)); <span style=color:#75715e>// 6
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>curry_add</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>)(<span style=color:#ae81ff>3</span>)); <span style=color:#75715e>// 6
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>curry_add</span>(<span style=color:#ae81ff>1</span>)(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>)); <span style=color:#75715e>// 6
-</span></span></span></code></pre></div><h2 id=约瑟夫环问题>约瑟夫环问题<a hidden class=anchor aria-hidden=true href=#约瑟夫环问题>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// N个人围成一圈，第一个人从1开始报数，报M的将被淘汰，下一个人接着从1开始报。如此反复，最后剩下两个，求最后的胜利者。
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>f</span>(<span style=color:#a6e22e>n</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>n</span> <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>2</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>n</span> <span style=color:#f92672>===</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>?</span> [<span style=color:#ae81ff>1</span>] <span style=color:#f92672>:</span> [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>];
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>temp</span> <span style=color:#f92672>=</span> [];
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>, <span style=color:#a6e22e>len</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>n</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>len</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>temp</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>i</span>);
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>fun_inner</span>(<span style=color:#a6e22e>temp</span>);
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>fun_inner</span>(<span style=color:#a6e22e>temp</span>, <span style=color:#a6e22e>count</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>temp</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>2</span>) {
-</span></span><span style=display:flex><span>      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>temp</span>;
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>count</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>count</span> <span style=color:#f92672>||</span> <span style=color:#ae81ff>1</span>;
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, <span style=color:#a6e22e>len</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>temp</span>.<span style=color:#a6e22e>wlength</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>len</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>count</span><span style=color:#f92672>++</span>;
-</span></span><span style=display:flex><span>      <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>count</span> <span style=color:#f92672>===</span> <span style=color:#ae81ff>3</span>) {
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>temp</span>.<span style=color:#a6e22e>splice</span>(<span style=color:#a6e22e>i</span>, <span style=color:#ae81ff>1</span>);
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>count</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
-</span></span><span style=display:flex><span>      }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>fun_inner</span>(<span style=color:#a6e22e>temp</span>, <span style=color:#a6e22e>count</span>);
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>f</span>(<span style=color:#ae81ff>10</span>)); <span style=color:#75715e>// [4, 10]
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>f</span>(<span style=color:#ae81ff>11</span>)); <span style=color:#75715e>// [3, 9]
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>f</span>(<span style=color:#ae81ff>12</span>)); <span style=color:#75715e>// [6, 9]
-</span></span></span></code></pre></div><h2 id=字符串相加>字符串相加<a hidden class=anchor aria-hidden=true href=#字符串相加>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>addStrings</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>res</span> <span style=color:#f92672>=</span> [];
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>temp</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>length</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>t</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>length</span>;
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>t</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>b</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;0&#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>b</span>;
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  } <span style=color:#66d9ef>else</span> {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>t</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>length</span>;
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>t</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>a</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;0&#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>a</span>;
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>len</span> <span style=color:#f92672>=</span> Math.<span style=color:#a6e22e>max</span>(<span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>length</span>, <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>length</span>) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>; <span style=color:#a6e22e>len</span> <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>len</span><span style=color:#f92672>--</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>len</span>;
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>t_a</span> <span style=color:#f92672>=</span> Number(<span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>charAt</span>(<span style=color:#a6e22e>i</span>) <span style=color:#f92672>||</span> <span style=color:#ae81ff>0</span>);
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>t_b</span> <span style=color:#f92672>=</span> Number(<span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>charAt</span>(<span style=color:#a6e22e>i</span>) <span style=color:#f92672>||</span> <span style=color:#ae81ff>0</span>);
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>count</span> <span style=color:#f92672>=</span> String(<span style=color:#a6e22e>t_a</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>t_b</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>temp</span>);
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>temp</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>count</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>1</span>) {
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>temp</span> <span style=color:#f92672>=</span> Number(<span style=color:#a6e22e>count</span>.<span style=color:#a6e22e>charAt</span>(<span style=color:#ae81ff>0</span>));
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>count</span>.<span style=color:#a6e22e>charAt</span>(<span style=color:#ae81ff>1</span>));
-</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>else</span> {
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>count</span>);
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>temp</span> <span style=color:#f92672>!==</span> <span style=color:#ae81ff>0</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>temp</span>);
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>reverse</span>().<span style=color:#a6e22e>join</span>(<span style=color:#e6db74>&#34;&#34;</span>);
-</span></span><span style=display:flex><span>};
-</span></span></code></pre></div><h2 id=插入排序>插入排序<a hidden class=anchor aria-hidden=true href=#插入排序>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>insertion</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>arr</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>len</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>arr</span>.<span style=color:#a6e22e>length</span>;
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>len</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>cur</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>i</span>;
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>j</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>;
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>while</span> (<span style=color:#a6e22e>j</span> <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>0</span>) {
-</span></span><span style=display:flex><span>      <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>arr</span>[<span style=color:#a6e22e>cur</span>] <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>arr</span>[<span style=color:#a6e22e>j</span>]) {
-</span></span><span style=display:flex><span>        [<span style=color:#a6e22e>arr</span>[<span style=color:#a6e22e>cur</span>], <span style=color:#a6e22e>arr</span>[<span style=color:#a6e22e>j</span>]] <span style=color:#f92672>=</span> [<span style=color:#a6e22e>arr</span>[<span style=color:#a6e22e>j</span>], <span style=color:#a6e22e>arr</span>[<span style=color:#a6e22e>cur</span>]];
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>cur</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>j</span>; <span style=color:#75715e>// 交换后i值变了，那把交换后的i找回来就可以了
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>      }
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>j</span><span style=color:#f92672>--</span>;
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>arr</span>;
-</span></span><span style=display:flex><span>};
-</span></span></code></pre></div><h2 id=选择排序>选择排序<a hidden class=anchor aria-hidden=true href=#选择排序>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>selection</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>arr</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>len</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>arr</span>.<span style=color:#a6e22e>length</span>;
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>len</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>idx</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>i</span>;
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>j</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>; <span style=color:#a6e22e>j</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>len</span>; <span style=color:#a6e22e>j</span><span style=color:#f92672>++</span>) {
-</span></span><span style=display:flex><span>      <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>arr</span>[<span style=color:#a6e22e>j</span>] <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>arr</span>[<span style=color:#a6e22e>idx</span>]) {
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>idx</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>j</span>;
-</span></span><span style=display:flex><span>      }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>    [<span style=color:#a6e22e>arr</span>[<span style=color:#a6e22e>idx</span>], <span style=color:#a6e22e>arr</span>[<span style=color:#a6e22e>i</span>]] <span style=color:#f92672>=</span> [<span style=color:#a6e22e>arr</span>[<span style=color:#a6e22e>i</span>], <span style=color:#a6e22e>arr</span>[<span style=color:#a6e22e>idx</span>]];
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>arr</span>;
-</span></span><span style=display:flex><span>};
-</span></span></code></pre></div><h2 id=快速排序>快速排序<a hidden class=anchor aria-hidden=true href=#快速排序>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>quickSort</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>arr</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>arr</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>1</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>arr</span>;
-</span></span><span style=display:flex><span>  } <span style=color:#75715e>// 递归边界条件
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>pointIdx</span> <span style=color:#f92672>=</span> Math.<span style=color:#a6e22e>floor</span>(<span style=color:#a6e22e>arr</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>); <span style=color:#75715e>// 在数组中间位置取一个基准点
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>point</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>arr</span>.<span style=color:#a6e22e>splice</span>(<span style=color:#a6e22e>pointIdx</span>, <span style=color:#ae81ff>1</span>)[<span style=color:#ae81ff>0</span>]; <span style=color:#75715e>// 通过基准点找到这个值
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>left</span> <span style=color:#f92672>=</span> [];
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>right</span> <span style=color:#f92672>=</span> [];
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, <span style=color:#a6e22e>len</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>arr</span>.<span style=color:#a6e22e>length</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>len</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>arr</span>[<span style=color:#a6e22e>i</span>] <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>point</span>) {
-</span></span><span style=display:flex><span>      <span style=color:#75715e>// 循环数组，小于point的放在left中，大的放在right中
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>      <span style=color:#a6e22e>left</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>arr</span>[<span style=color:#a6e22e>i</span>]);
-</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>else</span> {
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>right</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>arr</span>[<span style=color:#a6e22e>i</span>]);
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// 递归，让每一个left和right继续排序，直到left或right只有一项为止
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>quickSort</span>(<span style=color:#a6e22e>left</span>).<span style=color:#a6e22e>concat</span>(<span style=color:#a6e22e>point</span>, <span style=color:#a6e22e>quickSort</span>(<span style=color:#a6e22e>right</span>));
-</span></span><span style=display:flex><span>};
-</span></span></code></pre></div><h2 id=call--apply--bind-实现>call & apply & bind 实现<a hidden class=anchor aria-hidden=true href=#call--apply--bind-实现>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span>window.<span style=color:#a6e22e>name</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>obj</span> <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>,
-</span></span><span style=display:flex><span>};
-</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>fn</span>(<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>name</span>, <span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>);
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>1</span>;
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// call
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>Function.<span style=color:#a6e22e>prototype</span>.<span style=color:#a6e22e>myCall</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>context</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>context</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>context</span> <span style=color:#f92672>||</span> window; <span style=color:#75715e>// 如果上下文是null或者undefined，那么默认为window
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>fn</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>; <span style=color:#75715e>// 设置执行函数到obj上，利用谁调用，谁就是this的特性，来实现this转换
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// let arg = Array.from(arguments).slice(1) 截取参数也能这么写
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>arg</span> <span style=color:#f92672>=</span> [...<span style=color:#a6e22e>arguments</span>].<span style=color:#a6e22e>slice</span>(<span style=color:#ae81ff>1</span>); <span style=color:#75715e>// 截取除了第一个参数以后的参数
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>t</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>fn</span>(...<span style=color:#a6e22e>arg</span>); <span style=color:#75715e>// 传参执行
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>delete</span> <span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>fn</span>; <span style=color:#75715e>// 设置完成后删除
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>t</span>; <span style=color:#75715e>// 并返回
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>};
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// apply
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>Function.<span style=color:#a6e22e>prototype</span>.<span style=color:#a6e22e>myApply</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>context</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>context</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>context</span> <span style=color:#f92672>||</span> window;
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>fn</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>; <span style=color:#75715e>// 设置执行函数到obj上，利用谁调用，谁就是this的特性，来实现this转换
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>arg</span> <span style=color:#f92672>=</span> [...<span style=color:#a6e22e>arguments</span>][<span style=color:#ae81ff>1</span>]; <span style=color:#75715e>// 参数是一个数组
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>arg</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#75715e>// 如果没参数，那么就不传参执行
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>fn</span>();
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>t</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>fn</span>(...<span style=color:#a6e22e>arg</span>);
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>delete</span> <span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>fn</span>;
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>t</span>;
-</span></span><span style=display:flex><span>};
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// bind
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>Function.<span style=color:#a6e22e>prototype</span>.<span style=color:#a6e22e>Mybind</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>ref</span>, ...<span style=color:#a6e22e>arg</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// 当这个函数被new调用，需要解决两个问题
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// 1: 不应该使用ref为this，根据情况判断，如果new调用那么this为实例。普通调用this为ref
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// 2: 因为bind返回是新函数，所有要bind新函数要继承_this的原型
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>_this</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>;
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>fun</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (...<span style=color:#a6e22e>arg2</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#75715e>// 1的实现：this instanceof fun表达式为true说明被new调用，那么this就是新函数的this，也就是一个新的对象，否则就是第一个参数ref
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>thisArg</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span> <span style=color:#66d9ef>instanceof</span> <span style=color:#a6e22e>fun</span> <span style=color:#f92672>?</span> <span style=color:#66d9ef>this</span> <span style=color:#f92672>:</span> <span style=color:#a6e22e>ref</span>;
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>_this</span>.<span style=color:#a6e22e>apply</span>(<span style=color:#a6e22e>ref</span>, [...<span style=color:#a6e22e>arg</span>, ...<span style=color:#a6e22e>arg2</span>]);
-</span></span><span style=display:flex><span>  };
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// 2的实现：如果有prototype，那么继承
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>_this</span>.<span style=color:#a6e22e>prototype</span> <span style=color:#f92672>&amp;&amp;</span> (<span style=color:#a6e22e>fun</span>.<span style=color:#a6e22e>prototype</span> <span style=color:#f92672>=</span> Object.<span style=color:#a6e22e>create</span>(<span style=color:#a6e22e>_this</span>.<span style=color:#a6e22e>prototype</span>));
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>fun</span>;
-</span></span><span style=display:flex><span>};
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>fn</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>));
-</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>fn</span>.<span style=color:#a6e22e>myCall</span>(<span style=color:#a6e22e>obj</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>));
-</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>fn</span>.<span style=color:#a6e22e>myApply</span>(<span style=color:#a6e22e>obj</span>, [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>]));
-</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>fn</span>.<span style=color:#a6e22e>Mybind</span>(<span style=color:#a6e22e>obj</span>, [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>])());
-</span></span></code></pre></div><h2 id=二叉树反转>二叉树反转<a hidden class=anchor aria-hidden=true href=#二叉树反转>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>reverseTree</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>root</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>root</span>) <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>;
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>root</span>.<span style=color:#a6e22e>left</span> <span style=color:#f92672>||</span> <span style=color:#a6e22e>root</span>.<span style=color:#a6e22e>right</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>temp</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>root</span>.<span style=color:#a6e22e>left</span>;
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>root</span>.<span style=color:#a6e22e>left</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>root</span>.<span style=color:#a6e22e>right</span>;
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>root</span>.<span style=color:#a6e22e>right</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>temp</span>;
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>reverseTree</span>(<span style=color:#a6e22e>root</span>.<span style=color:#a6e22e>left</span>);
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>reverseTree</span>(<span style=color:#a6e22e>root</span>.<span style=color:#a6e22e>right</span>);
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>root</span>;
-</span></span><span style=display:flex><span>};
-</span></span></code></pre></div><h2 id=链表反转>链表反转<a hidden class=anchor aria-hidden=true href=#链表反转>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>reverseList</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>head</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> [<span style=color:#a6e22e>prev</span>, <span style=color:#a6e22e>curr</span>] <span style=color:#f92672>=</span> [<span style=color:#66d9ef>null</span>, <span style=color:#a6e22e>head</span>];
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>while</span> (<span style=color:#a6e22e>curr</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>tmp</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>curr</span>.<span style=color:#a6e22e>next</span>; <span style=color:#75715e>// 1. 临时存储当前指针后续内容
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>curr</span>.<span style=color:#a6e22e>next</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>prev</span>; <span style=color:#75715e>// 2. 反转链表
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>prev</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>curr</span>; <span style=color:#75715e>// 3. 接收反转结果
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>curr</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>tmp</span>; <span style=color:#75715e>// 4. 接回临时存储的后续内容
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  }
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>prev</span>;
-</span></span><span style=display:flex><span>};
-</span></span></code></pre></div><h2 id=二叉树遍历>二叉树遍历<a hidden class=anchor aria-hidden=true href=#二叉树遍历>#</a></h2><blockquote><p>以<code>前序</code>遍历举例</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// 递归版
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>preTraverse</span>(<span style=color:#a6e22e>root</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>root</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>root</span>.<span style=color:#a6e22e>value</span>);
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>preOrder</span>(<span style=color:#a6e22e>root</span>.<span style=color:#a6e22e>left</span>);
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>preOrder</span>(<span style=color:#a6e22e>root</span>.<span style=color:#a6e22e>right</span>);
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span><span style=color:#75715e>// 非递归版
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>preTraverse</span>(<span style=color:#a6e22e>root</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>root</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>stack</span> <span style=color:#f92672>=</span> [];
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>p</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>root</span>;
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>while</span> (<span style=color:#a6e22e>stack</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>||</span> <span style=color:#a6e22e>p</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>p</span>) {
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>p</span>.<span style=color:#a6e22e>val</span>);
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>stack</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>p</span>);
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>p</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>p</span>.<span style=color:#a6e22e>left</span>;
-</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>else</span> {
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>p</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>stack</span>.<span style=color:#a6e22e>pop</span>();
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>p</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>p</span>.<span style=color:#a6e22e>right</span>;
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h2 id=promise-重试>promise 重试<a hidden class=anchor aria-hidden=true href=#promise-重试>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span> Promise.<span style=color:#a6e22e>retry</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span>(<span style=color:#a6e22e>fn</span>, <span style=color:#a6e22e>num</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>){
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> Promise(<span style=color:#66d9ef>function</span>(<span style=color:#a6e22e>resolve</span>, <span style=color:#a6e22e>reject</span>){
-</span></span><span style=display:flex><span>       <span style=color:#66d9ef>while</span>(<span style=color:#a6e22e>num</span><span style=color:#f92672>&gt;</span><span style=color:#ae81ff>0</span>){
-</span></span><span style=display:flex><span>           <span style=color:#66d9ef>try</span>{
-</span></span><span style=display:flex><span>                  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>res</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>fn</span>
-</span></span><span style=display:flex><span>                  <span style=color:#a6e22e>resolve</span>(<span style=color:#a6e22e>res</span>)
-</span></span><span style=display:flex><span>                  <span style=color:#a6e22e>num</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-</span></span><span style=display:flex><span>            } <span style=color:#66d9ef>catch</span>(<span style=color:#a6e22e>e</span>){
-</span></span><span style=display:flex><span>                  <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span><span style=color:#a6e22e>num</span>) <span style=color:#a6e22e>reject</span>(<span style=color:#a6e22e>e</span>)
-</span></span><span style=display:flex><span>            }
-</span></span><span style=display:flex><span>            <span style=color:#a6e22e>num</span> <span style=color:#f92672>--</span>
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    })
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://slc3a2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/>计算机科学</a></li></ul><nav class=paginav><a class=prev href=https://slc3a2.github.io/blogs/%E6%97%85%E8%A1%8C%E8%80%851%E5%8F%B7/><span class=title>« 上一页</span><br><span>旅行者1号</span>
-</a><a class=next href=https://slc3a2.github.io/blogs/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/><span class=title>下一页 »</span><br><span>前端前端面试题总结</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2025 <a href=https://slc3a2.github.io/>slc3a2</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
-</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>手写代码面试题合集 | slc3a2</title>
+<meta name="keywords" content="计算机科学">
+<meta name="description" content="持续更新，为了高效率访问，也算自己复习！！把遇到的手写题，抽空都撸了一遍。满满干货，不墨迹，直接上代码。总结道这篇博客里，下次面试前快速过一遍，临阵磨刀～">
+<meta name="author" content="slc3a2">
+<link rel="canonical" href="http://localhost:1313/blogs/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.03380b421b43a59cef22aa8ddc67c8077da9081a7c7a95ef8104001f8af6ac13.css" integrity="sha256-AzgLQhtDpZzvIqqN3GfIB32pCBp8epXvgQQAH4r2rBM=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/blogs/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="🏠 首页">
+                    <span>🏠 首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/blogs/" title="📚 日志">
+                    <span>📚 日志</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/apps/" title="🚀 应用">
+                    <span>🚀 应用</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 搜索">
+                    <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="🧩 分类">
+                    <span>🧩 分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="⏱ 时间轴">
+                    <span>⏱ 时间轴</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      手写代码面试题合集
+    </h1>
+    <div class="post-meta"><span title='2021-04-30 18:46:45 +0800 CST'>2021-04-30</span>&nbsp; ｜ &nbsp;4 分钟&nbsp; ｜ &nbsp;1777 字&nbsp; ｜ &nbsp;slc3a2
+
+</div>
+  </header> 
+<figure class="entry-cover1">
+    <img loading="eager" src="http://localhost:1313/images/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Milad Fakurian</figcaption>
+</figure><div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#实现-sleep-函数">实现 sleep 函数</a></li>
+    <li><a href="#柯里化currying">柯里化(currying)</a></li>
+    <li><a href="#约瑟夫环问题">约瑟夫环问题</a></li>
+    <li><a href="#字符串相加">字符串相加</a></li>
+    <li><a href="#插入排序">插入排序</a></li>
+    <li><a href="#选择排序">选择排序</a></li>
+    <li><a href="#快速排序">快速排序</a></li>
+    <li><a href="#call--apply--bind-实现">call &amp; apply &amp; bind 实现</a></li>
+    <li><a href="#二叉树反转">二叉树反转</a></li>
+    <li><a href="#链表反转">链表反转</a></li>
+    <li><a href="#二叉树遍历">二叉树遍历</a></li>
+    <li><a href="#promise-重试">promise 重试</a></li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>持续更新，为了高效率访问，也算自己复习！！把遇到的手写题，抽空都撸了一遍。满满干货，不墨迹，直接上代码。总结道这篇博客里，下次面试前快速过一遍，临阵磨刀～</p>
+<h2 id="实现-sleep-函数">实现 sleep 函数<a hidden class="anchor" aria-hidden="true" href="#实现-sleep-函数">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// 运行log函数后，希望得到结果：打印1，等待一秒钟，打印2，实现sleep函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">log</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sleep</span>(<span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">log</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 解1：阻塞主线程
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sleep</span>(<span style="color:#a6e22e">time</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">t</span> <span style="color:#f92672">=</span> Date.<span style="color:#a6e22e">now</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span> (Date.<span style="color:#a6e22e">now</span>() <span style="color:#f92672">-</span> <span style="color:#a6e22e">t</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">time</span>) {}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 解2：async/await调用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sleep</span>(<span style="color:#a6e22e">time</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setTimeOut</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">resolve</span>();
+</span></span><span style="display:flex;"><span>    }, <span style="color:#a6e22e">time</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="柯里化currying">柯里化(currying)<a hidden class="anchor" aria-hidden="true" href="#柯里化currying">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// 题目：实现add函数, 输出6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">add</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">add</span>(<span style="color:#ae81ff">1</span>)(<span style="color:#ae81ff">2</span>)(<span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">add</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>)(<span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">add</span>(<span style="color:#ae81ff">1</span>)(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 解1：不确定参数数量，一个方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add</span>(...<span style="color:#a6e22e">agrg1</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">t</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (...<span style="color:#a6e22e">agrg2</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">add</span>(
+</span></span><span style="display:flex;"><span>      Array.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">agrg1</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">concat</span>(Array.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">agrg2</span>))
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) =&gt; {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">toString</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> Array.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">agrg1</span>).<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) =&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">t</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">add</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>)); <span style="color:#75715e">// 6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">add</span>(<span style="color:#ae81ff">1</span>)(<span style="color:#ae81ff">2</span>)(<span style="color:#ae81ff">3</span>)); <span style="color:#75715e">// 6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">add</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>)(<span style="color:#ae81ff">3</span>)); <span style="color:#75715e">// 6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">add</span>(<span style="color:#ae81ff">1</span>)(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>)); <span style="color:#75715e">// 6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 解2：确定参数数量，两个方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">currying</span>(<span style="color:#a6e22e">fn</span>, ...<span style="color:#a6e22e">args</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">fn</span>.<span style="color:#a6e22e">length</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fn</span>(...<span style="color:#a6e22e">args</span>);
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (...<span style="color:#a6e22e">args2</span>) =&gt; <span style="color:#a6e22e">currying</span>(<span style="color:#a6e22e">fn</span>, ...<span style="color:#a6e22e">args</span>, ...<span style="color:#a6e22e">args2</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// add只可以接受三个参数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">add</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">c</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">c</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 利用currying函数改造add函数，使add函数具备柯里化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">curry_add</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">currying</span>(<span style="color:#a6e22e">add</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">curry_add</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>)); <span style="color:#75715e">// 6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">curry_add</span>(<span style="color:#ae81ff">1</span>)(<span style="color:#ae81ff">2</span>)(<span style="color:#ae81ff">3</span>)); <span style="color:#75715e">// 6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">curry_add</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>)(<span style="color:#ae81ff">3</span>)); <span style="color:#75715e">// 6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">curry_add</span>(<span style="color:#ae81ff">1</span>)(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>)); <span style="color:#75715e">// 6
+</span></span></span></code></pre></div><h2 id="约瑟夫环问题">约瑟夫环问题<a hidden class="anchor" aria-hidden="true" href="#约瑟夫环问题">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// N个人围成一圈，第一个人从1开始报数，报M的将被淘汰，下一个人接着从1开始报。如此反复，最后剩下两个，求最后的胜利者。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">f</span>(<span style="color:#a6e22e">n</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">?</span> [<span style="color:#ae81ff">1</span>] <span style="color:#f92672">:</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">temp</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">len</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">len</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">temp</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">i</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fun_inner</span>(<span style="color:#a6e22e">temp</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">fun_inner</span>(<span style="color:#a6e22e">temp</span>, <span style="color:#a6e22e">count</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">temp</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">temp</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">count</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">len</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">temp</span>.<span style="color:#a6e22e">wlength</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">len</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">count</span><span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">count</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">3</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">temp</span>.<span style="color:#a6e22e">splice</span>(<span style="color:#a6e22e">i</span>, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fun_inner</span>(<span style="color:#a6e22e">temp</span>, <span style="color:#a6e22e">count</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">f</span>(<span style="color:#ae81ff">10</span>)); <span style="color:#75715e">// [4, 10]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">f</span>(<span style="color:#ae81ff">11</span>)); <span style="color:#75715e">// [3, 9]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">f</span>(<span style="color:#ae81ff">12</span>)); <span style="color:#75715e">// [6, 9]
+</span></span></span></code></pre></div><h2 id="字符串相加">字符串相加<a hidden class="anchor" aria-hidden="true" href="#字符串相加">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">addStrings</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">temp</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">length</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">t</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">length</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">t</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">b</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">t</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">length</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">t</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">a</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">len</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">max</span>(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">length</span>, <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">length</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">len</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">len</span><span style="color:#f92672">--</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">len</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">t_a</span> <span style="color:#f92672">=</span> Number(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">charAt</span>(<span style="color:#a6e22e">i</span>) <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">t_b</span> <span style="color:#f92672">=</span> Number(<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">charAt</span>(<span style="color:#a6e22e">i</span>) <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> String(<span style="color:#a6e22e">t_a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">t_b</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">temp</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">temp</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">count</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">temp</span> <span style="color:#f92672">=</span> Number(<span style="color:#a6e22e">count</span>.<span style="color:#a6e22e">charAt</span>(<span style="color:#ae81ff">0</span>));
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">count</span>.<span style="color:#a6e22e">charAt</span>(<span style="color:#ae81ff">1</span>));
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">count</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">temp</span> <span style="color:#f92672">!==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">temp</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">reverse</span>().<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h2 id="插入排序">插入排序<a hidden class="anchor" aria-hidden="true" href="#插入排序">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">insertion</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">arr</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">len</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">length</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">len</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">cur</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">i</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">j</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">cur</span>] <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">j</span>]) {
+</span></span><span style="display:flex;"><span>        [<span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">cur</span>], <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">j</span>]] <span style="color:#f92672">=</span> [<span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">j</span>], <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">cur</span>]];
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">cur</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">j</span>; <span style="color:#75715e">// 交换后i值变了，那把交换后的i找回来就可以了
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">j</span><span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">arr</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h2 id="选择排序">选择排序<a hidden class="anchor" aria-hidden="true" href="#选择排序">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">selection</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">arr</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">len</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">length</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">len</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">idx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">i</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">j</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">len</span>; <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">j</span>] <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">idx</span>]) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">idx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">j</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    [<span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">idx</span>], <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">i</span>]] <span style="color:#f92672">=</span> [<span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">i</span>], <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">idx</span>]];
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">arr</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h2 id="快速排序">快速排序<a hidden class="anchor" aria-hidden="true" href="#快速排序">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">quickSort</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">arr</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">arr</span>;
+</span></span><span style="display:flex;"><span>  } <span style="color:#75715e">// 递归边界条件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">pointIdx</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">floor</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>); <span style="color:#75715e">// 在数组中间位置取一个基准点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">point</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">splice</span>(<span style="color:#a6e22e">pointIdx</span>, <span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>]; <span style="color:#75715e">// 通过基准点找到这个值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">left</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">right</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">len</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">len</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">point</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// 循环数组，小于point的放在left中，大的放在right中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">left</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">i</span>]);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">right</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">i</span>]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 递归，让每一个left和right继续排序，直到left或right只有一项为止
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">quickSort</span>(<span style="color:#a6e22e">left</span>).<span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">point</span>, <span style="color:#a6e22e">quickSort</span>(<span style="color:#a6e22e">right</span>));
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h2 id="call--apply--bind-实现">call &amp; apply &amp; bind 实现<a hidden class="anchor" aria-hidden="true" href="#call--apply--bind-实现">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>window.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">obj</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">fn</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// call
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Function.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">myCall</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">context</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">context</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span> <span style="color:#f92672">||</span> window; <span style="color:#75715e">// 如果上下文是null或者undefined，那么默认为window
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">fn</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>; <span style="color:#75715e">// 设置执行函数到obj上，利用谁调用，谁就是this的特性，来实现this转换
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// let arg = Array.from(arguments).slice(1) 截取参数也能这么写
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arg</span> <span style="color:#f92672">=</span> [...<span style="color:#a6e22e">arguments</span>].<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">1</span>); <span style="color:#75715e">// 截取除了第一个参数以后的参数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">t</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">fn</span>(...<span style="color:#a6e22e">arg</span>); <span style="color:#75715e">// 传参执行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">delete</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">fn</span>; <span style="color:#75715e">// 设置完成后删除
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">t</span>; <span style="color:#75715e">// 并返回
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// apply
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Function.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">myApply</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">context</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">context</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span> <span style="color:#f92672">||</span> window;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">fn</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>; <span style="color:#75715e">// 设置执行函数到obj上，利用谁调用，谁就是this的特性，来实现this转换
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arg</span> <span style="color:#f92672">=</span> [...<span style="color:#a6e22e">arguments</span>][<span style="color:#ae81ff">1</span>]; <span style="color:#75715e">// 参数是一个数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">arg</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 如果没参数，那么就不传参执行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">fn</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">t</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">fn</span>(...<span style="color:#a6e22e">arg</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">delete</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">fn</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">t</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// bind
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Function.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">Mybind</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">ref</span>, ...<span style="color:#a6e22e">arg</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 当这个函数被new调用，需要解决两个问题
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// 1: 不应该使用ref为this，根据情况判断，如果new调用那么this为实例。普通调用this为ref
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// 2: 因为bind返回是新函数，所有要bind新函数要继承_this的原型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">_this</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fun</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (...<span style="color:#a6e22e">arg2</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 1的实现：this instanceof fun表达式为true说明被new调用，那么this就是新函数的this，也就是一个新的对象，否则就是第一个参数ref
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">thisArg</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> <span style="color:#a6e22e">fun</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">this</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">ref</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">_this</span>.<span style="color:#a6e22e">apply</span>(<span style="color:#a6e22e">ref</span>, [...<span style="color:#a6e22e">arg</span>, ...<span style="color:#a6e22e">arg2</span>]);
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 2的实现：如果有prototype，那么继承
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">_this</span>.<span style="color:#a6e22e">prototype</span> <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#a6e22e">fun</span>.<span style="color:#a6e22e">prototype</span> <span style="color:#f92672">=</span> Object.<span style="color:#a6e22e">create</span>(<span style="color:#a6e22e">_this</span>.<span style="color:#a6e22e">prototype</span>));
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fun</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">fn</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">fn</span>.<span style="color:#a6e22e">myCall</span>(<span style="color:#a6e22e">obj</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">fn</span>.<span style="color:#a6e22e">myApply</span>(<span style="color:#a6e22e">obj</span>, [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>]));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">fn</span>.<span style="color:#a6e22e">Mybind</span>(<span style="color:#a6e22e">obj</span>, [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>])());
+</span></span></code></pre></div><h2 id="二叉树反转">二叉树反转<a hidden class="anchor" aria-hidden="true" href="#二叉树反转">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">reverseTree</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">root</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">root</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">left</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">right</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">temp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">left</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">left</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">right</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">right</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">temp</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">reverseTree</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">left</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">reverseTree</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">right</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">root</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h2 id="链表反转">链表反转<a hidden class="anchor" aria-hidden="true" href="#链表反转">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">reverseList</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">head</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> [<span style="color:#a6e22e">prev</span>, <span style="color:#a6e22e">curr</span>] <span style="color:#f92672">=</span> [<span style="color:#66d9ef">null</span>, <span style="color:#a6e22e">head</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">curr</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">tmp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">curr</span>.<span style="color:#a6e22e">next</span>; <span style="color:#75715e">// 1. 临时存储当前指针后续内容
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">curr</span>.<span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">prev</span>; <span style="color:#75715e">// 2. 反转链表
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">prev</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">curr</span>; <span style="color:#75715e">// 3. 接收反转结果
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">curr</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">tmp</span>; <span style="color:#75715e">// 4. 接回临时存储的后续内容
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">prev</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h2 id="二叉树遍历">二叉树遍历<a hidden class="anchor" aria-hidden="true" href="#二叉树遍历">#</a></h2>
+<blockquote>
+<p>以<code>前序</code>遍历举例</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// 递归版
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">preTraverse</span>(<span style="color:#a6e22e">root</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">root</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">value</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">preOrder</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">left</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">preOrder</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">right</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 非递归版
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">preTraverse</span>(<span style="color:#a6e22e">root</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">root</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">stack</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">root</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">stack</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">p</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">p</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">val</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">stack</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">p</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">left</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">stack</span>.<span style="color:#a6e22e">pop</span>();
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">right</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="promise-重试">promise 重试<a hidden class="anchor" aria-hidden="true" href="#promise-重试">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span> Promise.<span style="color:#a6e22e">retry</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">fn</span>, <span style="color:#a6e22e">num</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>){
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">num</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>           <span style="color:#66d9ef">try</span>{
+</span></span><span style="display:flex;"><span>                  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fn</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">res</span>)
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">num</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">e</span>){
+</span></span><span style="display:flex;"><span>                  <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span><span style="color:#a6e22e">num</span>) <span style="color:#a6e22e">reject</span>(<span style="color:#a6e22e">e</span>)
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">num</span> <span style="color:#f92672">--</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/blogs/%E6%97%85%E8%A1%8C%E8%80%851%E5%8F%B7/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>旅行者1号</span>
+  </a>
+  <a class="next" href="http://localhost:1313/blogs/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>前端前端面试题总结</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">slc3a2</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

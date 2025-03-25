@@ -1,44 +1,384 @@
-<!doctype html><html lang=zh dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>函数的防抖和节流 | slc3a2</title>
-<meta name=keywords content="前端"><meta name=description content="防抖（debounce）
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>函数的防抖和节流 | slc3a2</title>
+<meta name="keywords" content="前端">
+<meta name="description" content="防抖（debounce）
 什么是防抖？
 
 一个函数被触发n秒后，才执行此函数
 如果n秒内再次触发此函数，那么重新以再次触发的时间开始重新延迟 n 秒后执行此函数
 
-这样的函数 执行行为 叫做函数防抖。"><meta name=author content="slc3a2"><link rel=canonical href=https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/><link crossorigin=anonymous href=/assets/css/stylesheet.03380b421b43a59cef22aa8ddc67c8077da9081a7c7a95ef8104001f8af6ac13.css integrity="sha256-AzgLQhtDpZzvIqqN3GfIB32pCBp8epXvgQQAH4r2rBM=" rel="preload stylesheet" as=style><link rel=icon href=https://slc3a2.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://slc3a2.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://slc3a2.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://slc3a2.github.io/apple-touch-icon.png><link rel=mask-icon href=https://slc3a2.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/"><meta property="og:site_name" content="slc3a2"><meta property="og:title" content="函数的防抖和节流"><meta property="og:description" content="防抖（debounce） 什么是防抖？ 一个函数被触发n秒后，才执行此函数 如果n秒内再次触发此函数，那么重新以再次触发的时间开始重新延迟 n 秒后执行此函数 这样的函数 执行行为 叫做函数防抖。"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="blogs"><meta property="article:published_time" content="2020-10-20T18:02:56+08:00"><meta property="article:modified_time" content="2020-10-20T18:02:56+08:00"><meta property="article:tag" content="前端"><meta property="og:image" content="https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg"><meta name=twitter:title content="函数的防抖和节流"><meta name=twitter:description content="防抖（debounce）
-什么是防抖？
+这样的函数 执行行为 叫做函数防抖。">
+<meta name="author" content="slc3a2">
+<link rel="canonical" href="http://localhost:1313/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.03380b421b43a59cef22aa8ddc67c8077da9081a7c7a95ef8104001f8af6ac13.css" integrity="sha256-AzgLQhtDpZzvIqqN3GfIB32pCBp8epXvgQQAH4r2rBM=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
 
-一个函数被触发n秒后，才执行此函数
-如果n秒内再次触发此函数，那么重新以再次触发的时间开始重新延迟 n 秒后执行此函数
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
 
-这样的函数 执行行为 叫做函数防抖。"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"日志","item":"https://slc3a2.github.io/blogs/"},{"@type":"ListItem","position":2,"name":"函数的防抖和节流","item":"https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"函数的防抖和节流","name":"函数的防抖和节流","description":"防抖（debounce） 什么是防抖？ 一个函数被触发n秒后，才执行此函数 如果n秒内再次触发此函数，那么重新以再次触发的时间开始重新延迟 n 秒后执行此函数 这样的函数 执行行为 叫做函数防抖。\n","keywords":["前端"],"articleBody":"防抖（debounce） 什么是防抖？ 一个函数被触发n秒后，才执行此函数 如果n秒内再次触发此函数，那么重新以再次触发的时间开始重新延迟 n 秒后执行此函数 这样的函数 执行行为 叫做函数防抖。\n应用场景 监听设备窗口大小发生改变，只有停止改变后的200ms执行handleResize方法\nwindow.addEventListener(\"resize\", debounce(handleResize, 200)); 监听表单填写，表达内容改变都去请求服务端数据，在每次表单执行输入停止的500ms后，才发起请求\ninput.addEventListener(\"change\", debounce(handleRequest, 500)); 代码实现 function debounce(event, delay) { let timer = null; return function (...args) { // ...args用来接受fun原有的参数，比如事件就是event对象 clearTimeout(timer); // 利用clearTimeout的特性，处理delay内，再此触发函数不做处理 timer = setTimeout(() =\u003e { event.apply(this, args); }, delay); }; } 节流（throttle） 什么是节流？ 单位时间内多次触发函数，函数只进行一次执行 如果在这个单位时间内，多余的触发，全部不做处理。使函数按照规定的速率执行 这样的函数 执行行为 叫做函数节流。\n应用场景 滚动事件，持续滚动，间隔200ms执行\ndom.addEventListener(\"scroll\", throttle(handleScroll, 200)); 鼠标滑动事件，一秒钟大概可以执行60次。使用节流函数优化，200ms执行一次。如果不做节流处理，可想而知浏览器压力有多大\ndom.addEventListener(\"mousemove\", throttle(handleMove, 200)); 代码实现 function throttle(fun, delay) { let prev = Date.now(); return function (...args) { // ...args用来接受fun原有的参数，比如事件就是event对象 let now = Date.now(); if (now - prev \u003e= delay) { fun.apply(this, args); prev = Date.now(); } }; } ","wordCount":"538","inLanguage":"zh","image":"https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg","datePublished":"2020-10-20T18:02:56+08:00","dateModified":"2020-10-20T18:02:56+08:00","author":{"@type":"Person","name":"slc3a2"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/"},"publisher":{"@type":"Organization","name":"slc3a2","logo":{"@type":"ImageObject","url":"https://slc3a2.github.io/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://slc3a2.github.io/ accesskey=h title="slc3a2 (Alt + H)">slc3a2</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://slc3a2.github.io/ title="🏠 首页"><span>🏠 首页</span></a></li><li><a href=https://slc3a2.github.io/blogs/ title="📚 日志"><span>📚 日志</span></a></li><li><a href=https://slc3a2.github.io/apps/ title="🚀 应用"><span>🚀 应用</span></a></li><li><a href=https://slc3a2.github.io/search/ title="🔍 搜索"><span>🔍 搜索</span></a></li><li><a href=https://slc3a2.github.io/tags/ title="🧩 分类"><span>🧩 分类</span></a></li><li><a href=https://slc3a2.github.io/archives/ title="⏱ 时间轴"><span>⏱ 时间轴</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">函数的防抖和节流</h1><div class=post-meta><span title='2020-10-20 18:02:56 +0800 CST'>2020-10-20</span>&nbsp; ｜ &nbsp;2 分钟&nbsp; ｜ &nbsp;538 字&nbsp; ｜ &nbsp;slc3a2</div></header><figure class=entry-cover1><img loading=eager src=https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg alt="cover image"><figcaption>封面图来自 Unsplash | 作者 Jakob Owens</figcaption></figure><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>目录</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#防抖debounce>防抖（debounce）</a><ul><li><a href=#什么是防抖>什么是防抖？</a></li><li><a href=#应用场景>应用场景</a></li><li><a href=#代码实现>代码实现</a></li></ul></li><li><a href=#节流throttle>节流（throttle）</a><ul><li><a href=#什么是节流>什么是节流？</a></li><li><a href=#应用场景-1>应用场景</a></li><li><a href=#代码实现-1>代码实现</a></li></ul></li></ul></nav></div></details></div><div class=post-content><h2 id=防抖debounce>防抖（debounce）<a hidden class=anchor aria-hidden=true href=#防抖debounce>#</a></h2><h3 id=什么是防抖>什么是防抖？<a hidden class=anchor aria-hidden=true href=#什么是防抖>#</a></h3><ul><li>一个函数被触发<code>n</code>秒后，才执行此函数</li><li>如果<code>n</code>秒内再次触发此函数，那么重新以再次触发的时间开始重新延迟 n 秒后执行此函数</li></ul><p>这样的函数 <strong>执行行为</strong> 叫做函数防抖。</p><h3 id=应用场景>应用场景<a hidden class=anchor aria-hidden=true href=#应用场景>#</a></h3><ul><li><p>监听设备窗口大小发生改变，只有停止改变后的<code>200ms</code>执行<code>handleResize</code>方法</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span>window.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#34;resize&#34;</span>, <span style=color:#a6e22e>debounce</span>(<span style=color:#a6e22e>handleResize</span>, <span style=color:#ae81ff>200</span>));
-</span></span></code></pre></div></li><li><p>监听表单填写，表达内容改变都去请求服务端数据，在每次表单执行输入停止的<code>500ms</code>后，才发起请求</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#a6e22e>input</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#34;change&#34;</span>, <span style=color:#a6e22e>debounce</span>(<span style=color:#a6e22e>handleRequest</span>, <span style=color:#ae81ff>500</span>));
-</span></span></code></pre></div></li></ul><h3 id=代码实现>代码实现<a hidden class=anchor aria-hidden=true href=#代码实现>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>debounce</span>(<span style=color:#a6e22e>event</span>, <span style=color:#a6e22e>delay</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>timer</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>function</span> (...<span style=color:#a6e22e>args</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#75715e>// ...args用来接受fun原有的参数，比如事件就是event对象
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>clearTimeout</span>(<span style=color:#a6e22e>timer</span>); <span style=color:#75715e>// 利用clearTimeout的特性，处理delay内，再此触发函数不做处理
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>timer</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>setTimeout</span>(() =&gt; {
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>apply</span>(<span style=color:#66d9ef>this</span>, <span style=color:#a6e22e>args</span>);
-</span></span><span style=display:flex><span>    }, <span style=color:#a6e22e>delay</span>);
-</span></span><span style=display:flex><span>  };
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h2 id=节流throttle>节流（throttle）<a hidden class=anchor aria-hidden=true href=#节流throttle>#</a></h2><h3 id=什么是节流>什么是节流？<a hidden class=anchor aria-hidden=true href=#什么是节流>#</a></h3><ul><li>单位时间内多次触发函数，函数只进行一次执行</li><li>如果在这个单位时间内，多余的触发，全部不做处理。使函数按照规定的速率执行</li></ul><p>这样的函数 <strong>执行行为</strong> 叫做函数节流。</p><h3 id=应用场景-1>应用场景<a hidden class=anchor aria-hidden=true href=#应用场景-1>#</a></h3><ul><li><p>滚动事件，持续滚动，间隔<code>200ms</code>执行</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#a6e22e>dom</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#34;scroll&#34;</span>, <span style=color:#a6e22e>throttle</span>(<span style=color:#a6e22e>handleScroll</span>, <span style=color:#ae81ff>200</span>));
-</span></span></code></pre></div></li><li><p>鼠标滑动事件，一秒钟大概可以执行<code>60</code>次。使用节流函数优化，<code>200ms</code>执行一次。如果不做节流处理，可想而知浏览器压力有多大</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#a6e22e>dom</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#34;mousemove&#34;</span>, <span style=color:#a6e22e>throttle</span>(<span style=color:#a6e22e>handleMove</span>, <span style=color:#ae81ff>200</span>));
-</span></span></code></pre></div></li></ul><h3 id=代码实现-1>代码实现<a hidden class=anchor aria-hidden=true href=#代码实现-1>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>throttle</span>(<span style=color:#a6e22e>fun</span>, <span style=color:#a6e22e>delay</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>prev</span> <span style=color:#f92672>=</span> Date.<span style=color:#a6e22e>now</span>();
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>function</span> (...<span style=color:#a6e22e>args</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#75715e>// ...args用来接受fun原有的参数，比如事件就是event对象
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>now</span> <span style=color:#f92672>=</span> Date.<span style=color:#a6e22e>now</span>();
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>now</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>prev</span> <span style=color:#f92672>&gt;=</span> <span style=color:#a6e22e>delay</span>) {
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>fun</span>.<span style=color:#a6e22e>apply</span>(<span style=color:#66d9ef>this</span>, <span style=color:#a6e22e>args</span>);
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>prev</span> <span style=color:#f92672>=</span> Date.<span style=color:#a6e22e>now</span>();
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  };
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://slc3a2.github.io/tags/%E5%89%8D%E7%AB%AF/>前端</a></li></ul><nav class=paginav><a class=prev href=https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/><span class=title>« 上一页</span><br><span>使用jarsigner重新签名apk包</span>
-</a><a class=next href=https://slc3a2.github.io/blogs/flex%E5%B8%83%E5%B1%80/><span class=title>下一页 »</span><br><span>flex布局介绍</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2025 <a href=https://slc3a2.github.io/>slc3a2</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
-</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="🏠 首页">
+                    <span>🏠 首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/blogs/" title="📚 日志">
+                    <span>📚 日志</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/apps/" title="🚀 应用">
+                    <span>🚀 应用</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 搜索">
+                    <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="🧩 分类">
+                    <span>🧩 分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="⏱ 时间轴">
+                    <span>⏱ 时间轴</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      函数的防抖和节流
+    </h1>
+    <div class="post-meta"><span title='2020-10-20 18:02:56 +0800 CST'>2020-10-20</span>&nbsp; ｜ &nbsp;2 分钟&nbsp; ｜ &nbsp;538 字&nbsp; ｜ &nbsp;slc3a2
+
+</div>
+  </header> 
+<figure class="entry-cover1">
+    <img loading="eager" src="http://localhost:1313/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Jakob Owens</figcaption>
+</figure><div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#防抖debounce">防抖（debounce）</a>
+      <ul>
+        <li><a href="#什么是防抖">什么是防抖？</a></li>
+        <li><a href="#应用场景">应用场景</a></li>
+        <li><a href="#代码实现">代码实现</a></li>
+      </ul>
+    </li>
+    <li><a href="#节流throttle">节流（throttle）</a>
+      <ul>
+        <li><a href="#什么是节流">什么是节流？</a></li>
+        <li><a href="#应用场景-1">应用场景</a></li>
+        <li><a href="#代码实现-1">代码实现</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="防抖debounce">防抖（debounce）<a hidden class="anchor" aria-hidden="true" href="#防抖debounce">#</a></h2>
+<h3 id="什么是防抖">什么是防抖？<a hidden class="anchor" aria-hidden="true" href="#什么是防抖">#</a></h3>
+<ul>
+<li>一个函数被触发<code>n</code>秒后，才执行此函数</li>
+<li>如果<code>n</code>秒内再次触发此函数，那么重新以再次触发的时间开始重新延迟 n 秒后执行此函数</li>
+</ul>
+<p>这样的函数 <strong>执行行为</strong> 叫做函数防抖。</p>
+<h3 id="应用场景">应用场景<a hidden class="anchor" aria-hidden="true" href="#应用场景">#</a></h3>
+<ul>
+<li>
+<p>监听设备窗口大小发生改变，只有停止改变后的<code>200ms</code>执行<code>handleResize</code>方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;resize&#34;</span>, <span style="color:#a6e22e">debounce</span>(<span style="color:#a6e22e">handleResize</span>, <span style="color:#ae81ff">200</span>));
+</span></span></code></pre></div></li>
+<li>
+<p>监听表单填写，表达内容改变都去请求服务端数据，在每次表单执行输入停止的<code>500ms</code>后，才发起请求</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;change&#34;</span>, <span style="color:#a6e22e">debounce</span>(<span style="color:#a6e22e">handleRequest</span>, <span style="color:#ae81ff">500</span>));
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="代码实现">代码实现<a hidden class="anchor" aria-hidden="true" href="#代码实现">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">debounce</span>(<span style="color:#a6e22e">event</span>, <span style="color:#a6e22e">delay</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">timer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span> (...<span style="color:#a6e22e">args</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...args用来接受fun原有的参数，比如事件就是event对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">clearTimeout</span>(<span style="color:#a6e22e">timer</span>); <span style="color:#75715e">// 利用clearTimeout的特性，处理delay内，再此触发函数不做处理
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">timer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">apply</span>(<span style="color:#66d9ef">this</span>, <span style="color:#a6e22e">args</span>);
+</span></span><span style="display:flex;"><span>    }, <span style="color:#a6e22e">delay</span>);
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="节流throttle">节流（throttle）<a hidden class="anchor" aria-hidden="true" href="#节流throttle">#</a></h2>
+<h3 id="什么是节流">什么是节流？<a hidden class="anchor" aria-hidden="true" href="#什么是节流">#</a></h3>
+<ul>
+<li>单位时间内多次触发函数，函数只进行一次执行</li>
+<li>如果在这个单位时间内，多余的触发，全部不做处理。使函数按照规定的速率执行</li>
+</ul>
+<p>这样的函数 <strong>执行行为</strong> 叫做函数节流。</p>
+<h3 id="应用场景-1">应用场景<a hidden class="anchor" aria-hidden="true" href="#应用场景-1">#</a></h3>
+<ul>
+<li>
+<p>滚动事件，持续滚动，间隔<code>200ms</code>执行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">dom</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;scroll&#34;</span>, <span style="color:#a6e22e">throttle</span>(<span style="color:#a6e22e">handleScroll</span>, <span style="color:#ae81ff">200</span>));
+</span></span></code></pre></div></li>
+<li>
+<p>鼠标滑动事件，一秒钟大概可以执行<code>60</code>次。使用节流函数优化，<code>200ms</code>执行一次。如果不做节流处理，可想而知浏览器压力有多大</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">dom</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;mousemove&#34;</span>, <span style="color:#a6e22e">throttle</span>(<span style="color:#a6e22e">handleMove</span>, <span style="color:#ae81ff">200</span>));
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="代码实现-1">代码实现<a hidden class="anchor" aria-hidden="true" href="#代码实现-1">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">throttle</span>(<span style="color:#a6e22e">fun</span>, <span style="color:#a6e22e">delay</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">prev</span> <span style="color:#f92672">=</span> Date.<span style="color:#a6e22e">now</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span> (...<span style="color:#a6e22e">args</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...args用来接受fun原有的参数，比如事件就是event对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">now</span> <span style="color:#f92672">=</span> Date.<span style="color:#a6e22e">now</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">now</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">prev</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">delay</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fun</span>.<span style="color:#a6e22e">apply</span>(<span style="color:#66d9ef">this</span>, <span style="color:#a6e22e">args</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">prev</span> <span style="color:#f92672">=</span> Date.<span style="color:#a6e22e">now</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>使用jarsigner重新签名apk包</span>
+  </a>
+  <a class="next" href="http://localhost:1313/blogs/flex%E5%B8%83%E5%B1%80/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>flex布局介绍</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">slc3a2</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
