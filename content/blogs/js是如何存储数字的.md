@@ -7,11 +7,10 @@ tags:
 ShowToc: true
 TocOpen: true
 ShowWordCount: true
-author: "slc3a2"
 cover:
   image: "/images/js是如何存储数字的/cover.jpg"
   alt: "cover image"
-  caption: "封面图来自 Unsplash | 作者 Gustavo Zambelli"
+  caption: "封面图来自 Unsplash | 作者 Arno Senoner"
   relative: false
 ---
 

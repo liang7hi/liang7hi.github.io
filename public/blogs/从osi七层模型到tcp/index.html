@@ -1,106 +1,634 @@
-<!doctype html><html lang=zh dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>从OSI七层模型到TCP | slc3a2</title>
-<meta name=keywords content="计算机科学"><meta name=description content="为什么要写这篇博客
-一个是感觉自己的计算机网络基础薄弱，关于七层模型和 tcp、udp 看过几次了，都不够透彻，知其然不知其所以然。再一个，最近和同事有聊到这个事，感觉自己也说不明白，又意识到很重要，所以决定整理一下，自己感觉自己会了和可以给别人讲明白这个事儿，区别还是很大的啊。就参考资料和自己理解记录一下。"><meta name=author content="slc3a2"><link rel=canonical href=https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/><link crossorigin=anonymous href=/assets/css/stylesheet.03380b421b43a59cef22aa8ddc67c8077da9081a7c7a95ef8104001f8af6ac13.css integrity="sha256-AzgLQhtDpZzvIqqN3GfIB32pCBp8epXvgQQAH4r2rBM=" rel="preload stylesheet" as=style><link rel=icon href=https://slc3a2.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://slc3a2.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://slc3a2.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://slc3a2.github.io/apple-touch-icon.png><link rel=mask-icon href=https://slc3a2.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/"><meta property="og:site_name" content="slc3a2"><meta property="og:title" content="从OSI七层模型到TCP"><meta property="og:description" content="为什么要写这篇博客 一个是感觉自己的计算机网络基础薄弱，关于七层模型和 tcp、udp 看过几次了，都不够透彻，知其然不知其所以然。再一个，最近和同事有聊到这个事，感觉自己也说不明白，又意识到很重要，所以决定整理一下，自己感觉自己会了和可以给别人讲明白这个事儿，区别还是很大的啊。就参考资料和自己理解记录一下。"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="blogs"><meta property="article:published_time" content="2022-02-22T23:15:06+08:00"><meta property="article:modified_time" content="2022-02-22T23:15:06+08:00"><meta property="article:tag" content="计算机科学"><meta property="og:image" content="https://slc3a2.github.io/images/%E4%BB%8EOSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0TCP/cover.jpg"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://slc3a2.github.io/images/%E4%BB%8EOSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0TCP/cover.jpg"><meta name=twitter:title content="从OSI七层模型到TCP"><meta name=twitter:description content="为什么要写这篇博客
-一个是感觉自己的计算机网络基础薄弱，关于七层模型和 tcp、udp 看过几次了，都不够透彻，知其然不知其所以然。再一个，最近和同事有聊到这个事，感觉自己也说不明白，又意识到很重要，所以决定整理一下，自己感觉自己会了和可以给别人讲明白这个事儿，区别还是很大的啊。就参考资料和自己理解记录一下。"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"日志","item":"https://slc3a2.github.io/blogs/"},{"@type":"ListItem","position":2,"name":"从OSI七层模型到TCP","item":"https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"从OSI七层模型到TCP","name":"从OSI七层模型到TCP","description":"为什么要写这篇博客 一个是感觉自己的计算机网络基础薄弱，关于七层模型和 tcp、udp 看过几次了，都不够透彻，知其然不知其所以然。再一个，最近和同事有聊到这个事，感觉自己也说不明白，又意识到很重要，所以决定整理一下，自己感觉自己会了和可以给别人讲明白这个事儿，区别还是很大的啊。就参考资料和自己理解记录一下。\n","keywords":["计算机科学"],"articleBody":"为什么要写这篇博客 一个是感觉自己的计算机网络基础薄弱，关于七层模型和 tcp、udp 看过几次了，都不够透彻，知其然不知其所以然。再一个，最近和同事有聊到这个事，感觉自己也说不明白，又意识到很重要，所以决定整理一下，自己感觉自己会了和可以给别人讲明白这个事儿，区别还是很大的啊。就参考资料和自己理解记录一下。\n先说什么是网络协议 两台设备进行网络通信时，双方要提前约定一些规则。这样才可以让对方设备理解你要做什么。比如，如何发起通信，如何发出/接收数据，如何关闭链接。\n再说 OSI 7 层模型 和 TCP/IP 4 层模型 OSI(Open System Interconnection) 开放式系统互联参考模型，为了统一处理，模块化，易于维护，OSI 采用分层结构。包含七层，每一层实现各自的功能和协议，通过接口提供给更高一层并完成与相邻层的接口通信。\nIOS 7 层模型是一种网络通信理论模型。其含义就是推荐所有公司使用这个规范来控制网络。这样所有公司都有相同的规范，设备就能互联了。OSI 参考模型是学术上和法律上的国际标准，是完整的权威的网络参考模型。\n关系如下：\nOSI 7 层模型 功能 传送介质 对应 TCP/IP 4 层模型 对应协议 应用层 Application 为应用进程提供网络服务。 报文 应用层 HTTP、FTP、SMTP 表示层 Presentation 数据格式化，加密和解密。 报文 应用层 Telnet、Rlogin、SNMP、Gopher 会话层 Session 建立应用和应用之间的连接。 报文 应用层 SMTP、DNS 传输层 Transport 建立设备和设备之间的连接。 报文 传输层 TCP、UDP 网络层 Network 为数据包选择路由，寻址。 数据包 网络层 IP、ICMP、ARP、RARP、AKP、UUCP 数据链路层 Data Link 根据以太网协议将一组电信号组成一个数据包，称作”帧”，控制传输。通俗说，就是控制数据在网线、光纤传输。 数据帧 链路层 FDDI、Ethernet、Arpanet、PDN、SLIP、PPP 物理层 Physical 把网线，光纤将设备链接起来组网。物理传输介质。 比特流 链路层 IEEE 802.1A、IEEE 802.2 到 IEEE 802.11 TCP/IP 4 层模型 (协议簇) TCP/IP 协议簇是 internet 的基础，是多个协议的统称，命名为 TCP/IP 是因为TCP和IP是其中很重要的两个协议。\nTCP/IP 分为四层，每一个层都有各自的协议和功能，其中 TCP 和 UDP 协议位于 TCP/IP 协议簇的传输层。\nTCP/IP 借鉴了 OSI 的分层概念建立TCP/IP模型，TCP/IP 已被广泛使用，成为网络互联事实上的标准。\n使用 TCP/IP 协议传递数据图解： TCP TCP(Transmission Control Protocol )全称是传输控制协议，是一种面向连接的、可靠的、全双工、单播传输的、基于字节流的传输层通信协议。属于TCP/IP协议簇的传输层。\n面向连接： 即传递数据前在两端建立连接，使用“三次握手”确保两端的发送和接收能力，提供可靠的连接。 仅支持单播传输：只能进行一对一的数据传输，不支持组播和广播传输方式。 拥堵控制：网络拥堵的时，TCP能够减小向网络注入数据的速率和数量，缓解拥堵，提供对流量控制和服务质量的访问。 全双工： 双端既可以当接收者，也可以当发送者。 基于字节流模式： 比如发送端发送 100 字节到目标端，目标端可以分 10 次，每次 10 字节接受，也就是以少量数据分以任意次接收。 UDP UDP(User Data Protocol)全称用户数据报协议，是一种无连接的、不可靠的、支持组播和广播、基于数据报的传输层通信协议。属于TCP/IP协议簇的传输层。\n无连接不可靠： 不需要繁琐的三次握手，确认、重传、拥塞控制等机制，没有这些安全机制，速度更快的同时，安全性变差，易丢包。UDP 使用尽可能最大努力交付，但不保证可靠交付。 支持组播和广播： 可以一对一，一对多，多对一、多对多数据传输。 基于数据报模式： 一次发送对应一次接收，一次只读取一个报文，多个报文不可以合并。 UDP 和 TCP 区别总结 指标 TCP UDP 连接 面向连接 无连接 报文 面向字节流 面向报文 效率 低 高 是否可靠 可靠 不可靠 拥塞控制 有 无 速度 慢 快 双共性 全双工 一对一、一对多、多对一、多对多 使用 nodejs 实现 TCP 连接 服务端\nconst net = require(\"net\"); const HOST = \"127.0.0.1\"; const PORT = 8081; const server = net.createServer(); server.on(\"listening\", () =\u003e { console.log(`TCP server at ${HOST}:${PORT}`); }); server.on(\"connection\", (socket) =\u003e { socket.on(\"data\", (buffer) =\u003e { const msg = buffer.toString(); console.log(msg); socket.write(Buffer.from(`来自服务端 ${msg}`)); }); }); server.on(\"close\", () =\u003e { console.log(\"TCP server close!\"); }); server.on(\"error\", (err) =\u003e { console.error(`TCP server error :${err}`); setTimeout(() =\u003e { server.close(); }, 1000); }); server.listen(PORT, HOST); 客户端\nconst net = require(\"net\"); const HOST = \"127.0.0.1\"; const PORT = 8081; const client = net.createConnection({ host: HOST, port: PORT, }); client.on(\"connect\", () =\u003e { setTimeout(() =\u003e { client.write(\"客户端向服务端发送消息: 1\"); }, 1000); setTimeout(() =\u003e { client.write(\"客户端向服务端发送消息: 2\"); }, 2000); setTimeout(() =\u003e { client.write(\"客户端向服务端发送消息: 3\"); }, 3000); }); client.on(\"data\", (buffer) =\u003e { console.log(buffer.toString()); }); client.on(\"error\", (err) =\u003e { console.error(\"TCP server error\", err); }); client.on(\"close\", (err) =\u003e { console.log(\"client disconnects\", err); }); 使用 nodejs 实现 UDP 连接 服务端\nconst dgram = require(\"dgram\"); const HOST = \"127.0.0.1\"; const PORT = 8082; const server = dgram.createSocket(\"udp4\"); server.on(\"listening\", function () { const address = server.address(); console.log(`UDP server at ${HOST}:${PORT}`); }); server.on(\"message\", function (message, remote) { console.log(`来自服务端 ${message}`); }); server.bind(PORT, HOST); 客户端\nconst dgram = require(`dgram`); const PORT = 8082; const HOST = \"127.0.0.1\"; const client = dgram.createSocket(\"udp4\"); setTimeout(() =\u003e { sendMsg(Buffer.from(`客户端向服务端发送消息: 1`)); }, 1000); setTimeout(() =\u003e { sendMsg(Buffer.from(`客户端向服务端发送消息: 2`)); }, 2000); setTimeout(() =\u003e { sendMsg(Buffer.from(`客户端向服务端发送消息: 3`)); }, 3000); setTimeout(() =\u003e { client.close(); console.log(\"客户端主动关闭\"); }, 4000); function sendMsg(_msg) { client.send(_msg, PORT, HOST, function (err, bytes) { if (err) throw err; console.log(_msg.toString()); }); } ","wordCount":"2043","inLanguage":"zh","image":"https://slc3a2.github.io/images/%E4%BB%8EOSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0TCP/cover.jpg","datePublished":"2022-02-22T23:15:06+08:00","dateModified":"2022-02-22T23:15:06+08:00","author":{"@type":"Person","name":"slc3a2"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/"},"publisher":{"@type":"Organization","name":"slc3a2","logo":{"@type":"ImageObject","url":"https://slc3a2.github.io/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://slc3a2.github.io/ accesskey=h title="slc3a2 (Alt + H)">slc3a2</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://slc3a2.github.io/ title="🏠 首页"><span>🏠 首页</span></a></li><li><a href=https://slc3a2.github.io/blogs/ title="📚 日志"><span>📚 日志</span></a></li><li><a href=https://slc3a2.github.io/apps/ title="🚀 应用"><span>🚀 应用</span></a></li><li><a href=https://slc3a2.github.io/search/ title="🔍 搜索"><span>🔍 搜索</span></a></li><li><a href=https://slc3a2.github.io/tags/ title="🧩 分类"><span>🧩 分类</span></a></li><li><a href=https://slc3a2.github.io/archives/ title="⏱ 时间轴"><span>⏱ 时间轴</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">从OSI七层模型到TCP</h1><div class=post-meta><span title='2022-02-22 23:15:06 +0800 CST'>2022-02-22</span>&nbsp; ｜ &nbsp;5 分钟&nbsp; ｜ &nbsp;2043 字&nbsp; ｜ &nbsp;slc3a2</div></header><figure class=entry-cover1><img loading=eager src=https://slc3a2.github.io/images/%E4%BB%8EOSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0TCP/cover.jpg alt="cover image"><figcaption>封面图来自 Unsplash | 作者 Milad Fakurian</figcaption></figure><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>目录</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#为什么要写这篇博客>为什么要写这篇博客</a></li><li><a href=#先说什么是网络协议>先说什么是网络协议</a></li><li><a href=#再说-osi-7-层模型-和-tcpip-4-层模型>再说 OSI 7 层模型 和 TCP/IP 4 层模型</a></li><li><a href=#tcpip-4-层模型-协议簇>TCP/IP 4 层模型 (协议簇)</a><ul><li></li></ul></li><li><a href=#tcp>TCP</a></li><li><a href=#udp>UDP</a></li><li><a href=#udp-和-tcp-区别总结>UDP 和 TCP 区别总结</a></li><li><a href=#使用-nodejs-实现-tcp-连接>使用 nodejs 实现 TCP 连接</a></li><li><a href=#使用-nodejs-实现-udp-连接>使用 nodejs 实现 UDP 连接</a></li></ul></nav></div></details></div><div class=post-content><h2 id=为什么要写这篇博客>为什么要写这篇博客<a hidden class=anchor aria-hidden=true href=#为什么要写这篇博客>#</a></h2><p>一个是感觉自己的计算机网络基础薄弱，关于七层模型和 tcp、udp 看过几次了，都不够透彻，知其然不知其所以然。再一个，最近和同事有聊到这个事，感觉自己也说不明白，又意识到很重要，所以决定整理一下，自己感觉自己会了和可以给别人讲明白这个事儿，区别还是很大的啊。就参考资料和自己理解记录一下。</p><h2 id=先说什么是网络协议>先说什么是网络协议<a hidden class=anchor aria-hidden=true href=#先说什么是网络协议>#</a></h2><p>两台设备进行网络通信时，双方要提前<code>约定一些规则</code>。这样才可以让对方设备理解你要做什么。比如，如何发起通信，如何发出/接收数据，如何关闭链接。</p><h2 id=再说-osi-7-层模型-和-tcpip-4-层模型>再说 OSI 7 层模型 和 TCP/IP 4 层模型<a hidden class=anchor aria-hidden=true href=#再说-osi-7-层模型-和-tcpip-4-层模型>#</a></h2><p><code>OSI</code>(Open System Interconnection) 开放式系统互联参考模型，为了统一处理，模块化，易于维护，OSI 采用<strong>分层结构</strong>。包含七层，每一层实现各自的功能和协议，通过接口提供给更高一层并完成与相邻层的接口通信。</p><p>IOS 7 层模型是一种网络通信理论模型。其含义就是推荐所有公司使用这个规范来控制网络。这样所有公司都有相同的规范，设备就能互联了。OSI 参考模型是<strong>学术上</strong>和<strong>法律上</strong>的国际标准，是完整的<strong>权威的网络参考模型</strong>。</p><p>关系如下：</p><table><thead><tr><th>OSI 7 层模型</th><th>功能</th><th>传送介质</th><th>对应 TCP/IP 4 层模型</th><th>对应协议</th></tr></thead><tbody><tr><td>应用层 Application</td><td>为应用进程提供网络服务。</td><td>报文</td><td>应用层</td><td>HTTP、FTP、SMTP</td></tr><tr><td>表示层 Presentation</td><td>数据格式化，加密和解密。</td><td>报文</td><td>应用层</td><td>Telnet、Rlogin、SNMP、Gopher</td></tr><tr><td>会话层 Session</td><td>建立应用和应用之间的连接。</td><td>报文</td><td>应用层</td><td>SMTP、DNS</td></tr><tr><td>传输层 Transport</td><td>建立设备和设备之间的连接。</td><td>报文</td><td>传输层</td><td>TCP、UDP</td></tr><tr><td>网络层 Network</td><td>为数据包选择路由，寻址。</td><td>数据包</td><td>网络层</td><td>IP、ICMP、ARP、RARP、AKP、UUCP</td></tr><tr><td>数据链路层 Data Link</td><td>根据以太网协议将一组电信号组成一个数据包，称作”帧”，控制传输。通俗说，就是控制数据在网线、光纤传输。</td><td>数据帧</td><td>链路层</td><td>FDDI、Ethernet、Arpanet、PDN、SLIP、PPP</td></tr><tr><td>物理层 Physical</td><td>把网线，光纤将设备链接起来组网。物理传输介质。</td><td>比特流</td><td>链路层</td><td>IEEE 802.1A、IEEE 802.2 到 IEEE 802.11</td></tr></tbody></table><h2 id=tcpip-4-层模型-协议簇>TCP/IP 4 层模型 (协议簇)<a hidden class=anchor aria-hidden=true href=#tcpip-4-层模型-协议簇>#</a></h2><p><code>TCP/IP</code> 协议簇是 internet 的基础，是多个协议的统称，命名为 TCP/IP 是因为<code>TCP</code>和<code>IP</code>是其中很重要的两个协议。</p><p><code>TCP/IP</code> 分为四层，每一个层都有各自的协议和功能，其中 <code>TCP</code> 和 <code>UDP</code> 协议位于 TCP/IP 协议簇的传输层。</p><p><code>TCP/IP</code> <strong>借鉴</strong>了 OSI 的分层概念建立<code>TCP/IP</code>模型，<code>TCP/IP</code> 已被广泛使用，<strong>成为网络互联事实上的标准</strong>。</p><h4 id=使用-tcpip-协议传递数据图解>使用 TCP/IP 协议传递数据图解：<a hidden class=anchor aria-hidden=true href=#使用-tcpip-协议传递数据图解>#</a></h4><p><img alt=image-20220306115359466 loading=lazy src=/images/%E4%BB%8EOSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0TCP/WechatIMG220.png></p><h2 id=tcp>TCP<a hidden class=anchor aria-hidden=true href=#tcp>#</a></h2><p>TCP(<strong>Transmission Control Protocol</strong>
-)全称是传输控制协议，是一种<strong>面向连接的</strong>、<strong>可靠的</strong>、<strong>全双工</strong>、<strong>单播传输的</strong>、<strong>基于字节流的</strong>传输层通信协议。属于<code>TCP/IP协议簇</code>的传输层。</p><ul><li>面向连接： 即传递数据前在两端建立连接，使用“<strong>三次握手</strong>”确保两端的发送和接收能力，<strong>提供可靠的连接</strong>。</li><li>仅支持单播传输：只能进行<strong>一对一</strong>的数据传输，不支持组播和广播传输方式。</li><li>拥堵控制：网络拥堵的时，<code>TCP</code>能够减小向网络注入数据的速率和数量，缓解拥堵，提供对流量控制和服务质量的访问。</li><li>全双工： 双端既可以当<strong>接收者</strong>，也可以当<strong>发送者</strong>。</li><li>基于字节流模式： 比如发送端发送 100 字节到目标端，目标端可以分 10 次，每次 10 字节接受，也就是以<strong>少量数据分以任意次接收</strong>。</li></ul><h2 id=udp>UDP<a hidden class=anchor aria-hidden=true href=#udp>#</a></h2><p>UDP(User Data Protocol)全称用户数据报协议，是一种<strong>无连接的</strong>、<strong>不可靠的</strong>、<strong>支持组播和广播</strong>、<strong>基于数据报</strong>的传输层通信协议。属于<code>TCP/IP协议簇</code>的传输层。</p><ul><li>无连接不可靠： <strong>不需要繁琐的三次握手</strong>，确认、重传、拥塞控制等机制，没有这些安全机制，速度更快的同时，安全性变差，<strong>易丢包</strong>。UDP 使用<strong>尽可能最大努力交付</strong>，但不保证可靠交付。</li><li>支持组播和广播： 可以<strong>一对一</strong>，<strong>一对多</strong>，<strong>多对一</strong>、<strong>多对多</strong>数据传输。</li><li>基于数据报模式： 一次发送对应一次接收，<strong>一次只读取一个报文</strong>，多个报文不可以合并。</li></ul><h2 id=udp-和-tcp-区别总结>UDP 和 TCP 区别总结<a hidden class=anchor aria-hidden=true href=#udp-和-tcp-区别总结>#</a></h2><table><thead><tr><th>指标</th><th>TCP</th><th>UDP</th></tr></thead><tbody><tr><td>连接</td><td>面向连接</td><td>无连接</td></tr><tr><td>报文</td><td>面向字节流</td><td>面向报文</td></tr><tr><td>效率</td><td>低</td><td>高</td></tr><tr><td>是否可靠</td><td>可靠</td><td>不可靠</td></tr><tr><td>拥塞控制</td><td>有</td><td>无</td></tr><tr><td>速度</td><td>慢</td><td>快</td></tr><tr><td>双共性</td><td>全双工</td><td>一对一、一对多、多对一、多对多</td></tr></tbody></table><h2 id=使用-nodejs-实现-tcp-连接>使用 nodejs 实现 TCP 连接<a hidden class=anchor aria-hidden=true href=#使用-nodejs-实现-tcp-连接>#</a></h2><p>服务端</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>net</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;net&#34;</span>);
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>HOST</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;127.0.0.1&#34;</span>;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>PORT</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>8081</span>;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>server</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>net</span>.<span style=color:#a6e22e>createServer</span>();
-</span></span><span style=display:flex><span><span style=color:#a6e22e>server</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;listening&#34;</span>, () =&gt; {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`TCP server at </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>HOST</span><span style=color:#e6db74>}</span><span style=color:#e6db74>:</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>PORT</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
-</span></span><span style=display:flex><span>});
-</span></span><span style=display:flex><span><span style=color:#a6e22e>server</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;connection&#34;</span>, (<span style=color:#a6e22e>socket</span>) =&gt; {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>socket</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;data&#34;</span>, (<span style=color:#a6e22e>buffer</span>) =&gt; {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>msg</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>buffer</span>.<span style=color:#a6e22e>toString</span>();
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>msg</span>);
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>socket</span>.<span style=color:#a6e22e>write</span>(<span style=color:#a6e22e>Buffer</span>.<span style=color:#a6e22e>from</span>(<span style=color:#e6db74>`来自服务端 </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>msg</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>));
-</span></span><span style=display:flex><span>  });
-</span></span><span style=display:flex><span>});
-</span></span><span style=display:flex><span><span style=color:#a6e22e>server</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;close&#34;</span>, () =&gt; {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;TCP server close!&#34;</span>);
-</span></span><span style=display:flex><span>});
-</span></span><span style=display:flex><span><span style=color:#a6e22e>server</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;error&#34;</span>, (<span style=color:#a6e22e>err</span>) =&gt; {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>error</span>(<span style=color:#e6db74>`TCP server error :</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>err</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>setTimeout</span>(() =&gt; {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>server</span>.<span style=color:#a6e22e>close</span>();
-</span></span><span style=display:flex><span>  }, <span style=color:#ae81ff>1000</span>);
-</span></span><span style=display:flex><span>});
-</span></span><span style=display:flex><span><span style=color:#a6e22e>server</span>.<span style=color:#a6e22e>listen</span>(<span style=color:#a6e22e>PORT</span>, <span style=color:#a6e22e>HOST</span>);
-</span></span></code></pre></div><p>客户端</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>net</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;net&#34;</span>);
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>HOST</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;127.0.0.1&#34;</span>;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>PORT</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>8081</span>;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>client</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>net</span>.<span style=color:#a6e22e>createConnection</span>({
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>host</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>HOST</span>,
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>port</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>PORT</span>,
-</span></span><span style=display:flex><span>});
-</span></span><span style=display:flex><span><span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;connect&#34;</span>, () =&gt; {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>setTimeout</span>(() =&gt; {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>write</span>(<span style=color:#e6db74>&#34;客户端向服务端发送消息: 1&#34;</span>);
-</span></span><span style=display:flex><span>  }, <span style=color:#ae81ff>1000</span>);
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>setTimeout</span>(() =&gt; {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>write</span>(<span style=color:#e6db74>&#34;客户端向服务端发送消息: 2&#34;</span>);
-</span></span><span style=display:flex><span>  }, <span style=color:#ae81ff>2000</span>);
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>setTimeout</span>(() =&gt; {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>write</span>(<span style=color:#e6db74>&#34;客户端向服务端发送消息: 3&#34;</span>);
-</span></span><span style=display:flex><span>  }, <span style=color:#ae81ff>3000</span>);
-</span></span><span style=display:flex><span>});
-</span></span><span style=display:flex><span><span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;data&#34;</span>, (<span style=color:#a6e22e>buffer</span>) =&gt; {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>buffer</span>.<span style=color:#a6e22e>toString</span>());
-</span></span><span style=display:flex><span>});
-</span></span><span style=display:flex><span><span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;error&#34;</span>, (<span style=color:#a6e22e>err</span>) =&gt; {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>error</span>(<span style=color:#e6db74>&#34;TCP server error&#34;</span>, <span style=color:#a6e22e>err</span>);
-</span></span><span style=display:flex><span>});
-</span></span><span style=display:flex><span><span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;close&#34;</span>, (<span style=color:#a6e22e>err</span>) =&gt; {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;client disconnects&#34;</span>, <span style=color:#a6e22e>err</span>);
-</span></span><span style=display:flex><span>});
-</span></span></code></pre></div><p><img alt=903kj94rnyoOIrs loading=lazy src=/images/%E4%BB%8EOSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0TCP/903kj94rnyoOIrs.png></p><h2 id=使用-nodejs-实现-udp-连接>使用 nodejs 实现 UDP 连接<a hidden class=anchor aria-hidden=true href=#使用-nodejs-实现-udp-连接>#</a></h2><p>服务端</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>dgram</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;dgram&#34;</span>);
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>HOST</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;127.0.0.1&#34;</span>;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>PORT</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>8082</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>server</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>dgram</span>.<span style=color:#a6e22e>createSocket</span>(<span style=color:#e6db74>&#34;udp4&#34;</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>server</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;listening&#34;</span>, <span style=color:#66d9ef>function</span> () {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>address</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>server</span>.<span style=color:#a6e22e>address</span>();
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`UDP server at </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>HOST</span><span style=color:#e6db74>}</span><span style=color:#e6db74>:</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>PORT</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
-</span></span><span style=display:flex><span>});
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>server</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;message&#34;</span>, <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>message</span>, <span style=color:#a6e22e>remote</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`来自服务端 </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>message</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
-</span></span><span style=display:flex><span>});
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>server</span>.<span style=color:#a6e22e>bind</span>(<span style=color:#a6e22e>PORT</span>, <span style=color:#a6e22e>HOST</span>);
-</span></span></code></pre></div><p>客户端</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>dgram</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>`dgram`</span>);
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>PORT</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>8082</span>;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>HOST</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;127.0.0.1&#34;</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>client</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>dgram</span>.<span style=color:#a6e22e>createSocket</span>(<span style=color:#e6db74>&#34;udp4&#34;</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>setTimeout</span>(() =&gt; {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>sendMsg</span>(<span style=color:#a6e22e>Buffer</span>.<span style=color:#a6e22e>from</span>(<span style=color:#e6db74>`客户端向服务端发送消息: 1`</span>));
-</span></span><span style=display:flex><span>}, <span style=color:#ae81ff>1000</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>setTimeout</span>(() =&gt; {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>sendMsg</span>(<span style=color:#a6e22e>Buffer</span>.<span style=color:#a6e22e>from</span>(<span style=color:#e6db74>`客户端向服务端发送消息: 2`</span>));
-</span></span><span style=display:flex><span>}, <span style=color:#ae81ff>2000</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>setTimeout</span>(() =&gt; {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>sendMsg</span>(<span style=color:#a6e22e>Buffer</span>.<span style=color:#a6e22e>from</span>(<span style=color:#e6db74>`客户端向服务端发送消息: 3`</span>));
-</span></span><span style=display:flex><span>}, <span style=color:#ae81ff>3000</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>setTimeout</span>(() =&gt; {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>close</span>();
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;客户端主动关闭&#34;</span>);
-</span></span><span style=display:flex><span>}, <span style=color:#ae81ff>4000</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>sendMsg</span>(<span style=color:#a6e22e>_msg</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>send</span>(<span style=color:#a6e22e>_msg</span>, <span style=color:#a6e22e>PORT</span>, <span style=color:#a6e22e>HOST</span>, <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>err</span>, <span style=color:#a6e22e>bytes</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>err</span>) <span style=color:#66d9ef>throw</span> <span style=color:#a6e22e>err</span>;
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>_msg</span>.<span style=color:#a6e22e>toString</span>());
-</span></span><span style=display:flex><span>  });
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p><img alt=image-20220222230031275 loading=lazy src=/images/%E4%BB%8EOSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0TCP/image-20220222230031275.png></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://slc3a2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/>计算机科学</a></li></ul><nav class=paginav><a class=prev href=https://slc3a2.github.io/blogs/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/><span class=title>« 上一页</span><br><span>浏览器事件循环</span>
-</a><a class=next href=https://slc3a2.github.io/blogs/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/><span class=title>下一页 »</span><br><span>记发布订阅和观察者模式</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2025 <a href=https://slc3a2.github.io/>slc3a2</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
-</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>从OSI七层模型到TCP | slc3a2</title>
+<meta name="keywords" content="计算机科学">
+<meta name="description" content="为什么要写这篇博客
+一个是感觉自己的计算机网络基础薄弱，关于七层模型和 tcp、udp 看过几次了，都不够透彻，知其然不知其所以然。再一个，最近和同事有聊到这个事，感觉自己也说不明白，又意识到很重要，所以决定整理一下，自己感觉自己会了和可以给别人讲明白这个事儿，区别还是很大的啊。就参考资料和自己理解记录一下。">
+<meta name="author" content="">
+<link rel="canonical" href="https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ab014821c696de73a02fa53d58f372c9ee0a2aed37bdd98be49f9f815a65afbb.css" integrity="sha256-qwFIIcaW3nOgL6U9WPNyye4KKu03vdmL5J&#43;fgVplr7s=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://slc3a2.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://slc3a2.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://slc3a2.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/">
+  <meta property="og:site_name" content="slc3a2">
+  <meta property="og:title" content="从OSI七层模型到TCP">
+  <meta property="og:description" content="为什么要写这篇博客 一个是感觉自己的计算机网络基础薄弱，关于七层模型和 tcp、udp 看过几次了，都不够透彻，知其然不知其所以然。再一个，最近和同事有聊到这个事，感觉自己也说不明白，又意识到很重要，所以决定整理一下，自己感觉自己会了和可以给别人讲明白这个事儿，区别还是很大的啊。就参考资料和自己理解记录一下。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blogs">
+    <meta property="article:published_time" content="2022-02-22T23:15:06+08:00">
+    <meta property="article:modified_time" content="2022-02-22T23:15:06+08:00">
+    <meta property="article:tag" content="计算机科学">
+    <meta property="og:image" content="https://slc3a2.github.io/images/%E4%BB%8EOSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0TCP/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://slc3a2.github.io/images/%E4%BB%8EOSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0TCP/cover.jpg">
+<meta name="twitter:title" content="从OSI七层模型到TCP">
+<meta name="twitter:description" content="为什么要写这篇博客
+一个是感觉自己的计算机网络基础薄弱，关于七层模型和 tcp、udp 看过几次了，都不够透彻，知其然不知其所以然。再一个，最近和同事有聊到这个事，感觉自己也说不明白，又意识到很重要，所以决定整理一下，自己感觉自己会了和可以给别人讲明白这个事儿，区别还是很大的啊。就参考资料和自己理解记录一下。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "日志",
+      "item": "https://slc3a2.github.io/blogs/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "从OSI七层模型到TCP",
+      "item": "https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "从OSI七层模型到TCP",
+  "name": "从OSI七层模型到TCP",
+  "description": "为什么要写这篇博客 一个是感觉自己的计算机网络基础薄弱，关于七层模型和 tcp、udp 看过几次了，都不够透彻，知其然不知其所以然。再一个，最近和同事有聊到这个事，感觉自己也说不明白，又意识到很重要，所以决定整理一下，自己感觉自己会了和可以给别人讲明白这个事儿，区别还是很大的啊。就参考资料和自己理解记录一下。\n",
+  "keywords": [
+    "计算机科学"
+  ],
+  "articleBody": "为什么要写这篇博客 一个是感觉自己的计算机网络基础薄弱，关于七层模型和 tcp、udp 看过几次了，都不够透彻，知其然不知其所以然。再一个，最近和同事有聊到这个事，感觉自己也说不明白，又意识到很重要，所以决定整理一下，自己感觉自己会了和可以给别人讲明白这个事儿，区别还是很大的啊。就参考资料和自己理解记录一下。\n先说什么是网络协议 两台设备进行网络通信时，双方要提前约定一些规则。这样才可以让对方设备理解你要做什么。比如，如何发起通信，如何发出/接收数据，如何关闭链接。\n再说 OSI 7 层模型 和 TCP/IP 4 层模型 OSI(Open System Interconnection) 开放式系统互联参考模型，为了统一处理，模块化，易于维护，OSI 采用分层结构。包含七层，每一层实现各自的功能和协议，通过接口提供给更高一层并完成与相邻层的接口通信。\nIOS 7 层模型是一种网络通信理论模型。其含义就是推荐所有公司使用这个规范来控制网络。这样所有公司都有相同的规范，设备就能互联了。OSI 参考模型是学术上和法律上的国际标准，是完整的权威的网络参考模型。\n关系如下：\nOSI 7 层模型 功能 传送介质 对应 TCP/IP 4 层模型 对应协议 应用层 Application 为应用进程提供网络服务。 报文 应用层 HTTP、FTP、SMTP 表示层 Presentation 数据格式化，加密和解密。 报文 应用层 Telnet、Rlogin、SNMP、Gopher 会话层 Session 建立应用和应用之间的连接。 报文 应用层 SMTP、DNS 传输层 Transport 建立设备和设备之间的连接。 报文 传输层 TCP、UDP 网络层 Network 为数据包选择路由，寻址。 数据包 网络层 IP、ICMP、ARP、RARP、AKP、UUCP 数据链路层 Data Link 根据以太网协议将一组电信号组成一个数据包，称作”帧”，控制传输。通俗说，就是控制数据在网线、光纤传输。 数据帧 链路层 FDDI、Ethernet、Arpanet、PDN、SLIP、PPP 物理层 Physical 把网线，光纤将设备链接起来组网。物理传输介质。 比特流 链路层 IEEE 802.1A、IEEE 802.2 到 IEEE 802.11 TCP/IP 4 层模型 (协议簇) TCP/IP 协议簇是 internet 的基础，是多个协议的统称，命名为 TCP/IP 是因为TCP和IP是其中很重要的两个协议。\nTCP/IP 分为四层，每一个层都有各自的协议和功能，其中 TCP 和 UDP 协议位于 TCP/IP 协议簇的传输层。\nTCP/IP 借鉴了 OSI 的分层概念建立TCP/IP模型，TCP/IP 已被广泛使用，成为网络互联事实上的标准。\n使用 TCP/IP 协议传递数据图解： TCP TCP(Transmission Control Protocol )全称是传输控制协议，是一种面向连接的、可靠的、全双工、单播传输的、基于字节流的传输层通信协议。属于TCP/IP协议簇的传输层。\n面向连接： 即传递数据前在两端建立连接，使用“三次握手”确保两端的发送和接收能力，提供可靠的连接。 仅支持单播传输：只能进行一对一的数据传输，不支持组播和广播传输方式。 拥堵控制：网络拥堵的时，TCP能够减小向网络注入数据的速率和数量，缓解拥堵，提供对流量控制和服务质量的访问。 全双工： 双端既可以当接收者，也可以当发送者。 基于字节流模式： 比如发送端发送 100 字节到目标端，目标端可以分 10 次，每次 10 字节接受，也就是以少量数据分以任意次接收。 UDP UDP(User Data Protocol)全称用户数据报协议，是一种无连接的、不可靠的、支持组播和广播、基于数据报的传输层通信协议。属于TCP/IP协议簇的传输层。\n无连接不可靠： 不需要繁琐的三次握手，确认、重传、拥塞控制等机制，没有这些安全机制，速度更快的同时，安全性变差，易丢包。UDP 使用尽可能最大努力交付，但不保证可靠交付。 支持组播和广播： 可以一对一，一对多，多对一、多对多数据传输。 基于数据报模式： 一次发送对应一次接收，一次只读取一个报文，多个报文不可以合并。 UDP 和 TCP 区别总结 指标 TCP UDP 连接 面向连接 无连接 报文 面向字节流 面向报文 效率 低 高 是否可靠 可靠 不可靠 拥塞控制 有 无 速度 慢 快 双共性 全双工 一对一、一对多、多对一、多对多 使用 nodejs 实现 TCP 连接 服务端\nconst net = require(\"net\"); const HOST = \"127.0.0.1\"; const PORT = 8081; const server = net.createServer(); server.on(\"listening\", () =\u003e { console.log(`TCP server at ${HOST}:${PORT}`); }); server.on(\"connection\", (socket) =\u003e { socket.on(\"data\", (buffer) =\u003e { const msg = buffer.toString(); console.log(msg); socket.write(Buffer.from(`来自服务端 ${msg}`)); }); }); server.on(\"close\", () =\u003e { console.log(\"TCP server close!\"); }); server.on(\"error\", (err) =\u003e { console.error(`TCP server error :${err}`); setTimeout(() =\u003e { server.close(); }, 1000); }); server.listen(PORT, HOST); 客户端\nconst net = require(\"net\"); const HOST = \"127.0.0.1\"; const PORT = 8081; const client = net.createConnection({ host: HOST, port: PORT, }); client.on(\"connect\", () =\u003e { setTimeout(() =\u003e { client.write(\"客户端向服务端发送消息: 1\"); }, 1000); setTimeout(() =\u003e { client.write(\"客户端向服务端发送消息: 2\"); }, 2000); setTimeout(() =\u003e { client.write(\"客户端向服务端发送消息: 3\"); }, 3000); }); client.on(\"data\", (buffer) =\u003e { console.log(buffer.toString()); }); client.on(\"error\", (err) =\u003e { console.error(\"TCP server error\", err); }); client.on(\"close\", (err) =\u003e { console.log(\"client disconnects\", err); }); 使用 nodejs 实现 UDP 连接 服务端\nconst dgram = require(\"dgram\"); const HOST = \"127.0.0.1\"; const PORT = 8082; const server = dgram.createSocket(\"udp4\"); server.on(\"listening\", function () { const address = server.address(); console.log(`UDP server at ${HOST}:${PORT}`); }); server.on(\"message\", function (message, remote) { console.log(`来自服务端 ${message}`); }); server.bind(PORT, HOST); 客户端\nconst dgram = require(`dgram`); const PORT = 8082; const HOST = \"127.0.0.1\"; const client = dgram.createSocket(\"udp4\"); setTimeout(() =\u003e { sendMsg(Buffer.from(`客户端向服务端发送消息: 1`)); }, 1000); setTimeout(() =\u003e { sendMsg(Buffer.from(`客户端向服务端发送消息: 2`)); }, 2000); setTimeout(() =\u003e { sendMsg(Buffer.from(`客户端向服务端发送消息: 3`)); }, 3000); setTimeout(() =\u003e { client.close(); console.log(\"客户端主动关闭\"); }, 4000); function sendMsg(_msg) { client.send(_msg, PORT, HOST, function (err, bytes) { if (err) throw err; console.log(_msg.toString()); }); } ",
+  "wordCount" : "2043",
+  "inLanguage": "zh",
+  "image":"https://slc3a2.github.io/images/%E4%BB%8EOSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0TCP/cover.jpg","datePublished": "2022-02-22T23:15:06+08:00",
+  "dateModified": "2022-02-22T23:15:06+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "slc3a2",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://slc3a2.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://slc3a2.github.io/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://slc3a2.github.io/" title="🏠 首页">
+                    <span>🏠 首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://slc3a2.github.io/blogs/" title="📚 日志">
+                    <span>📚 日志</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://slc3a2.github.io/photos/" title="📷 照片">
+                    <span>📷 照片</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://slc3a2.github.io/apps/" title="🚀 应用">
+                    <span>🚀 应用</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://slc3a2.github.io/search/" title="🔍 搜索">
+                    <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://slc3a2.github.io/tags/" title="🧩 分类">
+                    <span>🧩 分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://slc3a2.github.io/archives/" title="⏱ 时间轴">
+                    <span>⏱ 时间轴</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      从OSI七层模型到TCP
+    </h1>
+    <div class="post-meta"><span title='2022-02-22 23:15:06 +0800 CST'>2022-02-22</span>&nbsp; ｜ &nbsp;5 分钟&nbsp; ｜ &nbsp;2043 字
+
+</div>
+  </header> 
+<figure class="entry-cover1">
+    <img loading="eager" src="https://slc3a2.github.io/images/%E4%BB%8EOSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0TCP/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Milad Fakurian</figcaption>
+</figure><div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么要写这篇博客">为什么要写这篇博客</a></li>
+    <li><a href="#先说什么是网络协议">先说什么是网络协议</a></li>
+    <li><a href="#再说-osi-7-层模型-和-tcpip-4-层模型">再说 OSI 7 层模型 和 TCP/IP 4 层模型</a></li>
+    <li><a href="#tcpip-4-层模型-协议簇">TCP/IP 4 层模型 (协议簇)</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#tcp">TCP</a></li>
+    <li><a href="#udp">UDP</a></li>
+    <li><a href="#udp-和-tcp-区别总结">UDP 和 TCP 区别总结</a></li>
+    <li><a href="#使用-nodejs-实现-tcp-连接">使用 nodejs 实现 TCP 连接</a></li>
+    <li><a href="#使用-nodejs-实现-udp-连接">使用 nodejs 实现 UDP 连接</a></li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="为什么要写这篇博客">为什么要写这篇博客<a hidden class="anchor" aria-hidden="true" href="#为什么要写这篇博客">#</a></h2>
+<p>一个是感觉自己的计算机网络基础薄弱，关于七层模型和 tcp、udp 看过几次了，都不够透彻，知其然不知其所以然。再一个，最近和同事有聊到这个事，感觉自己也说不明白，又意识到很重要，所以决定整理一下，自己感觉自己会了和可以给别人讲明白这个事儿，区别还是很大的啊。就参考资料和自己理解记录一下。</p>
+<h2 id="先说什么是网络协议">先说什么是网络协议<a hidden class="anchor" aria-hidden="true" href="#先说什么是网络协议">#</a></h2>
+<p>两台设备进行网络通信时，双方要提前<code>约定一些规则</code>。这样才可以让对方设备理解你要做什么。比如，如何发起通信，如何发出/接收数据，如何关闭链接。</p>
+<h2 id="再说-osi-7-层模型-和-tcpip-4-层模型">再说 OSI 7 层模型 和 TCP/IP 4 层模型<a hidden class="anchor" aria-hidden="true" href="#再说-osi-7-层模型-和-tcpip-4-层模型">#</a></h2>
+<p><code>OSI</code>(Open System Interconnection) 开放式系统互联参考模型，为了统一处理，模块化，易于维护，OSI 采用<strong>分层结构</strong>。包含七层，每一层实现各自的功能和协议，通过接口提供给更高一层并完成与相邻层的接口通信。</p>
+<p>IOS 7 层模型是一种网络通信理论模型。其含义就是推荐所有公司使用这个规范来控制网络。这样所有公司都有相同的规范，设备就能互联了。OSI 参考模型是<strong>学术上</strong>和<strong>法律上</strong>的国际标准，是完整的<strong>权威的网络参考模型</strong>。</p>
+<p>关系如下：</p>
+<table>
+  <thead>
+      <tr>
+          <th>OSI 7 层模型</th>
+          <th>功能</th>
+          <th>传送介质</th>
+          <th>对应 TCP/IP 4 层模型</th>
+          <th>对应协议</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>应用层 Application</td>
+          <td>为应用进程提供网络服务。</td>
+          <td>报文</td>
+          <td>应用层</td>
+          <td>HTTP、FTP、SMTP</td>
+      </tr>
+      <tr>
+          <td>表示层 Presentation</td>
+          <td>数据格式化，加密和解密。</td>
+          <td>报文</td>
+          <td>应用层</td>
+          <td>Telnet、Rlogin、SNMP、Gopher</td>
+      </tr>
+      <tr>
+          <td>会话层 Session</td>
+          <td>建立应用和应用之间的连接。</td>
+          <td>报文</td>
+          <td>应用层</td>
+          <td>SMTP、DNS</td>
+      </tr>
+      <tr>
+          <td>传输层 Transport</td>
+          <td>建立设备和设备之间的连接。</td>
+          <td>报文</td>
+          <td>传输层</td>
+          <td>TCP、UDP</td>
+      </tr>
+      <tr>
+          <td>网络层 Network</td>
+          <td>为数据包选择路由，寻址。</td>
+          <td>数据包</td>
+          <td>网络层</td>
+          <td>IP、ICMP、ARP、RARP、AKP、UUCP</td>
+      </tr>
+      <tr>
+          <td>数据链路层 Data Link</td>
+          <td>根据以太网协议将一组电信号组成一个数据包，称作”帧”，控制传输。通俗说，就是控制数据在网线、光纤传输。</td>
+          <td>数据帧</td>
+          <td>链路层</td>
+          <td>FDDI、Ethernet、Arpanet、PDN、SLIP、PPP</td>
+      </tr>
+      <tr>
+          <td>物理层 Physical</td>
+          <td>把网线，光纤将设备链接起来组网。物理传输介质。</td>
+          <td>比特流</td>
+          <td>链路层</td>
+          <td>IEEE 802.1A、IEEE 802.2 到 IEEE 802.11</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="tcpip-4-层模型-协议簇">TCP/IP 4 层模型 (协议簇)<a hidden class="anchor" aria-hidden="true" href="#tcpip-4-层模型-协议簇">#</a></h2>
+<p><code>TCP/IP</code> 协议簇是 internet 的基础，是多个协议的统称，命名为 TCP/IP 是因为<code>TCP</code>和<code>IP</code>是其中很重要的两个协议。</p>
+<p><code>TCP/IP</code> 分为四层，每一个层都有各自的协议和功能，其中 <code>TCP</code> 和 <code>UDP</code> 协议位于 TCP/IP 协议簇的传输层。</p>
+<p><code>TCP/IP</code> <strong>借鉴</strong>了 OSI 的分层概念建立<code>TCP/IP</code>模型，<code>TCP/IP</code> 已被广泛使用，<strong>成为网络互联事实上的标准</strong>。</p>
+<h4 id="使用-tcpip-协议传递数据图解">使用 TCP/IP 协议传递数据图解：<a hidden class="anchor" aria-hidden="true" href="#使用-tcpip-协议传递数据图解">#</a></h4>
+<p><img alt="image-20220306115359466" loading="lazy" src="/images/%E4%BB%8EOSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0TCP/WechatIMG220.png"></p>
+<h2 id="tcp">TCP<a hidden class="anchor" aria-hidden="true" href="#tcp">#</a></h2>
+<p>TCP(<strong>Transmission Control Protocol</strong>
+)全称是传输控制协议，是一种<strong>面向连接的</strong>、<strong>可靠的</strong>、<strong>全双工</strong>、<strong>单播传输的</strong>、<strong>基于字节流的</strong>传输层通信协议。属于<code>TCP/IP协议簇</code>的传输层。</p>
+<ul>
+<li>面向连接： 即传递数据前在两端建立连接，使用“<strong>三次握手</strong>”确保两端的发送和接收能力，<strong>提供可靠的连接</strong>。</li>
+<li>仅支持单播传输：只能进行<strong>一对一</strong>的数据传输，不支持组播和广播传输方式。</li>
+<li>拥堵控制：网络拥堵的时，<code>TCP</code>能够减小向网络注入数据的速率和数量，缓解拥堵，提供对流量控制和服务质量的访问。</li>
+<li>全双工： 双端既可以当<strong>接收者</strong>，也可以当<strong>发送者</strong>。</li>
+<li>基于字节流模式： 比如发送端发送 100 字节到目标端，目标端可以分 10 次，每次 10 字节接受，也就是以<strong>少量数据分以任意次接收</strong>。</li>
+</ul>
+<h2 id="udp">UDP<a hidden class="anchor" aria-hidden="true" href="#udp">#</a></h2>
+<p>UDP(User Data Protocol)全称用户数据报协议，是一种<strong>无连接的</strong>、<strong>不可靠的</strong>、<strong>支持组播和广播</strong>、<strong>基于数据报</strong>的传输层通信协议。属于<code>TCP/IP协议簇</code>的传输层。</p>
+<ul>
+<li>无连接不可靠： <strong>不需要繁琐的三次握手</strong>，确认、重传、拥塞控制等机制，没有这些安全机制，速度更快的同时，安全性变差，<strong>易丢包</strong>。UDP 使用<strong>尽可能最大努力交付</strong>，但不保证可靠交付。</li>
+<li>支持组播和广播： 可以<strong>一对一</strong>，<strong>一对多</strong>，<strong>多对一</strong>、<strong>多对多</strong>数据传输。</li>
+<li>基于数据报模式： 一次发送对应一次接收，<strong>一次只读取一个报文</strong>，多个报文不可以合并。</li>
+</ul>
+<h2 id="udp-和-tcp-区别总结">UDP 和 TCP 区别总结<a hidden class="anchor" aria-hidden="true" href="#udp-和-tcp-区别总结">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>指标</th>
+          <th>TCP</th>
+          <th>UDP</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>连接</td>
+          <td>面向连接</td>
+          <td>无连接</td>
+      </tr>
+      <tr>
+          <td>报文</td>
+          <td>面向字节流</td>
+          <td>面向报文</td>
+      </tr>
+      <tr>
+          <td>效率</td>
+          <td>低</td>
+          <td>高</td>
+      </tr>
+      <tr>
+          <td>是否可靠</td>
+          <td>可靠</td>
+          <td>不可靠</td>
+      </tr>
+      <tr>
+          <td>拥塞控制</td>
+          <td>有</td>
+          <td>无</td>
+      </tr>
+      <tr>
+          <td>速度</td>
+          <td>慢</td>
+          <td>快</td>
+      </tr>
+      <tr>
+          <td>双共性</td>
+          <td>全双工</td>
+          <td>一对一、一对多、多对一、多对多</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="使用-nodejs-实现-tcp-连接">使用 nodejs 实现 TCP 连接<a hidden class="anchor" aria-hidden="true" href="#使用-nodejs-实现-tcp-连接">#</a></h2>
+<p>服务端</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">net</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;net&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">HOST</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;127.0.0.1&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">PORT</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">8081</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">server</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">createServer</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;listening&#34;</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`TCP server at </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">HOST</span><span style="color:#e6db74">}</span><span style="color:#e6db74">:</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">PORT</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;connection&#34;</span>, (<span style="color:#a6e22e">socket</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;data&#34;</span>, (<span style="color:#a6e22e">buffer</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">msg</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">toString</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">msg</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>(<span style="color:#e6db74">`来自服务端 </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">msg</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>));
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;close&#34;</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;TCP server close!&#34;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;error&#34;</span>, (<span style="color:#a6e22e">err</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">`TCP server error :</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">err</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>  }, <span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">PORT</span>, <span style="color:#a6e22e">HOST</span>);
+</span></span></code></pre></div><p>客户端</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">net</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;net&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">HOST</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;127.0.0.1&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">PORT</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">8081</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">createConnection</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">host</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">HOST</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">port</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">PORT</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;connect&#34;</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">write</span>(<span style="color:#e6db74">&#34;客户端向服务端发送消息: 1&#34;</span>);
+</span></span><span style="display:flex;"><span>  }, <span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">write</span>(<span style="color:#e6db74">&#34;客户端向服务端发送消息: 2&#34;</span>);
+</span></span><span style="display:flex;"><span>  }, <span style="color:#ae81ff">2000</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">write</span>(<span style="color:#e6db74">&#34;客户端向服务端发送消息: 3&#34;</span>);
+</span></span><span style="display:flex;"><span>  }, <span style="color:#ae81ff">3000</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;data&#34;</span>, (<span style="color:#a6e22e">buffer</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">toString</span>());
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;error&#34;</span>, (<span style="color:#a6e22e">err</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;TCP server error&#34;</span>, <span style="color:#a6e22e">err</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;close&#34;</span>, (<span style="color:#a6e22e">err</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;client disconnects&#34;</span>, <span style="color:#a6e22e">err</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p><img alt="903kj94rnyoOIrs" loading="lazy" src="/images/%E4%BB%8EOSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0TCP/903kj94rnyoOIrs.png"></p>
+<h2 id="使用-nodejs-实现-udp-连接">使用 nodejs 实现 UDP 连接<a hidden class="anchor" aria-hidden="true" href="#使用-nodejs-实现-udp-连接">#</a></h2>
+<p>服务端</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dgram</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;dgram&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">HOST</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;127.0.0.1&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">PORT</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">8082</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">server</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dgram</span>.<span style="color:#a6e22e">createSocket</span>(<span style="color:#e6db74">&#34;udp4&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;listening&#34;</span>, <span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">address</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">address</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`UDP server at </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">HOST</span><span style="color:#e6db74">}</span><span style="color:#e6db74">:</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">PORT</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;message&#34;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">message</span>, <span style="color:#a6e22e">remote</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`来自服务端 </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">message</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#a6e22e">PORT</span>, <span style="color:#a6e22e">HOST</span>);
+</span></span></code></pre></div><p>客户端</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dgram</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">`dgram`</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">PORT</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">8082</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">HOST</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;127.0.0.1&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dgram</span>.<span style="color:#a6e22e">createSocket</span>(<span style="color:#e6db74">&#34;udp4&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sendMsg</span>(<span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>(<span style="color:#e6db74">`客户端向服务端发送消息: 1`</span>));
+</span></span><span style="display:flex;"><span>}, <span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sendMsg</span>(<span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>(<span style="color:#e6db74">`客户端向服务端发送消息: 2`</span>));
+</span></span><span style="display:flex;"><span>}, <span style="color:#ae81ff">2000</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sendMsg</span>(<span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>(<span style="color:#e6db74">`客户端向服务端发送消息: 3`</span>));
+</span></span><span style="display:flex;"><span>}, <span style="color:#ae81ff">3000</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;客户端主动关闭&#34;</span>);
+</span></span><span style="display:flex;"><span>}, <span style="color:#ae81ff">4000</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sendMsg</span>(<span style="color:#a6e22e">_msg</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">_msg</span>, <span style="color:#a6e22e">PORT</span>, <span style="color:#a6e22e">HOST</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">bytes</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span>) <span style="color:#66d9ef">throw</span> <span style="color:#a6e22e">err</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">_msg</span>.<span style="color:#a6e22e">toString</span>());
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><img alt="image-20220222230031275" loading="lazy" src="/images/%E4%BB%8EOSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0TCP/image-20220222230031275.png"></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://slc3a2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://slc3a2.github.io/blogs/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>浏览器事件循环</span>
+  </a>
+  <a class="next" href="https://slc3a2.github.io/blogs/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>记发布订阅和观察者模式</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://slc3a2.github.io/">slc3a2</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

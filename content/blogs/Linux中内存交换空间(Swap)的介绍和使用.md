@@ -7,11 +7,10 @@ tags:
 ShowToc: true
 TocOpen: true
 ShowWordCount: true
-author: "slc3a2"
 cover:
-  image: "/images/命题逻辑真值表/cover.jpg"
+  image: "/images/存交换空间(swap)的使用/cover.jpg"
   alt: "cover image"
-  caption: "封面图来自 Unsplash | 作者 Jakob Owens"
+  caption: "封面图来自 Unsplash | 作者 sJr Korpa"
   relative: false
 ---
 

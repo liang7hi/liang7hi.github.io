@@ -16,16 +16,37 @@ body {
 
 .entry-cover {
   overflow: hidden;
-  padding-left: 18px;
+  padding-left: 47px;
   height: 100%;
   width: 50%;
   margin-bottom: unset;
+}
+
+.entry-cover img {
+  width: 213px;
+  height: 120px;
+  object-fit: cover;
 }
 
 .post-info {
   display: inline-block;
   overflow: hidden;
   width: 90%;
+}
+
+.post-info .entry-footer {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.post-info .entry-header h2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: block;
 }
 
 .post-single .entry-cover1 img {

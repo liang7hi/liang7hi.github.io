@@ -1,5 +1,5 @@
 ---
-title: 使用css实现圆环加载
+title: 使用css实现环状进度
 date: 2020-08-22T09:44:03+08:00
 draft: false
 tags:
@@ -7,11 +7,10 @@ tags:
 ShowToc: true
 TocOpen: true
 ShowWordCount: true
-author: "slc3a2"
 cover:
-  image: "/images/命题逻辑真值表/cover.jpg"
+  image: "/images/使用css实现环状进度/cover.jpg"
   alt: "cover image"
-  caption: "封面图来自 Unsplash | 作者 Jakob Owens"
+  caption: "封面图来自 Unsplash | 作者 Pankaj Patel"
   relative: false
 ---
 

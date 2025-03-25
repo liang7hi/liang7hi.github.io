@@ -1,5 +1,5 @@
 ---
-title: promsie的实现
+title: promise的实现
 date: 2020-10-30T16:59:53+08:00
 draft: false
 tags:
@@ -7,11 +7,10 @@ tags:
 ShowToc: true
 TocOpen: true
 ShowWordCount: true
-author: "slc3a2"
 cover:
-  image: "/images/命题逻辑真值表/cover.jpg"
+  image: "/images/promise的实现/cover.jpg"
   alt: "cover image"
-  caption: "封面图来自 Unsplash | 作者 Jakob Owens"
+  caption: "封面图来自 Unsplash | 作者 Gene Dizon"
   relative: false
 ---
 

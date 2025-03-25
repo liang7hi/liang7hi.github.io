@@ -21,6 +21,9 @@ menu:
     - name: 📚 日志
       url: "/blogs/"
       weight: 20
+    - name: 📷 照片
+      url: "/photos/"
+      weight: 20
     - name: 🚀 应用
       url: "/apps/"
       weight: 30
@@ -39,10 +42,16 @@ outputs:
     - HTML
     - RSS
     - JSON
-    
+
 caches:
   images:
     dir: :cacheDir/images
+
+# assets:
+#   favicon: "/favicon/favicon.ico"
+#   favicon16x16: "/favicon/favicon-16x16.png"
+#   favicon32x32: "/favicon/favicon-32x32.png"
+#   apple_touch_icon: "/favicon/apple-touch-icon.png"
 
 params:
   showReadingTime: true
@@ -70,12 +79,12 @@ params:
   - name: github
     url: "https://github.com/slc3a2"
 
-  - name: bilibili
-    url: "https://space.bilibili.com/28755943"
-
   - name: dribbble
     url: "https://dribbble.com/slc3a2"
-  
+
+  - name: leetcode
+    url: "https://leetcode.cn/u/slc3a2/"
+
   - name: email
     url: "mailto:slc3a2@gmail.com"
 

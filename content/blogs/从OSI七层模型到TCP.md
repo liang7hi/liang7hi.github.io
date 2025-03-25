@@ -7,7 +7,6 @@ tags:
 ShowToc: true
 TocOpen: true
 ShowWordCount: true
-author: "slc3a2"
 cover:
   image: "/images/从OSI七层模型到TCP/cover.jpg"
   alt: "cover image"
