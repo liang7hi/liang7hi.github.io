@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head>
+	<meta name="generator" content="Hugo 0.145.0"><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>slc3a2</title>
+
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="https://slc3a2.github.io/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.03380b421b43a59cef22aa8ddc67c8077da9081a7c7a95ef8104001f8af6ac13.css" integrity="sha256-AzgLQhtDpZzvIqqN3GfIB32pCBp8epXvgQQAH4r2rBM=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://slc3a2.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://slc3a2.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://slc3a2.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://slc3a2.github.io/index.xml">
+<link rel="alternate" type="application/json" href="https://slc3a2.github.io/index.json">
+<link rel="alternate" hreflang="zh" href="https://slc3a2.github.io/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://slc3a2.github.io/">
+  <meta property="og:site_name" content="slc3a2">
+  <meta property="og:title" content="slc3a2">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="slc3a2">
+<meta name="twitter:description" content="">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "slc3a2",
+  "url": "https://slc3a2.github.io/",
+  "description": "",
+  "logo": "https://slc3a2.github.io/favicon.ico",
+  "sameAs": [
+      "https://github.com/slc3a2", "https://space.bilibili.com/28755943", "https://dribbble.com/slc3a2", "mailto:slc3a2@gmail.com"
+  ]
+}
+</script>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://slc3a2.github.io/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://slc3a2.github.io/" title="🏠 首页">
+                    <span class="active">🏠 首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://slc3a2.github.io/blogs/" title="📚 日志">
+                    <span>📚 日志</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://slc3a2.github.io/apps/" title="🚀 应用">
+                    <span>🚀 应用</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://slc3a2.github.io/search/" title="🔍 搜索">
+                    <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://slc3a2.github.io/tags/" title="🧩 分类">
+                    <span>🧩 分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://slc3a2.github.io/archives/" title="⏱ 时间轴">
+                    <span>⏱ 时间轴</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg" alt="cover image">
+</figure>
+  <div class="post-info">
+    <header class="entry-header">
+      <h2 class="entry-hint-parent">promsie的实现
+      </h2>
+    </header>
+    <div class="entry-content">
+      <p>
+        promise 类 class Pro { callbacks = []; state = &#34;pending&#34;; value = null; constructor(fn) { // 初始化，把resolve作为参数传入，等待调用 fn(this.resolve.bind(this)); } // callback为回调，先注册，也就是放入callbacks数组中 then(callback) { if (this.state === &#34;pending&#34;) { this.callbacks.push(callback); } else { // 由于state不是pending, 遵循promise状态只能改一次的要求，我们直接操作回调传入参数执行 callback(this.value); } return this; } // resolve也就是fn的第一次参数，循环执行所有callback resolve(value) { this.state = &#34;fulfilled&#34;; // setTimeout使内部变成异步，在同步执行完最后执行这里，处理fn是同步的情况下then中的回调函数已经注册，然后在这里去执行，不会出现callbacks是空数组的情况 setTimeout(() =&gt; { this.value = value; this.callbacks.forEach((callback) =&gt; callback(value)); }); } } 使用 new Pro((resolve) =&gt; { setTimeout(() =&gt; { console.log(0); resolve(&#34;resolve&#34;); }, 2000); }) .then((tip) =&gt; { console.log(1); console.log(tip); }) .then((tip) =&gt; { console.log(2); console.log(tip); }); promise.all 实现 Promise.prototype.all = function (promises) { let results = []; let promiseCount = 0; let promisesLength = promises.length; return new Promise(function (resolve, reject) { for (let item of promises) { // 执行每个item Promise.resolve(item).then( function (res) { promiseCount&#43;&#43;; // 按照顺序插入结果 results[i] = res; // 如果全部执行成功，返回成功 if (promiseCount === promisesLength) { return resolve(results); } }, function (err) { return reject(err); } ); } }); }; promise.race 实现 Promise.prototype.race = function (promises) { return new Promise((resolve, reject) =&gt; { for (let item of promises) { Promise.resolve(item) .then((res) =&gt; { return resolve(res); }) .catch((err) =&gt; { return reject(err); }); } }); }; 简单来说就是声明 promise 时，会执行 promise 第一个函数参数和 then 的参数函数。 then 用来把回调传入 callback 数组中，相当于注册，规定好了 reslove 时，回调的执行，然后等待 resolve 调用，resolve 就会把 callback 数组中的函数全部执行
+...
+      </p>
+    </div>
+    <footer class="entry-footer"><span title='2020-10-30 16:59:53 +0800 CST'>2020-10-30</span>&nbsp; ｜ &nbsp;2 分钟&nbsp; ｜ &nbsp;564 字&nbsp; ｜ &nbsp;slc3a2</footer>
+  </div>
+  <a
+    class="entry-link"
+    aria-label="post link to promsie的实现"
+    href="https://slc3a2.github.io/blogs/promise%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/"
+  ></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg" alt="cover image">
+</figure>
+  <div class="post-info">
+    <header class="entry-header">
+      <h2 class="entry-hint-parent">vue原理mvvm实现
+      </h2>
+    </header>
+    <div class="entry-content">
+      <p>
+        index.html &lt;!DOCTYPE html&gt; &lt;html lang=&#34;en&#34;&gt; &lt;head&gt; &lt;meta charset=&#34;UTF-8&#34; /&gt; &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34; /&gt; &lt;title&gt;Document&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;div id=&#34;app&#34;&gt; &lt;input type=&#34;text&#34; v-model=&#34;v&#34; /&gt; {{v}} &lt;button @click=&#34;reset&#34;&gt;重置&lt;/button&gt; &lt;/div&gt; &lt;script src=&#34;./index.js&#34;&gt;&lt;/script&gt; &lt;script&gt; const vm = new Mvvm({ el: &#34;#app&#34;, data: { v: &#34;hello world&#34;, }, methods: { reset() { this.v = &#34;&#34;; }, }, }); &lt;/script&gt; &lt;/body&gt; &lt;/html&gt; index.js class Mvvm { constructor(options) { const { el, data, methods } = options; this.methods = methods; this.target = null; // 监听this[data的key]所有属性，让变化可追踪 this.observe(this, data); // dom解析：提取{{}}、v-model、事件重写：@click this.compile(document.querySelector(el)); } // 数据变化监听 observe(_this, data) { Object.keys(data).forEach((key) =&gt; { let val = data[key]; Object.keys(data).forEach((key) =&gt; { // 如果val是数组或者对象，使用递归实现深层监听，直到val为简单数据类型。从而保证所有属性变化都被监听 if (typeof val === &#34;object&#34;) { return this.observe(_this, val); } // dispatcher用来操作订阅者(watcher) add 或者 update。要配合Object.defineProperty的get和set来使用 const dispatcher = new Dispatcher(); Object.defineProperty(_this, key, { get: function () { console.log(&#34;get&#34;); // this.target会在compile方法中出现，把this.target(一个watcher)添加到dispatcher(将要更新的watcher的列表)中，用于未来更新这个watcher对应的dom dispatcher.add(this.target); return val; }, set: function (newV) { // 值无变化，不处理 if (newV === val) { return; } console.log(`set`); val = newV; // 因为set了，值发生变化了，所以要通知get中添加的所有订阅者(watcher)：你们要把对应的dom中使用的值更新成newV dispatcher.notify(newV); }, }); }); }); } // dom解析 compile(dom) { const childs = dom.childNodes; for (const node of childs) { // nodeType 参考 https://www.w3school.com.cn/jsref/prop_node_nodetype.asp if (node.nodeType === 1) { const attrs = node.attributes; for (const attr of attrs) { if (attr.name === &#34;v-model&#34;) { const name = attr.value; // 放到订阅者列表中 this.target = new Watcher(node, &#34;input&#34;); // this[name]是为了触发observe的get，才会被监听 this[name]; // 由于是demo，假设只有input一种情况，input就会有双向绑定。使用this[name], 并且赋值input的值，来触发observe的get。实现更新信息的发布 node.addEventListener(&#34;input&#34;, (e) =&gt; { this[name] = e.target.value; }); } // 使用bind传递this。并代理click事件函数到@click上。这里仅拿click事件实现，实际会有多种事件 if (attr.name === &#34;@click&#34;) { const name = attr.value; node.addEventListener(&#34;click&#34;, this.methods[name].bind(this)); } } } // nodeType 参考 https://www.w3school.com.cn/jsref/prop_node_nodetype.asp if (node.nodeType === 3) { // 正则匹配{{}} const reg = /\{\{(.*)\}\}/; const match = node.nodeValue.match(reg); if (match) { const name = match[1].trim(); // 放到订阅者列表中 this.target = new Watcher(node, &#34;text&#34;); // this[name]是为了触发observe的get，才会被监听 this[name]; } } } } } // 发布者 class Dispatcher { constructor() { this.watchers = []; } // 增加订阅者 add(watcher) { this.watchers.push(watcher); } // 通知所有订阅者更新 notify(value) { this.watchers.forEach((item) =&gt; { item.update(value); }); } } // 订阅者 class Watcher { constructor(node, type) { this.node = node; this.type = type; } update(value) { // 区别dom类型来赋值 if (this.type === &#34;input&#34;) { this.node.value = value; } if (this.type === &#34;text&#34;) { this.node.nodeValue = value; } } } vue 在初始化后，执行 Observe 函数把 data 利用 Object.defineProperty 属性监听。同时也会使用 Compile 函数循环 dom，提取 vue 相关的关键字，v-bind 或者 v-model，找到这些值，新建一个 Watcher 实例，然后手动 get 使这些 watch 放入 dep 列表中等待订阅。等待调用 Observer 的 set (input 事件，或者手动赋值)，然后通知 dep 中所有 Watcher 调用 update 方法。
+...
+      </p>
+    </div>
+    <footer class="entry-footer"><span title='2020-10-27 18:46:33 +0800 CST'>2020-10-27</span>&nbsp; ｜ &nbsp;3 分钟&nbsp; ｜ &nbsp;1121 字&nbsp; ｜ &nbsp;slc3a2</footer>
+  </div>
+  <a
+    class="entry-link"
+    aria-label="post link to vue原理mvvm实现"
+    href="https://slc3a2.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/"
+  ></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg" alt="cover image">
+</figure>
+  <div class="post-info">
+    <header class="entry-header">
+      <h2 class="entry-hint-parent">使用jarsigner重新签名apk包
+      </h2>
+    </header>
+    <div class="entry-content">
+      <p>
+        环境 macos 10.14 iterm 2 使用 生成密钥 keytool -genkeypair -alias &lt;别名&gt; -keystore &lt;密钥库存储位置和名称&gt;
+keytool -genkeypair -alias demokey -keystore demo.keystore 内容填写后，生成完毕
+生成签名 jarsigner -verbose -keystore &lt;使用密钥库位置&gt; -signedjar &lt;签名后的包保存位置和名字&gt; &lt;要签名的包保存位置和名字&gt; &lt;别名，对应上面的别名&gt;
+...
+      </p>
+    </div>
+    <footer class="entry-footer"><span title='2020-10-26 16:41:13 +0800 CST'>2020-10-26</span>&nbsp; ｜ &nbsp;1 分钟&nbsp; ｜ &nbsp;158 字&nbsp; ｜ &nbsp;slc3a2</footer>
+  </div>
+  <a
+    class="entry-link"
+    aria-label="post link to 使用jarsigner重新签名apk包"
+    href="https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/"
+  ></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg" alt="cover image">
+</figure>
+  <div class="post-info">
+    <header class="entry-header">
+      <h2 class="entry-hint-parent">函数的防抖和节流
+      </h2>
+    </header>
+    <div class="entry-content">
+      <p>
+        防抖（debounce） 什么是防抖？ 一个函数被触发n秒后，才执行此函数 如果n秒内再次触发此函数，那么重新以再次触发的时间开始重新延迟 n 秒后执行此函数 这样的函数 执行行为 叫做函数防抖。
+...
+      </p>
+    </div>
+    <footer class="entry-footer"><span title='2020-10-20 18:02:56 +0800 CST'>2020-10-20</span>&nbsp; ｜ &nbsp;2 分钟&nbsp; ｜ &nbsp;538 字&nbsp; ｜ &nbsp;slc3a2</footer>
+  </div>
+  <a
+    class="entry-link"
+    aria-label="post link to 函数的防抖和节流"
+    href="https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/"
+  ></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg" alt="cover image">
+</figure>
+  <div class="post-info">
+    <header class="entry-header">
+      <h2 class="entry-hint-parent">flex布局介绍
+      </h2>
+    </header>
+    <div class="entry-content">
+      <p>
+        flex 布局概念 flex布局通常被叫做flex box，也叫弹性盒子或容器，是一种一维的布局模型，它能子元素(flex item)之间提供了强大的空间分布和对齐能力。
+...
+      </p>
+    </div>
+    <footer class="entry-footer"><span title='2020-09-11 14:03:49 +0800 CST'>2020-09-11</span>&nbsp; ｜ &nbsp;6 分钟&nbsp; ｜ &nbsp;2524 字&nbsp; ｜ &nbsp;slc3a2</footer>
+  </div>
+  <a
+    class="entry-link"
+    aria-label="post link to flex布局介绍"
+    href="https://slc3a2.github.io/blogs/flex%E5%B8%83%E5%B1%80/"
+  ></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="https://slc3a2.github.io/images/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/cover.jpg" alt="The alt text">
+</figure>
+  <div class="post-info">
+    <header class="entry-header">
+      <h2 class="entry-hint-parent">函数柯里化(currying)
+      </h2>
+    </header>
+    <div class="entry-content">
+      <p>
+        文章介绍函数柯里化，说明其将多参函数转为单参函数的概念，以 JavaScript 举例阐述原理，讲解参数复用等好处并给出 ajax 请求示例，还提供了完整实现代码及用法
+      </p>
+    </div>
+    <footer class="entry-footer"><span title='2020-09-09 13:13:04 +0800 CST'>2020-09-09</span>&nbsp; ｜ &nbsp;3 分钟&nbsp; ｜ &nbsp;1224 字&nbsp; ｜ &nbsp;slc3a2</footer>
+  </div>
+  <a
+    class="entry-link"
+    aria-label="post link to 函数柯里化(currying)"
+    href="https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/"
+  ></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg" alt="cover image">
+</figure>
+  <div class="post-info">
+    <header class="entry-header">
+      <h2 class="entry-hint-parent">常用4种排序介绍
+      </h2>
+    </header>
+    <div class="entry-content">
+      <p>
+        冒泡排序（Bubble sort） 原理和演示： 依次比较数组中相邻的每一对值，如果前面的值 大于 后面的值，则交换他们俩的位置。如果数组中5个数字(length 为 5)，由于比较 两个一组 的数字，那么只需要4次(length - 1)比较，就可以实现把数组中最大的一个数放到最后。 function bubbleSort(arr) { for (let i = 0; i &lt; arr.length - 1; i&#43;&#43;) { if (arr[i] &gt; arr[i &#43; 1]) { let temp = arr[i]; arr[i] = arr[i &#43; 1]; arr[i &#43; 1] = temp; } console.log(`执行${i &#43; 1}次`); } return arr; } 通过第一步得到最大的一个数放在数组最后。那么剩下的前三个数继续执行第一步，结果找到第二大的数，放在数组倒数第二位，重复此步骤，直到比对完数组中最后一组数。由于第一步骤每次得到一个最大值放最后，j对应的正好是数组最后有多少个最大值，可以免去比较。所以上步骤每次循环可以优化一下每次少算一个最大值，每次循环总数- 1也就是下面例子中的- j。
+...
+      </p>
+    </div>
+    <footer class="entry-footer"><span title='2020-09-02 16:07:43 +0800 CST'>2020-09-02</span>&nbsp; ｜ &nbsp;5 分钟&nbsp; ｜ &nbsp;2020 字&nbsp; ｜ &nbsp;slc3a2</footer>
+  </div>
+  <a
+    class="entry-link"
+    aria-label="post link to 常用4种排序介绍"
+    href="https://slc3a2.github.io/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/"
+  ></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg" alt="cover image">
+</figure>
+  <div class="post-info">
+    <header class="entry-header">
+      <h2 class="entry-hint-parent">使用css实现圆环加载
+      </h2>
+    </header>
+    <div class="entry-content">
+      <p>
+        html &lt;div class=&#34;round&#34;&gt;&lt;/div&gt; css 使用background-image渐变属性和动画状态的伪元素遮盖来实现：
+.round { width: 150px; height: 150px; border-radius: 50%; background-color: #eee; background-image: linear-gradient(to right, transparent 50%, blue 0); position: relative; } .round::before { width: 50%; height: 100%; content: &#34;&#34;; position: absolute; top: 0; left: 50%; border-radius: 0 100% 100% 0 / 50%; background-color: inherit; transform-origin: left; animation: spin 5s linear infinite, dye 10s step-end infinite; } @keyframes spin { to { transform: rotate(0.5turn); } } @keyframes dye { 50% { background: blue; } }s 效果 ...
+      </p>
+    </div>
+    <footer class="entry-footer"><span title='2020-08-22 09:44:03 +0800 CST'>2020-08-22</span>&nbsp; ｜ &nbsp;1 分钟&nbsp; ｜ &nbsp;116 字&nbsp; ｜ &nbsp;slc3a2</footer>
+  </div>
+  <a
+    class="entry-link"
+    aria-label="post link to 使用css实现圆环加载"
+    href="https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/"
+  ></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg" alt="cover image">
+</figure>
+  <div class="post-info">
+    <header class="entry-header">
+      <h2 class="entry-hint-parent">Linux中内存交换空间(swap)的使用
+      </h2>
+    </header>
+    <div class="entry-content">
+      <p>
+         什么是 swap swap分区是Linux中特殊的一种存储，他在安装系统时被自动创建。
+用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到swap分区中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问swap空间上的的数据时，swap会把数据放回内存中供操作系统使用。
+...
+      </p>
+    </div>
+    <footer class="entry-footer"><span title='2020-08-21 16:48:04 +0800 CST'>2020-08-21</span>&nbsp; ｜ &nbsp;2 分钟&nbsp; ｜ &nbsp;922 字&nbsp; ｜ &nbsp;slc3a2</footer>
+  </div>
+  <a
+    class="entry-link"
+    aria-label="post link to Linux中内存交换空间(swap)的使用"
+    href="https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/"
+  ></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://slc3a2.github.io/">
+      «&nbsp;上一页&nbsp;
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://slc3a2.github.io/">slc3a2</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

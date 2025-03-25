@@ -1,0 +1,80 @@
+baseURL: "https://slc3a2.github.io"
+languageCode: "zh-cn"
+title: "slc3a2"
+theme: "PaperMod"
+hasCJKLanguage: true
+defaultTheme: auto
+ShowWordCount: true
+languageCode: zh
+defaultContentLanguage: zh
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+menu:
+  main:
+    - name: 🏠 首页
+      url: "/"
+      weight: 10
+    - name: 📚 日志
+      url: "/blogs/"
+      weight: 20
+    - name: 🚀 应用
+      url: "/apps/"
+      weight: 30
+    - name: 🔍 搜索
+      url: "/search/"
+      weight: 40
+    - name: 🧩 分类
+      url: "/tags/"
+      weight: 41
+    - name: ⏱ 时间轴
+      url: "/archives/"
+      weight: 50
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+params:
+  showReadingTime: true
+  # ShowBreadCrumbs: true
+  ShowPostNavLinks: true
+  comments: true
+  DateFormat: "2006-01-02"
+  ShowCodeCopyButtons: true
+  UseHugoToc: true
+  disableSpecial1stPost: true
+
+  permalinks: 
+    post: "/:year/:month/:day/:title/"
+
+  homeInfoParams:
+    imageUrl: "/images/avatar.png"
+    imageWidth: 120
+    imageHeight: 120
+    imageTitle: "slc3a2"
+    imageAlt: "slc3a2"
+    Title: "slc3a2 部落格"
+    subtitle: "这是一片属于我的自由天地"
+    Content: 👋 这是一片属于我的自由天地!
+
+  socialIcons:
+  - name: github
+    url: "https://github.com/slc3a2"
+
+  - name: bilibili
+    url: "https://space.bilibili.com/28755943"
+
+  - name: dribbble
+    url: "https://dribbble.com/slc3a2"
+  
+  - name: email
+    url: "mailto:slc3a2@gmail.com"
+
+  
+    
