@@ -39,10 +39,13 @@ outputs:
     - HTML
     - RSS
     - JSON
+    
+caches:
+  images:
+    dir: :cacheDir/images
 
 params:
   showReadingTime: true
-  # ShowBreadCrumbs: true
   ShowPostNavLinks: true
   comments: true
   DateFormat: "2006-01-02"
