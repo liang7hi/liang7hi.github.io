@@ -1,8 +1,45 @@
 ---
 title: 照片
+description: 我的生活切片
 hidemeta: true
 TocOpen: true
----
+layout: "photos"
 
-{{< figure src="/images/函数的防抖和节流/cover.jpg" title="照片 1" description="这是第一张照片的描述" >}}
-{{< figure src="/images/函数的防抖和节流/cover.jpg" title="照片 2" description="这是第一张照片的描述" >}}
+imageData:
+  - src: "/images/wall/1081742985014_.pic.jpg"
+    date: "2021-04-05"
+    description: "Giant Propel Adv 1 Disc 2021"
+  - src: "/images/wall/1061742983148_.pic.jpg"
+    date: "2022-07-14"
+    description: "云韵"
+  - src: "/images/wall/1101742985058_.pic.jpg"
+    date: "2021-04-07"
+    description: "花河"
+  - src: "/images/wall/961742971358_.pic.jpg"
+    date: "2024-05-13"
+    description: "废弃工厂"
+  - src: "/images/wall/951742971277_.pic.jpg"
+    date: "2024-03-21"
+    description: "春分"
+  - src: "/images/wall/1121742985083_.pic.jpg"
+    date: "2021-05-03"
+    description: "新锁鞋"
+  - src: "/images/wall/971742971359_.pic.jpg"
+    date: "2023-05-13"
+    description: "火花"
+  - src: "/images/wall/981742972578_.pic.jpg"
+    date: "2024-02-12"
+    description: "南京·老门东"
+  - src: "/images/wall/991742972579_.pic.jpg"
+    date: "2023-05-13"
+    description: "兰州·黄河风情线"
+  - src: "/images/wall/1011742972584_.pic.jpg"
+    date: "2023-05-13"
+    description: "水稻田"
+  - src: "/images/wall/1021742972894_.pic.jpg"
+    date: "2024-02-12"
+    description: "油炸冰溜子"
+  - src: "/images/wall/1001742972581_.pic.jpg"
+    date: "2023-04-03"
+    description: "杭州·西湖"
+---

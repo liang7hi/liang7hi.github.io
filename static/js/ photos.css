@@ -1,0 +1,95 @@
+.post-content {
+  .photo-wrapper {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    height: 900px;
+    &::before,
+    &::after {
+      content: "";
+      flex-basis: 100%;
+      width: 0;
+      order: 2;
+    }
+    .photo-item {
+      width: 32%;
+      height: auto;
+      cursor: pointer;
+      position: relative;
+      margin-bottom: 13px;
+      max-width: 100%;
+      overflow: hidden;
+      &:nth-child(3n + 1) {
+        order: 1;
+      }
+      &:nth-child(3n + 2) {
+        order: 2;
+      }
+      &:nth-child(3n) {
+        order: 3;
+      }
+      .photo-date {
+        width: 100%;
+        height: 40px;
+        color: #fff;
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        text-align: center;
+        font-size: 12px;
+        overflow: hidden;
+        background: linear-gradient(
+          rgba(0, 0, 0, 0.6),
+          rgba(0, 0, 0, 0.3),
+          rgba(0, 0, 0, 0.1),
+          rgba(0, 0, 0, 0.005)
+        );
+        pointer-events: none;
+        padding: 10px;
+        opacity: 0;
+        transition: opacity 1s ease;
+        margin-bottom: 0;
+      }
+      .photo-description {
+        width: 100%;
+        height: 40px;
+        color: #fff;
+        position: absolute;
+        z-index: 2;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        font-size: 12px;
+        overflow: hidden;
+        background: linear-gradient(
+          rgba(0, 0, 0, 0.005),
+          rgba(0, 0, 0, 0.1),
+          rgba(0, 0, 0, 0.3),
+          rgba(0, 0, 0, 0.6)
+        );
+        pointer-events: none;
+        padding: 10px;
+        opacity: 0;
+        transition: opacity 1s ease;
+        margin-bottom: 0;
+      }
+      img {
+        width: 100%;
+        margin: 0;
+        transition: all 0.5s ease-in-out !important;
+        &:hover {
+          transform: scale(1.3);
+        }
+      }
+      &:hover {
+        .photo-description {
+          opacity: 1;
+        }
+        .photo-date {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
