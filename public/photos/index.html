@@ -306,9 +306,9 @@
     <div class="photo-wrapper">
       
       <div class="photo-item">
-        <img src="/images/wall/1081742985014_.pic.jpg" alt="" />
-        <p class="photo-description">Giant Propel Adv 1 Disc 2021</p>
-        <p class="photo-date">2021-04-05</p>
+        <img src="/images/wall/961742971358_.pic.jpg" alt="" />
+        <p class="photo-description">废弃工厂</p>
+        <p class="photo-date">2024-05-13</p>
       </div>
       
       <div class="photo-item">
@@ -324,9 +324,9 @@
       </div>
       
       <div class="photo-item">
-        <img src="/images/wall/961742971358_.pic.jpg" alt="" />
-        <p class="photo-description">废弃工厂</p>
-        <p class="photo-date">2024-05-13</p>
+        <img src="/images/wall/1081742985014_.pic.jpg" alt="" />
+        <p class="photo-description">Giant Propel Adv 1 Disc 2021</p>
+        <p class="photo-date">2021-04-05</p>
       </div>
       
       <div class="photo-item">
@@ -384,7 +384,80 @@
     <ul class="post-tags">
     </ul>
 
-  </footer>
+  </footer><script>
+  function createGiscusScript(data) {
+    const giscusScript = document.createElement("script");
+
+    Object.entries(data).forEach(([key, value]) =>
+      giscusScript.setAttribute(key, value)
+    );
+
+    document.querySelector("article").appendChild(giscusScript);
+
+    const toggle = document.querySelector('label[for="switch_default"]');
+    if (toggle) {
+      toggle.addEventListener("click", function () {
+        const theme = document.body.classList.contains("dark")
+          ? "transparent_dark"
+          : "light";
+
+        console.log(theme);
+        giscusScript.setAttribute("data-theme", theme);
+
+        sendMessage({ setConfig: { theme } });
+      });
+    }
+  }
+
+  function sendMessage(message) {
+    const iframe = document.querySelector("iframe.giscus-frame");
+    if (iframe) {
+      iframe.contentWindow.postMessage(
+        { giscus: message },
+        "https://giscus.app"
+      );
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    
+    const giscusAttributes = {
+      src: "https://giscus.app/client.js",
+      "data-repo": "slc3a2/slc3a2.github.io",
+      "data-repo-id": "R_kgDOOOP9Qg",
+      "data-category": "Announcements",
+      "data-category-id": "DIC_kwDOOOP9Qs4Cof61",
+      "data-mapping": "title",
+      "data-strict": "0",
+      "data-reactions-enabled": "1",
+      "data-emit-metadata": "0",
+      "data-input-position": "top",
+      "data-theme": "preferred_color_scheme",
+      "data-lang": "zh-CN",
+      crossorigin: "anonymous",
+      async: "",
+    };
+
+    giscusAttributes["data-theme"] = document.body.classList.contains("dark")
+      ? "transparent_dark"
+      : "light";
+
+    createGiscusScript(giscusAttributes);
+
+    const bodyObserver = new MutationObserver(() => {
+      const theme = document.body.classList.contains("dark")
+        ? "transparent_dark"
+        : "light";
+      sendMessage({ setConfig: { theme } });
+    });
+
+    bodyObserver.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  });
+</script>
+
 </article>
 <script src="/js/view-image.min.js"></script>
 <script>

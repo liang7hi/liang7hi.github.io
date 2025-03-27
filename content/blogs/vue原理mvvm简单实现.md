@@ -14,7 +14,7 @@ cover:
   relative: false
 ---
 
-## index.html
+## index.html 部分
 
 ```html
 <!DOCTYPE html>
@@ -48,7 +48,7 @@ cover:
 </html>
 ```
 
-## index.js
+## index.js 部分
 
 ```javascript
 class Mvvm {
@@ -172,5 +172,7 @@ class Watcher {
   }
 }
 ```
+
+## 解释
 
 vue 在初始化后，执行 **Observe** 函数把 data 利用 **Object.defineProperty** 属性监听。同时也会使用 **Compile** 函数**循环 dom**，提取 vue 相关的关键字，v-bind 或者 v-model，找到这些值，新建一个 **Watcher** 实例，然后手动 get 使这些 watch 放入 dep 列表中等待订阅。等待调用 **Observer** 的 **set** (input 事件，或者手动赋值)，然后通知 dep 中所有 **Watcher** 调用 **update** 方法。

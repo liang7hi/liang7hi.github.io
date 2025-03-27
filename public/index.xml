@@ -29,7 +29,7 @@
       <link>https://slc3a2.github.io/blogs/%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%E5%91%BD%E5%90%8D/</link>
       <pubDate>Mon, 27 Nov 2023 18:27:03 +0800</pubDate>
       <guid>https://slc3a2.github.io/blogs/%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%E5%91%BD%E5%90%8D/</guid>
-      <description>&lt;p&gt;如果有一个布尔变量，来控制某个按钮的显示隐藏，就有有两种命名方法：&lt;/p&gt;
+      <description>&lt;p&gt;如果有一个布尔变量，来控制某个按钮的显示隐藏，就有两种命名方法：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;show = 布尔值&lt;/li&gt;
 &lt;li&gt;hide = 布尔值&lt;/li&gt;
@@ -139,44 +139,74 @@
       <link>https://slc3a2.github.io/blogs/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/</link>
       <pubDate>Mon, 21 Dec 2020 19:06:55 +0800</pubDate>
       <guid>https://slc3a2.github.io/blogs/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;#HTML%E5%92%8CCSS&#34;&gt;HTML 和 CSS 部分&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#BFC&#34;&gt;BFC&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#%E9%87%8D%E6%8E%92%E5%92%8C%E9%87%8D%E7%BB%98&#34;&gt;重排和重绘&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E7%89%B9%E7%82%B9&#34;&gt;行内元素特点&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#%E5%AE%9E%E7%8E%B0%E6%8D%A2%E8%82%A4%E5%8A%9F%E8%83%BD&#34;&gt;实现换肤功能&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#link%E5%92%8C@import%E5%8C%BA%E5%88%AB&#34;&gt;link 和@import 区别&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8css%E9%A2%84%E5%A4%84%E7%90%86%E8%AF%AD%E8%A8%80&#34;&gt;为什么要使用 css 预处理语言&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#src%E5%92%8Chref%E7%9A%84%E5%8C%BA%E5%88%AB&#34;&gt;src 和 href 的区别&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&#34;#js%E9%83%A8%E5%88%86&#34;&gt;js 部分&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0%E5%8C%BA%E5%88%AB&#34;&gt;箭头函数和普通函数区别&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;#script%E7%9A%84defer%E5%92%8Casync%E5%B1%9E%E6%80%A7%E5%8C%BA%E5%88%AB&#34;&gt;script 的 defer 和 async 属性区别&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;#%E6%B7%B1%E6%8B%B7%E8%B4%9D&#34;&gt;深拷贝&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;#%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81&#34;&gt;函数防抖和节流&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;#%E7%BB%A7%E6%89%BF&#34;&gt;继承&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;#%E8%B7%A8%E5%9F%9F&#34;&gt;跨域&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;#%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95&#34;&gt;数组方法&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%B9%E6%B3%95&#34;&gt;字符串方法&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;#js%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6&#34;&gt;js 垃圾回收机制&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;!-- [HTML 和 CSS 部分](#HTML和CSS)
+
+- [BFC](#BFC)
+- [重排和重绘](#重排和重绘)
+- [行内元素特点](#行内元素特点)
+- [实现换肤功能](#实现换肤功能)
+- [link 和@import 区别](#link和@import区别)
+- [为什么要使用 css 预处理语言](#为什么要使用css预处理语言)
+- [src 和 href 的区别](#src和href的区别)
+
+[js 部分](#js部分)
+
+- [箭头函数和普通函数区别](#箭头函数和普通函数区别)
+
+- [script 的 defer 和 async 属性区别](#script的defer和async属性区别)
+- [深拷贝](#深拷贝)
+- [函数防抖和节流](#函数防抖和节流)
+- [继承](#继承)
+- [跨域](#跨域)
+- [数组方法](#数组方法)
+- [字符串方法](#字符串方法)
+- [js 垃圾回收机制](#js垃圾回收机制)
+- [类型检测](#类型检测)
+- [valueOf 和 toString](#valueOf和toString)
+- [proxy 和 reflect](#proxy和reflect)
+- [requestAnimationFrame](#requestAnimationFrame)
+- [事件循环](#事件循环)
+- [迭代器和生成器](#迭代器和生成器)
+- [事件委托与冒泡和捕获](#事件委托与冒泡和捕获)
+- [实现 instanceof](#实现instanceof)
+- [constructor 和 super 关键字](#constructor和super关键字)
+
+[vue 部分](#vue部分)
+
+- [vue 组件通信](#vue组件通信)
+- [vue 生命周期父子组件执行顺序](#vue生命周期父子组件执行顺序)
+- [前端路由](#前端路由)
+- [slot 插槽](#slot插槽)
+- [keep-alive](#keep-alive)
+- [nextTick](#nextTick)
+- [mixin](#mixin)
+- [vuex](#vuex)
+
+[react 部分](#深拷贝)
+
+- [react 生命周期](#react生命周期)
+- [react 数据响应式](#react数据响应式)
+
+[http 部分](#http部分)
+
+- [http 缓存](#http缓存)
+- [https 握手](#https握手)
+- [http1.1 长连接和 http2 多路复用区别](#http1-1长连接和http2多路复用区别)
+
+[其他](#其他)
+
+- [npm run](#npmRun)
+- [cookie 的几种属性和作用](#cookie的几种属性和作用)
+- [输入 url 到页面展示经历了什么](#输入url到页面展示经历了什么)
+- [懒加载](#懒加载)
+- [commonjs 模块和 es6 模块有什么区别](#commonjs模块和es6模块有什么区别)
+- [前端优化](#前端优化)
+- [常见算法介绍](#常见算法介绍)
+- [babel 工作原理](#babel工作原理) --&gt;
+&lt;h1 id=&#34;html-和-css&#34;&gt;HTML 和 CSS&lt;/h1&gt;
+&lt;h2 id=&#34;bfc&#34;&gt;BFC&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;全称「块格式化上下文」(Block Formatting Context), 是一块独立的 css 作用域，外部如何变化都影响不到他。&lt;/p&gt;</description>
     </item>
     <item>
       <title>vue中的diff算法实现</title>
@@ -283,7 +313,7 @@
       <link>https://slc3a2.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Tue, 27 Oct 2020 18:46:33 +0800</pubDate>
       <guid>https://slc3a2.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</guid>
-      <description>&lt;h2 id=&#34;indexhtml&#34;&gt;index.html&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;indexhtml-部分&#34;&gt;index.html 部分&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;lang&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;en&amp;#34;&lt;/span&gt;&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
@@ -313,7 +343,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;indexjs&#34;&gt;index.js&lt;/h2&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;indexjs-部分&#34;&gt;index.js 部分&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Mvvm&lt;/span&gt; {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;constructor&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;options&lt;/span&gt;) {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; { &lt;span style=&#34;color:#a6e22e&#34;&gt;el&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;methods&lt;/span&gt; } &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;options&lt;/span&gt;;
@@ -434,7 +464,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;vue 在初始化后，执行 &lt;strong&gt;Observe&lt;/strong&gt; 函数把 data 利用 &lt;strong&gt;Object.defineProperty&lt;/strong&gt; 属性监听。同时也会使用 &lt;strong&gt;Compile&lt;/strong&gt; 函数&lt;strong&gt;循环 dom&lt;/strong&gt;，提取 vue 相关的关键字，v-bind 或者 v-model，找到这些值，新建一个 &lt;strong&gt;Watcher&lt;/strong&gt; 实例，然后手动 get 使这些 watch 放入 dep 列表中等待订阅。等待调用 &lt;strong&gt;Observer&lt;/strong&gt; 的 &lt;strong&gt;set&lt;/strong&gt; (input 事件，或者手动赋值)，然后通知 dep 中所有 &lt;strong&gt;Watcher&lt;/strong&gt; 调用 &lt;strong&gt;update&lt;/strong&gt; 方法。&lt;/p&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;解释&#34;&gt;解释&lt;/h2&gt;
+&lt;p&gt;vue 在初始化后，执行 &lt;strong&gt;Observe&lt;/strong&gt; 函数把 data 利用 &lt;strong&gt;Object.defineProperty&lt;/strong&gt; 属性监听。同时也会使用 &lt;strong&gt;Compile&lt;/strong&gt; 函数&lt;strong&gt;循环 dom&lt;/strong&gt;，提取 vue 相关的关键字，v-bind 或者 v-model，找到这些值，新建一个 &lt;strong&gt;Watcher&lt;/strong&gt; 实例，然后手动 get 使这些 watch 放入 dep 列表中等待订阅。等待调用 &lt;strong&gt;Observer&lt;/strong&gt; 的 &lt;strong&gt;set&lt;/strong&gt; (input 事件，或者手动赋值)，然后通知 dep 中所有 &lt;strong&gt;Watcher&lt;/strong&gt; 调用 &lt;strong&gt;update&lt;/strong&gt; 方法。&lt;/p&gt;</description>
     </item>
     <item>
       <title>使用jarsigner重新签名apk包</title>
