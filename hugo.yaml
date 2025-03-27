@@ -49,6 +49,8 @@ caches:
     dir: :cacheDir/images
 
 params:
+  description: 'slc3a2 bolg 博客'
+  keywords: [blog, paperMod, Hugo, slc3a2, 博客, 个人博客, 个人网站, 前端]
   showReadingTime: true
   ShowPostNavLinks: true
   comments: true
