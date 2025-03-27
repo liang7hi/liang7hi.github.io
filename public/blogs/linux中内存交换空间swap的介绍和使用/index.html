@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 <title>Linux中内存交换空间(swap)的使用 | slc3a2</title>
 <meta name="keywords" content="计算机科学">
 <meta name="description" content="
@@ -12,16 +12,16 @@
 swap分区是Linux中特殊的一种存储，他在安装系统时被自动创建。
 用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到swap分区中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问swap空间上的的数据时，swap会把数据放回内存中供操作系统使用。">
 <meta name="author" content="">
-<link rel="canonical" href="https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/">
+<link rel="canonical" href="http://localhost:1313/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.ab014821c696de73a02fa53d58f372c9ee0a2aed37bdd98be49f9f815a65afbb.css" integrity="sha256-qwFIIcaW3nOgL6U9WPNyye4KKu03vdmL5J&#43;fgVplr7s=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://slc3a2.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://slc3a2.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://slc3a2.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/">
 <noscript>
     <style>
         #theme-toggle,
@@ -58,76 +58,7 @@ swap分区是Linux中特殊的一种存储，他在安装系统时被自动创�
         }
 
     </style>
-</noscript><meta property="og:url" content="https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/">
-  <meta property="og:site_name" content="slc3a2">
-  <meta property="og:title" content="Linux中内存交换空间(swap)的使用">
-  <meta property="og:description" content=" 什么是 swap swap分区是Linux中特殊的一种存储，他在安装系统时被自动创建。
-用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到swap分区中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问swap空间上的的数据时，swap会把数据放回内存中供操作系统使用。">
-  <meta property="og:locale" content="zh">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="blogs">
-    <meta property="article:published_time" content="2020-08-21T16:48:04+08:00">
-    <meta property="article:modified_time" content="2020-08-21T16:48:04+08:00">
-    <meta property="article:tag" content="计算机科学">
-    <meta property="og:image" content="https://slc3a2.github.io/images/%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4%28swap%29%E7%9A%84%E4%BD%BF%E7%94%A8/cover.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://slc3a2.github.io/images/%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4%28swap%29%E7%9A%84%E4%BD%BF%E7%94%A8/cover.jpg">
-<meta name="twitter:title" content="Linux中内存交换空间(swap)的使用">
-<meta name="twitter:description" content="
-什么是 swap
-swap分区是Linux中特殊的一种存储，他在安装系统时被自动创建。
-用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到swap分区中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问swap空间上的的数据时，swap会把数据放回内存中供操作系统使用。">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "日志",
-      "item": "https://slc3a2.github.io/blogs/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "Linux中内存交换空间(swap)的使用",
-      "item": "https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Linux中内存交换空间(swap)的使用",
-  "name": "Linux中内存交换空间(swap)的使用",
-  "description": " 什么是 swap swap分区是Linux中特殊的一种存储，他在安装系统时被自动创建。\n用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到swap分区中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问swap空间上的的数据时，swap会把数据放回内存中供操作系统使用。\n",
-  "keywords": [
-    "计算机科学"
-  ],
-  "articleBody": " 什么是 swap swap分区是Linux中特殊的一种存储，他在安装系统时被自动创建。\n用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到swap分区中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问swap空间上的的数据时，swap会把数据放回内存中供操作系统使用。\n类似windows中的虚拟内存。每个操作系统都有这种内存调度处理，当内存不够用，还想跑点东西，可以临时选择增加swap空间。以达到实际使用内存超过物理内存。由于swap的读取速度远不如内存，最好的办法还是加物理内存。\nswap 分区类型 swap 文件 swap 分区 速度比较：物理内存 \u003e swap 分区 \u003e swap 文件。\n由于swap分区需要一个新的磁盘，当你的磁盘已经装了不少内容，不方便重新规划的话，也只好使用 swap 文件了。本文使用 swap 文件方式。\n查看 swap 信息 基于 Cent OS 7.6\n使用swapon -s命令查看系统中当前swap信息：\nswapon -s Filename Type Size Used Priority /swapfile file 1048572 199668 -2 Filename：swap 分区/文件所在的位置 Type：swap 类型；partition为分区类型，file为文件类型 Size：总容量，单位是 KB Used：已被使用的容量 Priority：优先级，越高越优先被操作系统使用 若查不到 swap 信息，使用free -h命令，查看内存使用情况：\nfree -h total used free shared buff/cache available Mem: 487M 65M 289M 44K 132M 398M Swap: 1.0G 259M 764M 操作 swap 创建swap文件， fallocate命令可以为文件预分配物理空间，和 touch、vim 的区别就是可瞬间创建超大的文件。快速创建的原因是通过分配块并将它们标记为未初始化，无需对数据块进行 IO，可以快速完成预分配。当使用时再使用物理内存。-l后加大小，可以是 k、m、g。再后面是保存位置和名称。\n# 创建一个1g文件swapfile保存到/ sudo fallocate -l 1G /swapfile 修改权限，仅允许文件所有者进行读写操作：\nsudo chmod 600 /swapfile 将这个文件设为 Linux 交换区：\nsudo mkswap /swapfile 激活交换区：\nsudo swapon /swapfile 修改/etc/fstab，实现系统重启自动加载 swap 文件：\necho '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab 至此完成 swap 文件增加。使用free -h查看 swap 使用情况：\nfree -h total used free shared buff/cache available Mem: 487M 65M 289M 44K 132M 398M Swap: 1.0G 259M 764M 停止所有 swap：\nsudo swapoff -a # 查看内存使用情况，可以看到 Swap 信息都变成0，说明操作成功了 free -h total used free shared buff/cache available Mem: 487M 261M 92M 484K 134M 201M Swap: 0 0 0 ",
-  "wordCount" : "922",
-  "inLanguage": "zh",
-  "image":"https://slc3a2.github.io/images/%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4%28swap%29%E7%9A%84%E4%BD%BF%E7%94%A8/cover.jpg","datePublished": "2020-08-21T16:48:04+08:00",
-  "dateModified": "2020-08-21T16:48:04+08:00",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "slc3a2",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://slc3a2.github.io/favicon.ico"
-    }
-  }
-}
-</script>
+</noscript>
 </head>
 
 <body class="" id="top">
@@ -145,7 +76,7 @@ swap分区是Linux中特殊的一种存储，他在安装系统时被自动创�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://slc3a2.github.io/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
+            <a href="http://localhost:1313/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -171,37 +102,37 @@ swap分区是Linux中特殊的一种存储，他在安装系统时被自动创�
         </div>
         <ul id="menu">
             <li>
-                <a href="https://slc3a2.github.io/" title="🏠 首页">
+                <a href="http://localhost:1313/" title="🏠 首页">
                     <span>🏠 首页</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/blogs/" title="📚 日志">
+                <a href="http://localhost:1313/blogs/" title="📚 日志">
                     <span>📚 日志</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/photos/" title="🖼️ 照片">
+                <a href="http://localhost:1313/photos/" title="🖼️ 照片">
                     <span>🖼️ 照片</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/apps/" title="🚀 应用">
+                <a href="http://localhost:1313/apps/" title="🚀 应用">
                     <span>🚀 应用</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/search/" title="🔍 搜索">
+                <a href="http://localhost:1313/search/" title="🔍 搜索">
                     <span>🔍 搜索</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/tags/" title="🧩 分类">
+                <a href="http://localhost:1313/tags/" title="🧩 分类">
                     <span>🧩 分类</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/archives/" title="⏱ 时间轴">
+                <a href="http://localhost:1313/archives/" title="⏱ 时间轴">
                     <span>⏱ 时间轴</span>
                 </a>
             </li>
@@ -221,7 +152,7 @@ swap分区是Linux中特殊的一种存储，他在安装系统时被自动创�
 </div>
   </header> 
 <figure class="entry-cover1">
-    <img loading="eager" src="https://slc3a2.github.io/images/%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4%28swap%29%E7%9A%84%E4%BD%BF%E7%94%A8/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 sJr Korpa</figcaption>
+    <img loading="eager" src="http://localhost:1313/images/%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4%28swap%29%E7%9A%84%E4%BD%BF%E7%94%A8/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 sJr Korpa</figcaption>
 </figure><div class="toc">
     <details  open>
         <summary accesskey="c" title="(Alt + C)">
@@ -303,10 +234,10 @@ swap分区是Linux中特殊的一种存储，他在安装系统时被自动创�
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://slc3a2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a></li>
+      <li><a href="http://localhost:1313/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/">
+  <a class="prev" href="http://localhost:1313/blogs/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/">
     <span class="title">« 上一页</span>
     <br>
     <span>使用css实现环状进度</span>
@@ -391,7 +322,7 @@ swap分区是Linux中特殊的一种存储，他在安装系统时被自动创�
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://slc3a2.github.io/">slc3a2</a></span> · 
+        <span>&copy; 2025 <a href="http://localhost:1313/">slc3a2</a></span> · 
 
     <span>
         Powered by

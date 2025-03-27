@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 <title>常用4种排序介绍 | slc3a2</title>
 <meta name="keywords" content="计算机科学">
 <meta name="description" content="冒泡排序（Bubble sort）
@@ -27,16 +27,16 @@ function bubbleSort(arr) {
 
 通过第一步得到最大的一个数放在数组最后。那么剩下的前三个数继续执行第一步，结果找到第二大的数，放在数组倒数第二位，重复此步骤，直到比对完数组中最后一组数。由于第一步骤每次得到一个最大值放最后，j对应的正好是数组最后有多少个最大值，可以免去比较。所以上步骤每次循环可以优化一下每次少算一个最大值，每次循环总数- 1也就是下面例子中的- j。">
 <meta name="author" content="">
-<link rel="canonical" href="https://slc3a2.github.io/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/">
+<link rel="canonical" href="http://localhost:1313/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.ab014821c696de73a02fa53d58f372c9ee0a2aed37bdd98be49f9f815a65afbb.css" integrity="sha256-qwFIIcaW3nOgL6U9WPNyye4KKu03vdmL5J&#43;fgVplr7s=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://slc3a2.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://slc3a2.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://slc3a2.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://slc3a2.github.io/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/">
 <noscript>
     <style>
         #theme-toggle,
@@ -73,90 +73,7 @@ function bubbleSort(arr) {
         }
 
     </style>
-</noscript><meta property="og:url" content="https://slc3a2.github.io/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/">
-  <meta property="og:site_name" content="slc3a2">
-  <meta property="og:title" content="常用4种排序介绍">
-  <meta property="og:description" content="冒泡排序（Bubble sort） 原理和演示： 依次比较数组中相邻的每一对值，如果前面的值 大于 后面的值，则交换他们俩的位置。如果数组中5个数字(length 为 5)，由于比较 两个一组 的数字，那么只需要4次(length - 1)比较，就可以实现把数组中最大的一个数放到最后。 function bubbleSort(arr) { for (let i = 0; i &lt; arr.length - 1; i&#43;&#43;) { if (arr[i] &gt; arr[i &#43; 1]) { let temp = arr[i]; arr[i] = arr[i &#43; 1]; arr[i &#43; 1] = temp; } console.log(`执行${i &#43; 1}次`); } return arr; } 通过第一步得到最大的一个数放在数组最后。那么剩下的前三个数继续执行第一步，结果找到第二大的数，放在数组倒数第二位，重复此步骤，直到比对完数组中最后一组数。由于第一步骤每次得到一个最大值放最后，j对应的正好是数组最后有多少个最大值，可以免去比较。所以上步骤每次循环可以优化一下每次少算一个最大值，每次循环总数- 1也就是下面例子中的- j。">
-  <meta property="og:locale" content="zh">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="blogs">
-    <meta property="article:published_time" content="2020-09-02T16:07:43+08:00">
-    <meta property="article:modified_time" content="2020-09-02T16:07:43+08:00">
-    <meta property="article:tag" content="计算机科学">
-    <meta property="og:image" content="https://slc3a2.github.io/images/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/cover.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://slc3a2.github.io/images/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/cover.jpg">
-<meta name="twitter:title" content="常用4种排序介绍">
-<meta name="twitter:description" content="冒泡排序（Bubble sort）
-原理和演示：
-
-依次比较数组中相邻的每一对值，如果前面的值 大于 后面的值，则交换他们俩的位置。如果数组中5个数字(length 为 5)，由于比较 两个一组 的数字，那么只需要4次(length - 1)比较，就可以实现把数组中最大的一个数放到最后。
-
-function bubbleSort(arr) {
-  for (let i = 0; i &lt; arr.length - 1; i&#43;&#43;) {
-    if (arr[i] &gt; arr[i &#43; 1]) {
-      let temp = arr[i];
-      arr[i] = arr[i &#43; 1];
-      arr[i &#43; 1] = temp;
-    }
-    console.log(`执行${i &#43; 1}次`);
-  }
-  return arr;
-}
-
-
-通过第一步得到最大的一个数放在数组最后。那么剩下的前三个数继续执行第一步，结果找到第二大的数，放在数组倒数第二位，重复此步骤，直到比对完数组中最后一组数。由于第一步骤每次得到一个最大值放最后，j对应的正好是数组最后有多少个最大值，可以免去比较。所以上步骤每次循环可以优化一下每次少算一个最大值，每次循环总数- 1也就是下面例子中的- j。">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "日志",
-      "item": "https://slc3a2.github.io/blogs/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "常用4种排序介绍",
-      "item": "https://slc3a2.github.io/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "常用4种排序介绍",
-  "name": "常用4种排序介绍",
-  "description": "冒泡排序（Bubble sort） 原理和演示： 依次比较数组中相邻的每一对值，如果前面的值 大于 后面的值，则交换他们俩的位置。如果数组中5个数字(length 为 5)，由于比较 两个一组 的数字，那么只需要4次(length - 1)比较，就可以实现把数组中最大的一个数放到最后。 function bubbleSort(arr) { for (let i = 0; i \u0026lt; arr.length - 1; i++) { if (arr[i] \u0026gt; arr[i + 1]) { let temp = arr[i]; arr[i] = arr[i + 1]; arr[i + 1] = temp; } console.log(`执行${i + 1}次`); } return arr; } 通过第一步得到最大的一个数放在数组最后。那么剩下的前三个数继续执行第一步，结果找到第二大的数，放在数组倒数第二位，重复此步骤，直到比对完数组中最后一组数。由于第一步骤每次得到一个最大值放最后，j对应的正好是数组最后有多少个最大值，可以免去比较。所以上步骤每次循环可以优化一下每次少算一个最大值，每次循环总数- 1也就是下面例子中的- j。\n",
-  "keywords": [
-    "计算机科学"
-  ],
-  "articleBody": "冒泡排序（Bubble sort） 原理和演示： 依次比较数组中相邻的每一对值，如果前面的值 大于 后面的值，则交换他们俩的位置。如果数组中5个数字(length 为 5)，由于比较 两个一组 的数字，那么只需要4次(length - 1)比较，就可以实现把数组中最大的一个数放到最后。 function bubbleSort(arr) { for (let i = 0; i \u003c arr.length - 1; i++) { if (arr[i] \u003e arr[i + 1]) { let temp = arr[i]; arr[i] = arr[i + 1]; arr[i + 1] = temp; } console.log(`执行${i + 1}次`); } return arr; } 通过第一步得到最大的一个数放在数组最后。那么剩下的前三个数继续执行第一步，结果找到第二大的数，放在数组倒数第二位，重复此步骤，直到比对完数组中最后一组数。由于第一步骤每次得到一个最大值放最后，j对应的正好是数组最后有多少个最大值，可以免去比较。所以上步骤每次循环可以优化一下每次少算一个最大值，每次循环总数- 1也就是下面例子中的- j。\nfunction bubbleSort(arr) { for (let i = 0; i \u003c arr.length - 1; i++) { for (let j = 0; j \u003c arr.length - 1 - i; j++) { if (arr[j] \u003e arr[j + 1]) { let temp = arr[j]; arr[j] = arr[j + 1]; arr[j + 1] = temp; } console.log(`执行${i + 1}次`); } } return arr; } 两个变量互换值可以使用es6的解构语法，省去使用temp缓存，语法为[a, b] = [b, a]，即可交换变量a和变量b的值。复杂数据类型Object和Array都适用；如果第二个循环中的大小判断，一次都没有执行，说明当前这组数据是正序无需排序，用一个变量isOk标记下配合break，实现方法优化。\n完整代码： function bubbleSort(arr) { console.time(\"耗时\"); for (let i = 0, len = arr.length; i \u003c len - 1; i++) { // 要比对的次数，- 1是因为6个数俩俩比较只需要比对5次 let isOk = true; for (let j = 0; j \u003c arr.length - 1 - i; j++) { // 当前和下一项的每次比较。完整进行一次比较后，最大的值就会在最后一位，- i意味着最大这个值不再需要比对了 if (arr[j] \u003e arr[j + 1]) { [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]; // 当前值小于下一项，交换位置 isOk = false; // 如果第一次比较时，没有发现一个有效条件，那么说明整个数组默认就是排好序的 } } if (isOk) { break; } } console.timeEnd(\"耗时\"); return arr; } 冒泡排序动画演示： 选择排序（Selection Sort） 原理： 循环整个数组，找到最小的值，放在数组第一位(和第一位交换位置）。 从数组第二位开始重新循环，依旧找到最小的值，放在数组第二位，重复此步骤，直到对比完最后一组数据。 完整代码： function selectionSort(arr) { for (let i = 0; i \u003c arr.length - 1; i++) { // arr.length - 1是因为假定数组中n个数，比较需要两个数，所以只需要比较n-1次 let minIndex = i; // 记录每次循环开始位置，等待和最小值交换位置 for (let j = i + 1; j \u003c arr.length; j++) { // j+1 是避免比较自身，j永远是i的后一项，让他们俩做比较 if (arr[j] \u003c arr[minIndex]) { // 如果后面的值小于前面的值，需要调换他们俩位置 minIndex = j; // 保存最小值的下标 } } [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]]; // 使用es6的结构语法交换值，把最小值放到数组最前面 } return arr; } 选择排序动画演示： 插入排序（Insertion Sort） 原理： 将数组分成两部分，一部分为已排序(默认为数组第一个元素且只有这一个元素)，另一部分为未排序。 依次从未排序数组中取值，和已排序中的值依次做对比，如果未排序元素比已排序元素中某个元素小，那就将已排序元素向后移一位，使他本来位置变成一个空位，再将待排序数据插入空位。 完整代码： function insertionSort(arr) { let len = arr.length; for (let i = 1; i \u003c len; i++) { // 循环未排序部分, i=1而不是0是因为默认0项为已排序部分 let cur = i; // 每次插入后，arr[i]会发生改变，先存下来 let j = i - 1; while (j \u003e= 0) { // 循环已排序部分，默认数组第一项有且只有第一项，下标范围为(0 - (未排序元素下标-1))，也就是例子中的i-1 if (arr[cur] \u003c arr[j]) { // 如果未排序元素比已排序元素小， [arr[cur], arr[j]] = [arr[j], arr[cur]]; // 交换 cur = j; // 交换后i值变了，那把交换后的i找回来就可以了 } j--; } } return arr; } 插入排序动画演示： 快速排序（Quick Sort） 原理： 选择数组中的一个元素作为基准值，用两个新数组分别存储原数组比基准值大的值，和小的值。 继续递归处理这两个新数组，最终用 concat 合并到一起，效果为：比基准值小的数组+基准值+比基准值小的数组。 快速排序有其它种实现方法，这是一种简单的实现，非原地排序，由于新建了多个新的数组，会增加空间复杂度，好处再于非常容易理解，可读性强，适合面试手写代码。\n完整代码： function quickSort(arr) { if (arr.length \u003c= 1) { return arr; } // 递归边界条件 let pointIdx = Math.floor(arr.length / 2); // 在数组中间位置取一个基准点 let point = arr.splice(pointIdx, 1)[0]; // 通过基准点找到这个值，使用splice原因是：要获取这个基准值的同时要把这个基准值从排序数组里删除掉 let left = []; let right = []; for (let i = 0, len = arr.length; i \u003c len; i++) { if (arr[i] \u003c point) { // 循环数组，小于point的放在left中，大的放在right中 left.push(arr[i]); } else { right.push(arr[i]); } } // 递归，让每一个left和right继续排序，直到left或right只有一项为止 return quickSort(left).concat(point, quickSort(right)); } 快速排序动画演示： 另外说一下，js 的原生提供的 sort 排序方法原理：如果数组长度小于10，使用插入排序，否则使用快速排序。如其名，快速排序的性能还是很好的。\n动画来源：菜鸟教程\n查看例子：GitHub\n",
-  "wordCount" : "2020",
-  "inLanguage": "zh",
-  "image":"https://slc3a2.github.io/images/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/cover.jpg","datePublished": "2020-09-02T16:07:43+08:00",
-  "dateModified": "2020-09-02T16:07:43+08:00",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://slc3a2.github.io/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "slc3a2",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://slc3a2.github.io/favicon.ico"
-    }
-  }
-}
-</script>
+</noscript>
 </head>
 
 <body class="" id="top">
@@ -174,7 +91,7 @@ function bubbleSort(arr) {
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://slc3a2.github.io/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
+            <a href="http://localhost:1313/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -200,37 +117,37 @@ function bubbleSort(arr) {
         </div>
         <ul id="menu">
             <li>
-                <a href="https://slc3a2.github.io/" title="🏠 首页">
+                <a href="http://localhost:1313/" title="🏠 首页">
                     <span>🏠 首页</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/blogs/" title="📚 日志">
+                <a href="http://localhost:1313/blogs/" title="📚 日志">
                     <span>📚 日志</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/photos/" title="🖼️ 照片">
+                <a href="http://localhost:1313/photos/" title="🖼️ 照片">
                     <span>🖼️ 照片</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/apps/" title="🚀 应用">
+                <a href="http://localhost:1313/apps/" title="🚀 应用">
                     <span>🚀 应用</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/search/" title="🔍 搜索">
+                <a href="http://localhost:1313/search/" title="🔍 搜索">
                     <span>🔍 搜索</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/tags/" title="🧩 分类">
+                <a href="http://localhost:1313/tags/" title="🧩 分类">
                     <span>🧩 分类</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/archives/" title="⏱ 时间轴">
+                <a href="http://localhost:1313/archives/" title="⏱ 时间轴">
                     <span>⏱ 时间轴</span>
                 </a>
             </li>
@@ -250,7 +167,7 @@ function bubbleSort(arr) {
 </div>
   </header> 
 <figure class="entry-cover1">
-    <img loading="eager" src="https://slc3a2.github.io/images/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Kelly Sikkema</figcaption>
+    <img loading="eager" src="http://localhost:1313/images/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Kelly Sikkema</figcaption>
 </figure><div class="toc">
     <details  open>
         <summary accesskey="c" title="(Alt + C)">
@@ -444,15 +361,15 @@ function bubbleSort(arr) {
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://slc3a2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a></li>
+      <li><a href="http://localhost:1313/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/">
+  <a class="prev" href="http://localhost:1313/blogs/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/">
     <span class="title">« 上一页</span>
     <br>
     <span>函数柯里化(currying)</span>
   </a>
-  <a class="next" href="https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/">
+  <a class="next" href="http://localhost:1313/blogs/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/">
     <span class="title">下一页 »</span>
     <br>
     <span>使用css实现环状进度</span>
@@ -537,7 +454,7 @@ function bubbleSort(arr) {
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://slc3a2.github.io/">slc3a2</a></span> · 
+        <span>&copy; 2025 <a href="http://localhost:1313/">slc3a2</a></span> · 
 
     <span>
         Powered by

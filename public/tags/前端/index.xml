@@ -2,34 +2,34 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>前端 on slc3a2</title>
-    <link>https://slc3a2.github.io/tags/%E5%89%8D%E7%AB%AF/</link>
+    <link>http://localhost:1313/tags/%E5%89%8D%E7%AB%AF/</link>
     <description>Recent content in 前端 on slc3a2</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 22 Jun 2022 18:06:30 +0800</lastBuildDate>
-    <atom:link href="https://slc3a2.github.io/tags/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>js是如何存储数字的</title>
-      <link>https://slc3a2.github.io/blogs/js%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E5%AD%97%E7%9A%84/</link>
+      <link>http://localhost:1313/blogs/js%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E5%AD%97%E7%9A%84/</link>
       <pubDate>Wed, 22 Jun 2022 18:06:30 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/js%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E5%AD%97%E7%9A%84/</guid>
+      <guid>http://localhost:1313/blogs/js%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E5%AD%97%E7%9A%84/</guid>
       <description>&lt;hr&gt;
 &lt;h2 id=&#34;为什么要写这篇博客&#34;&gt;为什么要写这篇博客&lt;/h2&gt;
 &lt;p&gt;最近在和同事午饭的时候聊到这个问题。想到了刚接触编程时粗略了解过，但是又没办法讲清楚，所以决定利用这篇博客复习一下。也希望给相关的二进制存储的疑问画上一个句号。&lt;/p&gt;</description>
     </item>
     <item>
       <title>浏览器事件循环</title>
-      <link>https://slc3a2.github.io/blogs/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</link>
+      <link>http://localhost:1313/blogs/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</link>
       <pubDate>Sun, 06 Mar 2022 10:53:20 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</guid>
+      <guid>http://localhost:1313/blogs/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</guid>
       <description>&lt;h2 id=&#34;为什么要总结这个问题&#34;&gt;为什么要总结这个问题&lt;/h2&gt;
 &lt;p&gt;这几天和我的同事聊到这个问题，他提出了一些深入的问题，想了想，我也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！so 被迫研究了下这个问题总结起来。便于以后查看和补充。&lt;/p&gt;</description>
     </item>
     <item>
       <title>前端面试题总结</title>
-      <link>https://slc3a2.github.io/blogs/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/</link>
+      <link>http://localhost:1313/blogs/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/</link>
       <pubDate>Mon, 21 Dec 2020 19:06:55 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/</guid>
+      <guid>http://localhost:1313/blogs/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/</guid>
       <description>&lt;!-- [HTML 和 CSS 部分](#HTML和CSS)
 
 - [BFC](#BFC)
@@ -101,18 +101,18 @@
     </item>
     <item>
       <title>vue中的diff算法实现</title>
-      <link>https://slc3a2.github.io/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/</link>
+      <link>http://localhost:1313/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Thu, 05 Nov 2020 18:36:39 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>http://localhost:1313/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/</guid>
       <description>&lt;h2 id=&#34;diff-算法-和-virtual-dom&#34;&gt;diff 算法 和 virtual dom&lt;/h2&gt;
-&lt;p&gt;&lt;img alt=&#34;WechatIMG3177.png&#34; loading=&#34;lazy&#34; src=&#34;https://slc3a2.github.io/images/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/HrGjhDp8ebSt62R.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;WechatIMG3177.png&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/HrGjhDp8ebSt62R.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;在现代 &lt;code&gt;mvvm&lt;/code&gt; 框架 &lt;code&gt;react&lt;/code&gt; 和 &lt;code&gt;vue&lt;/code&gt; 中，因为直接操作 dom 相对是要耗费更多性能的，所以 &lt;code&gt;react&lt;/code&gt; 和 &lt;code&gt;vue&lt;/code&gt; 都使用了 &lt;code&gt;virtual dom&lt;/code&gt; 来替代处理 dom，大致的过程是：按照 dom 结构生成一份 &lt;code&gt;virtual dom&lt;/code&gt; 为对象结构。如果数据有更新，需要表现在 dom 上，那么先把变化表现在 &lt;code&gt;virtual dom&lt;/code&gt;，再通过 &lt;code&gt;diff&lt;/code&gt; 算法比对数据更新前后两次 &lt;code&gt;virtual dom&lt;/code&gt; 找到差别。最后把仅仅改变的这部分更新到 dom 上，不用重新渲染整个页面。&lt;/p&gt;</description>
     </item>
     <item>
       <title>promise的实现</title>
-      <link>https://slc3a2.github.io/blogs/promise%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</link>
+      <link>http://localhost:1313/blogs/promise%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Fri, 30 Oct 2020 16:59:53 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/promise%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>http://localhost:1313/blogs/promise%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</guid>
       <description>&lt;h2 id=&#34;promise-类&#34;&gt;promise 类&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Pro&lt;/span&gt; {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;callbacks&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [];
@@ -201,9 +201,9 @@
     </item>
     <item>
       <title>vue原理mvvm实现</title>
-      <link>https://slc3a2.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</link>
+      <link>http://localhost:1313/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Tue, 27 Oct 2020 18:46:33 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>http://localhost:1313/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/</guid>
       <description>&lt;h2 id=&#34;indexhtml-部分&#34;&gt;index.html 部分&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;lang&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;en&amp;#34;&lt;/span&gt;&amp;gt;
@@ -360,9 +360,9 @@
     </item>
     <item>
       <title>函数的防抖和节流</title>
-      <link>https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/</link>
+      <link>http://localhost:1313/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/</link>
       <pubDate>Tue, 20 Oct 2020 18:02:56 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/</guid>
+      <guid>http://localhost:1313/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/</guid>
       <description>&lt;h2 id=&#34;防抖debounce&#34;&gt;防抖（debounce）&lt;/h2&gt;
 &lt;h3 id=&#34;什么是防抖&#34;&gt;什么是防抖？&lt;/h3&gt;
 &lt;ul&gt;
@@ -373,18 +373,18 @@
     </item>
     <item>
       <title>flex布局介绍</title>
-      <link>https://slc3a2.github.io/blogs/flex%E5%B8%83%E5%B1%80/</link>
+      <link>http://localhost:1313/blogs/flex%E5%B8%83%E5%B1%80/</link>
       <pubDate>Fri, 11 Sep 2020 14:03:49 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/flex%E5%B8%83%E5%B1%80/</guid>
+      <guid>http://localhost:1313/blogs/flex%E5%B8%83%E5%B1%80/</guid>
       <description>&lt;h2 id=&#34;flex-布局概念&#34;&gt;flex 布局概念&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;flex&lt;/code&gt;布局通常被叫做&lt;code&gt;flex box&lt;/code&gt;，也叫&lt;code&gt;弹性盒子&lt;/code&gt;或&lt;code&gt;容器&lt;/code&gt;，是一种一维的&lt;code&gt;布局模型&lt;/code&gt;，它能子元素(&lt;code&gt;flex item&lt;/code&gt;)之间提供了强大的空间分布和对齐能力。&lt;/p&gt;</description>
     </item>
     <item>
       <title>使用css实现环状进度</title>
-      <link>https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/</link>
+      <link>http://localhost:1313/blogs/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/</link>
       <pubDate>Sat, 22 Aug 2020 09:44:03 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/</guid>
+      <guid>http://localhost:1313/blogs/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/</guid>
       <description>&lt;h3 id=&#34;html&#34;&gt;html&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;round&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;css&#34;&gt;css&lt;/h3&gt;
@@ -420,7 +420,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;span style=&#34;color:#f92672&#34;&gt;s&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;效果&#34;&gt;效果&lt;/h3&gt;
-&lt;p&gt;&lt;img alt=&#34;demo.gif&#34; loading=&#34;lazy&#34; src=&#34;https://slc3a2.github.io/images/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/E8CM6WZ1hRv7piy.gif&#34;&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img alt=&#34;demo.gif&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/E8CM6WZ1hRv7piy.gif&#34;&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
