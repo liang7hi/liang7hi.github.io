@@ -12,7 +12,7 @@
 flex布局通常被叫做flex box，也叫弹性盒子或容器，是一种一维的布局模型，它能子元素(flex item)之间提供了强大的空间分布和对齐能力。">
 <meta name="author" content="">
 <link rel="canonical" href="https://slc3a2.github.io/blogs/flex%E5%B8%83%E5%B1%80/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.ab014821c696de73a02fa53d58f372c9ee0a2aed37bdd98be49f9f815a65afbb.css" integrity="sha256-qwFIIcaW3nOgL6U9WPNyye4KKu03vdmL5J&#43;fgVplr7s=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.396209b02eb73fc7f6783dcb899ad84c3fe6383e054612a6596021c5cc16895a.css" integrity="sha256-OWIJsC63P8f2eD3LiZrYTD/mOD4FRhKmWWAhxcwWiVo=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://slc3a2.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
@@ -219,40 +219,151 @@ flex布局通常被叫做flex box，也叫弹性盒子或容器，是一种一�
   </header> 
 <figure class="entry-cover1">
     <img loading="eager" src="https://slc3a2.github.io/images/flex%E5%B8%83%E5%B1%80/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Shubham Dhage</figcaption>
-</figure><div class="toc">
-    <details  open>
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">目录</span>
-        </summary>
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">目录</span>
+            </summary>
 
-        <div class="inner"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#flex-布局概念">flex 布局概念</a></li>
-    <li><a href="#flex-布局好处">flex 布局好处</a></li>
-    <li><a href="#flex-容器属性">flex 容器属性</a>
-      <ul>
-        <li><a href="#flex-direction">flex-direction</a></li>
-        <li><a href="#flex-wrap">flex-wrap</a></li>
-        <li><a href="#justify-content">justify-content</a></li>
-        <li><a href="#align-items">align-items</a></li>
-        <li><a href="#align-content">align-content</a></li>
-      </ul>
-    </li>
-    <li><a href="#flex-item-属性">flex item 属性</a>
-      <ul>
-        <li><a href="#order">order</a></li>
-        <li><a href="#flex-basis">flex-basis</a></li>
-        <li><a href="#flex-grow">flex-grow</a></li>
-        <li><a href="#flex-shrink">flex-shrink</a></li>
-        <li><a href="#align-self">align-self</a></li>
-      </ul>
-    </li>
-    <li><a href="#扩展一道面试题">扩展一道面试题</a></li>
-  </ul>
-</nav>
-        </div>
-    </details>
-</div>
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#flex-%e5%b8%83%e5%b1%80%e6%a6%82%e5%bf%b5" aria-label="flex 布局概念">flex 布局概念</a></li>
+                    <li>
+                        <a href="#flex-%e5%b8%83%e5%b1%80%e5%a5%bd%e5%a4%84" aria-label="flex 布局好处">flex 布局好处</a></li>
+                    <li>
+                        <a href="#flex-%e5%ae%b9%e5%99%a8%e5%b1%9e%e6%80%a7" aria-label="flex 容器属性">flex 容器属性</a><ul>
+                            
+                    <li>
+                        <a href="#flex-direction" aria-label="flex-direction">flex-direction</a></li>
+                    <li>
+                        <a href="#flex-wrap" aria-label="flex-wrap">flex-wrap</a></li>
+                    <li>
+                        <a href="#justify-content" aria-label="justify-content">justify-content</a></li>
+                    <li>
+                        <a href="#align-items" aria-label="align-items">align-items</a></li>
+                    <li>
+                        <a href="#align-content" aria-label="align-content">align-content</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#flex-item-%e5%b1%9e%e6%80%a7" aria-label="flex item 属性">flex item 属性</a><ul>
+                            
+                    <li>
+                        <a href="#order" aria-label="order">order</a></li>
+                    <li>
+                        <a href="#flex-basis" aria-label="flex-basis">flex-basis</a></li>
+                    <li>
+                        <a href="#flex-grow" aria-label="flex-grow">flex-grow</a></li>
+                    <li>
+                        <a href="#flex-shrink" aria-label="flex-shrink">flex-shrink</a></li>
+                    <li>
+                        <a href="#align-self" aria-label="align-self">align-self</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#%e6%89%a9%e5%b1%95%e4%b8%80%e9%81%93%e9%9d%a2%e8%af%95%e9%a2%98" aria-label="扩展一道面试题">扩展一道面试题</a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    
+    document.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+    
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        if (elements.length > 0) {
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }
+    
+        
+        const topLink = document.getElementById('top-link');
+        if (topLink) {
+            topLink.addEventListener('click', (event) => {
+                
+                event.preventDefault();
+    
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    }, false);
+    
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+    
+    window.addEventListener('scroll', () => {
+        
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    
+        
+        if (scrollPosition === 0) {
+            return;
+        }
+    
+        
+        if (elements && elements.length > 0) {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - scrollPosition) > 0 && 
+                    (getOffsetTop(element) - scrollPosition) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement;
+    
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                const tocLink = document.querySelector(`.inner ul li a[href="#${id}"]`);
+                if (element === activeElement){
+                    tocLink.classList.add('active');
+    
+                    
+                    const tocContainer = document.querySelector('.toc .inner');
+                    const linkOffsetTop = tocLink.offsetTop;
+                    const containerHeight = tocContainer.clientHeight;
+                    const linkHeight = tocLink.clientHeight;
+    
+                    
+                    const scrollPosition = linkOffsetTop - (containerHeight / 2) + (linkHeight / 2);
+                    tocContainer.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+                } else {
+                    tocLink.classList.remove('active');
+                }
+            });
+        }
+    }, false);
+    
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+    
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+    
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+    
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+    
+</script>
 
   <div class="post-content"><h2 id="flex-布局概念">flex 布局概念<a hidden class="anchor" aria-hidden="true" href="#flex-布局概念">#</a></h2>
 <blockquote>

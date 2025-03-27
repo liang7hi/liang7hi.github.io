@@ -11,7 +11,7 @@
 30 多年前，美国发起了一项太空计划：旅行者计划。目的是为了探测木星和土星，其中包含旅行者1号和旅行者2号，在 1977 年，美国向太空发射了这两颗探测器。">
 <meta name="author" content="">
 <link rel="canonical" href="https://slc3a2.github.io/blogs/%E6%97%85%E8%A1%8C%E8%80%851%E5%8F%B7/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.ab014821c696de73a02fa53d58f372c9ee0a2aed37bdd98be49f9f815a65afbb.css" integrity="sha256-qwFIIcaW3nOgL6U9WPNyye4KKu03vdmL5J&#43;fgVplr7s=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.396209b02eb73fc7f6783dcb899ad84c3fe6383e054612a6596021c5cc16895a.css" integrity="sha256-OWIJsC63P8f2eD3LiZrYTD/mOD4FRhKmWWAhxcwWiVo=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://slc3a2.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
@@ -217,21 +217,121 @@
   </header> 
 <figure class="entry-cover1">
     <img loading="eager" src="https://slc3a2.github.io/images/%E6%97%85%E8%A1%8C%E8%80%851%E5%8F%B7/cover.jpg" alt="cover image" /> <figcaption>封面图来自 wikipedia ｜ 由艺术家绘制</figcaption>
-</figure><div class="toc">
-    <details  open>
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">目录</span>
-        </summary>
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">目录</span>
+            </summary>
 
-        <div class="inner"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#旅行者计划">旅行者计划</a></li>
-    <li><a href="#伟大的旅行者-1-号">伟大的旅行者 1 号</a></li>
-  </ul>
-</nav>
-        </div>
-    </details>
-</div>
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#%e6%97%85%e8%a1%8c%e8%80%85%e8%ae%a1%e5%88%92" aria-label="旅行者计划">旅行者计划</a></li>
+                    <li>
+                        <a href="#%e4%bc%9f%e5%a4%a7%e7%9a%84%e6%97%85%e8%a1%8c%e8%80%85-1-%e5%8f%b7" aria-label="伟大的旅行者 1 号">伟大的旅行者 1 号</a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    
+    document.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+    
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        if (elements.length > 0) {
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }
+    
+        
+        const topLink = document.getElementById('top-link');
+        if (topLink) {
+            topLink.addEventListener('click', (event) => {
+                
+                event.preventDefault();
+    
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    }, false);
+    
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+    
+    window.addEventListener('scroll', () => {
+        
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    
+        
+        if (scrollPosition === 0) {
+            return;
+        }
+    
+        
+        if (elements && elements.length > 0) {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - scrollPosition) > 0 && 
+                    (getOffsetTop(element) - scrollPosition) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement;
+    
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                const tocLink = document.querySelector(`.inner ul li a[href="#${id}"]`);
+                if (element === activeElement){
+                    tocLink.classList.add('active');
+    
+                    
+                    const tocContainer = document.querySelector('.toc .inner');
+                    const linkOffsetTop = tocLink.offsetTop;
+                    const containerHeight = tocContainer.clientHeight;
+                    const linkHeight = tocLink.clientHeight;
+    
+                    
+                    const scrollPosition = linkOffsetTop - (containerHeight / 2) + (linkHeight / 2);
+                    tocContainer.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+                } else {
+                    tocLink.classList.remove('active');
+                }
+            });
+        }
+    }, false);
+    
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+    
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+    
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+    
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+    
+</script>
 
   <div class="post-content"><h2 id="旅行者计划">旅行者计划<a hidden class="anchor" aria-hidden="true" href="#旅行者计划">#</a></h2>
 <p>30 多年前，美国发起了一项太空计划：<strong>旅行者计划</strong>。目的是为了探测木星和土星，其中包含<code>旅行者1号</code>和<code>旅行者2号</code>，在 1977 年，美国向太空发射了这两颗探测器。</p>

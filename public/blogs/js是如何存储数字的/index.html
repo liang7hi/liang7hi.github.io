@@ -12,7 +12,7 @@
 最近在和同事午饭的时候聊到这个问题。想到了刚接触编程时粗略了解过，但是又没办法讲清楚，所以决定利用这篇博客复习一下。也希望给相关的二进制存储的疑问画上一个句号。">
 <meta name="author" content="">
 <link rel="canonical" href="https://slc3a2.github.io/blogs/js%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E5%AD%97%E7%9A%84/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.ab014821c696de73a02fa53d58f372c9ee0a2aed37bdd98be49f9f815a65afbb.css" integrity="sha256-qwFIIcaW3nOgL6U9WPNyye4KKu03vdmL5J&#43;fgVplr7s=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.396209b02eb73fc7f6783dcb899ad84c3fe6383e054612a6596021c5cc16895a.css" integrity="sha256-OWIJsC63P8f2eD3LiZrYTD/mOD4FRhKmWWAhxcwWiVo=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://slc3a2.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
@@ -219,34 +219,143 @@
   </header> 
 <figure class="entry-cover1">
     <img loading="eager" src="https://slc3a2.github.io/images/js%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E5%AD%97%E7%9A%84/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Arno Senoner</figcaption>
-</figure><div class="toc">
-    <details  open>
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">目录</span>
-        </summary>
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">目录</span>
+            </summary>
 
-        <div class="inner"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#为什么要写这篇博客">为什么要写这篇博客</a></li>
-    <li><a href="#先来了解存储数字的标准">先来了解存储数字的标准</a></li>
-    <li><a href="#那什么是双精度浮点法-">那什么是双精度浮点法 ?</a></li>
-    <li><a href="#二进制转换">二进制转换</a>
-      <ul>
-        <li><a href="#整数-8-转换二进制过程">整数 8 转换二进制过程</a></li>
-        <li><a href="#小数-025-转换二进制过程">小数 0.25 转换二进制过程</a></li>
-        <li><a href="#825-的二进制过程">8.25 的二进制过程</a></li>
-      </ul>
-    </li>
-    <li><a href="#以双精度浮点法存储到内存">以双精度浮点法存储到内存</a></li>
-    <li><a href="#为什么指数位要设置偏移量-">为什么指数位要设置偏移量 ?</a></li>
-    <li><a href="#从内存中如何取出使用呢">从内存中如何取出使用呢？</a></li>
-    <li><a href="#总结">总结</a></li>
-    <li><a href="#扩展为什么-01--02--03">扩展为什么 0.1 + 0.2 !== 0.3</a></li>
-  </ul>
-</nav>
-        </div>
-    </details>
-</div>
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e5%86%99%e8%bf%99%e7%af%87%e5%8d%9a%e5%ae%a2" aria-label="为什么要写这篇博客">为什么要写这篇博客</a></li>
+                    <li>
+                        <a href="#%e5%85%88%e6%9d%a5%e4%ba%86%e8%a7%a3%e5%ad%98%e5%82%a8%e6%95%b0%e5%ad%97%e7%9a%84%e6%a0%87%e5%87%86" aria-label="先来了解存储数字的标准">先来了解存储数字的标准</a></li>
+                    <li>
+                        <a href="#%e9%82%a3%e4%bb%80%e4%b9%88%e6%98%af%e5%8f%8c%e7%b2%be%e5%ba%a6%e6%b5%ae%e7%82%b9%e6%b3%95-" aria-label="那什么是双精度浮点法 ?">那什么是双精度浮点法 ?</a></li>
+                    <li>
+                        <a href="#%e4%ba%8c%e8%bf%9b%e5%88%b6%e8%bd%ac%e6%8d%a2" aria-label="二进制转换">二进制转换</a><ul>
+                            
+                    <li>
+                        <a href="#%e6%95%b4%e6%95%b0-8-%e8%bd%ac%e6%8d%a2%e4%ba%8c%e8%bf%9b%e5%88%b6%e8%bf%87%e7%a8%8b" aria-label="整数 8 转换二进制过程">整数 8 转换二进制过程</a></li>
+                    <li>
+                        <a href="#%e5%b0%8f%e6%95%b0-025-%e8%bd%ac%e6%8d%a2%e4%ba%8c%e8%bf%9b%e5%88%b6%e8%bf%87%e7%a8%8b" aria-label="小数 0.25 转换二进制过程">小数 0.25 转换二进制过程</a></li>
+                    <li>
+                        <a href="#825-%e7%9a%84%e4%ba%8c%e8%bf%9b%e5%88%b6%e8%bf%87%e7%a8%8b" aria-label="8.25 的二进制过程">8.25 的二进制过程</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#%e4%bb%a5%e5%8f%8c%e7%b2%be%e5%ba%a6%e6%b5%ae%e7%82%b9%e6%b3%95%e5%ad%98%e5%82%a8%e5%88%b0%e5%86%85%e5%ad%98" aria-label="以双精度浮点法存储到内存">以双精度浮点法存储到内存</a></li>
+                    <li>
+                        <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e6%8c%87%e6%95%b0%e4%bd%8d%e8%a6%81%e8%ae%be%e7%bd%ae%e5%81%8f%e7%a7%bb%e9%87%8f-" aria-label="为什么指数位要设置偏移量 ?">为什么指数位要设置偏移量 ?</a></li>
+                    <li>
+                        <a href="#%e4%bb%8e%e5%86%85%e5%ad%98%e4%b8%ad%e5%a6%82%e4%bd%95%e5%8f%96%e5%87%ba%e4%bd%bf%e7%94%a8%e5%91%a2" aria-label="从内存中如何取出使用呢？">从内存中如何取出使用呢？</a></li>
+                    <li>
+                        <a href="#%e6%80%bb%e7%bb%93" aria-label="总结">总结</a></li>
+                    <li>
+                        <a href="#%e6%89%a9%e5%b1%95%e4%b8%ba%e4%bb%80%e4%b9%88-01--02--03" aria-label="扩展为什么 0.1 &#43; 0.2 !== 0.3">扩展为什么 0.1 + 0.2 !== 0.3</a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    
+    document.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+    
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        if (elements.length > 0) {
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }
+    
+        
+        const topLink = document.getElementById('top-link');
+        if (topLink) {
+            topLink.addEventListener('click', (event) => {
+                
+                event.preventDefault();
+    
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    }, false);
+    
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+    
+    window.addEventListener('scroll', () => {
+        
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    
+        
+        if (scrollPosition === 0) {
+            return;
+        }
+    
+        
+        if (elements && elements.length > 0) {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - scrollPosition) > 0 && 
+                    (getOffsetTop(element) - scrollPosition) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement;
+    
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                const tocLink = document.querySelector(`.inner ul li a[href="#${id}"]`);
+                if (element === activeElement){
+                    tocLink.classList.add('active');
+    
+                    
+                    const tocContainer = document.querySelector('.toc .inner');
+                    const linkOffsetTop = tocLink.offsetTop;
+                    const containerHeight = tocContainer.clientHeight;
+                    const linkHeight = tocLink.clientHeight;
+    
+                    
+                    const scrollPosition = linkOffsetTop - (containerHeight / 2) + (linkHeight / 2);
+                    tocContainer.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+                } else {
+                    tocLink.classList.remove('active');
+                }
+            });
+        }
+    }, false);
+    
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+    
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+    
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+    
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+    
+</script>
 
   <div class="post-content"><hr>
 <h2 id="为什么要写这篇博客">为什么要写这篇博客<a hidden class="anchor" aria-hidden="true" href="#为什么要写这篇博客">#</a></h2>

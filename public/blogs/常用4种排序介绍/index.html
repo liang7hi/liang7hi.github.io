@@ -28,7 +28,7 @@ function bubbleSort(arr) {
 通过第一步得到最大的一个数放在数组最后。那么剩下的前三个数继续执行第一步，结果找到第二大的数，放在数组倒数第二位，重复此步骤，直到比对完数组中最后一组数。由于第一步骤每次得到一个最大值放最后，j对应的正好是数组最后有多少个最大值，可以免去比较。所以上步骤每次循环可以优化一下每次少算一个最大值，每次循环总数- 1也就是下面例子中的- j。">
 <meta name="author" content="">
 <link rel="canonical" href="https://slc3a2.github.io/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.ab014821c696de73a02fa53d58f372c9ee0a2aed37bdd98be49f9f815a65afbb.css" integrity="sha256-qwFIIcaW3nOgL6U9WPNyye4KKu03vdmL5J&#43;fgVplr7s=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.396209b02eb73fc7f6783dcb899ad84c3fe6383e054612a6596021c5cc16895a.css" integrity="sha256-OWIJsC63P8f2eD3LiZrYTD/mOD4FRhKmWWAhxcwWiVo=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://slc3a2.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
@@ -251,47 +251,158 @@ function bubbleSort(arr) {
   </header> 
 <figure class="entry-cover1">
     <img loading="eager" src="https://slc3a2.github.io/images/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Kelly Sikkema</figcaption>
-</figure><div class="toc">
-    <details  open>
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">目录</span>
-        </summary>
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">目录</span>
+            </summary>
 
-        <div class="inner"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#冒泡排序bubble-sort">冒泡排序（Bubble sort）</a>
-      <ul>
-        <li><a href="#原理和演示">原理和演示：</a></li>
-        <li><a href="#完整代码">完整代码：</a></li>
-        <li><a href="#冒泡排序动画演示">冒泡排序动画演示：</a></li>
-      </ul>
-    </li>
-    <li><a href="#选择排序selection-sort">选择排序（Selection Sort）</a>
-      <ul>
-        <li><a href="#原理">原理：</a></li>
-        <li><a href="#完整代码-1">完整代码：</a></li>
-        <li><a href="#选择排序动画演示">选择排序动画演示：</a></li>
-      </ul>
-    </li>
-    <li><a href="#插入排序insertion-sort">插入排序（Insertion Sort）</a>
-      <ul>
-        <li><a href="#原理-1">原理：</a></li>
-        <li><a href="#完整代码-2">完整代码：</a></li>
-        <li><a href="#插入排序动画演示">插入排序动画演示：</a></li>
-      </ul>
-    </li>
-    <li><a href="#快速排序quick-sort">快速排序（Quick Sort）</a>
-      <ul>
-        <li><a href="#原理-2">原理：</a></li>
-        <li><a href="#完整代码-3">完整代码：</a></li>
-        <li><a href="#快速排序动画演示">快速排序动画演示：</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-        </div>
-    </details>
-</div>
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#%e5%86%92%e6%b3%a1%e6%8e%92%e5%ba%8fbubble-sort" aria-label="冒泡排序（Bubble sort）">冒泡排序（Bubble sort）</a><ul>
+                            
+                    <li>
+                        <a href="#%e5%8e%9f%e7%90%86%e5%92%8c%e6%bc%94%e7%a4%ba" aria-label="原理和演示：">原理和演示：</a></li>
+                    <li>
+                        <a href="#%e5%ae%8c%e6%95%b4%e4%bb%a3%e7%a0%81" aria-label="完整代码：">完整代码：</a></li>
+                    <li>
+                        <a href="#%e5%86%92%e6%b3%a1%e6%8e%92%e5%ba%8f%e5%8a%a8%e7%94%bb%e6%bc%94%e7%a4%ba" aria-label="冒泡排序动画演示：">冒泡排序动画演示：</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#%e9%80%89%e6%8b%a9%e6%8e%92%e5%ba%8fselection-sort" aria-label="选择排序（Selection Sort）">选择排序（Selection Sort）</a><ul>
+                            
+                    <li>
+                        <a href="#%e5%8e%9f%e7%90%86" aria-label="原理：">原理：</a></li>
+                    <li>
+                        <a href="#%e5%ae%8c%e6%95%b4%e4%bb%a3%e7%a0%81-1" aria-label="完整代码：">完整代码：</a></li>
+                    <li>
+                        <a href="#%e9%80%89%e6%8b%a9%e6%8e%92%e5%ba%8f%e5%8a%a8%e7%94%bb%e6%bc%94%e7%a4%ba" aria-label="选择排序动画演示：">选择排序动画演示：</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8finsertion-sort" aria-label="插入排序（Insertion Sort）">插入排序（Insertion Sort）</a><ul>
+                            
+                    <li>
+                        <a href="#%e5%8e%9f%e7%90%86-1" aria-label="原理：">原理：</a></li>
+                    <li>
+                        <a href="#%e5%ae%8c%e6%95%b4%e4%bb%a3%e7%a0%81-2" aria-label="完整代码：">完整代码：</a></li>
+                    <li>
+                        <a href="#%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f%e5%8a%a8%e7%94%bb%e6%bc%94%e7%a4%ba" aria-label="插入排序动画演示：">插入排序动画演示：</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#%e5%bf%ab%e9%80%9f%e6%8e%92%e5%ba%8fquick-sort" aria-label="快速排序（Quick Sort）">快速排序（Quick Sort）</a><ul>
+                            
+                    <li>
+                        <a href="#%e5%8e%9f%e7%90%86-2" aria-label="原理：">原理：</a></li>
+                    <li>
+                        <a href="#%e5%ae%8c%e6%95%b4%e4%bb%a3%e7%a0%81-3" aria-label="完整代码：">完整代码：</a></li>
+                    <li>
+                        <a href="#%e5%bf%ab%e9%80%9f%e6%8e%92%e5%ba%8f%e5%8a%a8%e7%94%bb%e6%bc%94%e7%a4%ba" aria-label="快速排序动画演示：">快速排序动画演示：</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    
+    document.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+    
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        if (elements.length > 0) {
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }
+    
+        
+        const topLink = document.getElementById('top-link');
+        if (topLink) {
+            topLink.addEventListener('click', (event) => {
+                
+                event.preventDefault();
+    
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    }, false);
+    
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+    
+    window.addEventListener('scroll', () => {
+        
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    
+        
+        if (scrollPosition === 0) {
+            return;
+        }
+    
+        
+        if (elements && elements.length > 0) {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - scrollPosition) > 0 && 
+                    (getOffsetTop(element) - scrollPosition) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement;
+    
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                const tocLink = document.querySelector(`.inner ul li a[href="#${id}"]`);
+                if (element === activeElement){
+                    tocLink.classList.add('active');
+    
+                    
+                    const tocContainer = document.querySelector('.toc .inner');
+                    const linkOffsetTop = tocLink.offsetTop;
+                    const containerHeight = tocContainer.clientHeight;
+                    const linkHeight = tocLink.clientHeight;
+    
+                    
+                    const scrollPosition = linkOffsetTop - (containerHeight / 2) + (linkHeight / 2);
+                    tocContainer.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+                } else {
+                    tocLink.classList.remove('active');
+                }
+            });
+        }
+    }, false);
+    
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+    
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+    
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+    
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+    
+</script>
 
   <div class="post-content"><h2 id="冒泡排序bubble-sort">冒泡排序（Bubble sort）<a hidden class="anchor" aria-hidden="true" href="#冒泡排序bubble-sort">#</a></h2>
 <h3 id="原理和演示">原理和演示：<a hidden class="anchor" aria-hidden="true" href="#原理和演示">#</a></h3>

@@ -162,7 +162,7 @@ class Watcher {
 vue 在初始化后，执行 Observe 函数把 data 利用 Object.defineProperty 属性监听。同时也会使用 Compile 函数循环 dom，提取 vue 相关的关键字，v-bind 或者 v-model，找到这些值，新建一个 Watcher 实例，然后手动 get 使这些 watch 放入 dep 列表中等待订阅。等待调用 Observer 的 set (input 事件，或者手动赋值)，然后通知 dep 中所有 Watcher 调用 update 方法。">
 <meta name="author" content="">
 <link rel="canonical" href="https://slc3a2.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.ab014821c696de73a02fa53d58f372c9ee0a2aed37bdd98be49f9f815a65afbb.css" integrity="sha256-qwFIIcaW3nOgL6U9WPNyye4KKu03vdmL5J&#43;fgVplr7s=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.396209b02eb73fc7f6783dcb899ad84c3fe6383e054612a6596021c5cc16895a.css" integrity="sha256-OWIJsC63P8f2eD3LiZrYTD/mOD4FRhKmWWAhxcwWiVo=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://slc3a2.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
@@ -519,22 +519,123 @@ vue 在初始化后，执行 Observe 函数把 data 利用 Object.defineProperty
   </header> 
 <figure class="entry-cover1">
     <img loading="eager" src="https://slc3a2.github.io/images/vue%E5%8E%9F%E7%90%86mvvm%E5%AE%9E%E7%8E%B0/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Raymond Okoro</figcaption>
-</figure><div class="toc">
-    <details  open>
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">目录</span>
-        </summary>
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">目录</span>
+            </summary>
 
-        <div class="inner"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#indexhtml-部分">index.html 部分</a></li>
-    <li><a href="#indexjs-部分">index.js 部分</a></li>
-    <li><a href="#解释">解释</a></li>
-  </ul>
-</nav>
-        </div>
-    </details>
-</div>
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#indexhtml-%e9%83%a8%e5%88%86" aria-label="index.html 部分">index.html 部分</a></li>
+                    <li>
+                        <a href="#indexjs-%e9%83%a8%e5%88%86" aria-label="index.js 部分">index.js 部分</a></li>
+                    <li>
+                        <a href="#%e8%a7%a3%e9%87%8a" aria-label="解释">解释</a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    
+    document.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+    
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        if (elements.length > 0) {
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }
+    
+        
+        const topLink = document.getElementById('top-link');
+        if (topLink) {
+            topLink.addEventListener('click', (event) => {
+                
+                event.preventDefault();
+    
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    }, false);
+    
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+    
+    window.addEventListener('scroll', () => {
+        
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    
+        
+        if (scrollPosition === 0) {
+            return;
+        }
+    
+        
+        if (elements && elements.length > 0) {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - scrollPosition) > 0 && 
+                    (getOffsetTop(element) - scrollPosition) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement;
+    
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                const tocLink = document.querySelector(`.inner ul li a[href="#${id}"]`);
+                if (element === activeElement){
+                    tocLink.classList.add('active');
+    
+                    
+                    const tocContainer = document.querySelector('.toc .inner');
+                    const linkOffsetTop = tocLink.offsetTop;
+                    const containerHeight = tocContainer.clientHeight;
+                    const linkHeight = tocLink.clientHeight;
+    
+                    
+                    const scrollPosition = linkOffsetTop - (containerHeight / 2) + (linkHeight / 2);
+                    tocContainer.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+                } else {
+                    tocLink.classList.remove('active');
+                }
+            });
+        }
+    }, false);
+    
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+    
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+    
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+    
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+    
+</script>
 
   <div class="post-content"><h2 id="indexhtml-部分">index.html 部分<a hidden class="anchor" aria-hidden="true" href="#indexhtml-部分">#</a></h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>

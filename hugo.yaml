@@ -67,8 +67,7 @@ params:
     imageTitle: "slc3a2"
     imageAlt: "slc3a2"
     Title: "slc3a2 部落格"
-    subtitle: "这是一片属于我的自由天地"
-    Content: 👋 这是一片属于我的自由天地!
+    Content: 👋 探索技术，也探索自我!
 
   socialIcons:
   - name: github

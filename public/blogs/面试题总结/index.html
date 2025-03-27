@@ -14,7 +14,7 @@ BFC
 全称「块格式化上下文」(Block Formatting Context), 是一块独立的 css 作用域，外部如何变化都影响不到他。">
 <meta name="author" content="">
 <link rel="canonical" href="https://slc3a2.github.io/blogs/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.ab014821c696de73a02fa53d58f372c9ee0a2aed37bdd98be49f9f815a65afbb.css" integrity="sha256-qwFIIcaW3nOgL6U9WPNyye4KKu03vdmL5J&#43;fgVplr7s=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.396209b02eb73fc7f6783dcb899ad84c3fe6383e054612a6596021c5cc16895a.css" integrity="sha256-OWIJsC63P8f2eD3LiZrYTD/mOD4FRhKmWWAhxcwWiVo=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://slc3a2.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
@@ -223,103 +223,276 @@ BFC
   </header> 
 <figure class="entry-cover1">
     <img loading="eager" src="https://slc3a2.github.io/images/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Sergey Zolkin</figcaption>
-</figure><div class="toc">
-    <details  open>
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">目录</span>
-        </summary>
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">目录</span>
+            </summary>
 
-        <div class="inner"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#bfc">BFC</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#重排和重绘">重排和重绘</a></li>
-    <li><a href="#link-和import-区别">link 和@import 区别</a></li>
-    <li><a href="#为什么要使用-css-预处理语言">为什么要使用 css 预处理语言</a></li>
-    <li><a href="#src-和-href-的区别">src 和 href 的区别</a></li>
-    <li><a href="#行内元素特点">行内元素特点</a></li>
-    <li><a href="#实现换肤功能">实现换肤功能</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#箭头函数和普通函数区别">箭头函数和普通函数区别</a></li>
-    <li><a href="#script-的-defer-和-async-属性区别">script 的 defer 和 async 属性区别</a></li>
-    <li><a href="#深拷贝">深拷贝</a></li>
-    <li><a href="#函数防抖和节流">函数防抖和节流</a></li>
-    <li><a href="#继承">继承</a></li>
-    <li><a href="#跨域">跨域</a></li>
-    <li><a href="#数组方法">数组方法</a>
-      <ul>
-        <li><a href="#改变原数组">改变原数组</a></li>
-        <li><a href="#不改变原数组生成新数组">不改变原数组，生成新数组</a></li>
-      </ul>
-    </li>
-    <li><a href="#字符串方法">字符串方法</a></li>
-    <li><a href="#js-垃圾回收机制">js 垃圾回收机制</a></li>
-    <li><a href="#类型检测">类型检测</a></li>
-    <li><a href="#valueof-和-tostring">valueOf 和 toString</a></li>
-    <li><a href="#proxy-和-reflect">proxy 和 reflect</a>
-      <ul>
-        <li><a href="#proxy">proxy</a></li>
-        <li><a href="#reflect">reflect</a></li>
-      </ul>
-    </li>
-    <li><a href="#requestanimationframe">requestAnimationFrame</a></li>
-    <li><a href="#事件循环">事件循环</a></li>
-    <li><a href="#迭代器和生成器">迭代器和生成器</a></li>
-    <li><a href="#事件委托与冒泡和捕获">事件委托与冒泡和捕获</a></li>
-    <li><a href="#实现-instanceof">实现 instanceof</a></li>
-    <li><a href="#constructor-和-super-关键字">constructor 和 super 关键字</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#vue-组件通信">vue 组件通信</a></li>
-    <li><a href="#vue-生命周期父子组件执行顺序">vue 生命周期父子组件执行顺序</a></li>
-    <li><a href="#前端路由">前端路由</a>
-      <ul>
-        <li><a href="#hash">hash</a></li>
-        <li><a href="#history">history</a></li>
-      </ul>
-    </li>
-    <li><a href="#slot-插槽">slot 插槽</a></li>
-    <li><a href="#keep-alive">keep-alive</a></li>
-    <li><a href="#nexttick">nextTick</a></li>
-    <li><a href="#mixin">mixin</a></li>
-    <li><a href="#vuex">vuex</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#react-生命周期">react 生命周期</a></li>
-    <li><a href="#react-数据响应式">react 数据响应式</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#http-缓存">http 缓存</a>
-      <ul>
-        <li><a href="#强缓存">强缓存：</a></li>
-        <li><a href="#协商缓存-last-modified-优先-etag">协商缓存 （Last-Modified 优先 ETag）</a></li>
-      </ul>
-    </li>
-    <li><a href="#https-握手">https 握手</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#npmrun">npmRun</a></li>
-    <li><a href="#cookie-的几种属性和作用">cookie 的几种属性和作用</a></li>
-    <li><a href="#输入-url-到页面展示经历了什么">输入 url 到页面展示经历了什么</a></li>
-    <li><a href="#懒加载">懒加载</a></li>
-    <li><a href="#commonjs-模块和-es6-模块有什么区别">commonjs 模块和 es6 模块有什么区别</a></li>
-    <li><a href="#前端优化">前端优化</a></li>
-    <li><a href="#常见算法介绍">常见算法介绍</a></li>
-    <li><a href="#babel-工作原理">babel 工作原理</a></li>
-  </ul>
-</nav>
-        </div>
-    </details>
-</div>
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#html-%e5%92%8c-css" aria-label="HTML 和 CSS">HTML 和 CSS</a><ul>
+                            
+                    <li>
+                        <a href="#bfc" aria-label="BFC">BFC</a><ul>
+                            <ul>
+                            <ul>
+                            
+                    <li>
+                        <a href="#%e6%80%8e%e4%b9%88%e8%a7%a6%e5%8f%91" aria-label="怎么触发：">怎么触发：</a></li>
+                    <li>
+                        <a href="#%e6%95%88%e6%9e%9c" aria-label="效果">效果</a></li></ul>
+                        </ul>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#%e9%87%8d%e6%8e%92%e5%92%8c%e9%87%8d%e7%bb%98" aria-label="重排和重绘">重排和重绘</a></li>
+                    <li>
+                        <a href="#link-%e5%92%8cimport-%e5%8c%ba%e5%88%ab" aria-label="link 和@import 区别">link 和@import 区别</a></li>
+                    <li>
+                        <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e4%bd%bf%e7%94%a8-css-%e9%a2%84%e5%a4%84%e7%90%86%e8%af%ad%e8%a8%80" aria-label="为什么要使用 css 预处理语言">为什么要使用 css 预处理语言</a></li>
+                    <li>
+                        <a href="#src-%e5%92%8c-href-%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="src 和 href 的区别">src 和 href 的区别</a></li>
+                    <li>
+                        <a href="#%e8%a1%8c%e5%86%85%e5%85%83%e7%b4%a0%e7%89%b9%e7%82%b9" aria-label="行内元素特点">行内元素特点</a></li>
+                    <li>
+                        <a href="#%e5%ae%9e%e7%8e%b0%e6%8d%a2%e8%82%a4%e5%8a%9f%e8%83%bd" aria-label="实现换肤功能">实现换肤功能</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#js-%e9%83%a8%e5%88%86" aria-label="js 部分">js 部分</a><ul>
+                            
+                    <li>
+                        <a href="#%e7%ae%ad%e5%a4%b4%e5%87%bd%e6%95%b0%e5%92%8c%e6%99%ae%e9%80%9a%e5%87%bd%e6%95%b0%e5%8c%ba%e5%88%ab" aria-label="箭头函数和普通函数区别">箭头函数和普通函数区别</a></li>
+                    <li>
+                        <a href="#script-%e7%9a%84-defer-%e5%92%8c-async-%e5%b1%9e%e6%80%a7%e5%8c%ba%e5%88%ab" aria-label="script 的 defer 和 async 属性区别">script 的 defer 和 async 属性区别</a></li>
+                    <li>
+                        <a href="#%e6%b7%b1%e6%8b%b7%e8%b4%9d" aria-label="深拷贝">深拷贝</a></li>
+                    <li>
+                        <a href="#%e5%87%bd%e6%95%b0%e9%98%b2%e6%8a%96%e5%92%8c%e8%8a%82%e6%b5%81" aria-label="函数防抖和节流">函数防抖和节流</a></li>
+                    <li>
+                        <a href="#%e7%bb%a7%e6%89%bf" aria-label="继承">继承</a></li>
+                    <li>
+                        <a href="#%e8%b7%a8%e5%9f%9f" aria-label="跨域">跨域</a></li>
+                    <li>
+                        <a href="#%e6%95%b0%e7%bb%84%e6%96%b9%e6%b3%95" aria-label="数组方法">数组方法</a><ul>
+                            
+                    <li>
+                        <a href="#%e6%94%b9%e5%8f%98%e5%8e%9f%e6%95%b0%e7%bb%84" aria-label="改变原数组">改变原数组</a></li>
+                    <li>
+                        <a href="#%e4%b8%8d%e6%94%b9%e5%8f%98%e5%8e%9f%e6%95%b0%e7%bb%84%e7%94%9f%e6%88%90%e6%96%b0%e6%95%b0%e7%bb%84" aria-label="不改变原数组，生成新数组">不改变原数组，生成新数组</a><ul>
+                            
+                    <li>
+                        <a href="#%e5%be%aa%e7%8e%af%e6%96%b9%e6%b3%95" aria-label="循环方法">循环方法</a></li></ul>
+                    </li></ul>
+                    </li>
+                    <li>
+                        <a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%96%b9%e6%b3%95" aria-label="字符串方法">字符串方法</a></li>
+                    <li>
+                        <a href="#js-%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e6%9c%ba%e5%88%b6" aria-label="js 垃圾回收机制">js 垃圾回收机制</a></li>
+                    <li>
+                        <a href="#%e7%b1%bb%e5%9e%8b%e6%a3%80%e6%b5%8b" aria-label="类型检测">类型检测</a></li>
+                    <li>
+                        <a href="#valueof-%e5%92%8c-tostring" aria-label="valueOf 和 toString">valueOf 和 toString</a></li>
+                    <li>
+                        <a href="#proxy-%e5%92%8c-reflect" aria-label="proxy 和 reflect">proxy 和 reflect</a><ul>
+                            
+                    <li>
+                        <a href="#proxy" aria-label="proxy">proxy</a></li>
+                    <li>
+                        <a href="#reflect" aria-label="reflect">reflect</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#requestanimationframe" aria-label="requestAnimationFrame">requestAnimationFrame</a></li>
+                    <li>
+                        <a href="#%e4%ba%8b%e4%bb%b6%e5%be%aa%e7%8e%af" aria-label="事件循环">事件循环</a></li>
+                    <li>
+                        <a href="#%e8%bf%ad%e4%bb%a3%e5%99%a8%e5%92%8c%e7%94%9f%e6%88%90%e5%99%a8" aria-label="迭代器和生成器">迭代器和生成器</a></li>
+                    <li>
+                        <a href="#%e4%ba%8b%e4%bb%b6%e5%a7%94%e6%89%98%e4%b8%8e%e5%86%92%e6%b3%a1%e5%92%8c%e6%8d%95%e8%8e%b7" aria-label="事件委托与冒泡和捕获">事件委托与冒泡和捕获</a></li>
+                    <li>
+                        <a href="#%e5%ae%9e%e7%8e%b0-instanceof" aria-label="实现 instanceof">实现 instanceof</a></li>
+                    <li>
+                        <a href="#constructor-%e5%92%8c-super-%e5%85%b3%e9%94%ae%e5%ad%97" aria-label="constructor 和 super 关键字">constructor 和 super 关键字</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#vue-%e9%83%a8%e5%88%86" aria-label="vue 部分">vue 部分</a><ul>
+                            
+                    <li>
+                        <a href="#vue-%e7%bb%84%e4%bb%b6%e9%80%9a%e4%bf%a1" aria-label="vue 组件通信">vue 组件通信</a></li>
+                    <li>
+                        <a href="#vue-%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f%e7%88%b6%e5%ad%90%e7%bb%84%e4%bb%b6%e6%89%a7%e8%a1%8c%e9%a1%ba%e5%ba%8f" aria-label="vue 生命周期父子组件执行顺序">vue 生命周期父子组件执行顺序</a></li>
+                    <li>
+                        <a href="#%e5%89%8d%e7%ab%af%e8%b7%af%e7%94%b1" aria-label="前端路由">前端路由</a><ul>
+                            
+                    <li>
+                        <a href="#hash" aria-label="hash">hash</a></li>
+                    <li>
+                        <a href="#history" aria-label="history">history</a><ul>
+                            
+                    <li>
+                        <a href="#%e5%85%b1%e5%90%8c%e7%82%b9" aria-label="共同点">共同点</a></li>
+                    <li>
+                        <a href="#%e4%b8%8d%e5%90%8c%e7%82%b9" aria-label="不同点">不同点</a></li></ul>
+                    </li></ul>
+                    </li>
+                    <li>
+                        <a href="#slot-%e6%8f%92%e6%a7%bd" aria-label="slot 插槽">slot 插槽</a></li>
+                    <li>
+                        <a href="#keep-alive" aria-label="keep-alive">keep-alive</a></li>
+                    <li>
+                        <a href="#nexttick" aria-label="nextTick">nextTick</a></li>
+                    <li>
+                        <a href="#mixin" aria-label="mixin">mixin</a></li>
+                    <li>
+                        <a href="#vuex" aria-label="vuex">vuex</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#react-%e9%83%a8%e5%88%86" aria-label="react 部分">react 部分</a><ul>
+                            
+                    <li>
+                        <a href="#react-%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f" aria-label="react 生命周期">react 生命周期</a></li>
+                    <li>
+                        <a href="#react-%e6%95%b0%e6%8d%ae%e5%93%8d%e5%ba%94%e5%bc%8f" aria-label="react 数据响应式">react 数据响应式</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#http-%e9%83%a8%e5%88%86" aria-label="http 部分">http 部分</a><ul>
+                            
+                    <li>
+                        <a href="#http-%e7%bc%93%e5%ad%98" aria-label="http 缓存">http 缓存</a><ul>
+                            
+                    <li>
+                        <a href="#%e5%bc%ba%e7%bc%93%e5%ad%98" aria-label="强缓存：">强缓存：</a></li>
+                    <li>
+                        <a href="#%e5%8d%8f%e5%95%86%e7%bc%93%e5%ad%98-last-modified-%e4%bc%98%e5%85%88-etag" aria-label="协商缓存 （Last-Modified 优先 ETag）">协商缓存 （Last-Modified 优先 ETag）</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#https-%e6%8f%a1%e6%89%8b" aria-label="https 握手">https 握手</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#%e5%85%b6%e4%bb%96" aria-label="其他">其他</a><ul>
+                            
+                    <li>
+                        <a href="#npmrun" aria-label="npmRun">npmRun</a></li>
+                    <li>
+                        <a href="#cookie-%e7%9a%84%e5%87%a0%e7%a7%8d%e5%b1%9e%e6%80%a7%e5%92%8c%e4%bd%9c%e7%94%a8" aria-label="cookie 的几种属性和作用">cookie 的几种属性和作用</a></li>
+                    <li>
+                        <a href="#%e8%be%93%e5%85%a5-url-%e5%88%b0%e9%a1%b5%e9%9d%a2%e5%b1%95%e7%a4%ba%e7%bb%8f%e5%8e%86%e4%ba%86%e4%bb%80%e4%b9%88" aria-label="输入 url 到页面展示经历了什么">输入 url 到页面展示经历了什么</a></li>
+                    <li>
+                        <a href="#%e6%87%92%e5%8a%a0%e8%bd%bd" aria-label="懒加载">懒加载</a></li>
+                    <li>
+                        <a href="#commonjs-%e6%a8%a1%e5%9d%97%e5%92%8c-es6-%e6%a8%a1%e5%9d%97%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab" aria-label="commonjs 模块和 es6 模块有什么区别">commonjs 模块和 es6 模块有什么区别</a></li>
+                    <li>
+                        <a href="#%e5%89%8d%e7%ab%af%e4%bc%98%e5%8c%96" aria-label="前端优化">前端优化</a></li>
+                    <li>
+                        <a href="#%e5%b8%b8%e8%a7%81%e7%ae%97%e6%b3%95%e4%bb%8b%e7%bb%8d" aria-label="常见算法介绍">常见算法介绍</a></li>
+                    <li>
+                        <a href="#babel-%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" aria-label="babel 工作原理">babel 工作原理</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    
+    document.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+    
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        if (elements.length > 0) {
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }
+    
+        
+        const topLink = document.getElementById('top-link');
+        if (topLink) {
+            topLink.addEventListener('click', (event) => {
+                
+                event.preventDefault();
+    
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    }, false);
+    
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+    
+    window.addEventListener('scroll', () => {
+        
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    
+        
+        if (scrollPosition === 0) {
+            return;
+        }
+    
+        
+        if (elements && elements.length > 0) {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - scrollPosition) > 0 && 
+                    (getOffsetTop(element) - scrollPosition) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement;
+    
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                const tocLink = document.querySelector(`.inner ul li a[href="#${id}"]`);
+                if (element === activeElement){
+                    tocLink.classList.add('active');
+    
+                    
+                    const tocContainer = document.querySelector('.toc .inner');
+                    const linkOffsetTop = tocLink.offsetTop;
+                    const containerHeight = tocContainer.clientHeight;
+                    const linkHeight = tocLink.clientHeight;
+    
+                    
+                    const scrollPosition = linkOffsetTop - (containerHeight / 2) + (linkHeight / 2);
+                    tocContainer.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+                } else {
+                    tocLink.classList.remove('active');
+                }
+            });
+        }
+    }, false);
+    
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+    
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+    
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+    
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+    
+</script>
 
   <div class="post-content"><!-- [HTML 和 CSS 部分](#HTML和CSS)
 
