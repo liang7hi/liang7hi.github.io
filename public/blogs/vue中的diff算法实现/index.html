@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>vue中的diff算法实现 | slc3a2</title>
 <meta name="keywords" content="前端">
 <meta name="description" content="diff 算法 和 virtual dom
 
 在现代 mvvm 框架 react 和 vue 中，因为直接操作 dom 相对是要耗费更多性能的，所以 react 和 vue 都使用了 virtual dom 来替代处理 dom，大致的过程是：按照 dom 结构生成一份 virtual dom 为对象结构。如果数据有更新，需要表现在 dom 上，那么先把变化表现在 virtual dom，再通过 diff 算法比对数据更新前后两次 virtual dom 找到差别。最后把仅仅改变的这部分更新到 dom 上，不用重新渲染整个页面。">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
+<link rel="canonical" href="https://slc3a2.github.io/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.ab014821c696de73a02fa53d58f372c9ee0a2aed37bdd98be49f9f815a65afbb.css" integrity="sha256-qwFIIcaW3nOgL6U9WPNyye4KKu03vdmL5J&#43;fgVplr7s=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://slc3a2.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://slc3a2.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://slc3a2.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
+<link rel="alternate" hreflang="zh" href="https://slc3a2.github.io/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
 <noscript>
     <style>
         #theme-toggle,
@@ -57,7 +57,74 @@
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://slc3a2.github.io/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
+  <meta property="og:site_name" content="slc3a2">
+  <meta property="og:title" content="vue中的diff算法实现">
+  <meta property="og:description" content="diff 算法 和 virtual dom 在现代 mvvm 框架 react 和 vue 中，因为直接操作 dom 相对是要耗费更多性能的，所以 react 和 vue 都使用了 virtual dom 来替代处理 dom，大致的过程是：按照 dom 结构生成一份 virtual dom 为对象结构。如果数据有更新，需要表现在 dom 上，那么先把变化表现在 virtual dom，再通过 diff 算法比对数据更新前后两次 virtual dom 找到差别。最后把仅仅改变的这部分更新到 dom 上，不用重新渲染整个页面。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blogs">
+    <meta property="article:published_time" content="2020-11-05T18:36:39+08:00">
+    <meta property="article:modified_time" content="2020-11-05T18:36:39+08:00">
+    <meta property="article:tag" content="前端">
+    <meta property="og:image" content="https://slc3a2.github.io/images/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://slc3a2.github.io/images/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/cover.jpg">
+<meta name="twitter:title" content="vue中的diff算法实现">
+<meta name="twitter:description" content="diff 算法 和 virtual dom
+
+在现代 mvvm 框架 react 和 vue 中，因为直接操作 dom 相对是要耗费更多性能的，所以 react 和 vue 都使用了 virtual dom 来替代处理 dom，大致的过程是：按照 dom 结构生成一份 virtual dom 为对象结构。如果数据有更新，需要表现在 dom 上，那么先把变化表现在 virtual dom，再通过 diff 算法比对数据更新前后两次 virtual dom 找到差别。最后把仅仅改变的这部分更新到 dom 上，不用重新渲染整个页面。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "日志",
+      "item": "https://slc3a2.github.io/blogs/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "vue中的diff算法实现",
+      "item": "https://slc3a2.github.io/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "vue中的diff算法实现",
+  "name": "vue中的diff算法实现",
+  "description": "diff 算法 和 virtual dom 在现代 mvvm 框架 react 和 vue 中，因为直接操作 dom 相对是要耗费更多性能的，所以 react 和 vue 都使用了 virtual dom 来替代处理 dom，大致的过程是：按照 dom 结构生成一份 virtual dom 为对象结构。如果数据有更新，需要表现在 dom 上，那么先把变化表现在 virtual dom，再通过 diff 算法比对数据更新前后两次 virtual dom 找到差别。最后把仅仅改变的这部分更新到 dom 上，不用重新渲染整个页面。\n",
+  "keywords": [
+    "前端"
+  ],
+  "articleBody": "diff 算法 和 virtual dom 在现代 mvvm 框架 react 和 vue 中，因为直接操作 dom 相对是要耗费更多性能的，所以 react 和 vue 都使用了 virtual dom 来替代处理 dom，大致的过程是：按照 dom 结构生成一份 virtual dom 为对象结构。如果数据有更新，需要表现在 dom 上，那么先把变化表现在 virtual dom，再通过 diff 算法比对数据更新前后两次 virtual dom 找到差别。最后把仅仅改变的这部分更新到 dom 上，不用重新渲染整个页面。\n总结：diff 算法就是找到两个 virtual dom 树结构的不同\ndiff 原理 首先传入新旧 vnode 到 patch 函数开始比较:\nfunction patch(oldVnode, vnode) { if (sameVnode(oldVnode, vnode)) { patchVnode(oldVnode, vnode); // 如果两个vnode值得比较，调用patchVnode } else { const oEl = oldVnode.el; // oldVnode.el为对应的真实dom元素 let parentEle = api.parentNode(oEl); createEle(vnode); // 按照vnode结构创建真实dom插入父元素，直接替换oldVnode if (parentEle !== null) { api.insertBefore(parentEle, vnode.el, api.nextSibling(oEl)); api.removeChild(parentEle, oldVnode.el); oldVnode = null; } } return vnode; } 首先使用 sameVnode 方法判断两个 vnode 是否值得比较，代码如下\nfunction sameVnode(oldVnode, vnode) { // key代表当前节点数据的key属性，大概的意思就是div和span为不同标签。p.class1和p.class2为不同标签 return vnode.key === oldVnode.key \u0026\u0026 vnode.sel === oldVnode.sel; } 一致就按照上步骤，继续往下处理。执行 patchVnode 方法，如不一致，直接用新元素 直接替换 到旧元素。\n如果两个 vnode 值得比较，调用 patchVnode:\npatchVnode (oldVnode, vnode) { const el = vnode.el = oldVnode.el let i, oldCh = oldVnode.children, ch = vnode.children if (oldVnode === vnode) return // 引用相同，就说明相同，直接return if (oldVnode.text !== null \u0026\u0026 vnode.text !== null \u0026\u0026 oldVnode.text !== vnode.text) { // 如果有文本内容，比较，如果不同直接设置，用新的替换旧的文本 api.setTextContent(el, vnode.text) }else { updateEle(el, vnode, oldVnode) if (oldCh \u0026\u0026 ch \u0026\u0026 oldCh !== ch) { // 如果都有子节点，且不同，开始比较子节点 updateChildren(el, oldCh, ch) }else if (ch){ // 如果只有新vnode上有子节点，直接新建 createEle(vnode) }else if (oldCh){ // 如果新vnode没子子节，而老vnode有，则删除老节点的子节点 api.removeChildren(el) } } } 如果都有子节点，且不同，开始比较子节点，调用 updateChildren 函数开始比较子节点:\nupdateChildren (parentElm, oldCh, newCh) { // parentElm：真是dom节点。oldCh：老vnode的所有子节点。newCh：新vnode的所有子节点。 // 通过下标，设置新旧vnode的前后两个元素， let oldStartIdx = 0, newStartIdx = 0 let oldEndIdx = oldCh.length - 1 let oldStartVnode = oldCh[0] let oldEndVnode = oldCh[oldEndIdx] let newEndIdx = newCh.length - 1 let newStartVnode = newCh[0] let newEndVnode = newCh[newEndIdx] // 设置一些比较过程需要的变量 let oldKeyToIdx let idxInOld let elmToMove let before // 两对节点，分别从头和尾向中间循环靠拢依次比对，如果起始下标大于结尾下标，证明比对结束，作为循环结束条件 while (oldStartIdx \u003c= oldEndIdx \u0026\u0026 newStartIdx \u003c= newEndIdx) { if (oldStartVnode == null) { //对于vnode.key的比较，会把oldVnode = null oldStartVnode = oldCh[++oldStartIdx] }else if (oldEndVnode == null) { oldEndVnode = oldCh[--oldEndIdx] }else if (newStartVnode == null) { newStartVnode = newCh[++newStartIdx] }else if (newEndVnode == null) { newEndVnode = newCh[--newEndIdx] }else if (sameVnode(oldStartVnode, newStartVnode)) { patchVnode(oldStartVnode, newStartVnode) oldStartVnode = oldCh[++oldStartIdx] newStartVnode = newCh[++newStartIdx] }else if (sameVnode(oldEndVnode, newEndVnode)) { patchVnode(oldEndVnode, newEndVnode) oldEndVnode = oldCh[--oldEndIdx] newEndVnode = newCh[--newEndIdx] }else if (sameVnode(oldStartVnode, newEndVnode)) { patchVnode(oldStartVnode, newEndVnode) api.insertBefore(parentElm, oldStartVnode.el, api.nextSibling(oldEndVnode.el)) oldStartVnode = oldCh[++oldStartIdx] newEndVnode = newCh[--newEndIdx] }else if (sameVnode(oldEndVnode, newStartVnode)) { patchVnode(oldEndVnode, newStartVnode) api.insertBefore(parentElm, oldEndVnode.el, oldStartVnode.el) oldEndVnode = oldCh[--oldEndIdx] newStartVnode = newCh[++newStartIdx] }else { // 使用key时的比较 if (oldKeyToIdx === undefined) { oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx) // 有key生成index表 } idxInOld = oldKeyToIdx[newStartVnode.key] if (!idxInOld) { api.insertBefore(parentElm, createEle(newStartVnode).el, oldStartVnode.el) newStartVnode = newCh[++newStartIdx] } else { elmToMove = oldCh[idxInOld] if (elmToMove.sel !== newStartVnode.sel) { api.insertBefore(parentElm, createEle(newStartVnode).el, oldStartVnode.el) }else { patchVnode(elmToMove, newStartVnode) oldCh[idxInOld] = null api.insertBefore(parentElm, elmToMove.el, oldStartVnode.el) } newStartVnode = newCh[++newStartIdx] } } } if (oldStartIdx \u003e oldEndIdx) { before = newCh[newEndIdx + 1] == null ? null : newCh[newEndIdx + 1].el addVnodes(parentElm, before, newCh, newStartIdx, newEndIdx) }else if (newStartIdx \u003e newEndIdx) { removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx) } } 总结：\n调用 patch：传入 新旧vnode，调用 sameVnode，返回 true 说明值得比较，则调用 patchVnode，否则直接使用新节点替换旧节点\n调用 patchVnode：更详细的对比新旧 vnode，分几种情况：\n1: 对于新旧 vnode 的.el 真实 dom 属性，并对比，如果===那就证明是同一个，直接 return 2: 如果存在文本节点，直接用新 vnode 内文本替换旧 vnode 文本 3: 判断子节点，如果新 vnode 有，旧 vnode 没有，则直接把新 vnode 的子节点加入到真实 dom，相反就删除掉真实 dom 子节点 4: 如果都有子节点，且不同，调用 updateChildren，详细对比 调用 updateChildren： 从两边向中间收拢循环两个新旧 vnode 的每个子节点，以此对比，头头，尾尾，头尾，尾头。如果这四种比对调用 sameVnode，得到 true，证明值得对比，那么就调用第二步骤的 patchVnode 递归继续比，除了这四种情况。如果有 key，则会对比 key。否则直接替换新元素到真实 dom。\n",
+  "wordCount" : "1536",
+  "inLanguage": "zh",
+  "image":"https://slc3a2.github.io/images/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/cover.jpg","datePublished": "2020-11-05T18:36:39+08:00",
+  "dateModified": "2020-11-05T18:36:39+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://slc3a2.github.io/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "slc3a2",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://slc3a2.github.io/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -75,7 +142,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
+            <a href="https://slc3a2.github.io/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -101,37 +168,37 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="🏠 首页">
+                <a href="https://slc3a2.github.io/" title="🏠 首页">
                     <span>🏠 首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/blogs/" title="📚 日志">
+                <a href="https://slc3a2.github.io/blogs/" title="📚 日志">
                     <span>📚 日志</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/photos/" title="🖼️ 照片">
+                <a href="https://slc3a2.github.io/photos/" title="🖼️ 照片">
                     <span>🖼️ 照片</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/apps/" title="🚀 应用">
+                <a href="https://slc3a2.github.io/apps/" title="🚀 应用">
                     <span>🚀 应用</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="🔍 搜索">
+                <a href="https://slc3a2.github.io/search/" title="🔍 搜索">
                     <span>🔍 搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="🧩 分类">
+                <a href="https://slc3a2.github.io/tags/" title="🧩 分类">
                     <span>🧩 分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="⏱ 时间轴">
+                <a href="https://slc3a2.github.io/archives/" title="⏱ 时间轴">
                     <span>⏱ 时间轴</span>
                 </a>
             </li>
@@ -151,7 +218,7 @@
 </div>
   </header> 
 <figure class="entry-cover1">
-    <img loading="eager" src="http://localhost:1313/images/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Slava Jamm</figcaption>
+    <img loading="eager" src="https://slc3a2.github.io/images/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Slava Jamm</figcaption>
 </figure><div class="toc">
     <details  open>
         <summary accesskey="c" title="(Alt + C)">
@@ -313,15 +380,15 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
+      <li><a href="https://slc3a2.github.io/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://localhost:1313/blogs/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/">
+  <a class="prev" href="https://slc3a2.github.io/blogs/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/">
     <span class="title">« 上一页</span>
     <br>
     <span>前端面试题总结</span>
   </a>
-  <a class="next" href="http://localhost:1313/blogs/promise%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+  <a class="next" href="https://slc3a2.github.io/blogs/promise%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
     <span class="title">下一页 »</span>
     <br>
     <span>promise的实现</span>
@@ -406,7 +473,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">slc3a2</a></span> · 
+        <span>&copy; 2025 <a href="https://slc3a2.github.io/">slc3a2</a></span> · 
 
     <span>
         Powered by
