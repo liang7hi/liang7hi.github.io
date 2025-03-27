@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 <title>vue原理mvvm实现 | slc3a2</title>
 <meta name="keywords" content="前端">
 <meta name="description" content="index.html 部分
@@ -161,16 +161,16 @@ class Watcher {
 解释
 vue 在初始化后，执行 Observe 函数把 data 利用 Object.defineProperty 属性监听。同时也会使用 Compile 函数循环 dom，提取 vue 相关的关键字，v-bind 或者 v-model，找到这些值，新建一个 Watcher 实例，然后手动 get 使这些 watch 放入 dep 列表中等待订阅。等待调用 Observer 的 set (input 事件，或者手动赋值)，然后通知 dep 中所有 Watcher 调用 update 方法。">
 <meta name="author" content="">
-<link rel="canonical" href="https://slc3a2.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+<link rel="canonical" href="http://localhost:1313/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.396209b02eb73fc7f6783dcb899ad84c3fe6383e054612a6596021c5cc16895a.css" integrity="sha256-OWIJsC63P8f2eD3LiZrYTD/mOD4FRhKmWWAhxcwWiVo=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://slc3a2.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://slc3a2.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://slc3a2.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://slc3a2.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
 <noscript>
     <style>
         #theme-toggle,
@@ -224,224 +224,7 @@ vue 在初始化后，执行 Observe 函数把 data 利用 Object.defineProperty
   });
 </script>
  
-<meta property="og:url" content="https://slc3a2.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
-  <meta property="og:site_name" content="slc3a2">
-  <meta property="og:title" content="vue原理mvvm实现">
-  <meta property="og:description" content="index.html 部分 &lt;!DOCTYPE html&gt; &lt;html lang=&#34;en&#34;&gt; &lt;head&gt; &lt;meta charset=&#34;UTF-8&#34; /&gt; &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34; /&gt; &lt;title&gt;Document&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;div id=&#34;app&#34;&gt; &lt;input type=&#34;text&#34; v-model=&#34;v&#34; /&gt; {{v}} &lt;button @click=&#34;reset&#34;&gt;重置&lt;/button&gt; &lt;/div&gt; &lt;script src=&#34;./index.js&#34;&gt;&lt;/script&gt; &lt;script&gt; const vm = new Mvvm({ el: &#34;#app&#34;, data: { v: &#34;hello world&#34;, }, methods: { reset() { this.v = &#34;&#34;; }, }, }); &lt;/script&gt; &lt;/body&gt; &lt;/html&gt; index.js 部分 class Mvvm { constructor(options) { const { el, data, methods } = options; this.methods = methods; this.target = null; // 监听this[data的key]所有属性，让变化可追踪 this.observe(this, data); // dom解析：提取{{}}、v-model、事件重写：@click this.compile(document.querySelector(el)); } // 数据变化监听 observe(_this, data) { Object.keys(data).forEach((key) =&gt; { let val = data[key]; Object.keys(data).forEach((key) =&gt; { // 如果val是数组或者对象，使用递归实现深层监听，直到val为简单数据类型。从而保证所有属性变化都被监听 if (typeof val === &#34;object&#34;) { return this.observe(_this, val); } // dispatcher用来操作订阅者(watcher) add 或者 update。要配合Object.defineProperty的get和set来使用 const dispatcher = new Dispatcher(); Object.defineProperty(_this, key, { get: function () { console.log(&#34;get&#34;); // this.target会在compile方法中出现，把this.target(一个watcher)添加到dispatcher(将要更新的watcher的列表)中，用于未来更新这个watcher对应的dom dispatcher.add(this.target); return val; }, set: function (newV) { // 值无变化，不处理 if (newV === val) { return; } console.log(`set`); val = newV; // 因为set了，值发生变化了，所以要通知get中添加的所有订阅者(watcher)：你们要把对应的dom中使用的值更新成newV dispatcher.notify(newV); }, }); }); }); } // dom解析 compile(dom) { const childs = dom.childNodes; for (const node of childs) { // nodeType 参考 https://www.w3school.com.cn/jsref/prop_node_nodetype.asp if (node.nodeType === 1) { const attrs = node.attributes; for (const attr of attrs) { if (attr.name === &#34;v-model&#34;) { const name = attr.value; // 放到订阅者列表中 this.target = new Watcher(node, &#34;input&#34;); // this[name]是为了触发observe的get，才会被监听 this[name]; // 由于是demo，假设只有input一种情况，input就会有双向绑定。使用this[name], 并且赋值input的值，来触发observe的get。实现更新信息的发布 node.addEventListener(&#34;input&#34;, (e) =&gt; { this[name] = e.target.value; }); } // 使用bind传递this。并代理click事件函数到@click上。这里仅拿click事件实现，实际会有多种事件 if (attr.name === &#34;@click&#34;) { const name = attr.value; node.addEventListener(&#34;click&#34;, this.methods[name].bind(this)); } } } // nodeType 参考 https://www.w3school.com.cn/jsref/prop_node_nodetype.asp if (node.nodeType === 3) { // 正则匹配{{}} const reg = /\{\{(.*)\}\}/; const match = node.nodeValue.match(reg); if (match) { const name = match[1].trim(); // 放到订阅者列表中 this.target = new Watcher(node, &#34;text&#34;); // this[name]是为了触发observe的get，才会被监听 this[name]; } } } } } // 发布者 class Dispatcher { constructor() { this.watchers = []; } // 增加订阅者 add(watcher) { this.watchers.push(watcher); } // 通知所有订阅者更新 notify(value) { this.watchers.forEach((item) =&gt; { item.update(value); }); } } // 订阅者 class Watcher { constructor(node, type) { this.node = node; this.type = type; } update(value) { // 区别dom类型来赋值 if (this.type === &#34;input&#34;) { this.node.value = value; } if (this.type === &#34;text&#34;) { this.node.nodeValue = value; } } } 解释 vue 在初始化后，执行 Observe 函数把 data 利用 Object.defineProperty 属性监听。同时也会使用 Compile 函数循环 dom，提取 vue 相关的关键字，v-bind 或者 v-model，找到这些值，新建一个 Watcher 实例，然后手动 get 使这些 watch 放入 dep 列表中等待订阅。等待调用 Observer 的 set (input 事件，或者手动赋值)，然后通知 dep 中所有 Watcher 调用 update 方法。">
-  <meta property="og:locale" content="zh">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="blogs">
-    <meta property="article:published_time" content="2020-10-27T18:46:33+08:00">
-    <meta property="article:modified_time" content="2020-10-27T18:46:33+08:00">
-    <meta property="article:tag" content="前端">
-    <meta property="og:image" content="https://slc3a2.github.io/images/vue%E5%8E%9F%E7%90%86mvvm%E5%AE%9E%E7%8E%B0/cover.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://slc3a2.github.io/images/vue%E5%8E%9F%E7%90%86mvvm%E5%AE%9E%E7%8E%B0/cover.jpg">
-<meta name="twitter:title" content="vue原理mvvm实现">
-<meta name="twitter:description" content="index.html 部分
-&lt;!DOCTYPE html&gt;
-&lt;html lang=&#34;en&#34;&gt;
-  &lt;head&gt;
-    &lt;meta charset=&#34;UTF-8&#34; /&gt;
-    &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34; /&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;div id=&#34;app&#34;&gt;
-      &lt;input type=&#34;text&#34; v-model=&#34;v&#34; /&gt;
-      {{v}}
-      &lt;button @click=&#34;reset&#34;&gt;重置&lt;/button&gt;
-    &lt;/div&gt;
-    &lt;script src=&#34;./index.js&#34;&gt;&lt;/script&gt;
-    &lt;script&gt;
-      const vm = new Mvvm({
-        el: &#34;#app&#34;,
-        data: {
-          v: &#34;hello world&#34;,
-        },
-        methods: {
-          reset() {
-            this.v = &#34;&#34;;
-          },
-        },
-      });
-    &lt;/script&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-index.js 部分
-class Mvvm {
-  constructor(options) {
-    const { el, data, methods } = options;
-    this.methods = methods;
-    this.target = null;
-    // 监听this[data的key]所有属性，让变化可追踪
-    this.observe(this, data);
-    // dom解析：提取{{}}、v-model、事件重写：@click
-    this.compile(document.querySelector(el));
-  }
 
-  // 数据变化监听
-  observe(_this, data) {
-    Object.keys(data).forEach((key) =&gt; {
-      let val = data[key];
-      Object.keys(data).forEach((key) =&gt; {
-        // 如果val是数组或者对象，使用递归实现深层监听，直到val为简单数据类型。从而保证所有属性变化都被监听
-        if (typeof val === &#34;object&#34;) {
-          return this.observe(_this, val);
-        }
-        // dispatcher用来操作订阅者(watcher) add 或者 update。要配合Object.defineProperty的get和set来使用
-        const dispatcher = new Dispatcher();
-        Object.defineProperty(_this, key, {
-          get: function () {
-            console.log(&#34;get&#34;);
-            // this.target会在compile方法中出现，把this.target(一个watcher)添加到dispatcher(将要更新的watcher的列表)中，用于未来更新这个watcher对应的dom
-            dispatcher.add(this.target);
-            return val;
-          },
-          set: function (newV) {
-            // 值无变化，不处理
-            if (newV === val) {
-              return;
-            }
-            console.log(`set`);
-            val = newV;
-            // 因为set了，值发生变化了，所以要通知get中添加的所有订阅者(watcher)：你们要把对应的dom中使用的值更新成newV
-            dispatcher.notify(newV);
-          },
-        });
-      });
-    });
-  }
-
-  // dom解析
-  compile(dom) {
-    const childs = dom.childNodes;
-    for (const node of childs) {
-      // nodeType 参考 https://www.w3school.com.cn/jsref/prop_node_nodetype.asp
-      if (node.nodeType === 1) {
-        const attrs = node.attributes;
-        for (const attr of attrs) {
-          if (attr.name === &#34;v-model&#34;) {
-            const name = attr.value;
-            // 放到订阅者列表中
-            this.target = new Watcher(node, &#34;input&#34;);
-            // this[name]是为了触发observe的get，才会被监听
-            this[name];
-            // 由于是demo，假设只有input一种情况，input就会有双向绑定。使用this[name], 并且赋值input的值，来触发observe的get。实现更新信息的发布
-            node.addEventListener(&#34;input&#34;, (e) =&gt; {
-              this[name] = e.target.value;
-            });
-          }
-          // 使用bind传递this。并代理click事件函数到@click上。这里仅拿click事件实现，实际会有多种事件
-          if (attr.name === &#34;@click&#34;) {
-            const name = attr.value;
-            node.addEventListener(&#34;click&#34;, this.methods[name].bind(this));
-          }
-        }
-      }
-      // nodeType 参考 https://www.w3school.com.cn/jsref/prop_node_nodetype.asp
-      if (node.nodeType === 3) {
-        // 正则匹配{{}}
-        const reg = /\{\{(.*)\}\}/;
-        const match = node.nodeValue.match(reg);
-        if (match) {
-          const name = match[1].trim();
-          // 放到订阅者列表中
-          this.target = new Watcher(node, &#34;text&#34;);
-          // this[name]是为了触发observe的get，才会被监听
-          this[name];
-        }
-      }
-    }
-  }
-}
-
-// 发布者
-class Dispatcher {
-  constructor() {
-    this.watchers = [];
-  }
-  // 增加订阅者
-  add(watcher) {
-    this.watchers.push(watcher);
-  }
-  // 通知所有订阅者更新
-  notify(value) {
-    this.watchers.forEach((item) =&gt; {
-      item.update(value);
-    });
-  }
-}
-
-// 订阅者
-class Watcher {
-  constructor(node, type) {
-    this.node = node;
-    this.type = type;
-  }
-  update(value) {
-    // 区别dom类型来赋值
-    if (this.type === &#34;input&#34;) {
-      this.node.value = value;
-    }
-    if (this.type === &#34;text&#34;) {
-      this.node.nodeValue = value;
-    }
-  }
-}
-解释
-vue 在初始化后，执行 Observe 函数把 data 利用 Object.defineProperty 属性监听。同时也会使用 Compile 函数循环 dom，提取 vue 相关的关键字，v-bind 或者 v-model，找到这些值，新建一个 Watcher 实例，然后手动 get 使这些 watch 放入 dep 列表中等待订阅。等待调用 Observer 的 set (input 事件，或者手动赋值)，然后通知 dep 中所有 Watcher 调用 update 方法。">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "日志",
-      "item": "https://slc3a2.github.io/blogs/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "vue原理mvvm实现",
-      "item": "https://slc3a2.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "vue原理mvvm实现",
-  "name": "vue原理mvvm实现",
-  "description": "index.html 部分 \u0026lt;!DOCTYPE html\u0026gt; \u0026lt;html lang=\u0026#34;en\u0026#34;\u0026gt; \u0026lt;head\u0026gt; \u0026lt;meta charset=\u0026#34;UTF-8\u0026#34; /\u0026gt; \u0026lt;meta name=\u0026#34;viewport\u0026#34; content=\u0026#34;width=device-width, initial-scale=1.0\u0026#34; /\u0026gt; \u0026lt;title\u0026gt;Document\u0026lt;/title\u0026gt; \u0026lt;/head\u0026gt; \u0026lt;body\u0026gt; \u0026lt;div id=\u0026#34;app\u0026#34;\u0026gt; \u0026lt;input type=\u0026#34;text\u0026#34; v-model=\u0026#34;v\u0026#34; /\u0026gt; {{v}} \u0026lt;button @click=\u0026#34;reset\u0026#34;\u0026gt;重置\u0026lt;/button\u0026gt; \u0026lt;/div\u0026gt; \u0026lt;script src=\u0026#34;./index.js\u0026#34;\u0026gt;\u0026lt;/script\u0026gt; \u0026lt;script\u0026gt; const vm = new Mvvm({ el: \u0026#34;#app\u0026#34;, data: { v: \u0026#34;hello world\u0026#34;, }, methods: { reset() { this.v = \u0026#34;\u0026#34;; }, }, }); \u0026lt;/script\u0026gt; \u0026lt;/body\u0026gt; \u0026lt;/html\u0026gt; index.js 部分 class Mvvm { constructor(options) { const { el, data, methods } = options; this.methods = methods; this.target = null; // 监听this[data的key]所有属性，让变化可追踪 this.observe(this, data); // dom解析：提取{{}}、v-model、事件重写：@click this.compile(document.querySelector(el)); } // 数据变化监听 observe(_this, data) { Object.keys(data).forEach((key) =\u0026gt; { let val = data[key]; Object.keys(data).forEach((key) =\u0026gt; { // 如果val是数组或者对象，使用递归实现深层监听，直到val为简单数据类型。从而保证所有属性变化都被监听 if (typeof val === \u0026#34;object\u0026#34;) { return this.observe(_this, val); } // dispatcher用来操作订阅者(watcher) add 或者 update。要配合Object.defineProperty的get和set来使用 const dispatcher = new Dispatcher(); Object.defineProperty(_this, key, { get: function () { console.log(\u0026#34;get\u0026#34;); // this.target会在compile方法中出现，把this.target(一个watcher)添加到dispatcher(将要更新的watcher的列表)中，用于未来更新这个watcher对应的dom dispatcher.add(this.target); return val; }, set: function (newV) { // 值无变化，不处理 if (newV === val) { return; } console.log(`set`); val = newV; // 因为set了，值发生变化了，所以要通知get中添加的所有订阅者(watcher)：你们要把对应的dom中使用的值更新成newV dispatcher.notify(newV); }, }); }); }); } // dom解析 compile(dom) { const childs = dom.childNodes; for (const node of childs) { // nodeType 参考 https://www.w3school.com.cn/jsref/prop_node_nodetype.asp if (node.nodeType === 1) { const attrs = node.attributes; for (const attr of attrs) { if (attr.name === \u0026#34;v-model\u0026#34;) { const name = attr.value; // 放到订阅者列表中 this.target = new Watcher(node, \u0026#34;input\u0026#34;); // this[name]是为了触发observe的get，才会被监听 this[name]; // 由于是demo，假设只有input一种情况，input就会有双向绑定。使用this[name], 并且赋值input的值，来触发observe的get。实现更新信息的发布 node.addEventListener(\u0026#34;input\u0026#34;, (e) =\u0026gt; { this[name] = e.target.value; }); } // 使用bind传递this。并代理click事件函数到@click上。这里仅拿click事件实现，实际会有多种事件 if (attr.name === \u0026#34;@click\u0026#34;) { const name = attr.value; node.addEventListener(\u0026#34;click\u0026#34;, this.methods[name].bind(this)); } } } // nodeType 参考 https://www.w3school.com.cn/jsref/prop_node_nodetype.asp if (node.nodeType === 3) { // 正则匹配{{}} const reg = /\\{\\{(.*)\\}\\}/; const match = node.nodeValue.match(reg); if (match) { const name = match[1].trim(); // 放到订阅者列表中 this.target = new Watcher(node, \u0026#34;text\u0026#34;); // this[name]是为了触发observe的get，才会被监听 this[name]; } } } } } // 发布者 class Dispatcher { constructor() { this.watchers = []; } // 增加订阅者 add(watcher) { this.watchers.push(watcher); } // 通知所有订阅者更新 notify(value) { this.watchers.forEach((item) =\u0026gt; { item.update(value); }); } } // 订阅者 class Watcher { constructor(node, type) { this.node = node; this.type = type; } update(value) { // 区别dom类型来赋值 if (this.type === \u0026#34;input\u0026#34;) { this.node.value = value; } if (this.type === \u0026#34;text\u0026#34;) { this.node.nodeValue = value; } } } 解释 vue 在初始化后，执行 Observe 函数把 data 利用 Object.defineProperty 属性监听。同时也会使用 Compile 函数循环 dom，提取 vue 相关的关键字，v-bind 或者 v-model，找到这些值，新建一个 Watcher 实例，然后手动 get 使这些 watch 放入 dep 列表中等待订阅。等待调用 Observer 的 set (input 事件，或者手动赋值)，然后通知 dep 中所有 Watcher 调用 update 方法。\n",
-  "keywords": [
-    "前端"
-  ],
-  "articleBody": "index.html 部分 \u003c!DOCTYPE html\u003e \u003chtml lang=\"en\"\u003e \u003chead\u003e \u003cmeta charset=\"UTF-8\" /\u003e \u003cmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" /\u003e \u003ctitle\u003eDocument\u003c/title\u003e \u003c/head\u003e \u003cbody\u003e \u003cdiv id=\"app\"\u003e \u003cinput type=\"text\" v-model=\"v\" /\u003e {{v}} \u003cbutton @click=\"reset\"\u003e重置\u003c/button\u003e \u003c/div\u003e \u003cscript src=\"./index.js\"\u003e\u003c/script\u003e \u003cscript\u003e const vm = new Mvvm({ el: \"#app\", data: { v: \"hello world\", }, methods: { reset() { this.v = \"\"; }, }, }); \u003c/script\u003e \u003c/body\u003e \u003c/html\u003e index.js 部分 class Mvvm { constructor(options) { const { el, data, methods } = options; this.methods = methods; this.target = null; // 监听this[data的key]所有属性，让变化可追踪 this.observe(this, data); // dom解析：提取{{}}、v-model、事件重写：@click this.compile(document.querySelector(el)); } // 数据变化监听 observe(_this, data) { Object.keys(data).forEach((key) =\u003e { let val = data[key]; Object.keys(data).forEach((key) =\u003e { // 如果val是数组或者对象，使用递归实现深层监听，直到val为简单数据类型。从而保证所有属性变化都被监听 if (typeof val === \"object\") { return this.observe(_this, val); } // dispatcher用来操作订阅者(watcher) add 或者 update。要配合Object.defineProperty的get和set来使用 const dispatcher = new Dispatcher(); Object.defineProperty(_this, key, { get: function () { console.log(\"get\"); // this.target会在compile方法中出现，把this.target(一个watcher)添加到dispatcher(将要更新的watcher的列表)中，用于未来更新这个watcher对应的dom dispatcher.add(this.target); return val; }, set: function (newV) { // 值无变化，不处理 if (newV === val) { return; } console.log(`set`); val = newV; // 因为set了，值发生变化了，所以要通知get中添加的所有订阅者(watcher)：你们要把对应的dom中使用的值更新成newV dispatcher.notify(newV); }, }); }); }); } // dom解析 compile(dom) { const childs = dom.childNodes; for (const node of childs) { // nodeType 参考 https://www.w3school.com.cn/jsref/prop_node_nodetype.asp if (node.nodeType === 1) { const attrs = node.attributes; for (const attr of attrs) { if (attr.name === \"v-model\") { const name = attr.value; // 放到订阅者列表中 this.target = new Watcher(node, \"input\"); // this[name]是为了触发observe的get，才会被监听 this[name]; // 由于是demo，假设只有input一种情况，input就会有双向绑定。使用this[name], 并且赋值input的值，来触发observe的get。实现更新信息的发布 node.addEventListener(\"input\", (e) =\u003e { this[name] = e.target.value; }); } // 使用bind传递this。并代理click事件函数到@click上。这里仅拿click事件实现，实际会有多种事件 if (attr.name === \"@click\") { const name = attr.value; node.addEventListener(\"click\", this.methods[name].bind(this)); } } } // nodeType 参考 https://www.w3school.com.cn/jsref/prop_node_nodetype.asp if (node.nodeType === 3) { // 正则匹配{{}} const reg = /\\{\\{(.*)\\}\\}/; const match = node.nodeValue.match(reg); if (match) { const name = match[1].trim(); // 放到订阅者列表中 this.target = new Watcher(node, \"text\"); // this[name]是为了触发observe的get，才会被监听 this[name]; } } } } } // 发布者 class Dispatcher { constructor() { this.watchers = []; } // 增加订阅者 add(watcher) { this.watchers.push(watcher); } // 通知所有订阅者更新 notify(value) { this.watchers.forEach((item) =\u003e { item.update(value); }); } } // 订阅者 class Watcher { constructor(node, type) { this.node = node; this.type = type; } update(value) { // 区别dom类型来赋值 if (this.type === \"input\") { this.node.value = value; } if (this.type === \"text\") { this.node.nodeValue = value; } } } 解释 vue 在初始化后，执行 Observe 函数把 data 利用 Object.defineProperty 属性监听。同时也会使用 Compile 函数循环 dom，提取 vue 相关的关键字，v-bind 或者 v-model，找到这些值，新建一个 Watcher 实例，然后手动 get 使这些 watch 放入 dep 列表中等待订阅。等待调用 Observer 的 set (input 事件，或者手动赋值)，然后通知 dep 中所有 Watcher 调用 update 方法。\n",
-  "wordCount" : "1127",
-  "inLanguage": "zh",
-  "image":"https://slc3a2.github.io/images/vue%E5%8E%9F%E7%90%86mvvm%E5%AE%9E%E7%8E%B0/cover.jpg","datePublished": "2020-10-27T18:46:33+08:00",
-  "dateModified": "2020-10-27T18:46:33+08:00",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://slc3a2.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "slc3a2",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://slc3a2.github.io/favicon.ico"
-    }
-  }
-}
-</script>
 </head>
 
 <body class="" id="top">
@@ -459,7 +242,7 @@ vue 在初始化后，执行 Observe 函数把 data 利用 Object.defineProperty
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://slc3a2.github.io/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
+            <a href="http://localhost:1313/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -485,37 +268,37 @@ vue 在初始化后，执行 Observe 函数把 data 利用 Object.defineProperty
         </div>
         <ul id="menu">
             <li>
-                <a href="https://slc3a2.github.io/" title="🏠 首页">
+                <a href="http://localhost:1313/" title="🏠 首页">
                     <span>🏠 首页</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/blogs/" title="📚 日志">
+                <a href="http://localhost:1313/blogs/" title="📚 日志">
                     <span>📚 日志</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/photos/" title="🖼️ 照片">
+                <a href="http://localhost:1313/photos/" title="🖼️ 照片">
                     <span>🖼️ 照片</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/apps/" title="🚀 应用">
+                <a href="http://localhost:1313/apps/" title="🚀 应用">
                     <span>🚀 应用</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/search/" title="🔍 搜索">
+                <a href="http://localhost:1313/search/" title="🔍 搜索">
                     <span>🔍 搜索</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/tags/" title="🧩 分类">
+                <a href="http://localhost:1313/tags/" title="🧩 分类">
                     <span>🧩 分类</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/archives/" title="⏱ 时间轴">
+                <a href="http://localhost:1313/archives/" title="⏱ 时间轴">
                     <span>⏱ 时间轴</span>
                 </a>
             </li>
@@ -535,7 +318,7 @@ vue 在初始化后，执行 Observe 函数把 data 利用 Object.defineProperty
 </div>
   </header> 
 <figure class="entry-cover1">
-    <img loading="eager" src="https://slc3a2.github.io/images/vue%E5%8E%9F%E7%90%86mvvm%E5%AE%9E%E7%8E%B0/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Raymond Okoro</figcaption>
+    <img loading="eager" src="http://localhost:1313/images/vue%E5%8E%9F%E7%90%86mvvm%E5%AE%9E%E7%8E%B0/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Raymond Okoro</figcaption>
 </figure><aside id="toc-container" class="toc-container wide">
     <div class="toc">
         <details  open>
@@ -813,15 +596,15 @@ vue 在初始化后，执行 Observe 函数把 data 利用 Object.defineProperty
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://slc3a2.github.io/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
+      <li><a href="http://localhost:1313/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://slc3a2.github.io/blogs/promise%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+  <a class="prev" href="http://localhost:1313/blogs/promise%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
     <span class="title">« 上一页</span>
     <br>
     <span>promise的实现</span>
   </a>
-  <a class="next" href="https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/">
+  <a class="next" href="http://localhost:1313/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/">
     <span class="title">下一页 »</span>
     <br>
     <span>使用jarsigner重新签名apk包</span>
@@ -906,7 +689,7 @@ vue 在初始化后，执行 Observe 函数把 data 利用 Object.defineProperty
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://slc3a2.github.io/">slc3a2</a></span> · 
+        <span>&copy; 2025 <a href="http://localhost:1313/">slc3a2</a></span> · 
 
     <span>
         Powered by
