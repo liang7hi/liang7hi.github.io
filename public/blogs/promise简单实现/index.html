@@ -139,7 +139,24 @@ then 用来把回调传入 callback 数组中，相当于注册，规定好了 r
         }
 
     </style>
-</noscript><meta property="og:url" content="https://slc3a2.github.io/blogs/promise%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+</noscript> <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+      ],
+    });
+  });
+</script>
+ 
+<meta property="og:url" content="https://slc3a2.github.io/blogs/promise%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
   <meta property="og:site_name" content="slc3a2">
   <meta property="og:title" content="promise的实现">
   <meta property="og:description" content="promise 类 class Pro { callbacks = []; state = &#34;pending&#34;; value = null; constructor(fn) { // 初始化，把resolve作为参数传入，等待调用 fn(this.resolve.bind(this)); } // callback为回调，先注册，也就是放入callbacks数组中 then(callback) { if (this.state === &#34;pending&#34;) { this.callbacks.push(callback); } else { // 由于state不是pending, 遵循promise状态只能改一次的要求，我们直接操作回调传入参数执行 callback(this.value); } return this; } // resolve也就是fn的第一次参数，循环执行所有callback resolve(value) { this.state = &#34;fulfilled&#34;; // setTimeout使内部变成异步，在同步执行完最后执行这里，处理fn是同步的情况下then中的回调函数已经注册，然后在这里去执行，不会出现callbacks是空数组的情况 setTimeout(() =&gt; { this.value = value; this.callbacks.forEach((callback) =&gt; callback(value)); }); } } 使用 new Pro((resolve) =&gt; { setTimeout(() =&gt; { console.log(0); resolve(&#34;resolve&#34;); }, 2000); }) .then((tip) =&gt; { console.log(1); console.log(tip); }) .then((tip) =&gt; { console.log(2); console.log(tip); }); promise.all 实现 Promise.prototype.all = function (promises) { let results = []; let promiseCount = 0; let promisesLength = promises.length; return new Promise(function (resolve, reject) { for (let item of promises) { // 执行每个item Promise.resolve(item).then( function (res) { promiseCount&#43;&#43;; // 按照顺序插入结果 results[i] = res; // 如果全部执行成功，返回成功 if (promiseCount === promisesLength) { return resolve(results); } }, function (err) { return reject(err); } ); } }); }; promise.race 实现 Promise.prototype.race = function (promises) { return new Promise((resolve, reject) =&gt; { for (let item of promises) { Promise.resolve(item) .then((res) =&gt; { return resolve(res); }) .catch((err) =&gt; { return reject(err); }); } }); }; 简单来说就是声明 promise 时，会执行 promise 第一个函数参数和 then 的参数函数。 then 用来把回调传入 callback 数组中，相当于注册，规定好了 reslove 时，回调的执行，然后等待 resolve 调用，resolve 就会把 callback 数组中的函数全部执行">

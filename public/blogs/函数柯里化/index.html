@@ -55,7 +55,24 @@
         }
 
     </style>
-</noscript><meta property="og:url" content="https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/">
+</noscript> <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+      ],
+    });
+  });
+</script>
+ 
+<meta property="og:url" content="https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/">
   <meta property="og:site_name" content="slc3a2">
   <meta property="og:title" content="函数柯里化(currying)">
   <meta property="og:description" content="文章介绍函数柯里化，说明其将多参函数转为单参函数的概念，以 JavaScript 举例阐述原理，讲解参数复用等好处并给出 ajax 请求示例，还提供了完整实现代码及用法">

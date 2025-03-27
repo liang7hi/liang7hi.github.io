@@ -73,7 +73,24 @@ function bubbleSort(arr) {
         }
 
     </style>
-</noscript><meta property="og:url" content="https://slc3a2.github.io/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/">
+</noscript> <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+      ],
+    });
+  });
+</script>
+ 
+<meta property="og:url" content="https://slc3a2.github.io/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/">
   <meta property="og:site_name" content="slc3a2">
   <meta property="og:title" content="常用4种排序介绍">
   <meta property="og:description" content="冒泡排序（Bubble sort） 原理和演示： 依次比较数组中相邻的每一对值，如果前面的值 大于 后面的值，则交换他们俩的位置。如果数组中5个数字(length 为 5)，由于比较 两个一组 的数字，那么只需要4次(length - 1)比较，就可以实现把数组中最大的一个数放到最后。 function bubbleSort(arr) { for (let i = 0; i &lt; arr.length - 1; i&#43;&#43;) { if (arr[i] &gt; arr[i &#43; 1]) { let temp = arr[i]; arr[i] = arr[i &#43; 1]; arr[i &#43; 1] = temp; } console.log(`执行${i &#43; 1}次`); } return arr; } 通过第一步得到最大的一个数放在数组最后。那么剩下的前三个数继续执行第一步，结果找到第二大的数，放在数组倒数第二位，重复此步骤，直到比对完数组中最后一组数。由于第一步骤每次得到一个最大值放最后，j对应的正好是数组最后有多少个最大值，可以免去比较。所以上步骤每次循环可以优化一下每次少算一个最大值，每次循环总数- 1也就是下面例子中的- j。">
