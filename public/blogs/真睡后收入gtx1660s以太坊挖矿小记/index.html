@@ -9,56 +9,12 @@
 />
 <meta name="robots" content="index, follow" />
 <title>
-  记发布订阅和观察者模式 | slc3a2
+  真睡后收入-以太坊挖矿小记 | slc3a2
 </title>
 <meta
   name="keywords"
-  content="计算机科学"
-/> <meta name="description" content="
-发布订阅模式
-简单来说，需要三个角色
-
-发布者
-事件队列
-订阅者
-
-发布者 -&gt; 事件队列 &lt;=&gt; 订阅者
-一次完整流程
-
-订阅者向事件队列订阅事件E
-发布者向事件队列发布事件E
-事件队列通知事件E的所有订阅者，订阅者接收
-
-class Event {
-  constructor() {
-    // 事件队列
-    this.listeners = {};
-  }
-  // 订阅方法
-  on(eventType, listener) {
-    if (!this.listeners[eventType]) {
-      this.listeners[eventType] = [];
-    }
-    this.listeners[eventType].push(listener);
-  }
-  // 发布方法
-  emit(eventType, data) {
-    const callbacks = this.listeners[eventType];
-    if (callbacks) {
-      callbacks.forEach((c) =&gt; {
-        c(data);
-      });
-    }
-  }
-}
-
-const event = new Event();
-event.on(&#34;open&#34;, (data) =&gt; {
-  console.log(data);
-});
-event.emit(&#34;open&#34;, { open: true });
-观察者模式
-需要两个角色"> <meta name="author" content=""> <link rel="canonical" href="https://slc3a2.github.io/blogs/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/">
+  content="科技"
+/> <meta name="description" content="因论坛帖子对以太坊挖矿产生兴趣，以自身配置为例，介绍了选择矿池、获取地址、使用 PhoenixMiner 和 lolMiner 两款软件开始挖矿的详细步骤，分析收益成本，讲解算力相关知识并附上主流显卡算力表"> <meta name="author" content=""> <link rel="canonical" href="https://slc3a2.github.io/blogs/%E7%9C%9F%E7%9D%A1%E5%90%8E%E6%94%B6%E5%85%A5gtx1660s%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%8C%96%E7%9F%BF%E5%B0%8F%E8%AE%B0/">
 <link
   crossorigin="anonymous"
   href="/assets/css/stylesheet.8aef5397b3c8965a3894cb370fdb3576e7be2ce942cc9eff31afa6275b654510.css"
@@ -68,7 +24,7 @@ event.emit(&#34;open&#34;, { open: true });
 /> <link rel="icon" href="https://slc3a2.github.io/favicon.ico"> <link
 rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://slc3a2.github.io/apple-touch-icon.png"> <link rel="mask-icon" href="https://slc3a2.github.io/safari-pinned-tab.svg"> <meta name="theme-color" content="#2e2e33"> <meta name="msapplication-TileColor" content="#2e2e33"> <link rel="alternate" hreflang="zh" href="https://slc3a2.github.io/blogs/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/" />
+<link rel="apple-touch-icon" href="https://slc3a2.github.io/apple-touch-icon.png"> <link rel="mask-icon" href="https://slc3a2.github.io/safari-pinned-tab.svg"> <meta name="theme-color" content="#2e2e33"> <meta name="msapplication-TileColor" content="#2e2e33"> <link rel="alternate" hreflang="zh" href="https://slc3a2.github.io/blogs/%E7%9C%9F%E7%9D%A1%E5%90%8E%E6%94%B6%E5%85%A5gtx1660s%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%8C%96%E7%9F%BF%E5%B0%8F%E8%AE%B0/" />
 <noscript>
   <style>
     #theme-toggle,
@@ -120,68 +76,21 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
   });
 </script>
  
-<meta property="og:url" content="https://slc3a2.github.io/blogs/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/">
+<meta property="og:url" content="https://slc3a2.github.io/blogs/%E7%9C%9F%E7%9D%A1%E5%90%8E%E6%94%B6%E5%85%A5gtx1660s%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%8C%96%E7%9F%BF%E5%B0%8F%E8%AE%B0/">
   <meta property="og:site_name" content="slc3a2">
-  <meta property="og:title" content="记发布订阅和观察者模式">
-  <meta property="og:description" content=" 发布订阅模式 简单来说，需要三个角色
-发布者 事件队列 订阅者 发布者 -&gt; 事件队列 &lt;=&gt; 订阅者
-一次完整流程
-订阅者向事件队列订阅事件E 发布者向事件队列发布事件E 事件队列通知事件E的所有订阅者，订阅者接收 class Event { constructor() { // 事件队列 this.listeners = {}; } // 订阅方法 on(eventType, listener) { if (!this.listeners[eventType]) { this.listeners[eventType] = []; } this.listeners[eventType].push(listener); } // 发布方法 emit(eventType, data) { const callbacks = this.listeners[eventType]; if (callbacks) { callbacks.forEach((c) =&gt; { c(data); }); } } } const event = new Event(); event.on(&#34;open&#34;, (data) =&gt; { console.log(data); }); event.emit(&#34;open&#34;, { open: true }); 观察者模式 需要两个角色">
+  <meta property="og:title" content="真睡后收入-以太坊挖矿小记">
+  <meta property="og:description" content="因论坛帖子对以太坊挖矿产生兴趣，以自身配置为例，介绍了选择矿池、获取地址、使用 PhoenixMiner 和 lolMiner 两款软件开始挖矿的详细步骤，分析收益成本，讲解算力相关知识并附上主流显卡算力表">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blogs">
-    <meta property="article:published_time" content="2021-06-01T11:40:03+08:00">
-    <meta property="article:modified_time" content="2021-06-01T11:40:03+08:00">
-    <meta property="article:tag" content="计算机科学">
-    <meta property="og:image" content="https://slc3a2.github.io/images/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/cover.jpg">
+    <meta property="article:published_time" content="2021-04-05T10:11:16+08:00">
+    <meta property="article:modified_time" content="2021-04-05T10:11:16+08:00">
+    <meta property="article:tag" content="科技">
+    <meta property="og:image" content="https://slc3a2.github.io/images/%E7%9C%9F%E7%9D%A1%E5%90%8E%E6%94%B6%E5%85%A5%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%8C%96%E7%9F%BF%E5%B0%8F%E8%AE%B0/cover.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://slc3a2.github.io/images/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/cover.jpg">
-<meta name="twitter:title" content="记发布订阅和观察者模式">
-<meta name="twitter:description" content="
-发布订阅模式
-简单来说，需要三个角色
-
-发布者
-事件队列
-订阅者
-
-发布者 -&gt; 事件队列 &lt;=&gt; 订阅者
-一次完整流程
-
-订阅者向事件队列订阅事件E
-发布者向事件队列发布事件E
-事件队列通知事件E的所有订阅者，订阅者接收
-
-class Event {
-  constructor() {
-    // 事件队列
-    this.listeners = {};
-  }
-  // 订阅方法
-  on(eventType, listener) {
-    if (!this.listeners[eventType]) {
-      this.listeners[eventType] = [];
-    }
-    this.listeners[eventType].push(listener);
-  }
-  // 发布方法
-  emit(eventType, data) {
-    const callbacks = this.listeners[eventType];
-    if (callbacks) {
-      callbacks.forEach((c) =&gt; {
-        c(data);
-      });
-    }
-  }
-}
-
-const event = new Event();
-event.on(&#34;open&#34;, (data) =&gt; {
-  console.log(data);
-});
-event.emit(&#34;open&#34;, { open: true });
-观察者模式
-需要两个角色">
+<meta name="twitter:image" content="https://slc3a2.github.io/images/%E7%9C%9F%E7%9D%A1%E5%90%8E%E6%94%B6%E5%85%A5%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%8C%96%E7%9F%BF%E5%B0%8F%E8%AE%B0/cover.jpg">
+<meta name="twitter:title" content="真睡后收入-以太坊挖矿小记">
+<meta name="twitter:description" content="因论坛帖子对以太坊挖矿产生兴趣，以自身配置为例，介绍了选择矿池、获取地址、使用 PhoenixMiner 和 lolMiner 两款软件开始挖矿的详细步骤，分析收益成本，讲解算力相关知识并附上主流显卡算力表">
 
 
 <script type="application/ld+json">
@@ -198,8 +107,8 @@ event.emit(&#34;open&#34;, { open: true });
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "记发布订阅和观察者模式",
-      "item": "https://slc3a2.github.io/blogs/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"
+      "name": "真睡后收入-以太坊挖矿小记",
+      "item": "https://slc3a2.github.io/blogs/%E7%9C%9F%E7%9D%A1%E5%90%8E%E6%94%B6%E5%85%A5gtx1660s%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%8C%96%E7%9F%BF%E5%B0%8F%E8%AE%B0/"
     }
   ]
 }
@@ -208,20 +117,20 @@ event.emit(&#34;open&#34;, { open: true });
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "记发布订阅和观察者模式",
-  "name": "记发布订阅和观察者模式",
-  "description": " 发布订阅模式 简单来说，需要三个角色\n发布者 事件队列 订阅者 发布者 -\u0026gt; 事件队列 \u0026lt;=\u0026gt; 订阅者\n一次完整流程\n订阅者向事件队列订阅事件E 发布者向事件队列发布事件E 事件队列通知事件E的所有订阅者，订阅者接收 class Event { constructor() { // 事件队列 this.listeners = {}; } // 订阅方法 on(eventType, listener) { if (!this.listeners[eventType]) { this.listeners[eventType] = []; } this.listeners[eventType].push(listener); } // 发布方法 emit(eventType, data) { const callbacks = this.listeners[eventType]; if (callbacks) { callbacks.forEach((c) =\u0026gt; { c(data); }); } } } const event = new Event(); event.on(\u0026#34;open\u0026#34;, (data) =\u0026gt; { console.log(data); }); event.emit(\u0026#34;open\u0026#34;, { open: true }); 观察者模式 需要两个角色\n",
+  "headline": "真睡后收入-以太坊挖矿小记",
+  "name": "真睡后收入-以太坊挖矿小记",
+  "description": "因论坛帖子对以太坊挖矿产生兴趣，以自身配置为例，介绍了选择矿池、获取地址、使用 PhoenixMiner 和 lolMiner 两款软件开始挖矿的详细步骤，分析收益成本，讲解算力相关知识并附上主流显卡算力表",
   "keywords": [
-    "计算机科学"
+    "科技"
   ],
-  "articleBody": " 发布订阅模式 简单来说，需要三个角色\n发布者 事件队列 订阅者 发布者 -\u003e 事件队列 \u003c=\u003e 订阅者\n一次完整流程\n订阅者向事件队列订阅事件E 发布者向事件队列发布事件E 事件队列通知事件E的所有订阅者，订阅者接收 class Event { constructor() { // 事件队列 this.listeners = {}; } // 订阅方法 on(eventType, listener) { if (!this.listeners[eventType]) { this.listeners[eventType] = []; } this.listeners[eventType].push(listener); } // 发布方法 emit(eventType, data) { const callbacks = this.listeners[eventType]; if (callbacks) { callbacks.forEach((c) =\u003e { c(data); }); } } } const event = new Event(); event.on(\"open\", (data) =\u003e { console.log(data); }); event.emit(\"open\", { open: true }); 观察者模式 需要两个角色\n目标 观察者 目标 \u003c=\u003e 观察者\n一次完整流程\n观察者观察目标 一旦目标发生变化，目标会主动通知观察者 function observer(obj, target, callback) { if (!obj.data) { obj.data = {}; } Object.defineProperty(obj, target, { get() { return this.data[target]; }, set(val) { this.data[target] = val; // 目标通知观察者 callback \u0026\u0026 callback(val); }, }); if (obj.data[target]) { callback \u0026\u0026 callback(obj.data[target]); } } ",
-  "wordCount" : "262",
+  "articleBody": "开始之前 在大概 2 个月前，我在国内某论坛看到一个挖矿帖子，很感兴趣，家里也有一台用于娱乐的高配电脑，当天下班后我就开始搭建环境，几个小时后成功开始工作。有朋友问如何操作，也算总结下过程，所以写了这篇教程。\n先说一下结果，当前以太坊eth币价为2057刀，折合人民币1.39w一个，24 小时挖矿，我的电脑可以产出0.0016个不计成本 24 小时持续挖矿收入为22.24元。\n再来算一下成本，显卡满载功率为 125w， 挖矿时 100%占用，cpu 是i5-9400f，满载功率为65w，挖矿时，占用可以忽略不计，图中是我在跑着其他程序，其他主板，风扇，硬盘等功率假设为 50w，可以得到整机在挖矿时，功率为 175w，按照北京民电0.4883/度计算，24 小时电费成本约为2元，不算其他线材损耗，一天净利润 22-2=20元。\n我的配置 显卡： 技嘉 GeForce GTX 1660s(实测这款卡算力稳定在 26mh/s 左右) 操作系统： windows 10 挖矿软件： PhoenixMiner 5.5c 矿池： 火币矿币 pro 钱包： 中心化火币钱包 选择矿池 先选择挖矿软件，主流挖矿软件有很多，只推荐几个开源项目，支持 linux 和 windows 的，不推荐轻松矿工等国产软件，抽水多，不适合单机挖矿\nclaymore PhoenixMiner lolMiner Bminer 我只使用过PhoenixMiner和lolMiner，这介绍这两款，下载lolminer和PhoenixMiner。\n获取矿池地址和钱包地址 矿池\n我使用的火币矿池，地址huobipool 火币矿池网站首页 =\u003e 导航选择pow挖矿 =\u003e 添加挖矿子账号\n添加好之后就可以拿到挖矿地址，有测速选项，优先选择速度最快的节点作为矿池地址，来提升挖矿速度\n钱包 我使用的火币 进入火币app =\u003e 导航资产 =\u003e 列表中找到ETH进入 =\u003e 充币 =\u003e 充币地址即钱包地址\n矿池地址和钱包地址，保存下来。除了货币矿池，还有很多其他的矿池，比如鱼池，蚂蚁矿池，可他们的提现门槛太高了，需要 0.1 个 ETH 才可以提现，最开始用鱼池挖了一周放弃了，0.1 个 ETH 需要我的机器挖矿62.5天，周期太长了，所以我就选择了用火币矿池，搭配火币钱包，今日的产出会在每天下午 3 点自动提现到火币钱包，虽然提现手续费2%有点高，但这种方式适合我这样的散户。\n开始挖矿 PhoenixMiner 下载完后，解压缩文件包，找到start_miner.bat,使用记事本或者 vscode 打开，删除所有内容，重新填入 REM REM Example bat file for starting PhoenixMiner.exe to mine ETH REM setx GPU_FORCE_64BIT_PTR 0 setx GPU_MAX_HEAP_SIZE 100 setx GPU_USE_SYNC_OBJECTS 1 setx GPU_MAX_ALLOC_PERCENT 100 setx GPU_SINGLE_ALLOC_PERCENT 100 REM IMPORTANT: Replace the ETH address with your own ETH wallet address in the -wal option (Rig001 is the name of the rig) PhoenixMiner.exe -pool 矿池地址 -wal 以太坊钱包地址.矿工名称 -dagrestart 1 -rvram -1 -eres 0 pause 把矿池地址和以太坊钱包地址替换，矿工名，可以随意填，英文+数字。替换好保存关闭。回到解压目录，打开 PhoenixMiner.exe 可执行程序，之后会打开一个终端窗口，就开始挖矿了，如果断网或者其他异常，程序会 10s 后自动重新连接，无需关心 lolMiner\n设置也一样，下载解压缩，根目录下找到mine_eth.bat文件并编辑：\n@echo off setlocal enableDelayedExpansion Rem ################################# Rem ## Begin of user-editable part ## Rem ################################# set \"POOL=矿池地址\" set \"WALLET=以太坊钱包地址.矿工名\" Rem ################################# Rem ## End of user-editable part ## Rem ################################# :loop lolMiner.exe --algo ETHASH --pool !POOL! --user !WALLET! --watchdog exit if %ERRORLEVEL% == 42 ( timeout 10 goto loop ) 把矿池地址和以太坊钱包地址替换，矿工名，可以随意填，英文+数字。注意钱包地址和矿工名之间的英文句号，你也可以设置timeout右侧的遇到异常的重启时间，替换好保存关闭。回到解压目录，执行miner_eth.bat文件，打开命令行开始。\n关于算力 算力也叫哈希率(Hashrate)，是显卡计算能力的度量单位，即计算机计算哈希函数的输出速度。入门级挖矿显卡需要至少 6G 的显存，算力越高，你的收益越大，之间的关系不是线性的，应该是递减的关系。当然显卡价格也越贵，20 年底，全球疫情来袭，比特币暴涨，导致显卡价格水涨船高，甚至涨了一倍。做矿老板有风险，用闲置机器赚一点零花钱还是很不错滴，俺也浪费国家电能了哈哈。另贴出主流 a 卡和 n 卡算力表，enjoy it。\nA 卡： N 卡：\n",
+  "wordCount" : "1556",
   "inLanguage": "zh",
-  "image":"https://slc3a2.github.io/images/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/cover.jpg","datePublished": "2021-06-01T11:40:03+08:00",
-  "dateModified": "2021-06-01T11:40:03+08:00",
+  "image":"https://slc3a2.github.io/images/%E7%9C%9F%E7%9D%A1%E5%90%8E%E6%94%B6%E5%85%A5%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%8C%96%E7%9F%BF%E5%B0%8F%E8%AE%B0/cover.jpg","datePublished": "2021-04-05T10:11:16+08:00",
+  "dateModified": "2021-04-05T10:11:16+08:00",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://slc3a2.github.io/blogs/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"
+    "@id": "https://slc3a2.github.io/blogs/%E7%9C%9F%E7%9D%A1%E5%90%8E%E6%94%B6%E5%85%A5gtx1660s%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%8C%96%E7%9F%BF%E5%B0%8F%E8%AE%B0/"
   },
   "publisher": {
     "@type": "Organization",
@@ -323,9 +232,9 @@ event.emit(&#34;open&#34;, { open: true });
   <header class="post-header">
     
     <h1 class="post-title entry-hint-parent">
-      记发布订阅和观察者模式
+      真睡后收入-以太坊挖矿小记
     </h1>
-    <div class="post-meta"><span title='2021-06-01 11:40:03 +0800 CST'>2021-06-01</span>&nbsp; ｜ &nbsp;1 分钟&nbsp; ｜ &nbsp;262 字
+    <div class="post-meta"><span title='2021-04-05 10:11:16 +0800 CST'>2021-04-05</span>&nbsp; ｜ &nbsp;4 分钟&nbsp; ｜ &nbsp;1556 字
 
 
       <span id="busuanzi_container_page_pv">
@@ -336,7 +245,7 @@ event.emit(&#34;open&#34;, { open: true });
     </div>
   </header> 
 <figure class="entry-cover1">
-    <img loading="eager" src="https://slc3a2.github.io/images/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Logan Voss</figcaption>
+    <img loading="eager" src="https://slc3a2.github.io/images/%E7%9C%9F%E7%9D%A1%E5%90%8E%E6%94%B6%E5%85%A5%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%8C%96%E7%9F%BF%E5%B0%8F%E8%AE%B0/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Dominik Vanyi</figcaption>
 </figure><aside id="toc-container" class="toc-container wide">
     <div class="toc">
         <details  open>
@@ -346,9 +255,17 @@ event.emit(&#34;open&#34;, { open: true });
 
             <div class="inner"><ul>
                     <li>
-                        <a href="#%e5%8f%91%e5%b8%83%e8%ae%a2%e9%98%85%e6%a8%a1%e5%bc%8f" aria-label="发布订阅模式">发布订阅模式</a></li>
+                        <a href="#%e5%bc%80%e5%a7%8b%e4%b9%8b%e5%89%8d" aria-label="开始之前">开始之前</a></li>
                     <li>
-                        <a href="#%e8%a7%82%e5%af%9f%e8%80%85%e6%a8%a1%e5%bc%8f" aria-label="观察者模式">观察者模式</a>
+                        <a href="#%e6%88%91%e7%9a%84%e9%85%8d%e7%bd%ae" aria-label="我的配置">我的配置</a></li>
+                    <li>
+                        <a href="#%e9%80%89%e6%8b%a9%e7%9f%bf%e6%b1%a0" aria-label="选择矿池">选择矿池</a></li>
+                    <li>
+                        <a href="#%e8%8e%b7%e5%8f%96%e7%9f%bf%e6%b1%a0%e5%9c%b0%e5%9d%80%e5%92%8c%e9%92%b1%e5%8c%85%e5%9c%b0%e5%9d%80" aria-label="获取矿池地址和钱包地址">获取矿池地址和钱包地址</a></li>
+                    <li>
+                        <a href="#%e5%bc%80%e5%a7%8b%e6%8c%96%e7%9f%bf" aria-label="开始挖矿">开始挖矿</a></li>
+                    <li>
+                        <a href="#%e5%85%b3%e4%ba%8e%e7%ae%97%e5%8a%9b" aria-label="关于算力">关于算力</a>
                     </li>
                 </ul>
             </div>
@@ -453,97 +370,113 @@ event.emit(&#34;open&#34;, { open: true });
     
 </script>
 
-  <div class="post-content"><hr>
-<h2 id="发布订阅模式">发布订阅模式<a hidden class="anchor" aria-hidden="true" href="#发布订阅模式">#</a></h2>
-<p>简单来说，需要三个角色</p>
+  <div class="post-content"><h2 id="开始之前">开始之前<a hidden class="anchor" aria-hidden="true" href="#开始之前">#</a></h2>
+<p>在大概 2 个月前，我在国内某论坛看到一个挖矿帖子，很感兴趣，家里也有一台用于娱乐的高配电脑，当天下班后我就开始搭建环境，几个小时后成功开始工作。有朋友问如何操作，也算总结下过程，所以写了这篇教程。</p>
+<p>先说一下结果，当前<code>以太坊eth</code>币价为<code>2057</code>刀，折合人民币<code>1.39w</code>一个，24 小时挖矿，我的电脑可以产出<code>0.0016</code>个不计成本 24 小时持续挖矿收入为<code>22.24元</code>。</p>
+<p>再来算一下成本，显卡满载功率为 125w， 挖矿时 100%占用，cpu 是<code>i5-9400f</code>，满载功率为<code>65w</code>，挖矿时，占用可以忽略不计，图中是我在跑着其他程序，其他主板，风扇，硬盘等功率假设为 50w，可以得到整机在挖矿时，功率为 175w，按照北京民电<code>0.4883/度</code>计算，24 小时电费成本约为<code>2</code>元，不算其他线材损耗，一天净利润 22-2=<code>20</code>元。</p>
+<p><img alt="QQ20210405-0.png" loading="lazy" src="/images/%E7%9C%9F%E7%9D%A1%E5%90%8E%E6%94%B6%E5%85%A5%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%8C%96%E7%9F%BF%E5%B0%8F%E8%AE%B0/YA4dIRbSgNVsvKE.png"></p>
+<h2 id="我的配置">我的配置<a hidden class="anchor" aria-hidden="true" href="#我的配置">#</a></h2>
 <ul>
-<li>发布者</li>
-<li>事件队列</li>
-<li>订阅者</li>
+<li><strong>显卡</strong>： 技嘉 GeForce GTX 1660s(实测这款卡算力稳定在 26mh/s 左右)</li>
+<li><strong>操作系统</strong>： windows 10</li>
+<li><strong>挖矿软件</strong>： PhoenixMiner 5.5c</li>
+<li><strong>矿池</strong>： 火币矿币 pro</li>
+<li><strong>钱包</strong>： 中心化火币钱包</li>
 </ul>
-<p><strong>发布者</strong> -&gt; <strong>事件队列</strong> &lt;=&gt; <strong>订阅者</strong></p>
-<p>一次完整流程</p>
+<h2 id="选择矿池">选择矿池<a hidden class="anchor" aria-hidden="true" href="#选择矿池">#</a></h2>
+<blockquote>
+<p>先选择挖矿软件，主流挖矿软件有很多，只推荐几个开源项目，支持 linux 和 windows 的，不推荐轻松矿工等国产软件，抽水多，不适合单机挖矿</p></blockquote>
 <ul>
-<li><code>订阅者</code>向事件队列订阅<code>事件E</code></li>
-<li><code>发布者</code>向事件队列发布<code>事件E</code></li>
-<li>事件队列通知<code>事件E</code>的所有<code>订阅者</code>，<code>订阅者</code>接收</li>
+<li>claymore</li>
+<li>PhoenixMiner</li>
+<li>lolMiner</li>
+<li>Bminer</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Event</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 事件队列
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">listeners</span> <span style="color:#f92672">=</span> {};
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 订阅方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">on</span>(<span style="color:#a6e22e">eventType</span>, <span style="color:#a6e22e">listener</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">listeners</span>[<span style="color:#a6e22e">eventType</span>]) {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">listeners</span>[<span style="color:#a6e22e">eventType</span>] <span style="color:#f92672">=</span> [];
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">listeners</span>[<span style="color:#a6e22e">eventType</span>].<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">listener</span>);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 发布方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">emit</span>(<span style="color:#a6e22e">eventType</span>, <span style="color:#a6e22e">data</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">callbacks</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">listeners</span>[<span style="color:#a6e22e">eventType</span>];
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">callbacks</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">callbacks</span>.<span style="color:#a6e22e">forEach</span>((<span style="color:#a6e22e">c</span>) =&gt; {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">c</span>(<span style="color:#a6e22e">data</span>);
-</span></span><span style="display:flex;"><span>      });
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">event</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Event</span>();
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;open&#34;</span>, (<span style="color:#a6e22e">data</span>) =&gt; {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>);
-</span></span><span style="display:flex;"><span>});
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">emit</span>(<span style="color:#e6db74">&#34;open&#34;</span>, { <span style="color:#a6e22e">open</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> });
-</span></span></code></pre></div><h2 id="观察者模式">观察者模式<a hidden class="anchor" aria-hidden="true" href="#观察者模式">#</a></h2>
-<p>需要两个角色</p>
+<p>我只使用过<code>PhoenixMiner</code>和<code>lolMiner</code>，这介绍这两款，下载<a href="https://github.com/Lolliedieb/lolMiner-releases/releases">lolminer</a>和<a href="https://phoenixminer.org/">PhoenixMiner</a>。</p>
+<h2 id="获取矿池地址和钱包地址">获取矿池地址和钱包地址<a hidden class="anchor" aria-hidden="true" href="#获取矿池地址和钱包地址">#</a></h2>
 <ul>
-<li>目标</li>
-<li>观察者</li>
+<li>矿池<br>
+我使用的火币矿池，地址<a href="https://www.huobipool.com/">huobipool</a></li>
 </ul>
-<p><strong>目标</strong> &lt;=&gt; <strong>观察者</strong></p>
-<p>一次完整流程</p>
+<p><code>火币矿池网站首页</code> =&gt; <code>导航选择pow挖矿</code> =&gt; <code>添加挖矿子账号</code></p>
+<p>添加好之后就可以拿到挖矿地址，有测速选项，优先选择速度最快的节点作为矿池地址，来提升挖矿速度</p>
 <ul>
-<li><code>观察者</code>观察目标</li>
-<li>一旦目标<code>发生</code>变化，目标会主动通知<code>观察者</code></li>
+<li>钱包
+我使用的火币</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">observer</span>(<span style="color:#a6e22e">obj</span>, <span style="color:#a6e22e">target</span>, <span style="color:#a6e22e">callback</span>) {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">data</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> {};
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  Object.<span style="color:#a6e22e">defineProperty</span>(<span style="color:#a6e22e">obj</span>, <span style="color:#a6e22e">target</span>, {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">get</span>() {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">target</span>];
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">set</span>(<span style="color:#a6e22e">val</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">target</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">val</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// 目标通知观察者
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">callback</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">callback</span>(<span style="color:#a6e22e">val</span>);
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>  });
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">target</span>]) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">callback</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">callback</span>(<span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">target</span>]);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div>
+<p><code>进入火币app</code> =&gt; <code>导航资产</code> =&gt; <code>列表中找到ETH进入</code> =&gt; <code>充币</code> =&gt; <code>充币地址即钱包地址</code></p>
+<p>矿池地址和钱包地址，保存下来。除了货币矿池，还有很多其他的矿池，比如鱼池，蚂蚁矿池，可他们的提现门槛太高了，需要 0.1 个 ETH 才可以提现，最开始用鱼池挖了一周放弃了，0.1 个 ETH 需要我的机器挖矿<code>62.5天</code>，周期太长了，所以我就选择了用火币矿池，搭配火币钱包，今日的产出会在每天下午 3 点自动提现到火币钱包，虽然提现手续费<code>2%</code>有点高，但这种方式适合我这样的散户。</p>
+<h2 id="开始挖矿">开始挖矿<a hidden class="anchor" aria-hidden="true" href="#开始挖矿">#</a></h2>
+<ul>
+<li><em>PhoenixMiner</em>
+下载完后，解压缩文件包，找到<code>start_miner.bat</code>,使用记事本或者 vscode 打开，删除所有内容，重新填入</li>
+</ul>
+<pre tabindex="0"><code>REM
+REM Example bat file for starting PhoenixMiner.exe to mine ETH
+REM
+
+setx GPU_FORCE_64BIT_PTR 0
+setx GPU_MAX_HEAP_SIZE 100
+setx GPU_USE_SYNC_OBJECTS 1
+setx GPU_MAX_ALLOC_PERCENT 100
+setx GPU_SINGLE_ALLOC_PERCENT 100
+
+REM IMPORTANT: Replace the ETH address with your own ETH wallet address in the -wal option (Rig001 is the name of the rig)
+PhoenixMiner.exe -pool 矿池地址 -wal 以太坊钱包地址.矿工名称 -dagrestart 1 -rvram -1 -eres 0
+pause
+</code></pre><p>把<code>矿池地址</code>和<code>以太坊钱包地址</code>替换，矿工名，可以随意填，英文+数字。替换好保存关闭。回到解压目录，打开 PhoenixMiner.exe 可执行程序，之后会打开一个终端窗口，就开始挖矿了，如果断网或者其他异常，程序会 10s 后自动重新连接，无需关心
+<img alt="43264BBC6D73E4F446FE70FA11DB2A5D.png" loading="lazy" src="/images/%E7%9C%9F%E7%9D%A1%E5%90%8E%E6%94%B6%E5%85%A5%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%8C%96%E7%9F%BF%E5%B0%8F%E8%AE%B0/grXvl26PoEtMFpa.png"></p>
+<ul>
+<li>
+<p><em>lolMiner</em></p>
+<p>设置也一样，下载解压缩，根目录下找到<code>mine_eth.bat</code>文件并编辑：</p>
+</li>
+</ul>
+<pre tabindex="0"><code>@echo off
+
+setlocal enableDelayedExpansion
+
+Rem #################################
+Rem ## Begin of user-editable part ##
+Rem #################################
+
+set &#34;POOL=矿池地址&#34;
+set &#34;WALLET=以太坊钱包地址.矿工名&#34;
+
+Rem #################################
+Rem ##  End of user-editable part  ##
+Rem #################################
+
+:loop
+lolMiner.exe --algo ETHASH --pool !POOL! --user !WALLET! --watchdog exit
+if %ERRORLEVEL% == 42 (
+	timeout 10
+	goto loop
+)
+</code></pre><p>把<code>矿池地址</code>和<code>以太坊钱包地址</code>替换，矿工名，可以随意填，英文+数字。注意钱包地址和矿工名之间的英文句号，你也可以设置<code>timeout</code>右侧的遇到异常的重启时间，替换好保存关闭。回到解压目录，执行<code>miner_eth.bat</code>文件，打开命令行开始。</p>
+<h2 id="关于算力">关于算力<a hidden class="anchor" aria-hidden="true" href="#关于算力">#</a></h2>
+<p>算力也叫哈希率(Hashrate)，是显卡计算能力的度量单位，即计算机计算哈希函数的输出速度。入门级挖矿显卡需要<strong>至少 6G 的显存</strong>，算力越高，你的收益越大，之间的关系不是线性的，应该是递减的关系。当然显卡价格也越贵，20 年底，全球疫情来袭，比特币暴涨，导致显卡价格水涨船高，甚至涨了一倍。做矿老板有风险，用闲置机器赚一点零花钱还是很不错滴，俺也浪费国家电能了哈哈。另贴出主流 a 卡和 n 卡算力表，enjoy it。</p>
+<p>A 卡：
+<img alt="WechatIMG4346.png" loading="lazy" src="/images/%E7%9C%9F%E7%9D%A1%E5%90%8E%E6%94%B6%E5%85%A5%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%8C%96%E7%9F%BF%E5%B0%8F%E8%AE%B0/ZD6ML8tjkGXdeWf.png"></p>
+<p>N 卡：<img alt="WechatIMG4347.png" loading="lazy" src="/images/%E7%9C%9F%E7%9D%A1%E5%90%8E%E6%94%B6%E5%85%A5%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%8C%96%E7%9F%BF%E5%B0%8F%E8%AE%B0/rhvAF538ynVWtlY.png"></p>
+
 
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://slc3a2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a></li>
+      <li><a href="https://slc3a2.github.io/tags/%E7%A7%91%E6%8A%80/">科技</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/">
+  <a class="prev" href="https://slc3a2.github.io/blogs/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/">
     <span class="title">« 上一页</span>
     <br>
-    <span>从 OSI 七层模型到 TCP</span>
+    <span>手写代码面试题合集</span>
   </a>
-  <a class="next" href="https://slc3a2.github.io/blogs/%E6%97%85%E8%A1%8C%E8%80%851%E5%8F%B7/">
+  <a class="next" href="https://slc3a2.github.io/blogs/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/">
     <span class="title">下一页 »</span>
     <br>
-    <span>旅行者1号</span>
+    <span>前端面试题总结</span>
   </a>
 </nav>
 

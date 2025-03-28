@@ -59,6 +59,8 @@ params:
   ShowCodeCopyButtons: true
   UseHugoToc: true
   disableSpecial1stPost: true
+  busuanzi:
+    enable: true
 
   permalinks: 
     post: "/:year/:month/:day/:title/"

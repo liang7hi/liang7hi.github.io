@@ -16,5 +16,12 @@
       <description>&lt;h2 id=&#34;旅行者计划&#34;&gt;旅行者计划&lt;/h2&gt;
 &lt;p&gt;30 多年前，美国发起了一项太空计划：&lt;strong&gt;旅行者计划&lt;/strong&gt;。目的是为了探测木星和土星，其中包含&lt;code&gt;旅行者1号&lt;/code&gt;和&lt;code&gt;旅行者2号&lt;/code&gt;，在 1977 年，美国向太空发射了这两颗探测器。&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>真睡后收入-以太坊挖矿小记</title>
+      <link>https://slc3a2.github.io/blogs/%E7%9C%9F%E7%9D%A1%E5%90%8E%E6%94%B6%E5%85%A5gtx1660s%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%8C%96%E7%9F%BF%E5%B0%8F%E8%AE%B0/</link>
+      <pubDate>Mon, 05 Apr 2021 10:11:16 +0800</pubDate>
+      <guid>https://slc3a2.github.io/blogs/%E7%9C%9F%E7%9D%A1%E5%90%8E%E6%94%B6%E5%85%A5gtx1660s%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%8C%96%E7%9F%BF%E5%B0%8F%E8%AE%B0/</guid>
+      <description>因论坛帖子对以太坊挖矿产生兴趣，以自身配置为例，介绍了选择矿池、获取地址、使用 PhoenixMiner 和 lolMiner 两款软件开始挖矿的详细步骤，分析收益成本，讲解算力相关知识并附上主流显卡算力表</description>
+    </item>
   </channel>
 </rss>
