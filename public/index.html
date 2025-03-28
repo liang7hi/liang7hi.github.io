@@ -457,8 +457,7 @@ show = 布尔值 hide = 布尔值 当使用 show 变量时，好像，代码的�
     </header>
     <div class="entry-content">
       <p>
-        diff 算法 和 virtual dom 在现代 mvvm 框架 react 和 vue 中，因为直接操作 dom 相对是要耗费更多性能的，所以 react 和 vue 都使用了 virtual dom 来替代处理 dom，大致的过程是：按照 dom 结构生成一份 virtual dom 为对象结构。如果数据有更新，需要表现在 dom 上，那么先把变化表现在 virtual dom，再通过 diff 算法比对数据更新前后两次 virtual dom 找到差别。最后把仅仅改变的这部分更新到 dom 上，不用重新渲染整个页面。
-...
+        介绍 React 和 Vue 中虚拟 DOM 替代直接操作 DOM 的原理，详细阐述 diff 算法如何比对新旧虚拟 DOM 实现高效更新
       </p>
     </div>
     <footer class="entry-footer"><span title='2020-11-05 18:36:39 +0800 CST'>2020-11-05</span>&nbsp; ｜ &nbsp;4 分钟&nbsp; ｜ &nbsp;1536 字</footer>

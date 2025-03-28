@@ -7,10 +7,11 @@ tags:
 ShowToc: true
 TocOpen: true
 ShowWordCount: true
+summary: "介绍 React 和 Vue 中虚拟 DOM 替代直接操作 DOM 的原理，详细阐述 diff 算法如何比对新旧虚拟 DOM 实现高效更新"
 cover:
   image: "/images/vue中的diff算法实现/cover.jpg"
   alt: "cover image"
-  caption: "封面图来自 Unsplash | 作者 Slava Jamm"
+  caption: "封面图来自 Unsplash | 作者 Андрей Сизов"
   relative: false
 ---
 

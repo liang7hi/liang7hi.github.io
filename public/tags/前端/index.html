@@ -253,8 +253,7 @@
     </header>
     <div class="entry-content">
       <p>
-        diff 算法 和 virtual dom 在现代 mvvm 框架 react 和 vue 中，因为直接操作 dom 相对是要耗费更多性能的，所以 react 和 vue 都使用了 virtual dom 来替代处理 dom，大致的过程是：按照 dom 结构生成一份 virtual dom 为对象结构。如果数据有更新，需要表现在 dom 上，那么先把变化表现在 virtual dom，再通过 diff 算法比对数据更新前后两次 virtual dom 找到差别。最后把仅仅改变的这部分更新到 dom 上，不用重新渲染整个页面。
-...
+        介绍 React 和 Vue 中虚拟 DOM 替代直接操作 DOM 的原理，详细阐述 diff 算法如何比对新旧虚拟 DOM 实现高效更新
       </p>
     </div>
     <footer class="entry-footer"><span title='2020-11-05 18:36:39 +0800 CST'>2020-11-05</span>&nbsp; ｜ &nbsp;4 分钟&nbsp; ｜ &nbsp;1536 字</footer>
@@ -268,25 +267,24 @@
 
 <article class="post-entry tag-entry"> 
 <figure class="entry-cover">
-        <img loading="lazy" src="https://slc3a2.github.io/images/promise%E7%9A%84%E5%AE%9E%E7%8E%B0/cover.jpg" alt="cover image">
+        <img loading="lazy" src="https://slc3a2.github.io/images/Promise%20%E7%9A%84%E5%AE%9E%E7%8E%B0/cover.jpg" alt="cover image">
 </figure>
   <div class="post-info">
     <header class="entry-header">
-      <h2 class="entry-hint-parent">promise的实现
+      <h2 class="entry-hint-parent">Promise 的实现
       </h2>
     </header>
     <div class="entry-content">
       <p>
-        promise 类 class Pro { callbacks = []; state = &#34;pending&#34;; value = null; constructor(fn) { // 初始化，把resolve作为参数传入，等待调用 fn(this.resolve.bind(this)); } // callback为回调，先注册，也就是放入callbacks数组中 then(callback) { if (this.state === &#34;pending&#34;) { this.callbacks.push(callback); } else { // 由于state不是pending, 遵循promise状态只能改一次的要求，我们直接操作回调传入参数执行 callback(this.value); } return this; } // resolve也就是fn的第一次参数，循环执行所有callback resolve(value) { this.state = &#34;fulfilled&#34;; // setTimeout使内部变成异步，在同步执行完最后执行这里，处理fn是同步的情况下then中的回调函数已经注册，然后在这里去执行，不会出现callbacks是空数组的情况 setTimeout(() =&gt; { this.value = value; this.callbacks.forEach((callback) =&gt; callback(value)); }); } } 使用 new Pro((resolve) =&gt; { setTimeout(() =&gt; { console.log(0); resolve(&#34;resolve&#34;); }, 2000); }) .then((tip) =&gt; { console.log(1); console.log(tip); }) .then((tip) =&gt; { console.log(2); console.log(tip); }); promise.all 实现 Promise.prototype.all = function (promises) { let results = []; let promiseCount = 0; let promisesLength = promises.length; return new Promise(function (resolve, reject) { for (let item of promises) { // 执行每个item Promise.resolve(item).then( function (res) { promiseCount&#43;&#43;; // 按照顺序插入结果 results[i] = res; // 如果全部执行成功，返回成功 if (promiseCount === promisesLength) { return resolve(results); } }, function (err) { return reject(err); } ); } }); }; promise.race 实现 Promise.prototype.race = function (promises) { return new Promise((resolve, reject) =&gt; { for (let item of promises) { Promise.resolve(item) .then((res) =&gt; { return resolve(res); }) .catch((err) =&gt; { return reject(err); }); } }); }; 简单来说就是声明 promise 时，会执行 promise 第一个函数参数和 then 的参数函数。 then 用来把回调传入 callback 数组中，相当于注册，规定好了 reslove 时，回调的执行，然后等待 resolve 调用，resolve 就会把 callback 数组中的函数全部执行
-...
+        实现了一个简易的 Promise 类，并对 Promise.all 和 Promise.race 方法进行了自定义实现
       </p>
     </div>
     <footer class="entry-footer"><span title='2020-10-30 16:59:53 +0800 CST'>2020-10-30</span>&nbsp; ｜ &nbsp;2 分钟&nbsp; ｜ &nbsp;564 字</footer>
   </div>
   <a
     class="entry-link"
-    aria-label="post link to promise的实现"
-    href="https://slc3a2.github.io/blogs/promise%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/"
+    aria-label="post link to Promise 的实现"
+    href="https://slc3a2.github.io/blogs/promise-%E7%9A%84%E5%AE%9E%E7%8E%B0/"
   ></a>
 </article>
 

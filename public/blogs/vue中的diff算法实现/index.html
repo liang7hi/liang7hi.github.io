@@ -7,9 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>vue中的diff算法实现 | slc3a2</title>
 <meta name="keywords" content="前端">
-<meta name="description" content="diff 算法 和 virtual dom
-
-在现代 mvvm 框架 react 和 vue 中，因为直接操作 dom 相对是要耗费更多性能的，所以 react 和 vue 都使用了 virtual dom 来替代处理 dom，大致的过程是：按照 dom 结构生成一份 virtual dom 为对象结构。如果数据有更新，需要表现在 dom 上，那么先把变化表现在 virtual dom，再通过 diff 算法比对数据更新前后两次 virtual dom 找到差别。最后把仅仅改变的这部分更新到 dom 上，不用重新渲染整个页面。">
+<meta name="description" content="介绍 React 和 Vue 中虚拟 DOM 替代直接操作 DOM 的原理，详细阐述 diff 算法如何比对新旧虚拟 DOM 实现高效更新">
 <meta name="author" content="">
 <link rel="canonical" href="https://slc3a2.github.io/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.396209b02eb73fc7f6783dcb899ad84c3fe6383e054612a6596021c5cc16895a.css" integrity="sha256-OWIJsC63P8f2eD3LiZrYTD/mOD4FRhKmWWAhxcwWiVo=" rel="preload stylesheet" as="style">
@@ -77,7 +75,7 @@
 <meta property="og:url" content="https://slc3a2.github.io/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
   <meta property="og:site_name" content="slc3a2">
   <meta property="og:title" content="vue中的diff算法实现">
-  <meta property="og:description" content="diff 算法 和 virtual dom 在现代 mvvm 框架 react 和 vue 中，因为直接操作 dom 相对是要耗费更多性能的，所以 react 和 vue 都使用了 virtual dom 来替代处理 dom，大致的过程是：按照 dom 结构生成一份 virtual dom 为对象结构。如果数据有更新，需要表现在 dom 上，那么先把变化表现在 virtual dom，再通过 diff 算法比对数据更新前后两次 virtual dom 找到差别。最后把仅仅改变的这部分更新到 dom 上，不用重新渲染整个页面。">
+  <meta property="og:description" content="介绍 React 和 Vue 中虚拟 DOM 替代直接操作 DOM 的原理，详细阐述 diff 算法如何比对新旧虚拟 DOM 实现高效更新">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blogs">
@@ -88,9 +86,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://slc3a2.github.io/images/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/cover.jpg">
 <meta name="twitter:title" content="vue中的diff算法实现">
-<meta name="twitter:description" content="diff 算法 和 virtual dom
-
-在现代 mvvm 框架 react 和 vue 中，因为直接操作 dom 相对是要耗费更多性能的，所以 react 和 vue 都使用了 virtual dom 来替代处理 dom，大致的过程是：按照 dom 结构生成一份 virtual dom 为对象结构。如果数据有更新，需要表现在 dom 上，那么先把变化表现在 virtual dom，再通过 diff 算法比对数据更新前后两次 virtual dom 找到差别。最后把仅仅改变的这部分更新到 dom 上，不用重新渲染整个页面。">
+<meta name="twitter:description" content="介绍 React 和 Vue 中虚拟 DOM 替代直接操作 DOM 的原理，详细阐述 diff 算法如何比对新旧虚拟 DOM 实现高效更新">
 
 
 <script type="application/ld+json">
@@ -119,7 +115,7 @@
   "@type": "BlogPosting",
   "headline": "vue中的diff算法实现",
   "name": "vue中的diff算法实现",
-  "description": "diff 算法 和 virtual dom 在现代 mvvm 框架 react 和 vue 中，因为直接操作 dom 相对是要耗费更多性能的，所以 react 和 vue 都使用了 virtual dom 来替代处理 dom，大致的过程是：按照 dom 结构生成一份 virtual dom 为对象结构。如果数据有更新，需要表现在 dom 上，那么先把变化表现在 virtual dom，再通过 diff 算法比对数据更新前后两次 virtual dom 找到差别。最后把仅仅改变的这部分更新到 dom 上，不用重新渲染整个页面。\n",
+  "description": "介绍 React 和 Vue 中虚拟 DOM 替代直接操作 DOM 的原理，详细阐述 diff 算法如何比对新旧虚拟 DOM 实现高效更新",
   "keywords": [
     "前端"
   ],
@@ -235,7 +231,7 @@
 </div>
   </header> 
 <figure class="entry-cover1">
-    <img loading="eager" src="https://slc3a2.github.io/images/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Slava Jamm</figcaption>
+    <img loading="eager" src="https://slc3a2.github.io/images/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Андрей Сизов</figcaption>
 </figure><aside id="toc-container" class="toc-container wide">
     <div class="toc">
         <details  open>
@@ -505,10 +501,10 @@
     <br>
     <span>前端面试题总结</span>
   </a>
-  <a class="next" href="https://slc3a2.github.io/blogs/promise%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+  <a class="next" href="https://slc3a2.github.io/blogs/promise-%E7%9A%84%E5%AE%9E%E7%8E%B0/">
     <span class="title">下一页 »</span>
     <br>
-    <span>promise的实现</span>
+    <span>Promise 的实现</span>
   </a>
 </nav>
 

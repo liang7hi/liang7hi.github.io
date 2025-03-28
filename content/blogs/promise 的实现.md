@@ -1,5 +1,5 @@
 ---
-title: promise的实现
+title: Promise 的实现
 date: 2020-10-30T16:59:53+08:00
 draft: false
 tags:
@@ -7,14 +7,15 @@ tags:
 ShowToc: true
 TocOpen: true
 ShowWordCount: true
+summary: "实现了一个简易的 Promise 类，并对 Promise.all 和 Promise.race 方法进行了自定义实现"
 cover:
-  image: "/images/promise的实现/cover.jpg"
+  image: "/images/Promise 的实现/cover.jpg"
   alt: "cover image"
-  caption: "封面图来自 Unsplash | 作者 Gene Dizon"
+  caption: "封面图来自 Unsplash | 作者 Alberto Barrera"
   relative: false
 ---
 
-## promise 类
+## Promise 类
 
 ```javascript
 class Pro {
@@ -47,7 +48,7 @@ class Pro {
 }
 ```
 
-## 使用
+## 调用
 
 ```javascript
 new Pro((resolve) => {
@@ -66,7 +67,7 @@ new Pro((resolve) => {
   });
 ```
 
-## promise.all 实现
+## Promise.all 实现
 
 ```javascript
 Promise.prototype.all = function (promises) {
@@ -95,7 +96,7 @@ Promise.prototype.all = function (promises) {
 };
 ```
 
-## promise.race 实现
+## Promise.race 实现
 
 ```javascript
 Promise.prototype.race = function (promises) {
@@ -113,8 +114,8 @@ Promise.prototype.race = function (promises) {
 };
 ```
 
-简单来说就是声明 promise 时，会执行 promise 第一个函数参数和 then 的参数函数。
+简单来说就是声明 Promise 时，会执行 Promise 第一个函数参数和 then 的参数函数。
 `then` 用来把回调传入 callback 数组中，相当于注册，规定好了 reslove 时，回调的执行，然后等待 resolve 调用，resolve 就会把 callback 数组中的函数全部执行
 
 - then 中 `return this`，用于实现 then 的链式调用
-- 如果 promise 是同步的，则执行 resolve 的时候 callback 还没注册
+- 如果 Promise 是同步的，则执行 resolve 的时候 callback 还没注册
