@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>浏览器事件循环 | slc3a2</title>
 <meta name="keywords" content="前端">
 <meta name="description" content="为什么要总结这个问题
 这几天和我的同事聊到这个问题，他提出了一些深入的问题，想了想，我也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！so 被迫研究了下这个问题总结起来。便于以后查看和补充。">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/blogs/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
+<link rel="canonical" href="https://slc3a2.github.io/blogs/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.396209b02eb73fc7f6783dcb899ad84c3fe6383e054612a6596021c5cc16895a.css" integrity="sha256-OWIJsC63P8f2eD3LiZrYTD/mOD4FRhKmWWAhxcwWiVo=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://slc3a2.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://slc3a2.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://slc3a2.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/blogs/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
+<link rel="alternate" hreflang="zh" href="https://slc3a2.github.io/blogs/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
 <noscript>
     <style>
         #theme-toggle,
@@ -73,7 +73,73 @@
   });
 </script>
  
+<meta property="og:url" content="https://slc3a2.github.io/blogs/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
+  <meta property="og:site_name" content="slc3a2">
+  <meta property="og:title" content="浏览器事件循环">
+  <meta property="og:description" content="为什么要总结这个问题 这几天和我的同事聊到这个问题，他提出了一些深入的问题，想了想，我也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！so 被迫研究了下这个问题总结起来。便于以后查看和补充。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blogs">
+    <meta property="article:published_time" content="2022-03-06T10:53:20+08:00">
+    <meta property="article:modified_time" content="2022-03-06T10:53:20+08:00">
+    <meta property="article:tag" content="前端">
+    <meta property="og:image" content="https://slc3a2.github.io/images/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://slc3a2.github.io/images/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/cover.jpg">
+<meta name="twitter:title" content="浏览器事件循环">
+<meta name="twitter:description" content="为什么要总结这个问题
+这几天和我的同事聊到这个问题，他提出了一些深入的问题，想了想，我也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！so 被迫研究了下这个问题总结起来。便于以后查看和补充。">
 
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "日志",
+      "item": "https://slc3a2.github.io/blogs/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "浏览器事件循环",
+      "item": "https://slc3a2.github.io/blogs/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "浏览器事件循环",
+  "name": "浏览器事件循环",
+  "description": "为什么要总结这个问题 这几天和我的同事聊到这个问题，他提出了一些深入的问题，想了想，我也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！so 被迫研究了下这个问题总结起来。便于以后查看和补充。\n",
+  "keywords": [
+    "前端"
+  ],
+  "articleBody": "为什么要总结这个问题 这几天和我的同事聊到这个问题，他提出了一些深入的问题，想了想，我也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！so 被迫研究了下这个问题总结起来。便于以后查看和补充。\n单线程和事件循环 因为多线程会产生共享资源，修改彼此，等复杂问题。并且早期 js 只是来显示简单页面的，但今非昔比，或许 js 作者可能都没想到现在的 js 发展的如此迅猛！所以单线程更适合 js ，一直延续至今。那问题来了，只有单线程是如何处理耗时任务且实现不阻塞的呢，这里就用到了事件循环。事件循环(event loop)是一种计算机系统运行机制。作为单线程的 js 来说，事件循环是来解决当执行耗时任务时不阻塞主线程的调度机制。来自维基百科的解释\n事件循环工作流程 以当前最新版 chrome_v98.0 浏览器为准\njs 中的任务可分为\n同步任务 异步任务 打开一个 tab 页面，浏览器会新开辟一个进程。包含执行栈( js 主执行线程)和一些其他线程(属于浏览器)。当一个包含 css， js 的 html 页面被加载时，会从上往下，从左到右按顺序解析。当遇到同步任务时，它的执行上下文会被放入执行栈，执行完毕后，出栈。下一个放入，依次执行。\n当遇到耗时(异步)任务，会根据不同的任务类型，提供给专门的线程来处理，举出一些例子，不限于这些：\nsetInterval / setTimeout… ⇒ timer 线程 网络请求 ⇒ 网络请求线程 dom 绘制渲染 ⇒gui 线程 dom 元素的事件监听 ⇒ 事件线程 等到这些异步任务应该被执行时，比如用户点击按钮、网络请求、延时器时间到了等，会把相应的回调函数放入异步队列中，按先后顺序排列起来待命。\n直到执行栈的所有同步任务执行完毕后，同步栈会从异步队列中第一位开始取出入栈，依次执行。如果每个异步队列中的任务被执行的过程中，再次产生异步任务，会被放到任务队列的最后，等待执行。\n有一些问题 这些专门线程处理一些任务时候，拿到结果后，都按照先后顺序放入队列被执行，没有办法控制任务优先级，希望一些任务不在队列最末尾排队，而是直接插队执行。为了解决这个问题，在异步任务队列中再细分成两种类型，微任务和宏任务，微任务可以理解是插队的任务，优先级更高。根据类型的不同会被放入不同的队列：\n微任务队列 : promise、 queueMicroTask、 mutationObserver 宏任务队列 : setTimeout、 setInterval、 requestAnimationFrame等 按照先微再宏的顺序执行：每一个宏任务开始前，都先要把上一个宏任务产生的微任务执行完毕再开始新的宏任务，微任务是宏任务的一部分，换句话来说，就是当执行栈空了之后，先检查微任务队列，再检查宏任务队列。\n总结 更通熟易懂事件循环动画参考 B 站\n存在的疑问 在分配宏/微任务时有总的调度系统分配？还是一句代码执行过程中有一次机会，让每个线程依次检查一下，把自己任务拿走 每个宏任务都有属于自己的微任务队列，还是一共只有一条微任务队列？ 回答：node 端的执行规律是一个宏任务队列搭配一个微任务队列，而浏览器是一个单独的宏任务搭配一个微任务队列。但是在 node11 之后，node 和浏览器的规律趋同。 如何区分微任务和宏任务的呢，具体是通过哪些特征分类的？ 最后整一道经典面试题 基于 chrome_v98.0 浏览器环境\nasync function async1() { console.log(\"async1 start\"); await async2(); console.log(\"async1 end\"); } async function async2() { console.log(\"async2\"); } console.log(\"script start\"); setTimeout(function () { console.log(\"setTimeout\"); }, 0); async1(); new Promise(function (resolve) { console.log(\"promise1\"); resolve(); }).then(function () { console.log(\"promise2\"); }); console.log(\"script end\"); 解析：按照从上往下顺序先执行同步代码，前两个函数async和async2是函数声明，忽略。然后第 1 个输出的是script start，然后看到setTimeout, 由于它是异步且属于宏任务，放到最后执行。然后看到 async1 函数被执行了，进入async1函数体。\n第 2 个输出的是async1 start, 看到 await 规则是：await 右的语句被同步执行，所以第 3 个输出的是async2，await 下的语句(函数体内)被当作 async 函数返回一个 promsise 的回调函数体的语句去处理，且被放入了异步任务队列中，等待中。\n然后跳出 async1 函数体，继续执行同步代码，遇到 new Promise，第 4 次输出promise，看到 resolve，就把 then 中回调，放入任务队列中，然后继续向下执行同步代码，第 5 次输出的最后的script end。\n至此同步执行栈空了，开始把任务队列中的上下文拿到执行栈执行，由于队列先进先出，所以第一个被入栈的是 async1 的回调，也就是第 6 次输出的是async1 end，然后把第二个队列中的上下文放入执行栈，也就是 promise 的 resolve，所以第 7 次输出promise2，至此微任务执行完成，现在执行宏任务，也就是 timeout，所以第 8 次输出为setTimeout。\n最终结果\nscript start async1 start async2 promise1 script end async1 end promise2 setTimeout ",
+  "wordCount" : "1834",
+  "inLanguage": "zh",
+  "image":"https://slc3a2.github.io/images/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/cover.jpg","datePublished": "2022-03-06T10:53:20+08:00",
+  "dateModified": "2022-03-06T10:53:20+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://slc3a2.github.io/blogs/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "slc3a2",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://slc3a2.github.io/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -91,7 +157,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
+            <a href="https://slc3a2.github.io/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -117,37 +183,37 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="🏠 首页">
+                <a href="https://slc3a2.github.io/" title="🏠 首页">
                     <span>🏠 首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/blogs/" title="📚 日志">
+                <a href="https://slc3a2.github.io/blogs/" title="📚 日志">
                     <span>📚 日志</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/photos/" title="🖼️ 照片">
+                <a href="https://slc3a2.github.io/photos/" title="🖼️ 照片">
                     <span>🖼️ 照片</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/apps/" title="🚀 应用">
+                <a href="https://slc3a2.github.io/apps/" title="🚀 应用">
                     <span>🚀 应用</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="🔍 搜索">
+                <a href="https://slc3a2.github.io/search/" title="🔍 搜索">
                     <span>🔍 搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="🧩 分类">
+                <a href="https://slc3a2.github.io/tags/" title="🧩 分类">
                     <span>🧩 分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="⏱ 时间轴">
+                <a href="https://slc3a2.github.io/archives/" title="⏱ 时间轴">
                     <span>⏱ 时间轴</span>
                 </a>
             </li>
@@ -167,7 +233,7 @@
 </div>
   </header> 
 <figure class="entry-cover1">
-    <img loading="eager" src="http://localhost:1313/images/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Kier in Sight Archives</figcaption>
+    <img loading="eager" src="https://slc3a2.github.io/images/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Kier in Sight Archives</figcaption>
 </figure><aside id="toc-container" class="toc-container wide">
     <div class="toc">
         <details  open>
@@ -378,15 +444,15 @@ setTimeout
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
+      <li><a href="https://slc3a2.github.io/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://localhost:1313/blogs/js%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E5%AD%97%E7%9A%84/">
+  <a class="prev" href="https://slc3a2.github.io/blogs/js%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E5%AD%97%E7%9A%84/">
     <span class="title">« 上一页</span>
     <br>
     <span>js是如何存储数字的</span>
   </a>
-  <a class="next" href="http://localhost:1313/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/">
+  <a class="next" href="https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/">
     <span class="title">下一页 »</span>
     <br>
     <span>从OSI七层模型到TCP</span>
@@ -471,7 +537,7 @@ setTimeout
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">slc3a2</a></span> · 
+        <span>&copy; 2025 <a href="https://slc3a2.github.io/">slc3a2</a></span> · 
 
     <span>
         Powered by

@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>命题逻辑真值表 | slc3a2</title>
 <meta name="keywords" content="计算机科学">
 <meta name="description" content="这篇文章先给出离散数学中命题逻辑真值表，介绍了合取、析取、否定、蕴含、等价运算规则及结果，后分别以具体生活实例对每种运算进行详细说明，并特别指出蕴含运算中逻辑关系与因果关系的区别">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/blogs/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/">
+<link rel="canonical" href="https://slc3a2.github.io/blogs/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.396209b02eb73fc7f6783dcb899ad84c3fe6383e054612a6596021c5cc16895a.css" integrity="sha256-OWIJsC63P8f2eD3LiZrYTD/mOD4FRhKmWWAhxcwWiVo=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://slc3a2.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://slc3a2.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://slc3a2.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://localhost:1313/blogs/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/">
+<link rel="alternate" hreflang="zh" href="https://slc3a2.github.io/blogs/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/">
 <noscript>
     <style>
         #theme-toggle,
@@ -72,7 +72,72 @@
   });
 </script>
  
+<meta property="og:url" content="https://slc3a2.github.io/blogs/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/">
+  <meta property="og:site_name" content="slc3a2">
+  <meta property="og:title" content="命题逻辑真值表">
+  <meta property="og:description" content="这篇文章先给出离散数学中命题逻辑真值表，介绍了合取、析取、否定、蕴含、等价运算规则及结果，后分别以具体生活实例对每种运算进行详细说明，并特别指出蕴含运算中逻辑关系与因果关系的区别">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blogs">
+    <meta property="article:published_time" content="2023-10-11T18:23:09+08:00">
+    <meta property="article:modified_time" content="2023-10-11T18:23:09+08:00">
+    <meta property="article:tag" content="计算机科学">
+    <meta property="og:image" content="https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg">
+<meta name="twitter:title" content="命题逻辑真值表">
+<meta name="twitter:description" content="这篇文章先给出离散数学中命题逻辑真值表，介绍了合取、析取、否定、蕴含、等价运算规则及结果，后分别以具体生活实例对每种运算进行详细说明，并特别指出蕴含运算中逻辑关系与因果关系的区别">
 
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "日志",
+      "item": "https://slc3a2.github.io/blogs/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "命题逻辑真值表",
+      "item": "https://slc3a2.github.io/blogs/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "命题逻辑真值表",
+  "name": "命题逻辑真值表",
+  "description": "这篇文章先给出离散数学中命题逻辑真值表，介绍了合取、析取、否定、蕴含、等价运算规则及结果，后分别以具体生活实例对每种运算进行详细说明，并特别指出蕴含运算中逻辑关系与因果关系的区别",
+  "keywords": [
+    "计算机科学"
+  ],
+  "articleBody": " 离散数学中命题逻辑的真值表如下：\nP Q P ∧ Q P ∨ Q ¬ P P → Q P ↔ Q T T T T F T T T F F T F F F F T F T T T F F F F F T T T 下面对各逻辑运算符进行解释：\nP ∧ Q（合取）：仅当 P 和 Q 同时为真时，其结果才为真，否则为假。 P ∨ Q（析取）：只要 P 或者 Q（或者两者同时）为真，结果即为真，否则为假。 ¬ P（否定）：若 P 为假，结果为真；若 P 为真，结果为假。 P → Q（蕴含）：只有在 P 为真且 Q 也为真的情况下，结果才为真（否则为假），常被读作“若 P，则 Q” 。 P ↔ Q（等价）：当且仅当 P 和 Q 的真值一致时，结果为真，否则为假。 以下通过具体例子来进一步说明 合取 假设有两个命题 P 和 Q：\nP：今天天气晴朗。 Q：学校举行户外运动会。 逻辑与运算“P ∧ Q”代表“今天天气晴朗并且学校举行户外运动会”。只有当 P 和 Q 均为真时，整个表达式才是真的。\n析取 依旧使用上述命题 P 和 Q。 逻辑或运算“P ∨ Q”表示“今天天气晴朗或者学校举行户外运动会”。只要 P 或者 Q（或者二者同时）为真，整个表达式就为真。\n否定 使用命题 P：\nP：今天天气晴朗。 逻辑非运算“¬P”即“今天天气不晴朗”。当 P 为真时，¬P 为假；当 P 为假时，¬P 为真。\n蕴含 例子 1：假设有两个命题 P 和 R：\nP：你完成了作业。 R：你可以出去玩。 逻辑蕴含运算“P → R”表示“如果你完成了作业，那么你可以出去玩”。这里，P 是前提（前件），R 是结论（后件）。当 P 为真而 R 为假时，整个表达式为假；在其他情形下（即 P 为真 R 也为真，或者 P 为假时），整个表达式为真。需要注意的是，逻辑蕴含并不等同于因果关系，它仅仅关注真值之间的关联。在实际生活中，我们会说“如果完成了作业（P），那么就可以出去玩（R）”，但这并不表明完成作业是能够出去玩的唯一原因或者必要条件。\n为了更好理解蕴含，再举一个例子： 例子 2：假设有两个命题 P 和 R：\nP：我当选美国总统。 R：我就给你涨工资。 对于蕴含式 P → R ：\n为真的情况：我当选了美国总统，并且我给你涨了工资，此时蕴含式结果为真 。 为假的情况： 我没有当选美国总统，那么无论我是否给你涨工资，整个蕴含式都为假 。 我当选了美国总统，但我没有给你涨工资，此时蕴含式结果为假。 等价 使用命题 P 和另一个命题 S：\nP：你完成了作业。 S：你的作业已经提交。 逻辑等价运算“P ↔ S”表示“你完成了作业当且仅当你的作业已经提交”。当 P 和 S 的真值相同（即都为真或者都为假）时，整个表达式为真；否则为假。这意味着 P 和 S 在逻辑层面是等价的，它们的真假情况必然一致。\n",
+  "wordCount" : "1012",
+  "inLanguage": "zh",
+  "image":"https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg","datePublished": "2023-10-11T18:23:09+08:00",
+  "dateModified": "2023-10-11T18:23:09+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://slc3a2.github.io/blogs/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "slc3a2",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://slc3a2.github.io/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -90,7 +155,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
+            <a href="https://slc3a2.github.io/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -116,37 +181,37 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="🏠 首页">
+                <a href="https://slc3a2.github.io/" title="🏠 首页">
                     <span>🏠 首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/blogs/" title="📚 日志">
+                <a href="https://slc3a2.github.io/blogs/" title="📚 日志">
                     <span>📚 日志</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/photos/" title="🖼️ 照片">
+                <a href="https://slc3a2.github.io/photos/" title="🖼️ 照片">
                     <span>🖼️ 照片</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/apps/" title="🚀 应用">
+                <a href="https://slc3a2.github.io/apps/" title="🚀 应用">
                     <span>🚀 应用</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="🔍 搜索">
+                <a href="https://slc3a2.github.io/search/" title="🔍 搜索">
                     <span>🔍 搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="🧩 分类">
+                <a href="https://slc3a2.github.io/tags/" title="🧩 分类">
                     <span>🧩 分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="⏱ 时间轴">
+                <a href="https://slc3a2.github.io/archives/" title="⏱ 时间轴">
                     <span>⏱ 时间轴</span>
                 </a>
             </li>
@@ -166,7 +231,7 @@
 </div>
   </header> 
 <figure class="entry-cover1">
-    <img loading="eager" src="http://localhost:1313/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Roberto Sorin</figcaption>
+    <img loading="eager" src="https://slc3a2.github.io/images/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Roberto Sorin</figcaption>
 </figure><aside id="toc-container" class="toc-container wide">
     <div class="toc">
         <details  open>
@@ -409,15 +474,15 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a></li>
+      <li><a href="https://slc3a2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://localhost:1313/blogs/%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%E5%91%BD%E5%90%8D/">
+  <a class="prev" href="https://slc3a2.github.io/blogs/%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%E5%91%BD%E5%90%8D/">
     <span class="title">« 上一页</span>
     <br>
     <span>有意思的命名</span>
   </a>
-  <a class="next" href="http://localhost:1313/blogs/js%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E5%AD%97%E7%9A%84/">
+  <a class="next" href="https://slc3a2.github.io/blogs/js%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E6%95%B0%E5%AD%97%E7%9A%84/">
     <span class="title">下一页 »</span>
     <br>
     <span>js是如何存储数字的</span>
@@ -502,7 +567,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">slc3a2</a></span> · 
+        <span>&copy; 2025 <a href="https://slc3a2.github.io/">slc3a2</a></span> · 
 
     <span>
         Powered by
