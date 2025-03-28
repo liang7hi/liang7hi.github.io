@@ -5,12 +5,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>vue中的diff算法实现 | slc3a2</title>
+<title>Vue 中的 diff 算法实现 | slc3a2</title>
 <meta name="keywords" content="前端">
 <meta name="description" content="介绍 React 和 Vue 中虚拟 DOM 替代直接操作 DOM 的原理，详细阐述 diff 算法如何比对新旧虚拟 DOM 实现高效更新">
 <meta name="author" content="">
 <link rel="canonical" href="https://slc3a2.github.io/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.396209b02eb73fc7f6783dcb899ad84c3fe6383e054612a6596021c5cc16895a.css" integrity="sha256-OWIJsC63P8f2eD3LiZrYTD/mOD4FRhKmWWAhxcwWiVo=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8aef5397b3c8965a3894cb370fdb3576e7be2ce942cc9eff31afa6275b654510.css" integrity="sha256-iu9Tl7PIllo4lMs3D9s1due&#43;LOlCzJ7/Ma&#43;mJ1tlRRA=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://slc3a2.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
@@ -74,7 +74,7 @@
  
 <meta property="og:url" content="https://slc3a2.github.io/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
   <meta property="og:site_name" content="slc3a2">
-  <meta property="og:title" content="vue中的diff算法实现">
+  <meta property="og:title" content="Vue 中的 diff 算法实现">
   <meta property="og:description" content="介绍 React 和 Vue 中虚拟 DOM 替代直接操作 DOM 的原理，详细阐述 diff 算法如何比对新旧虚拟 DOM 实现高效更新">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
@@ -85,7 +85,7 @@
     <meta property="og:image" content="https://slc3a2.github.io/images/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/cover.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://slc3a2.github.io/images/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/cover.jpg">
-<meta name="twitter:title" content="vue中的diff算法实现">
+<meta name="twitter:title" content="Vue 中的 diff 算法实现">
 <meta name="twitter:description" content="介绍 React 和 Vue 中虚拟 DOM 替代直接操作 DOM 的原理，详细阐述 diff 算法如何比对新旧虚拟 DOM 实现高效更新">
 
 
@@ -103,7 +103,7 @@
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "vue中的diff算法实现",
+      "name": "Vue 中的 diff 算法实现",
       "item": "https://slc3a2.github.io/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"
     }
   ]
@@ -113,14 +113,14 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "vue中的diff算法实现",
-  "name": "vue中的diff算法实现",
+  "headline": "Vue 中的 diff 算法实现",
+  "name": "Vue 中的 diff 算法实现",
   "description": "介绍 React 和 Vue 中虚拟 DOM 替代直接操作 DOM 的原理，详细阐述 diff 算法如何比对新旧虚拟 DOM 实现高效更新",
   "keywords": [
     "前端"
   ],
-  "articleBody": "diff 算法 和 virtual dom 在现代 mvvm 框架 react 和 vue 中，因为直接操作 dom 相对是要耗费更多性能的，所以 react 和 vue 都使用了 virtual dom 来替代处理 dom，大致的过程是：按照 dom 结构生成一份 virtual dom 为对象结构。如果数据有更新，需要表现在 dom 上，那么先把变化表现在 virtual dom，再通过 diff 算法比对数据更新前后两次 virtual dom 找到差别。最后把仅仅改变的这部分更新到 dom 上，不用重新渲染整个页面。\n总结：diff 算法就是找到两个 virtual dom 树结构的不同\ndiff 原理 首先传入新旧 vnode 到 patch 函数开始比较:\nfunction patch(oldVnode, vnode) { if (sameVnode(oldVnode, vnode)) { patchVnode(oldVnode, vnode); // 如果两个vnode值得比较，调用patchVnode } else { const oEl = oldVnode.el; // oldVnode.el为对应的真实dom元素 let parentEle = api.parentNode(oEl); createEle(vnode); // 按照vnode结构创建真实dom插入父元素，直接替换oldVnode if (parentEle !== null) { api.insertBefore(parentEle, vnode.el, api.nextSibling(oEl)); api.removeChild(parentEle, oldVnode.el); oldVnode = null; } } return vnode; } 首先使用 sameVnode 方法判断两个 vnode 是否值得比较，代码如下\nfunction sameVnode(oldVnode, vnode) { // key代表当前节点数据的key属性，大概的意思就是div和span为不同标签。p.class1和p.class2为不同标签 return vnode.key === oldVnode.key \u0026\u0026 vnode.sel === oldVnode.sel; } 一致就按照上步骤，继续往下处理。执行 patchVnode 方法，如不一致，直接用新元素 直接替换 到旧元素。\n如果两个 vnode 值得比较，调用 patchVnode:\npatchVnode (oldVnode, vnode) { const el = vnode.el = oldVnode.el let i, oldCh = oldVnode.children, ch = vnode.children if (oldVnode === vnode) return // 引用相同，就说明相同，直接return if (oldVnode.text !== null \u0026\u0026 vnode.text !== null \u0026\u0026 oldVnode.text !== vnode.text) { // 如果有文本内容，比较，如果不同直接设置，用新的替换旧的文本 api.setTextContent(el, vnode.text) }else { updateEle(el, vnode, oldVnode) if (oldCh \u0026\u0026 ch \u0026\u0026 oldCh !== ch) { // 如果都有子节点，且不同，开始比较子节点 updateChildren(el, oldCh, ch) }else if (ch){ // 如果只有新vnode上有子节点，直接新建 createEle(vnode) }else if (oldCh){ // 如果新vnode没子子节，而老vnode有，则删除老节点的子节点 api.removeChildren(el) } } } 如果都有子节点，且不同，开始比较子节点，调用 updateChildren 函数开始比较子节点:\nupdateChildren (parentElm, oldCh, newCh) { // parentElm：真是dom节点。oldCh：老vnode的所有子节点。newCh：新vnode的所有子节点。 // 通过下标，设置新旧vnode的前后两个元素， let oldStartIdx = 0, newStartIdx = 0 let oldEndIdx = oldCh.length - 1 let oldStartVnode = oldCh[0] let oldEndVnode = oldCh[oldEndIdx] let newEndIdx = newCh.length - 1 let newStartVnode = newCh[0] let newEndVnode = newCh[newEndIdx] // 设置一些比较过程需要的变量 let oldKeyToIdx let idxInOld let elmToMove let before // 两对节点，分别从头和尾向中间循环靠拢依次比对，如果起始下标大于结尾下标，证明比对结束，作为循环结束条件 while (oldStartIdx \u003c= oldEndIdx \u0026\u0026 newStartIdx \u003c= newEndIdx) { if (oldStartVnode == null) { //对于vnode.key的比较，会把oldVnode = null oldStartVnode = oldCh[++oldStartIdx] }else if (oldEndVnode == null) { oldEndVnode = oldCh[--oldEndIdx] }else if (newStartVnode == null) { newStartVnode = newCh[++newStartIdx] }else if (newEndVnode == null) { newEndVnode = newCh[--newEndIdx] }else if (sameVnode(oldStartVnode, newStartVnode)) { patchVnode(oldStartVnode, newStartVnode) oldStartVnode = oldCh[++oldStartIdx] newStartVnode = newCh[++newStartIdx] }else if (sameVnode(oldEndVnode, newEndVnode)) { patchVnode(oldEndVnode, newEndVnode) oldEndVnode = oldCh[--oldEndIdx] newEndVnode = newCh[--newEndIdx] }else if (sameVnode(oldStartVnode, newEndVnode)) { patchVnode(oldStartVnode, newEndVnode) api.insertBefore(parentElm, oldStartVnode.el, api.nextSibling(oldEndVnode.el)) oldStartVnode = oldCh[++oldStartIdx] newEndVnode = newCh[--newEndIdx] }else if (sameVnode(oldEndVnode, newStartVnode)) { patchVnode(oldEndVnode, newStartVnode) api.insertBefore(parentElm, oldEndVnode.el, oldStartVnode.el) oldEndVnode = oldCh[--oldEndIdx] newStartVnode = newCh[++newStartIdx] }else { // 使用key时的比较 if (oldKeyToIdx === undefined) { oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx) // 有key生成index表 } idxInOld = oldKeyToIdx[newStartVnode.key] if (!idxInOld) { api.insertBefore(parentElm, createEle(newStartVnode).el, oldStartVnode.el) newStartVnode = newCh[++newStartIdx] } else { elmToMove = oldCh[idxInOld] if (elmToMove.sel !== newStartVnode.sel) { api.insertBefore(parentElm, createEle(newStartVnode).el, oldStartVnode.el) }else { patchVnode(elmToMove, newStartVnode) oldCh[idxInOld] = null api.insertBefore(parentElm, elmToMove.el, oldStartVnode.el) } newStartVnode = newCh[++newStartIdx] } } } if (oldStartIdx \u003e oldEndIdx) { before = newCh[newEndIdx + 1] == null ? null : newCh[newEndIdx + 1].el addVnodes(parentElm, before, newCh, newStartIdx, newEndIdx) }else if (newStartIdx \u003e newEndIdx) { removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx) } } 总结：\n调用 patch：传入 新旧vnode，调用 sameVnode，返回 true 说明值得比较，则调用 patchVnode，否则直接使用新节点替换旧节点\n调用 patchVnode：更详细的对比新旧 vnode，分几种情况：\n1: 对于新旧 vnode 的.el 真实 dom 属性，并对比，如果===那就证明是同一个，直接 return 2: 如果存在文本节点，直接用新 vnode 内文本替换旧 vnode 文本 3: 判断子节点，如果新 vnode 有，旧 vnode 没有，则直接把新 vnode 的子节点加入到真实 dom，相反就删除掉真实 dom 子节点 4: 如果都有子节点，且不同，调用 updateChildren，详细对比 调用 updateChildren： 从两边向中间收拢循环两个新旧 vnode 的每个子节点，以此对比，头头，尾尾，头尾，尾头。如果这四种比对调用 sameVnode，得到 true，证明值得对比，那么就调用第二步骤的 patchVnode 递归继续比，除了这四种情况。如果有 key，则会对比 key。否则直接替换新元素到真实 dom。\n",
-  "wordCount" : "1536",
+  "articleBody": "Vue 中的 diff 算法实现 摘要 介绍 React 和 Vue 中虚拟 DOM 替代直接操作 DOM 的原理，详细阐述 diff 算法如何比对新旧虚拟 DOM 实现高效更新。\n一、diff 算法和 virtual dom 在现代 mvvm 框架 React 和 Vue 中，直接操作 DOM 相对耗费更多性能。因此，React 和 Vue 都采用 virtual dom 来替代直接处理 DOM。大致过程为：依据 DOM 结构生成一份对象结构的 virtual dom。当数据更新需要反映在 DOM 上时，先将变化体现在 virtual dom 上，再通过 diff 算法对比数据更新前后的两次 virtual dom，找出差异。最后仅将这些改变的部分更新到 DOM 上，无需重新渲染整个页面。\n简言之，diff 算法的作用就是找出两个 virtual dom 树结构的不同之处。\n二、diff 原理 （一）patch 函数 首先传入新旧 vnode 到 patch 函数开始比较：\nfunction patch(oldVnode, vnode) { if (sameVnode(oldVnode, vnode)) { patchVnode(oldVnode, vnode); // 如果两个vnode值得比较，调用patchVnode } else { const oEl = oldVnode.el; // oldVnode.el为对应的真实dom元素 let parentEle = api.parentNode(oEl); createEle(vnode); // 按照vnode结构创建真实dom插入父元素，直接替换oldVnode if (parentEle !== null) { api.insertBefore(parentEle, vnode.el, api.nextSibling(oEl)); api.removeChild(parentEle, oldVnode.el); oldVnode = null; } } return vnode; } （二）sameVnode 函数 上述代码中，首先使用 sameVnode 方法判断两个 vnode 是否值得比较，代码如下：\nfunction sameVnode(oldVnode, vnode) { // key代表当前节点数据的key属性，大概的意思就是div和span为不同标签。p.class1和p.class2为不同标签 return vnode.key === oldVnode.key \u0026\u0026 vnode.sel === oldVnode.sel; } 若两个 vnode 通过 sameVnode 比较结果为 true，则按照后续步骤，继续往下处理，执行 patchVnode 方法；若为 false，则直接用新元素替换旧元素。\n（三）patchVnode 函数 如果两个 vnode 值得比较，调用 patchVnode：\npatchVnode (oldVnode, vnode) { const el = vnode.el = oldVnode.el; let i, oldCh = oldVnode.children, ch = vnode.children; if (oldVnode === vnode) return; // 引用相同，就说明相同，直接return if (oldVnode.text!== null \u0026\u0026 vnode.text!== null \u0026\u0026 oldVnode.text!== vnode.text) { // 如果有文本内容，比较，如果不同直接设置，用新的替换旧的文本 api.setTextContent(el, vnode.text); } else { updateEle(el, vnode, oldVnode); if (oldCh \u0026\u0026 ch \u0026\u0026 oldCh!== ch) { // 如果都有子节点，且不同，开始比较子节点 updateChildren(el, oldCh, ch); } else if (ch) { // 如果只有新vnode上有子节点，直接新建 createEle(vnode); } else if (oldCh) { // 如果新vnode没子子节，而老vnode有，则删除老节点的子节点 api.removeChildren(el); } } } （四）updateChildren 函数 如果新旧 vnode 都有子节点且不同，开始比较子节点，调用 updateChildren 函数开始比较子节点：\nupdateChildren (parentElm, oldCh, newCh) { // parentElm：真是dom节点。oldCh：老vnode的所有子节点。newCh：新vnode的所有子节点。 // 通过下标，设置新旧vnode的前后两个元素， let oldStartIdx = 0, newStartIdx = 0; let oldEndIdx = oldCh.length - 1; let oldStartVnode = oldCh[0]; let oldEndVnode = oldCh[oldEndIdx]; let newEndIdx = newCh.length - 1; let newStartVnode = newCh[0]; let newEndVnode = newCh[newEndIdx]; // 设置一些比较过程需要的变量 let oldKeyToIdx; let idxInOld; let elmToMove; let before; // 两对节点，分别从头和尾向中间循环靠拢依次比对，如果起始下标大于结尾下标，证明比对结束，作为循环结束条件 while (oldStartIdx \u003c= oldEndIdx \u0026\u0026 newStartIdx \u003c= newEndIdx) { if (oldStartVnode == null) { //对于vnode.key的比较，会把oldVnode = null oldStartVnode = oldCh[++oldStartIdx]; } else if (oldEndVnode == null) { oldEndVnode = oldCh[--oldEndIdx]; } else if (newStartVnode == null) { newStartVnode = newCh[++newStartIdx]; } else if (newEndVnode == null) { newEndVnode = newCh[--newEndIdx]; } else if (sameVnode(oldStartVnode, newStartVnode)) { patchVnode(oldStartVnode, newStartVnode); oldStartVnode = oldCh[++oldStartIdx]; newStartVnode = newCh[++newStartIdx]; } else if (sameVnode(oldEndVnode, newEndVnode)) { patchVnode(oldEndVnode, newEndVnode); oldEndVnode = oldCh[--oldEndIdx]; newEndVnode = newCh[--newEndIdx]; } else if (sameVnode(oldStartVnode, newEndVnode)) { patchVnode(oldStartVnode, newEndVnode); api.insertBefore(parentElm, oldStartVnode.el, api.nextSibling(oldEndVnode.el)); oldStartVnode = oldCh[++oldStartIdx]; newEndVnode = newCh[--newEndIdx]; } else if (sameVnode(oldEndVnode, newStartVnode)) { patchVnode(oldEndVnode, newStartVnode); api.insertBefore(parentElm, oldEndVnode.el, oldStartVnode.el); oldEndVnode = oldCh[--oldEndIdx]; newStartVnode = newCh[++newStartIdx]; } else { // 使用key时的比较 if (oldKeyToIdx === undefined) { oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx); // 有key生成index表 } idxInOld = oldKeyToIdx[newStartVnode.key]; if (!idxInOld) { api.insertBefore(parentElm, createEle(newStartVnode).el, oldStartVnode.el); newStartVnode = newCh[++newStartIdx]; } else { elmToMove = oldCh[idxInOld]; if (elmToMove.sel!== newStartVnode.sel) { api.insertBefore(parentElm, createEle(newStartVnode).el, oldStartVnode.el); } else { patchVnode(elmToMove, newStartVnode); oldCh[idxInOld] = null; api.insertBefore(parentElm, elmToMove.el, oldStartVnode.el); } newStartVnode = newCh[++newStartIdx]; } } } if (oldStartIdx \u003e oldEndIdx) { before = newCh[newEndIdx + 1] == null? null : newCh[newEndIdx + 1].el; addVnodes(parentElm, before, newCh, newStartIdx, newEndIdx); } else if (newStartIdx \u003e newEndIdx) { removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx); } } （五）总结 调用 patch：传入新旧 vnode，调用 sameVnode，返回 true 说明值得比较，则调用 patchVnode，否则直接使用新节点替换旧节点。 调用 patchVnode：更详细地对比新旧 vnode，分以下几种情况： 若新旧 vnode 的 .el 真实 DOM 属性相同（即引用相同），直接 return。 若存在文本节点且内容不同，直接用新 vnode 内文本替换旧 vnode 文本。 判断子节点：若新 vnode 有子节点而旧 vnode 没有，则直接把新 vnode 的子节点加入到真实 DOM；反之，则删除真实 DOM 的子节点。 若新旧 vnode 都有子节点且不同，调用 updateChildren 详细对比。 调用 updateChildren：从两边向中间收拢循环两个新旧 vnode 的每个子节点，依次对比头头、尾尾、头尾、尾头。若这四种比对调用 sameVnode 得到 true，证明值得对比，那么就调用 patchVnode 递归继续比较。除这四种情况外，若有 key，则会对比 key；否则直接替换新元素到真实 DOM。 三、结论 通过虚拟 DOM 和 diff 算法，Vue 以及 React 等框架实现了高效的 DOM 更新，减少了直接操作 DOM 带来的性能损耗。理解 diff 算法原理有助于开发者更好地优化前端应用，提升用户体验。在实际应用中，合理利用 key 值、优化数据结构等方式，能进一步发挥 diff 算法的优势，提升页面渲染效率。\n",
+  "wordCount" : "1811",
   "inLanguage": "zh",
   "image":"https://slc3a2.github.io/images/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/cover.jpg","datePublished": "2020-11-05T18:36:39+08:00",
   "dateModified": "2020-11-05T18:36:39+08:00",
@@ -224,9 +224,9 @@
   <header class="post-header">
     
     <h1 class="post-title entry-hint-parent">
-      vue中的diff算法实现
+      Vue 中的 diff 算法实现
     </h1>
-    <div class="post-meta"><span title='2020-11-05 18:36:39 +0800 CST'>2020-11-05</span>&nbsp; ｜ &nbsp;4 分钟&nbsp; ｜ &nbsp;1536 字
+    <div class="post-meta"><span title='2020-11-05 18:36:39 +0800 CST'>2020-11-05</span>&nbsp; ｜ &nbsp;4 分钟&nbsp; ｜ &nbsp;1811 字
 
 </div>
   </header> 
@@ -241,10 +241,31 @@
 
             <div class="inner"><ul>
                     <li>
-                        <a href="#diff-%e7%ae%97%e6%b3%95-%e5%92%8c-virtual-dom" aria-label="diff 算法 和 virtual dom">diff 算法 和 virtual dom</a></li>
+                        <a href="#vue-%e4%b8%ad%e7%9a%84-diff-%e7%ae%97%e6%b3%95%e5%ae%9e%e7%8e%b0" aria-label="Vue 中的 diff 算法实现">Vue 中的 diff 算法实现</a><ul>
+                            
                     <li>
-                        <a href="#diff-%e5%8e%9f%e7%90%86" aria-label="diff 原理">diff 原理</a>
+                        <a href="#%e6%91%98%e8%a6%81" aria-label="摘要">摘要</a></li>
+                    <li>
+                        <a href="#%e4%b8%80diff-%e7%ae%97%e6%b3%95%e5%92%8c-virtual-dom" aria-label="一、diff 算法和 virtual dom">一、diff 算法和 virtual dom</a></li>
+                    <li>
+                        <a href="#%e4%ba%8cdiff-%e5%8e%9f%e7%90%86" aria-label="二、diff 原理">二、diff 原理</a><ul>
+                            
+                    <li>
+                        <a href="#%e4%b8%80patch-%e5%87%bd%e6%95%b0" aria-label="（一）patch 函数">（一）patch 函数</a></li>
+                    <li>
+                        <a href="#%e4%ba%8csamevnode-%e5%87%bd%e6%95%b0" aria-label="（二）sameVnode 函数">（二）sameVnode 函数</a></li>
+                    <li>
+                        <a href="#%e4%b8%89patchvnode-%e5%87%bd%e6%95%b0" aria-label="（三）patchVnode 函数">（三）patchVnode 函数</a></li>
+                    <li>
+                        <a href="#%e5%9b%9bupdatechildren-%e5%87%bd%e6%95%b0" aria-label="（四）updateChildren 函数">（四）updateChildren 函数</a></li>
+                    <li>
+                        <a href="#%e4%ba%94%e6%80%bb%e7%bb%93" aria-label="（五）总结">（五）总结</a></li></ul>
                     </li>
+                    <li>
+                        <a href="#%e4%b8%89%e7%bb%93%e8%ae%ba" aria-label="三、结论">三、结论</a>
+                    </li>
+                </ul>
+                </li>
                 </ul>
             </div>
         </details>
@@ -348,12 +369,16 @@
     
 </script>
 
-  <div class="post-content"><h2 id="diff-算法-和-virtual-dom">diff 算法 和 virtual dom<a hidden class="anchor" aria-hidden="true" href="#diff-算法-和-virtual-dom">#</a></h2>
+  <div class="post-content"><h1 id="vue-中的-diff-算法实现">Vue 中的 diff 算法实现<a hidden class="anchor" aria-hidden="true" href="#vue-中的-diff-算法实现">#</a></h1>
+<h2 id="摘要">摘要<a hidden class="anchor" aria-hidden="true" href="#摘要">#</a></h2>
+<p>介绍 React 和 Vue 中虚拟 DOM 替代直接操作 DOM 的原理，详细阐述 diff 算法如何比对新旧虚拟 DOM 实现高效更新。</p>
+<h2 id="一diff-算法和-virtual-dom">一、diff 算法和 virtual dom<a hidden class="anchor" aria-hidden="true" href="#一diff-算法和-virtual-dom">#</a></h2>
 <p><img alt="WechatIMG3177.png" loading="lazy" src="/images/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/HrGjhDp8ebSt62R.png"></p>
-<p>在现代 <code>mvvm</code> 框架 <code>react</code> 和 <code>vue</code> 中，因为直接操作 dom 相对是要耗费更多性能的，所以 <code>react</code> 和 <code>vue</code> 都使用了 <code>virtual dom</code> 来替代处理 dom，大致的过程是：按照 dom 结构生成一份 <code>virtual dom</code> 为对象结构。如果数据有更新，需要表现在 dom 上，那么先把变化表现在 <code>virtual dom</code>，再通过 <code>diff</code> 算法比对数据更新前后两次 <code>virtual dom</code> 找到差别。最后把仅仅改变的这部分更新到 dom 上，不用重新渲染整个页面。</p>
-<p>总结：<code>diff</code> 算法就是找到两个 <code>virtual dom</code> 树结构的不同</p>
-<h2 id="diff-原理">diff 原理<a hidden class="anchor" aria-hidden="true" href="#diff-原理">#</a></h2>
-<p>首先传入新旧 <code>vnode</code> 到 <code>patch</code> 函数开始比较:</p>
+<p>在现代 <code>mvvm</code> 框架 React 和 Vue 中，直接操作 DOM 相对耗费更多性能。因此，React 和 Vue 都采用 <code>virtual dom</code> 来替代直接处理 DOM。大致过程为：依据 DOM 结构生成一份对象结构的 <code>virtual dom</code>。当数据更新需要反映在 DOM 上时，先将变化体现在 <code>virtual dom</code> 上，再通过 <code>diff</code> 算法对比数据更新前后的两次 <code>virtual dom</code>，找出差异。最后仅将这些改变的部分更新到 DOM 上，无需重新渲染整个页面。</p>
+<p>简言之，<code>diff</code> 算法的作用就是找出两个 <code>virtual dom</code> 树结构的不同之处。</p>
+<h2 id="二diff-原理">二、diff 原理<a hidden class="anchor" aria-hidden="true" href="#二diff-原理">#</a></h2>
+<h3 id="一patch-函数">（一）patch 函数<a hidden class="anchor" aria-hidden="true" href="#一patch-函数">#</a></h3>
+<p>首先传入新旧 <code>vnode</code> 到 <code>patch</code> 函数开始比较：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">patch</span>(<span style="color:#a6e22e">oldVnode</span>, <span style="color:#a6e22e">vnode</span>) {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sameVnode</span>(<span style="color:#a6e22e">oldVnode</span>, <span style="color:#a6e22e">vnode</span>)) {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">patchVnode</span>(<span style="color:#a6e22e">oldVnode</span>, <span style="color:#a6e22e">vnode</span>); <span style="color:#75715e">// 如果两个vnode值得比较，调用patchVnode
@@ -369,124 +394,123 @@
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">vnode</span>;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>首先使用 <code>sameVnode</code> 方法判断两个 <code>vnode</code> 是否值得比较，代码如下</p>
+</span></span></code></pre></div><h3 id="二samevnode-函数">（二）sameVnode 函数<a hidden class="anchor" aria-hidden="true" href="#二samevnode-函数">#</a></h3>
+<p>上述代码中，首先使用 <code>sameVnode</code> 方法判断两个 <code>vnode</code> 是否值得比较，代码如下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sameVnode</span>(<span style="color:#a6e22e">oldVnode</span>, <span style="color:#a6e22e">vnode</span>) {
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">//  key代表当前节点数据的key属性，大概的意思就是div和span为不同标签。p.class1和p.class2为不同标签
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">vnode</span>.<span style="color:#a6e22e">key</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">oldVnode</span>.<span style="color:#a6e22e">key</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">vnode</span>.<span style="color:#a6e22e">sel</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">oldVnode</span>.<span style="color:#a6e22e">sel</span>;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>一致就按照上步骤，继续往下处理。执行 <code>patchVnode</code> 方法，如不一致，直接用新元素 <strong>直接替换</strong> 到旧元素。</p>
-<p>如果两个 <code>vnode</code> 值得比较，调用 <code>patchVnode</code>:</p>
+</span></span></code></pre></div><p>若两个 <code>vnode</code> 通过 <code>sameVnode</code> 比较结果为 <code>true</code>，则按照后续步骤，继续往下处理，执行 <code>patchVnode</code> 方法；若为 <code>false</code>，则直接用新元素替换旧元素。</p>
+<h3 id="三patchvnode-函数">（三）patchVnode 函数<a hidden class="anchor" aria-hidden="true" href="#三patchvnode-函数">#</a></h3>
+<p>如果两个 <code>vnode</code> 值得比较，调用 <code>patchVnode</code>：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">patchVnode</span> (<span style="color:#a6e22e">oldVnode</span>, <span style="color:#a6e22e">vnode</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">el</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">vnode</span>.<span style="color:#a6e22e">el</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldVnode</span>.<span style="color:#a6e22e">el</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">oldCh</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldVnode</span>.<span style="color:#a6e22e">children</span>, <span style="color:#a6e22e">ch</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">vnode</span>.<span style="color:#a6e22e">children</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">oldVnode</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">vnode</span>) <span style="color:#66d9ef">return</span> <span style="color:#75715e">// 引用相同，就说明相同，直接return
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">oldVnode</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">vnode</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">oldVnode</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">vnode</span>.<span style="color:#a6e22e">text</span>) {
-</span></span><span style="display:flex;"><span>    	 <span style="color:#75715e">// 如果有文本内容，比较，如果不同直接设置，用新的替换旧的文本
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">setTextContent</span>(<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">vnode</span>.<span style="color:#a6e22e">text</span>)
-</span></span><span style="display:flex;"><span>    }<span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">updateEle</span>(<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">vnode</span>, <span style="color:#a6e22e">oldVnode</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">oldCh</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">ch</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">oldCh</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">ch</span>) { <span style="color:#75715e">// 如果都有子节点，且不同，开始比较子节点
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">updateChildren</span>(<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">oldCh</span>, <span style="color:#a6e22e">ch</span>)
-</span></span><span style="display:flex;"><span>        }<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">ch</span>){
-</span></span><span style="display:flex;"><span>        	  <span style="color:#75715e">// 如果只有新vnode上有子节点，直接新建
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">createEle</span>(<span style="color:#a6e22e">vnode</span>)
-</span></span><span style="display:flex;"><span>        }<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">oldCh</span>){
-</span></span><span style="display:flex;"><span>        	  <span style="color:#75715e">// 如果新vnode没子子节，而老vnode有，则删除老节点的子节点
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">removeChildren</span>(<span style="color:#a6e22e">el</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">el</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">vnode</span>.<span style="color:#a6e22e">el</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldVnode</span>.<span style="color:#a6e22e">el</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">oldCh</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldVnode</span>.<span style="color:#a6e22e">children</span>, <span style="color:#a6e22e">ch</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">vnode</span>.<span style="color:#a6e22e">children</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">oldVnode</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">vnode</span>) <span style="color:#66d9ef">return</span>; <span style="color:#75715e">// 引用相同，就说明相同，直接return
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">oldVnode</span>.<span style="color:#a6e22e">text</span><span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">vnode</span>.<span style="color:#a6e22e">text</span><span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">oldVnode</span>.<span style="color:#a6e22e">text</span><span style="color:#f92672">!==</span> <span style="color:#a6e22e">vnode</span>.<span style="color:#a6e22e">text</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 如果有文本内容，比较，如果不同直接设置，用新的替换旧的文本
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">setTextContent</span>(<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">vnode</span>.<span style="color:#a6e22e">text</span>);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">updateEle</span>(<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">vnode</span>, <span style="color:#a6e22e">oldVnode</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">oldCh</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">ch</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">oldCh</span><span style="color:#f92672">!==</span> <span style="color:#a6e22e">ch</span>) { <span style="color:#75715e">// 如果都有子节点，且不同，开始比较子节点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">updateChildren</span>(<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">oldCh</span>, <span style="color:#a6e22e">ch</span>);
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">ch</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 如果只有新vnode上有子节点，直接新建
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">createEle</span>(<span style="color:#a6e22e">vnode</span>);
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">oldCh</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 如果新vnode没子子节，而老vnode有，则删除老节点的子节点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">removeChildren</span>(<span style="color:#a6e22e">el</span>);
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>如果都有子节点，且不同，开始比较子节点，调用 <code>updateChildren</code> 函数开始比较子节点:</p>
+</span></span></code></pre></div><h3 id="四updatechildren-函数">（四）updateChildren 函数<a hidden class="anchor" aria-hidden="true" href="#四updatechildren-函数">#</a></h3>
+<p>如果新旧 <code>vnode</code> 都有子节点且不同，开始比较子节点，调用 <code>updateChildren</code> 函数开始比较子节点：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">updateChildren</span> (<span style="color:#a6e22e">parentElm</span>, <span style="color:#a6e22e">oldCh</span>, <span style="color:#a6e22e">newCh</span>) { <span style="color:#75715e">// parentElm：真是dom节点。oldCh：老vnode的所有子节点。newCh：新vnode的所有子节点。
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	 <span style="color:#75715e">// 通过下标，设置新旧vnode的前后两个元素，
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">oldStartIdx</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">newStartIdx</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">oldEndIdx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">oldStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#ae81ff">0</span>]
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">oldEndVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#a6e22e">oldEndIdx</span>]
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">newEndIdx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">newStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#ae81ff">0</span>]
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">newEndVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#a6e22e">newEndIdx</span>]
-</span></span><span style="display:flex;"><span>   	 <span style="color:#75715e">// 设置一些比较过程需要的变量
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">oldKeyToIdx</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">idxInOld</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">elmToMove</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">before</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// 通过下标，设置新旧vnode的前后两个元素，
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">oldStartIdx</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">newStartIdx</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">oldEndIdx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">oldStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">oldEndVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#a6e22e">oldEndIdx</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">newEndIdx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">newStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">newEndVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#a6e22e">newEndIdx</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 设置一些比较过程需要的变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">oldKeyToIdx</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">idxInOld</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">elmToMove</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">before</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 两对节点，分别从头和尾向中间循环靠拢依次比对，如果起始下标大于结尾下标，证明比对结束，作为循环结束条件
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">oldStartIdx</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">oldEndIdx</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">newStartIdx</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">newEndIdx</span>) {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">oldStartVnode</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {   <span style="color:#75715e">//对于vnode.key的比较，会把oldVnode = null
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#a6e22e">oldStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#f92672">++</span><span style="color:#a6e22e">oldStartIdx</span>]
-</span></span><span style="display:flex;"><span>            }<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">oldEndVnode</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">oldEndVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#f92672">--</span><span style="color:#a6e22e">oldEndIdx</span>]
-</span></span><span style="display:flex;"><span>            }<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">newStartVnode</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">newStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#f92672">++</span><span style="color:#a6e22e">newStartIdx</span>]
-</span></span><span style="display:flex;"><span>            }<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">newEndVnode</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">newEndVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#f92672">--</span><span style="color:#a6e22e">newEndIdx</span>]
-</span></span><span style="display:flex;"><span>            }<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sameVnode</span>(<span style="color:#a6e22e">oldStartVnode</span>, <span style="color:#a6e22e">newStartVnode</span>)) {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">patchVnode</span>(<span style="color:#a6e22e">oldStartVnode</span>, <span style="color:#a6e22e">newStartVnode</span>)
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">oldStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#f92672">++</span><span style="color:#a6e22e">oldStartIdx</span>]
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">newStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#f92672">++</span><span style="color:#a6e22e">newStartIdx</span>]
-</span></span><span style="display:flex;"><span>            }<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sameVnode</span>(<span style="color:#a6e22e">oldEndVnode</span>, <span style="color:#a6e22e">newEndVnode</span>)) {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">patchVnode</span>(<span style="color:#a6e22e">oldEndVnode</span>, <span style="color:#a6e22e">newEndVnode</span>)
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">oldEndVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#f92672">--</span><span style="color:#a6e22e">oldEndIdx</span>]
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">newEndVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#f92672">--</span><span style="color:#a6e22e">newEndIdx</span>]
-</span></span><span style="display:flex;"><span>            }<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sameVnode</span>(<span style="color:#a6e22e">oldStartVnode</span>, <span style="color:#a6e22e">newEndVnode</span>)) {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">patchVnode</span>(<span style="color:#a6e22e">oldStartVnode</span>, <span style="color:#a6e22e">newEndVnode</span>)
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">insertBefore</span>(<span style="color:#a6e22e">parentElm</span>, <span style="color:#a6e22e">oldStartVnode</span>.<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">nextSibling</span>(<span style="color:#a6e22e">oldEndVnode</span>.<span style="color:#a6e22e">el</span>))
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">oldStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#f92672">++</span><span style="color:#a6e22e">oldStartIdx</span>]
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">newEndVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#f92672">--</span><span style="color:#a6e22e">newEndIdx</span>]
-</span></span><span style="display:flex;"><span>            }<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sameVnode</span>(<span style="color:#a6e22e">oldEndVnode</span>, <span style="color:#a6e22e">newStartVnode</span>)) {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">patchVnode</span>(<span style="color:#a6e22e">oldEndVnode</span>, <span style="color:#a6e22e">newStartVnode</span>)
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">insertBefore</span>(<span style="color:#a6e22e">parentElm</span>, <span style="color:#a6e22e">oldEndVnode</span>.<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">oldStartVnode</span>.<span style="color:#a6e22e">el</span>)
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">oldEndVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#f92672">--</span><span style="color:#a6e22e">oldEndIdx</span>]
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">newStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#f92672">++</span><span style="color:#a6e22e">newStartIdx</span>]
-</span></span><span style="display:flex;"><span>            }<span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>               <span style="color:#75715e">// 使用key时的比较
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">oldKeyToIdx</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">undefined</span>) {
-</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">oldKeyToIdx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createKeyToOldIdx</span>(<span style="color:#a6e22e">oldCh</span>, <span style="color:#a6e22e">oldStartIdx</span>, <span style="color:#a6e22e">oldEndIdx</span>) <span style="color:#75715e">// 有key生成index表
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                }
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">idxInOld</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldKeyToIdx</span>[<span style="color:#a6e22e">newStartVnode</span>.<span style="color:#a6e22e">key</span>]
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">idxInOld</span>) {
-</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">insertBefore</span>(<span style="color:#a6e22e">parentElm</span>, <span style="color:#a6e22e">createEle</span>(<span style="color:#a6e22e">newStartVnode</span>).<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">oldStartVnode</span>.<span style="color:#a6e22e">el</span>)
-</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">newStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#f92672">++</span><span style="color:#a6e22e">newStartIdx</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">oldStartVnode</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {   <span style="color:#75715e">//对于vnode.key的比较，会把oldVnode = null
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">oldStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#f92672">++</span><span style="color:#a6e22e">oldStartIdx</span>];
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">oldEndVnode</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">oldEndVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#f92672">--</span><span style="color:#a6e22e">oldEndIdx</span>];
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">newStartVnode</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">newStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#f92672">++</span><span style="color:#a6e22e">newStartIdx</span>];
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">newEndVnode</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">newEndVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#f92672">--</span><span style="color:#a6e22e">newEndIdx</span>];
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sameVnode</span>(<span style="color:#a6e22e">oldStartVnode</span>, <span style="color:#a6e22e">newStartVnode</span>)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">patchVnode</span>(<span style="color:#a6e22e">oldStartVnode</span>, <span style="color:#a6e22e">newStartVnode</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">oldStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#f92672">++</span><span style="color:#a6e22e">oldStartIdx</span>];
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">newStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#f92672">++</span><span style="color:#a6e22e">newStartIdx</span>];
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sameVnode</span>(<span style="color:#a6e22e">oldEndVnode</span>, <span style="color:#a6e22e">newEndVnode</span>)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">patchVnode</span>(<span style="color:#a6e22e">oldEndVnode</span>, <span style="color:#a6e22e">newEndVnode</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">oldEndVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#f92672">--</span><span style="color:#a6e22e">oldEndIdx</span>];
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">newEndVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#f92672">--</span><span style="color:#a6e22e">newEndIdx</span>];
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sameVnode</span>(<span style="color:#a6e22e">oldStartVnode</span>, <span style="color:#a6e22e">newEndVnode</span>)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">patchVnode</span>(<span style="color:#a6e22e">oldStartVnode</span>, <span style="color:#a6e22e">newEndVnode</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">insertBefore</span>(<span style="color:#a6e22e">parentElm</span>, <span style="color:#a6e22e">oldStartVnode</span>.<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">nextSibling</span>(<span style="color:#a6e22e">oldEndVnode</span>.<span style="color:#a6e22e">el</span>));
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">oldStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#f92672">++</span><span style="color:#a6e22e">oldStartIdx</span>];
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">newEndVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#f92672">--</span><span style="color:#a6e22e">newEndIdx</span>];
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sameVnode</span>(<span style="color:#a6e22e">oldEndVnode</span>, <span style="color:#a6e22e">newStartVnode</span>)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">patchVnode</span>(<span style="color:#a6e22e">oldEndVnode</span>, <span style="color:#a6e22e">newStartVnode</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">insertBefore</span>(<span style="color:#a6e22e">parentElm</span>, <span style="color:#a6e22e">oldEndVnode</span>.<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">oldStartVnode</span>.<span style="color:#a6e22e">el</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">oldEndVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#f92672">--</span><span style="color:#a6e22e">oldEndIdx</span>];
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">newStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#f92672">++</span><span style="color:#a6e22e">newStartIdx</span>];
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 使用key时的比较
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">oldKeyToIdx</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">undefined</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">oldKeyToIdx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createKeyToOldIdx</span>(<span style="color:#a6e22e">oldCh</span>, <span style="color:#a6e22e">oldStartIdx</span>, <span style="color:#a6e22e">oldEndIdx</span>); <span style="color:#75715e">// 有key生成index表
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">idxInOld</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldKeyToIdx</span>[<span style="color:#a6e22e">newStartVnode</span>.<span style="color:#a6e22e">key</span>];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">idxInOld</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">insertBefore</span>(<span style="color:#a6e22e">parentElm</span>, <span style="color:#a6e22e">createEle</span>(<span style="color:#a6e22e">newStartVnode</span>).<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">oldStartVnode</span>.<span style="color:#a6e22e">el</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">newStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#f92672">++</span><span style="color:#a6e22e">newStartIdx</span>];
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">elmToMove</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#a6e22e">idxInOld</span>];
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">elmToMove</span>.<span style="color:#a6e22e">sel</span><span style="color:#f92672">!==</span> <span style="color:#a6e22e">newStartVnode</span>.<span style="color:#a6e22e">sel</span>) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">insertBefore</span>(<span style="color:#a6e22e">parentElm</span>, <span style="color:#a6e22e">createEle</span>(<span style="color:#a6e22e">newStartVnode</span>).<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">oldStartVnode</span>.<span style="color:#a6e22e">el</span>);
+</span></span><span style="display:flex;"><span>                } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">patchVnode</span>(<span style="color:#a6e22e">elmToMove</span>, <span style="color:#a6e22e">newStartVnode</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">oldCh</span>[<span style="color:#a6e22e">idxInOld</span>] <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">insertBefore</span>(<span style="color:#a6e22e">parentElm</span>, <span style="color:#a6e22e">elmToMove</span>.<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">oldStartVnode</span>.<span style="color:#a6e22e">el</span>);
 </span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">elmToMove</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCh</span>[<span style="color:#a6e22e">idxInOld</span>]
-</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">elmToMove</span>.<span style="color:#a6e22e">sel</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">newStartVnode</span>.<span style="color:#a6e22e">sel</span>) {
-</span></span><span style="display:flex;"><span>                        <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">insertBefore</span>(<span style="color:#a6e22e">parentElm</span>, <span style="color:#a6e22e">createEle</span>(<span style="color:#a6e22e">newStartVnode</span>).<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">oldStartVnode</span>.<span style="color:#a6e22e">el</span>)
-</span></span><span style="display:flex;"><span>                    }<span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>                        <span style="color:#a6e22e">patchVnode</span>(<span style="color:#a6e22e">elmToMove</span>, <span style="color:#a6e22e">newStartVnode</span>)
-</span></span><span style="display:flex;"><span>                        <span style="color:#a6e22e">oldCh</span>[<span style="color:#a6e22e">idxInOld</span>] <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>
-</span></span><span style="display:flex;"><span>                        <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">insertBefore</span>(<span style="color:#a6e22e">parentElm</span>, <span style="color:#a6e22e">elmToMove</span>.<span style="color:#a6e22e">el</span>, <span style="color:#a6e22e">oldStartVnode</span>.<span style="color:#a6e22e">el</span>)
-</span></span><span style="display:flex;"><span>                    }
-</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">newStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#f92672">++</span><span style="color:#a6e22e">newStartIdx</span>]
-</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">newStartVnode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#f92672">++</span><span style="color:#a6e22e">newStartIdx</span>];
 </span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">oldStartIdx</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">oldEndIdx</span>) {
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">before</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#a6e22e">newEndIdx</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#a6e22e">newEndIdx</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>].<span style="color:#a6e22e">el</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">addVnodes</span>(<span style="color:#a6e22e">parentElm</span>, <span style="color:#a6e22e">before</span>, <span style="color:#a6e22e">newCh</span>, <span style="color:#a6e22e">newStartIdx</span>, <span style="color:#a6e22e">newEndIdx</span>)
-</span></span><span style="display:flex;"><span>        }<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">newStartIdx</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">newEndIdx</span>) {
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">removeVnodes</span>(<span style="color:#a6e22e">parentElm</span>, <span style="color:#a6e22e">oldCh</span>, <span style="color:#a6e22e">oldStartIdx</span>, <span style="color:#a6e22e">oldEndIdx</span>)
-</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">oldStartIdx</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">oldEndIdx</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">before</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#a6e22e">newEndIdx</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">?</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">newCh</span>[<span style="color:#a6e22e">newEndIdx</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>].<span style="color:#a6e22e">el</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">addVnodes</span>(<span style="color:#a6e22e">parentElm</span>, <span style="color:#a6e22e">before</span>, <span style="color:#a6e22e">newCh</span>, <span style="color:#a6e22e">newStartIdx</span>, <span style="color:#a6e22e">newEndIdx</span>);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">newStartIdx</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">newEndIdx</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">removeVnodes</span>(<span style="color:#a6e22e">parentElm</span>, <span style="color:#a6e22e">oldCh</span>, <span style="color:#a6e22e">oldStartIdx</span>, <span style="color:#a6e22e">oldEndIdx</span>);
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>总结：</p>
+</span></span></code></pre></div><h3 id="五总结">（五）总结<a hidden class="anchor" aria-hidden="true" href="#五总结">#</a></h3>
+<ol>
+<li><strong>调用 patch</strong>：传入新旧 <code>vnode</code>，调用 <code>sameVnode</code>，返回 <code>true</code> 说明值得比较，则调用 <code>patchVnode</code>，否则直接使用新节点替换旧节点。</li>
+<li><strong>调用 patchVnode</strong>：更详细地对比新旧 <code>vnode</code>，分以下几种情况：
 <ul>
-<li>
-<p><strong>调用 patch</strong>：传入 <code>新旧vnode</code>，调用 <code>sameVnode</code>，返回 <code>true</code> 说明值得比较，则调用 <code>patchVnode</code>，否则直接使用新节点替换旧节点</p>
-</li>
-<li>
-<p><strong>调用 patchVnode</strong>：更详细的对比新旧 vnode，分几种情况：</p>
-<ul>
-<li>1: 对于新旧 vnode 的.el 真实 dom 属性，并对比，如果===那就证明是同一个，直接 return</li>
-<li>2: 如果存在文本节点，直接用新 vnode 内文本替换旧 vnode 文本</li>
-<li>3: 判断子节点，如果新 vnode 有，旧 vnode 没有，则直接把新 vnode 的子节点加入到真实 dom，相反就删除掉真实 dom 子节点</li>
-<li>4: 如果都有子节点，且不同，调用 updateChildren，详细对比</li>
+<li>若新旧 <code>vnode</code> 的 <code>.el</code> 真实 DOM 属性相同（即引用相同），直接 <code>return</code>。</li>
+<li>若存在文本节点且内容不同，直接用新 <code>vnode</code> 内文本替换旧 <code>vnode</code> 文本。</li>
+<li>判断子节点：若新 <code>vnode</code> 有子节点而旧 <code>vnode</code> 没有，则直接把新 <code>vnode</code> 的子节点加入到真实 DOM；反之，则删除真实 DOM 的子节点。</li>
+<li>若新旧 <code>vnode</code> 都有子节点且不同，调用 <code>updateChildren</code> 详细对比。</li>
 </ul>
 </li>
-<li>
-<p><strong>调用 updateChildren</strong>： 从两边向中间收拢循环两个新旧 vnode 的每个子节点，以此对比，头头，尾尾，头尾，尾头。如果这四种比对调用 sameVnode，得到 true，证明值得对比，那么就调用第二步骤的 <code>patchVnode</code> 递归继续比，除了这四种情况。如果有 key，则会对比 key。否则直接替换新元素到真实 dom。</p>
-</li>
-</ul>
+<li><strong>调用 updateChildren</strong>：从两边向中间收拢循环两个新旧 <code>vnode</code> 的每个子节点，依次对比头头、尾尾、头尾、尾头。若这四种比对调用 <code>sameVnode</code> 得到 <code>true</code>，证明值得对比，那么就调用 <code>patchVnode</code> 递归继续比较。除这四种情况外，若有 <code>key</code>，则会对比 <code>key</code>；否则直接替换新元素到真实 DOM。</li>
+</ol>
+<h2 id="三结论">三、结论<a hidden class="anchor" aria-hidden="true" href="#三结论">#</a></h2>
+<p>通过虚拟 DOM 和 diff 算法，Vue 以及 React 等框架实现了高效的 DOM 更新，减少了直接操作 DOM 带来的性能损耗。理解 diff 算法原理有助于开发者更好地优化前端应用，提升用户体验。在实际应用中，合理利用 key 值、优化数据结构等方式，能进一步发挥 diff 算法的优势，提升页面渲染效率。</p>
 
 
   </div>
@@ -586,7 +610,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://slc3a2.github.io/">slc3a2</a></span> · 
+        <span>&copy; 2016 - 2025 <a href="https://slc3a2.github.io/">slc3a2</a></span> · 
 
     <span>
         Powered by

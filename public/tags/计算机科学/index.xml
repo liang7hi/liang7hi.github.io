@@ -16,7 +16,7 @@
       <description>这篇文章先给出离散数学中命题逻辑真值表，介绍了合取、析取、否定、蕴含、等价运算规则及结果，后分别以具体生活实例对每种运算进行详细说明，并特别指出蕴含运算中逻辑关系与因果关系的区别</description>
     </item>
     <item>
-      <title>从OSI七层模型到TCP</title>
+      <title>从 OSI 七层模型到 TCP</title>
       <link>https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/</link>
       <pubDate>Tue, 22 Feb 2022 23:15:06 +0800</pubDate>
       <guid>https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/</guid>
@@ -82,7 +82,7 @@
       <description>&lt;p&gt;持续更新，为了高效率访问，也算自己复习！！把遇到的手写题，抽空都撸了一遍。满满干货，不墨迹，直接上代码。总结道这篇博客里，下次面试前快速过一遍，临阵磨刀～&lt;/p&gt;</description>
     </item>
     <item>
-      <title>使用jarsigner重新签名apk包</title>
+      <title>使用 jarsigner 重新签名 apk 包</title>
       <link>https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/</link>
       <pubDate>Mon, 26 Oct 2020 16:41:13 +0800</pubDate>
       <guid>https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/</guid>
@@ -132,7 +132,7 @@
 &lt;p&gt;通过第一步得到最大的一个数放在数组最后。那么剩下的前三个数继续执行第一步，结果找到第二大的数，放在数组倒数第二位，重复此步骤，直到比对完数组中最后一组数。由于第一步骤每次得到一个最大值放最后，&lt;code&gt;j&lt;/code&gt;对应的正好是数组最后有多少个最大值，可以免去比较。所以上步骤每次循环可以优化一下每次少算一个最大值，每次循环总数&lt;code&gt;- 1&lt;/code&gt;也就是下面例子中的&lt;code&gt;- j&lt;/code&gt;。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Linux中内存交换空间(swap)的使用</title>
+      <title>Linux 中内存交换空间(swap)的使用</title>
       <link>https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Fri, 21 Aug 2020 16:48:04 +0800</pubDate>
       <guid>https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</guid>

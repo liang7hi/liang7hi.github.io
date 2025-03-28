@@ -1,5 +1,5 @@
 ---
-title: 使用css实现环状进度
+title: 使用 css 实现环状进度
 date: 2020-08-22T09:44:03+08:00
 draft: false
 tags:
@@ -7,6 +7,7 @@ tags:
 ShowToc: true
 TocOpen: true
 ShowWordCount: true
+summary: "使用纯 css 实现一个圆环的进度效果，主要使用了`background-image`渐变属性和动画状态的`伪元素遮盖`来实现"
 cover:
   image: "/images/使用css实现环状进度/cover.jpg"
   alt: "cover image"
@@ -59,4 +60,4 @@ cover:
 
 ### 效果
 
-![demo.gif](/images/使用css实现环状进度/E8CM6WZ1hRv7piy.gif)
+![demo.gif](/images/使用css实现环状进度/demo.gif)

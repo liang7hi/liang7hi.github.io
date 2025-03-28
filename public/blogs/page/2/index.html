@@ -10,7 +10,7 @@
 <meta name="description" content="日志 - slc3a2">
 <meta name="author" content="">
 <link rel="canonical" href="https://slc3a2.github.io/blogs/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.396209b02eb73fc7f6783dcb899ad84c3fe6383e054612a6596021c5cc16895a.css" integrity="sha256-OWIJsC63P8f2eD3LiZrYTD/mOD4FRhKmWWAhxcwWiVo=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8aef5397b3c8965a3894cb370fdb3576e7be2ce942cc9eff31afa6275b654510.css" integrity="sha256-iu9Tl7PIllo4lMs3D9s1due&#43;LOlCzJ7/Ma&#43;mJ1tlRRA=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://slc3a2.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
@@ -210,24 +210,23 @@
 
 <article class="post-entry"> 
 <figure class="entry-cover">
-        <img loading="lazy" src="https://slc3a2.github.io/images/vue%E5%8E%9F%E7%90%86mvvm%E5%AE%9E%E7%8E%B0/cover.jpg" alt="cover image">
+        <img loading="lazy" src="https://slc3a2.github.io/images/%E5%9F%BA%E4%BA%8EVue%E6%80%9D%E6%83%B3%E7%9A%84MVVM%E5%AE%9E%E7%8E%B0/cover.jpg" alt="cover image">
 </figure>
   <div class="post-info">
     <header class="entry-header">
-      <h2 class="entry-hint-parent">vue原理mvvm实现
+      <h2 class="entry-hint-parent">基于 Vue 思想的 MVVM 实现
       </h2>
     </header>
     <div class="entry-content">
       <p>
-        index.html 部分 &lt;!DOCTYPE html&gt; &lt;html lang=&#34;en&#34;&gt; &lt;head&gt; &lt;meta charset=&#34;UTF-8&#34; /&gt; &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34; /&gt; &lt;title&gt;Document&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;div id=&#34;app&#34;&gt; &lt;input type=&#34;text&#34; v-model=&#34;v&#34; /&gt; {{v}} &lt;button @click=&#34;reset&#34;&gt;重置&lt;/button&gt; &lt;/div&gt; &lt;script src=&#34;./index.js&#34;&gt;&lt;/script&gt; &lt;script&gt; const vm = new Mvvm({ el: &#34;#app&#34;, data: { v: &#34;hello world&#34;, }, methods: { reset() { this.v = &#34;&#34;; }, }, }); &lt;/script&gt; &lt;/body&gt; &lt;/html&gt; index.js 部分 class Mvvm { constructor(options) { const { el, data, methods } = options; this.methods = methods; this.target = null; // 监听this[data的key]所有属性，让变化可追踪 this.observe(this, data); // dom解析：提取{{}}、v-model、事件重写：@click this.compile(document.querySelector(el)); } // 数据变化监听 observe(_this, data) { Object.keys(data).forEach((key) =&gt; { let val = data[key]; Object.keys(data).forEach((key) =&gt; { // 如果val是数组或者对象，使用递归实现深层监听，直到val为简单数据类型。从而保证所有属性变化都被监听 if (typeof val === &#34;object&#34;) { return this.observe(_this, val); } // dispatcher用来操作订阅者(watcher) add 或者 update。要配合Object.defineProperty的get和set来使用 const dispatcher = new Dispatcher(); Object.defineProperty(_this, key, { get: function () { console.log(&#34;get&#34;); // this.target会在compile方法中出现，把this.target(一个watcher)添加到dispatcher(将要更新的watcher的列表)中，用于未来更新这个watcher对应的dom dispatcher.add(this.target); return val; }, set: function (newV) { // 值无变化，不处理 if (newV === val) { return; } console.log(`set`); val = newV; // 因为set了，值发生变化了，所以要通知get中添加的所有订阅者(watcher)：你们要把对应的dom中使用的值更新成newV dispatcher.notify(newV); }, }); }); }); } // dom解析 compile(dom) { const childs = dom.childNodes; for (const node of childs) { // nodeType 参考 https://www.w3school.com.cn/jsref/prop_node_nodetype.asp if (node.nodeType === 1) { const attrs = node.attributes; for (const attr of attrs) { if (attr.name === &#34;v-model&#34;) { const name = attr.value; // 放到订阅者列表中 this.target = new Watcher(node, &#34;input&#34;); // this[name]是为了触发observe的get，才会被监听 this[name]; // 由于是demo，假设只有input一种情况，input就会有双向绑定。使用this[name], 并且赋值input的值，来触发observe的get。实现更新信息的发布 node.addEventListener(&#34;input&#34;, (e) =&gt; { this[name] = e.target.value; }); } // 使用bind传递this。并代理click事件函数到@click上。这里仅拿click事件实现，实际会有多种事件 if (attr.name === &#34;@click&#34;) { const name = attr.value; node.addEventListener(&#34;click&#34;, this.methods[name].bind(this)); } } } // nodeType 参考 https://www.w3school.com.cn/jsref/prop_node_nodetype.asp if (node.nodeType === 3) { // 正则匹配{{}} const reg = /\{\{(.*)\}\}/; const match = node.nodeValue.match(reg); if (match) { const name = match[1].trim(); // 放到订阅者列表中 this.target = new Watcher(node, &#34;text&#34;); // this[name]是为了触发observe的get，才会被监听 this[name]; } } } } } // 发布者 class Dispatcher { constructor() { this.watchers = []; } // 增加订阅者 add(watcher) { this.watchers.push(watcher); } // 通知所有订阅者更新 notify(value) { this.watchers.forEach((item) =&gt; { item.update(value); }); } } // 订阅者 class Watcher { constructor(node, type) { this.node = node; this.type = type; } update(value) { // 区别dom类型来赋值 if (this.type === &#34;input&#34;) { this.node.value = value; } if (this.type === &#34;text&#34;) { this.node.nodeValue = value; } } } 解释 vue 在初始化后，执行 Observe 函数把 data 利用 Object.defineProperty 属性监听。同时也会使用 Compile 函数循环 dom，提取 vue 相关的关键字，v-bind 或者 v-model，找到这些值，新建一个 Watcher 实例，然后手动 get 使这些 watch 放入 dep 列表中等待订阅。等待调用 Observer 的 set (input 事件，或者手动赋值)，然后通知 dep 中所有 Watcher 调用 update 方法。
-...
+        一个简单的基于 Vue 思想实现的 MVVM 数据架构的代码示例，这里我们将实现一个简单的响应式数据绑定功能
       </p>
     </div>
     <footer class="entry-footer"><span title='2020-10-27 18:46:33 +0800 CST'>2020-10-27</span>&nbsp; ｜ &nbsp;3 分钟&nbsp; ｜ &nbsp;1127 字</footer>
   </div>
   <a
     class="entry-link"
-    aria-label="post link to vue原理mvvm实现"
+    aria-label="post link to 基于 Vue 思想的 MVVM 实现"
     href="https://slc3a2.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/"
   ></a>
 </article>
@@ -238,7 +237,7 @@
 </figure>
   <div class="post-info">
     <header class="entry-header">
-      <h2 class="entry-hint-parent">使用jarsigner重新签名apk包
+      <h2 class="entry-hint-parent">使用 jarsigner 重新签名 apk 包
       </h2>
     </header>
     <div class="entry-content">
@@ -253,7 +252,7 @@ keytool -genkeypair -alias demokey -keystore demo.keystore 内容填写后，生
   </div>
   <a
     class="entry-link"
-    aria-label="post link to 使用jarsigner重新签名apk包"
+    aria-label="post link to 使用 jarsigner 重新签名 apk 包"
     href="https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/"
   ></a>
 </article>
@@ -359,20 +358,19 @@ keytool -genkeypair -alias demokey -keystore demo.keystore 内容填写后，生
 </figure>
   <div class="post-info">
     <header class="entry-header">
-      <h2 class="entry-hint-parent">使用css实现环状进度
+      <h2 class="entry-hint-parent">使用 css 实现环状进度
       </h2>
     </header>
     <div class="entry-content">
       <p>
-        html &lt;div class=&#34;round&#34;&gt;&lt;/div&gt; css 使用background-image渐变属性和动画状态的伪元素遮盖来实现：
-.round { width: 150px; height: 150px; border-radius: 50%; background-color: #eee; background-image: linear-gradient(to right, transparent 50%, blue 0); position: relative; } .round::before { width: 50%; height: 100%; content: &#34;&#34;; position: absolute; top: 0; left: 50%; border-radius: 0 100% 100% 0 / 50%; background-color: inherit; transform-origin: left; animation: spin 5s linear infinite, dye 10s step-end infinite; } @keyframes spin { to { transform: rotate(0.5turn); } } @keyframes dye { 50% { background: blue; } }s 效果 ...
+        使用纯 css 实现一个圆环的进度效果，主要使用了background-image渐变属性和动画状态的伪元素遮盖来实现
       </p>
     </div>
     <footer class="entry-footer"><span title='2020-08-22 09:44:03 +0800 CST'>2020-08-22</span>&nbsp; ｜ &nbsp;1 分钟&nbsp; ｜ &nbsp;116 字</footer>
   </div>
   <a
     class="entry-link"
-    aria-label="post link to 使用css实现环状进度"
+    aria-label="post link to 使用 css 实现环状进度"
     href="https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/"
   ></a>
 </article>
@@ -383,7 +381,7 @@ keytool -genkeypair -alias demokey -keystore demo.keystore 内容填写后，生
 </figure>
   <div class="post-info">
     <header class="entry-header">
-      <h2 class="entry-hint-parent">Linux中内存交换空间(swap)的使用
+      <h2 class="entry-hint-parent">Linux 中内存交换空间(swap)的使用
       </h2>
     </header>
     <div class="entry-content">
@@ -397,7 +395,7 @@ keytool -genkeypair -alias demokey -keystore demo.keystore 内容填写后，生
   </div>
   <a
     class="entry-link"
-    aria-label="post link to Linux中内存交换空间(swap)的使用"
+    aria-label="post link to Linux 中内存交换空间(swap)的使用"
     href="https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/"
   ></a>
 </article>
@@ -411,7 +409,7 @@ keytool -genkeypair -alias demokey -keystore demo.keystore 内容填写后，生
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://slc3a2.github.io/">slc3a2</a></span> · 
+        <span>&copy; 2016 - 2025 <a href="https://slc3a2.github.io/">slc3a2</a></span> · 
 
     <span>
         Powered by

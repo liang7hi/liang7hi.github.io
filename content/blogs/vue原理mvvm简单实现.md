@@ -1,5 +1,5 @@
 ---
-title: vue原理mvvm实现
+title: 基于 Vue 思想的 MVVM 实现
 date: 2020-10-27T18:46:33+08:00
 draft: false
 tags:
@@ -7,8 +7,9 @@ tags:
 ShowToc: true
 TocOpen: true
 ShowWordCount: true
+summary: "一个简单的基于 Vue 思想实现的 MVVM 数据架构的代码示例，这里我们将实现一个简单的响应式数据绑定功能"
 cover:
-  image: "/images/vue原理mvvm实现/cover.jpg"
+  image: "/images/基于Vue思想的MVVM实现/cover.jpg"
   alt: "cover image"
   caption: "封面图来自 Unsplash | 作者 Raymond Okoro"
   relative: false

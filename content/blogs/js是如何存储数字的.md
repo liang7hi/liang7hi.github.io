@@ -1,5 +1,5 @@
 ---
-title: js是如何存储数字的
+title: js 是如何存储数字的
 date: 2022-06-22T18:06:30+08:00
 draft: false
 tags:

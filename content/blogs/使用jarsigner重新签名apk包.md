@@ -1,5 +1,5 @@
 ---
-title: 使用jarsigner重新签名apk包
+title: 使用 jarsigner 重新签名 apk 包
 date: 2020-10-26T16:41:13+08:00
 draft: false
 tags:

@@ -1,5 +1,5 @@
 ---
-title: Linux中内存交换空间(swap)的使用
+title: Linux 中内存交换空间(swap)的使用
 date: 2020-08-21T16:48:04+08:00
 draft: false
 tags:
