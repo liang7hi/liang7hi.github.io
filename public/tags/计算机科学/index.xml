@@ -138,8 +138,8 @@
       <guid>https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</guid>
       <description>&lt;hr&gt;
 &lt;h2 id=&#34;什么是-swap&#34;&gt;什么是 swap&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;swap&lt;/code&gt;分区是&lt;code&gt;Linux&lt;/code&gt;中特殊的一种存储，他在安装系统时被自动创建。&lt;/p&gt;
-&lt;p&gt;用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到&lt;code&gt;swap&lt;/code&gt;分区中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问&lt;code&gt;swap&lt;/code&gt;空间上的的数据时，&lt;code&gt;swap&lt;/code&gt;会把数据放回内存中供操作系统使用。&lt;/p&gt;</description>
+&lt;p&gt;&lt;strong&gt;swap 分区&lt;/strong&gt; 是 Linux 中特殊的一种存储，他在安装系统时被自动创建。&lt;/p&gt;
+&lt;p&gt;用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到 &lt;strong&gt;swap 分区&lt;/strong&gt; 中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问 swap 空间上的的数据时，swap 会把数据放回内存中供操作系统使用。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

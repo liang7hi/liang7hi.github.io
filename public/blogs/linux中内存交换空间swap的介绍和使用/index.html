@@ -16,8 +16,8 @@
   content="计算机科学"
 /> <meta name="description" content="
 什么是 swap
-swap分区是Linux中特殊的一种存储，他在安装系统时被自动创建。
-用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到swap分区中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问swap空间上的的数据时，swap会把数据放回内存中供操作系统使用。"> <meta name="author" content=""> <link rel="canonical" href="https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/">
+swap 分区 是 Linux 中特殊的一种存储，他在安装系统时被自动创建。
+用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到 swap 分区 中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问 swap 空间上的的数据时，swap 会把数据放回内存中供操作系统使用。"> <meta name="author" content=""> <link rel="canonical" href="https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/">
 <link
   crossorigin="anonymous"
   href="/assets/css/stylesheet.8aef5397b3c8965a3894cb370fdb3576e7be2ce942cc9eff31afa6275b654510.css"
@@ -82,8 +82,8 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
 <meta property="og:url" content="https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/">
   <meta property="og:site_name" content="slc3a2">
   <meta property="og:title" content="Linux 中内存交换空间(swap)的使用">
-  <meta property="og:description" content=" 什么是 swap swap分区是Linux中特殊的一种存储，他在安装系统时被自动创建。
-用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到swap分区中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问swap空间上的的数据时，swap会把数据放回内存中供操作系统使用。">
+  <meta property="og:description" content=" 什么是 swap swap 分区 是 Linux 中特殊的一种存储，他在安装系统时被自动创建。
+用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到 swap 分区 中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问 swap 空间上的的数据时，swap 会把数据放回内存中供操作系统使用。">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blogs">
@@ -96,8 +96,8 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
 <meta name="twitter:title" content="Linux 中内存交换空间(swap)的使用">
 <meta name="twitter:description" content="
 什么是 swap
-swap分区是Linux中特殊的一种存储，他在安装系统时被自动创建。
-用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到swap分区中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问swap空间上的的数据时，swap会把数据放回内存中供操作系统使用。">
+swap 分区 是 Linux 中特殊的一种存储，他在安装系统时被自动创建。
+用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到 swap 分区 中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问 swap 空间上的的数据时，swap 会把数据放回内存中供操作系统使用。">
 
 
 <script type="application/ld+json">
@@ -126,12 +126,12 @@ swap分区是Linux中特殊的一种存储，他在安装系统时被自动创�
   "@type": "BlogPosting",
   "headline": "Linux 中内存交换空间(swap)的使用",
   "name": "Linux 中内存交换空间(swap)的使用",
-  "description": " 什么是 swap swap分区是Linux中特殊的一种存储，他在安装系统时被自动创建。\n用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到swap分区中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问swap空间上的的数据时，swap会把数据放回内存中供操作系统使用。\n",
+  "description": " 什么是 swap swap 分区 是 Linux 中特殊的一种存储，他在安装系统时被自动创建。\n用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到 swap 分区 中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问 swap 空间上的的数据时，swap 会把数据放回内存中供操作系统使用。\n",
   "keywords": [
     "计算机科学"
   ],
-  "articleBody": " 什么是 swap swap分区是Linux中特殊的一种存储，他在安装系统时被自动创建。\n用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到swap分区中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问swap空间上的的数据时，swap会把数据放回内存中供操作系统使用。\n类似windows中的虚拟内存。每个操作系统都有这种内存调度处理，当内存不够用，还想跑点东西，可以临时选择增加swap空间。以达到实际使用内存超过物理内存。由于swap的读取速度远不如内存，最好的办法还是加物理内存。\nswap 分区类型 swap 文件 swap 分区 速度比较：物理内存 \u003e swap 分区 \u003e swap 文件。\n由于swap分区需要一个新的磁盘，当你的磁盘已经装了不少内容，不方便重新规划的话，也只好使用 swap 文件了。本文使用 swap 文件方式。\n查看 swap 信息 基于 Cent OS 7.6\n使用swapon -s命令查看系统中当前swap信息：\nswapon -s Filename Type Size Used Priority /swapfile file 1048572 199668 -2 Filename：swap 分区/文件所在的位置 Type：swap 类型；partition为分区类型，file为文件类型 Size：总容量，单位是 KB Used：已被使用的容量 Priority：优先级，越高越优先被操作系统使用 若查不到 swap 信息，使用free -h命令，查看内存使用情况：\nfree -h total used free shared buff/cache available Mem: 487M 65M 289M 44K 132M 398M Swap: 1.0G 259M 764M 操作 swap 创建swap文件， fallocate命令可以为文件预分配物理空间，和 touch、vim 的区别就是可瞬间创建超大的文件。快速创建的原因是通过分配块并将它们标记为未初始化，无需对数据块进行 IO，可以快速完成预分配。当使用时再使用物理内存。-l后加大小，可以是 k、m、g。再后面是保存位置和名称。\n# 创建一个1g文件swapfile保存到/ sudo fallocate -l 1G /swapfile 修改权限，仅允许文件所有者进行读写操作：\nsudo chmod 600 /swapfile 将这个文件设为 Linux 交换区：\nsudo mkswap /swapfile 激活交换区：\nsudo swapon /swapfile 修改/etc/fstab，实现系统重启自动加载 swap 文件：\necho '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab 至此完成 swap 文件增加。使用free -h查看 swap 使用情况：\nfree -h total used free shared buff/cache available Mem: 487M 65M 289M 44K 132M 398M Swap: 1.0G 259M 764M 停止所有 swap：\nsudo swapoff -a # 查看内存使用情况，可以看到 Swap 信息都变成0，说明操作成功了 free -h total used free shared buff/cache available Mem: 487M 261M 92M 484K 134M 201M Swap: 0 0 0 ",
-  "wordCount" : "922",
+  "articleBody": " 什么是 swap swap 分区 是 Linux 中特殊的一种存储，他在安装系统时被自动创建。\n用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到 swap 分区 中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问 swap 空间上的的数据时，swap 会把数据放回内存中供操作系统使用。\n类似 windows 中的虚拟内存。每个操作系统都有这种内存调度处理，当内存不够用，还想跑点东西，可以临时选择增加 swap 空间。以达到实际使用内存超过物理内存。由于 swap 的读取速度远不如内存，最好的办法还是加物理内存。\nswap 分区类型 swap 文件 swap 分区 速度比较：物理内存 \u003e swap 分区 \u003e swap 文件。\n由于 swap 分区 需要一个新的磁盘，当你的磁盘已经装了不少内容，不方便重新规划的话，也只好使用 swap 文件了。本文使用 swap 文件方式。\n查看 swap 信息 基于 Cent OS 7.6\n使用swapon -s命令查看系统中当前 swap 信息：\nswapon -s Filename Type Size Used Priority /swapfile file 1048572 199668 -2 Filename：swap 分区/文件所在的位置 Type：swap 类型；partition 为分区类型，file 为文件类型 Size：总容量，单位是 KB Used：已被使用的容量 Priority：优先级，越高越优先被操作系统使用 若查不到 swap 信息，使用free -h命令，查看内存使用情况：\nfree -h total used free shared buff/cache available Mem: 487M 65M 289M 44K 132M 398M Swap: 1.0G 259M 764M 操作 swap 创建 swap 文件， fallocate 命令可以为文件预分配物理空间，和 touch、vim 的区别就是可瞬间创建超大的文件。快速创建的原因是通过分配块并将它们标记为未初始化，无需对数据块进行 IO，可以快速完成预分配。当使用时再使用物理内存。-l 后加大小，可以是 k、m、g。再后面是保存位置和名称。\n# 创建一个1g文件swapfile保存到/ sudo fallocate -l 1G /swapfile 修改权限，仅允许文件所有者进行读写操作：\nsudo chmod 600 /swapfile 将这个文件设为 Linux 交换区：\nsudo mkswap /swapfile 激活交换区：\nsudo swapon /swapfile 修改/etc/fstab，实现系统重启自动加载 swap 文件：\necho '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab 至此完成 swap 文件增加。使用free -h查看 swap 使用情况：\nfree -h total used free shared buff/cache available Mem: 487M 65M 289M 44K 132M 398M Swap: 1.0G 259M 764M 停止所有 swap：\nsudo swapoff -a # 查看内存使用情况，可以看到 Swap 信息都变成0，说明操作成功了 free -h total used free shared buff/cache available Mem: 487M 261M 92M 484K 134M 201M Swap: 0 0 0 ",
+  "wordCount" : "880",
   "inLanguage": "zh",
   "image":"https://slc3a2.github.io/images/%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4%28swap%29%E7%9A%84%E4%BD%BF%E7%94%A8/cover.jpg","datePublished": "2020-08-21T16:48:04+08:00",
   "dateModified": "2020-08-21T16:48:04+08:00",
@@ -241,7 +241,7 @@ swap分区是Linux中特殊的一种存储，他在安装系统时被自动创�
     <h1 class="post-title entry-hint-parent">
       Linux 中内存交换空间(swap)的使用
     </h1>
-    <div class="post-meta"><span title='2020-08-21 16:48:04 +0800 CST'>2020-08-21</span>&nbsp; ｜ &nbsp;2 分钟&nbsp; ｜ &nbsp;922 字
+    <div class="post-meta"><span title='2020-08-21 16:48:04 +0800 CST'>2020-08-21</span>&nbsp; ｜ &nbsp;2 分钟&nbsp; ｜ &nbsp;880 字
 
 
       <span id="busuanzi_container_page_pv">
@@ -375,27 +375,27 @@ swap分区是Linux中特殊的一种存储，他在安装系统时被自动创�
 
   <div class="post-content"><hr>
 <h2 id="什么是-swap">什么是 swap<a hidden class="anchor" aria-hidden="true" href="#什么是-swap">#</a></h2>
-<p><code>swap</code>分区是<code>Linux</code>中特殊的一种存储，他在安装系统时被自动创建。</p>
-<p>用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到<code>swap</code>分区中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问<code>swap</code>空间上的的数据时，<code>swap</code>会把数据放回内存中供操作系统使用。</p>
-<p>类似<code>windows</code>中的虚拟内存。每个操作系统都有这种内存调度处理，当内存不够用，还想跑点东西，可以临时选择增加<code>swap</code>空间。以达到<code>实际使用内存</code>超过<code>物理内存</code>。由于<code>swap</code>的读取速度远不如内存，最好的办法还是<code>加物理内存</code>。</p>
+<p><strong>swap 分区</strong> 是 Linux 中特殊的一种存储，他在安装系统时被自动创建。</p>
+<p>用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到 <strong>swap 分区</strong> 中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问 swap 空间上的的数据时，swap 会把数据放回内存中供操作系统使用。</p>
+<p>类似 windows 中的虚拟内存。每个操作系统都有这种内存调度处理，<em>当内存不够用，还想跑点东西，可以临时选择增加 swap 空间。以达到实际使用内存超过物理内存</em>。由于 swap 的读取速度远不如内存，最好的办法还是加物理内存。</p>
 <h2 id="swap-分区类型">swap 分区类型<a hidden class="anchor" aria-hidden="true" href="#swap-分区类型">#</a></h2>
 <ul>
 <li><strong>swap 文件</strong></li>
 <li><strong>swap 分区</strong></li>
 </ul>
 <p>速度比较：物理内存 &gt; swap 分区 &gt; swap 文件。</p>
-<p>由于<code>swap</code>分区需要一个新的磁盘，当你的磁盘已经装了不少内容，不方便重新规划的话，也只好使用 swap 文件了。本文使用 swap 文件方式。</p>
+<p>由于 <strong>swap 分区</strong> 需要一个新的磁盘，当你的磁盘已经装了不少内容，不方便重新规划的话，也只好使用 swap 文件了。本文使用 swap 文件方式。</p>
 <h2 id="查看-swap-信息">查看 swap 信息<a hidden class="anchor" aria-hidden="true" href="#查看-swap-信息">#</a></h2>
 <blockquote>
 <p>基于 Cent OS 7.6</p></blockquote>
-<p>使用<code>swapon -s</code>命令查看系统中当前<code>swap</code>信息：</p>
+<p>使用<code>swapon -s</code>命令查看系统中当前 <strong>swap</strong> 信息：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>swapon -s
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Filename            Type        Size     Used        Priority
 </span></span><span style="display:flex;"><span>/swapfile           file        <span style="color:#ae81ff">1048572</span>  <span style="color:#ae81ff">199668</span>      -2
 </span></span></code></pre></div><ul>
 <li><strong>Filename</strong>：swap 分区/文件所在的位置</li>
-<li><strong>Type</strong>：swap 类型；<code>partition</code>为分区类型，<code>file</code>为文件类型</li>
+<li><strong>Type</strong>：swap 类型；partition 为分区类型，file 为文件类型</li>
 <li><strong>Size</strong>：总容量，单位是 KB</li>
 <li><strong>Used</strong>：已被使用的容量</li>
 <li><strong>Priority</strong>：优先级，越高越优先被操作系统使用</li>
@@ -406,7 +406,7 @@ swap分区是Linux中特殊的一种存储，他在安装系统时被自动创�
 </span></span><span style="display:flex;"><span>Mem:           487M         65M        289M         44K        132M        398M
 </span></span><span style="display:flex;"><span>Swap:          1.0G        259M        764M
 </span></span></code></pre></div><h2 id="操作-swap">操作 swap<a hidden class="anchor" aria-hidden="true" href="#操作-swap">#</a></h2>
-<p>创建<code>swap文件</code>， <code>fallocate</code>命令可以为文件预分配物理空间，和 touch、vim 的区别就是可瞬间创建超大的文件。快速创建的原因是通过分配块并将它们标记为未初始化，无需对数据块进行 IO，可以快速完成预分配。当使用时再使用物理内存。<code>-l</code>后加大小，可以是 k、m、g。再后面是保存位置和名称。</p>
+<p>创建 swap 文件， fallocate 命令可以为文件预分配物理空间，和 touch、vim 的区别就是可瞬间创建超大的文件。快速创建的原因是通过分配块并将它们标记为未初始化，无需对数据块进行 IO，可以快速完成预分配。当使用时再使用物理内存。<code>-l</code> 后加大小，可以是 k、m、g。再后面是保存位置和名称。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 创建一个1g文件swapfile保存到/</span>
 </span></span><span style="display:flex;"><span>sudo fallocate -l 1G /swapfile
 </span></span></code></pre></div><p>修改权限，仅允许文件所有者进行读写操作：</p>
