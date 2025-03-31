@@ -15,7 +15,7 @@
   name="keywords"
   content="前端"
 /> <meta name="description" content="为什么要总结这个问题
-这几天和我的同事聊到这个问题，他提出了一些深入的问题，想了想，我也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！so 被迫研究了下这个问题总结起来。便于以后查看和补充。"> <meta name="author" content=""> <link rel="canonical" href="https://slc3a2.github.io/blogs/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
+这几天和我的同事聊到这个问题，他提出了一些深入的问题，我想了想，也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！所以被迫研究了下这个问题总结起来。便于以后查看和补充。"> <meta name="author" content=""> <link rel="canonical" href="https://slc3a2.github.io/blogs/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
 <link
   crossorigin="anonymous"
   href="/assets/css/stylesheet.8aef5397b3c8965a3894cb370fdb3576e7be2ce942cc9eff31afa6275b654510.css"
@@ -80,7 +80,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
 <meta property="og:url" content="https://slc3a2.github.io/blogs/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
   <meta property="og:site_name" content="slc3a2">
   <meta property="og:title" content="浏览器事件循环">
-  <meta property="og:description" content="为什么要总结这个问题 这几天和我的同事聊到这个问题，他提出了一些深入的问题，想了想，我也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！so 被迫研究了下这个问题总结起来。便于以后查看和补充。">
+  <meta property="og:description" content="为什么要总结这个问题 这几天和我的同事聊到这个问题，他提出了一些深入的问题，我想了想，也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！所以被迫研究了下这个问题总结起来。便于以后查看和补充。">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blogs">
@@ -92,7 +92,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
 <meta name="twitter:image" content="https://slc3a2.github.io/images/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/cover.jpg">
 <meta name="twitter:title" content="浏览器事件循环">
 <meta name="twitter:description" content="为什么要总结这个问题
-这几天和我的同事聊到这个问题，他提出了一些深入的问题，想了想，我也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！so 被迫研究了下这个问题总结起来。便于以后查看和补充。">
+这几天和我的同事聊到这个问题，他提出了一些深入的问题，我想了想，也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！所以被迫研究了下这个问题总结起来。便于以后查看和补充。">
 
 
 <script type="application/ld+json">
@@ -121,12 +121,12 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
   "@type": "BlogPosting",
   "headline": "浏览器事件循环",
   "name": "浏览器事件循环",
-  "description": "为什么要总结这个问题 这几天和我的同事聊到这个问题，他提出了一些深入的问题，想了想，我也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！so 被迫研究了下这个问题总结起来。便于以后查看和补充。\n",
+  "description": "为什么要总结这个问题 这几天和我的同事聊到这个问题，他提出了一些深入的问题，我想了想，也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！所以被迫研究了下这个问题总结起来。便于以后查看和补充。\n",
   "keywords": [
     "前端"
   ],
-  "articleBody": "为什么要总结这个问题 这几天和我的同事聊到这个问题，他提出了一些深入的问题，想了想，我也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！so 被迫研究了下这个问题总结起来。便于以后查看和补充。\n单线程和事件循环 因为多线程会产生共享资源，修改彼此，等复杂问题。并且早期 js 只是来显示简单页面的，但今非昔比，或许 js 作者可能都没想到现在的 js 发展的如此迅猛！所以单线程更适合 js ，一直延续至今。那问题来了，只有单线程是如何处理耗时任务且实现不阻塞的呢，这里就用到了事件循环。事件循环(event loop)是一种计算机系统运行机制。作为单线程的 js 来说，事件循环是来解决当执行耗时任务时不阻塞主线程的调度机制。来自维基百科的解释\n事件循环工作流程 以当前最新版 chrome_v98.0 浏览器为准\njs 中的任务可分为\n同步任务 异步任务 打开一个 tab 页面，浏览器会新开辟一个进程。包含执行栈( js 主执行线程)和一些其他线程(属于浏览器)。当一个包含 css， js 的 html 页面被加载时，会从上往下，从左到右按顺序解析。当遇到同步任务时，它的执行上下文会被放入执行栈，执行完毕后，出栈。下一个放入，依次执行。\n当遇到耗时(异步)任务，会根据不同的任务类型，提供给专门的线程来处理，举出一些例子，不限于这些：\nsetInterval / setTimeout… ⇒ timer 线程 网络请求 ⇒ 网络请求线程 dom 绘制渲染 ⇒gui 线程 dom 元素的事件监听 ⇒ 事件线程 等到这些异步任务应该被执行时，比如用户点击按钮、网络请求、延时器时间到了等，会把相应的回调函数放入异步队列中，按先后顺序排列起来待命。\n直到执行栈的所有同步任务执行完毕后，同步栈会从异步队列中第一位开始取出入栈，依次执行。如果每个异步队列中的任务被执行的过程中，再次产生异步任务，会被放到任务队列的最后，等待执行。\n有一些问题 这些专门线程处理一些任务时候，拿到结果后，都按照先后顺序放入队列被执行，没有办法控制任务优先级，希望一些任务不在队列最末尾排队，而是直接插队执行。为了解决这个问题，在异步任务队列中再细分成两种类型，微任务和宏任务，微任务可以理解是插队的任务，优先级更高。根据类型的不同会被放入不同的队列：\n微任务队列 : promise、 queueMicroTask、 mutationObserver 宏任务队列 : setTimeout、 setInterval、 requestAnimationFrame等 按照先微再宏的顺序执行：每一个宏任务开始前，都先要把上一个宏任务产生的微任务执行完毕再开始新的宏任务，微任务是宏任务的一部分，换句话来说，就是当执行栈空了之后，先检查微任务队列，再检查宏任务队列。\n总结 更通熟易懂事件循环动画参考 B 站\n存在的疑问 在分配宏/微任务时有总的调度系统分配？还是一句代码执行过程中有一次机会，让每个线程依次检查一下，把自己任务拿走 每个宏任务都有属于自己的微任务队列，还是一共只有一条微任务队列？ 回答：node 端的执行规律是一个宏任务队列搭配一个微任务队列，而浏览器是一个单独的宏任务搭配一个微任务队列。但是在 node11 之后，node 和浏览器的规律趋同。 如何区分微任务和宏任务的呢，具体是通过哪些特征分类的？ 最后整一道经典面试题 基于 chrome_v98.0 浏览器环境\nasync function async1() { console.log(\"async1 start\"); await async2(); console.log(\"async1 end\"); } async function async2() { console.log(\"async2\"); } console.log(\"script start\"); setTimeout(function () { console.log(\"setTimeout\"); }, 0); async1(); new Promise(function (resolve) { console.log(\"promise1\"); resolve(); }).then(function () { console.log(\"promise2\"); }); console.log(\"script end\"); 解析：按照从上往下顺序先执行同步代码，前两个函数async和async2是函数声明，忽略。然后第 1 个输出的是script start，然后看到setTimeout, 由于它是异步且属于宏任务，放到最后执行。然后看到 async1 函数被执行了，进入async1函数体。\n第 2 个输出的是async1 start, 看到 await 规则是：await 右的语句被同步执行，所以第 3 个输出的是async2，await 下的语句(函数体内)被当作 async 函数返回一个 promsise 的回调函数体的语句去处理，且被放入了异步任务队列中，等待中。\n然后跳出 async1 函数体，继续执行同步代码，遇到 new Promise，第 4 次输出promise，看到 resolve，就把 then 中回调，放入任务队列中，然后继续向下执行同步代码，第 5 次输出的最后的script end。\n至此同步执行栈空了，开始把任务队列中的上下文拿到执行栈执行，由于队列先进先出，所以第一个被入栈的是 async1 的回调，也就是第 6 次输出的是async1 end，然后把第二个队列中的上下文放入执行栈，也就是 promise 的 resolve，所以第 7 次输出promise2，至此微任务执行完成，现在执行宏任务，也就是 timeout，所以第 8 次输出为setTimeout。\n最终结果\nscript start async1 start async2 promise1 script end async1 end promise2 setTimeout ",
-  "wordCount" : "1834",
+  "articleBody": "为什么要总结这个问题 这几天和我的同事聊到这个问题，他提出了一些深入的问题，我想了想，也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！所以被迫研究了下这个问题总结起来。便于以后查看和补充。\n单线程和事件循环 因为多线程会产生共享资源，修改彼此，等复杂问题。并且早期 js 只是来显示简单页面的，但今非昔比，或许 js 作者可能都没想到现在的 js 发展的如此迅猛！所以单线程更适合 js ，一直延续至今。那问题来了，只有单线程是如何处理耗时任务且实现不阻塞的呢，这里就用到了事件循环。事件循环 event loop 是一种计算机系统运行机制。作为单线程的 js 来说，事件循环是来 解决当执行耗时任务时不阻塞主线程的调度机制。来自维基百科的解释\n事件循环工作流程 以当前最新版 Chrome_v98.0 浏览器为准\njs 中的任务可分为\n同步任务 异步任务 打开一个 tab 页面，浏览器会新开辟一个进程。包含执行栈( js 主执行线程)和一些其他线程(属于浏览器)。当一个包含 css， js 的 html 页面被加载时，会从上往下，从左到右按顺序解析。当遇到同步任务时，它的执行上下文会被放入执行栈，执行完毕后，出栈。下一个放入，依次执行。\n当遇到耗时(异步)任务，会根据不同的任务类型，提供给专门的线程来处理，举出一些例子，不限于这些：\nsetInterval / setTimeout… ⇒ timer 线程 网络请求 ⇒ 网络请求线程 dom 绘制渲染 ⇒gui 线程 dom 元素的事件监听 ⇒ 事件线程 等到这些异步任务应该被执行时，比如用户点击按钮、网络请求、延时器时间到了等，会把相应的回调函数放入异步队列中，按先后顺序排列起来待命。\n直到执行栈的所有同步任务执行完毕后，同步栈会从异步队列中第一位开始取出入栈，依次执行。如果每个异步队列中的任务被执行的过程中，再次产生异步任务，会被放到任务队列的最后，等待执行。\n有一些问题 这些专门线程处理一些任务时候，拿到结果后，都按照先后顺序放入队列被执行，没有办法控制任务优先级，希望一些任务不在队列最末尾排队，而是直接插队执行。为了解决这个问题，在异步任务队列中再细分成两种类型，微任务和宏任务，微任务可以理解是插队的任务，优先级更高。根据类型的不同会被放入不同的队列：\n微任务队列 : promise、 queueMicroTask、 mutationObserver 宏任务队列 : setTimeout、 setInterval、 requestAnimationFrame等 按照先微再宏的顺序执行：每一个宏任务开始前，都先要把上一个宏任务产生的微任务执行完毕再开始新的宏任务，微任务是宏任务的一部分，换句话来说，就是当执行栈空了之后，先检查微任务队列，再检查宏任务队列。\n总结 更通熟易懂事件循环动画参考 B 站\n存在的疑问 在分配宏/微任务时有总的调度系统分配？还是一句代码执行过程中有一次机会，让每个线程依次检查一下，把自己任务拿走 每个宏任务都有属于自己的微任务队列，还是一共只有一条微任务队列？ 回答：node 端的执行规律是一个宏任务队列搭配一个微任务队列，而浏览器是一个单独的宏任务搭配一个微任务队列。但是在 node11 之后，node 和浏览器的规律趋同。 如何区分微任务和宏任务的呢，具体是通过哪些特征分类的？ 最后整一道经典面试题 基于 Chrome_v98.0 浏览器环境\nasync function async1() { console.log(\"async1 start\"); await async2(); console.log(\"async1 end\"); } async function async2() { console.log(\"async2\"); } console.log(\"script start\"); setTimeout(function () { console.log(\"setTimeout\"); }, 0); async1(); new Promise(function (resolve) { console.log(\"promise1\"); resolve(); }).then(function () { console.log(\"promise2\"); }); console.log(\"script end\"); 解析：按照从上往下顺序先执行同步代码，前两个函数 async 和 async2 是函数声明，忽略。然后第 1 个输出的是 script start，然后看到 setTimeout, 由于它是异步且属于宏任务，放到最后执行。然后看到 async1 函数被执行了，进入 async1 函数体。\n第 2 个输出的是 async1 start, 看到 await 规则是：await 右的语句被同步执行，所以第 3 个输出的是 async2，await 下的语句(函数体内)被当作 async 函数返回一个 promsise 的回调函数体的语句去处理，且被放入了异步任务队列中，等待中。\n然后跳出 async1 函数体，继续执行同步代码，遇到 new Promise，第 4 次输出 promise，看到 resolve，就把 then 中回调，放入任务队列中，然后继续向下执行同步代码，第 5 次输出的最后的 script end。\n至此同步执行栈空了，开始把任务队列中的上下文拿到执行栈执行，由于队列先进先出，所以第一个被入栈的是 async1 的回调，也就是第 6 次输出的是 async1 end，然后把第二个队列中的上下文放入执行栈，也就是 promise 的 resolve，所以第 7 次输出 promise2，至此微任务执行完成，现在执行宏任务，也就是 timeout，所以第 8 次输出为 setTimeout。\n最终结果\nscript start async1 start async2 promise1 script end async1 end promise2 setTimeout ",
+  "wordCount" : "1781",
   "inLanguage": "zh",
   "image":"https://slc3a2.github.io/images/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/cover.jpg","datePublished": "2022-03-06T10:53:20+08:00",
   "dateModified": "2022-03-06T10:53:20+08:00",
@@ -236,7 +236,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
     <h1 class="post-title entry-hint-parent">
       浏览器事件循环
     </h1>
-    <div class="post-meta"><span title='2022-03-06 10:53:20 +0800 CST'>2022-03-06</span>&nbsp; ｜ &nbsp;4 分钟&nbsp; ｜ &nbsp;1834 字
+    <div class="post-meta"><span title='2022-03-06 10:53:20 +0800 CST'>2022-03-06</span>&nbsp; ｜ &nbsp;4 分钟&nbsp; ｜ &nbsp;1781 字
 
 
       <span id="busuanzi_container_page_pv">
@@ -375,12 +375,12 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
 </script>
 
   <div class="post-content"><h2 id="为什么要总结这个问题">为什么要总结这个问题<a hidden class="anchor" aria-hidden="true" href="#为什么要总结这个问题">#</a></h2>
-<p>这几天和我的同事聊到这个问题，他提出了一些深入的问题，想了想，我也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！so 被迫研究了下这个问题总结起来。便于以后查看和补充。</p>
+<p>这几天和我的同事聊到这个问题，他提出了一些深入的问题，我想了想，也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！所以被迫研究了下这个问题总结起来。便于以后查看和补充。</p>
 <h2 id="单线程和事件循环">单线程和事件循环<a hidden class="anchor" aria-hidden="true" href="#单线程和事件循环">#</a></h2>
-<p>因为多线程会产生共享资源，修改彼此，等复杂问题。并且早期 <code>js</code> 只是来显示简单页面的，但今非昔比，或许 <code>js</code> 作者可能都没想到现在的 <code>js</code> 发展的如此迅猛！所以单线程更适合 <code>js</code> ，一直延续至今。那问题来了，只有单线程是如何处理耗时任务且实现不阻塞的呢，这里就用到了事件循环。<strong>事件循环(event loop)<strong>是一种计算机系统运行机制。作为单线程的 <code>js</code> 来说，事件循环是来</strong>解决当执行耗时任务时不阻塞主线程的调度机制</strong>。<a href="https://zh.wikipedia.org/zh-tw/%E4%BA%8B%E4%BB%B6%E7%8E%AF">来自维基百科的解释</a></p>
+<p>因为多线程会产生共享资源，修改彼此，等复杂问题。并且早期 <code>js</code> 只是来显示简单页面的，但今非昔比，或许 <code>js</code> 作者可能都没想到现在的 <code>js</code> 发展的如此迅猛！所以单线程更适合 <code>js</code> ，一直延续至今。那问题来了，只有单线程是如何处理耗时任务且实现不阻塞的呢，这里就用到了事件循环。<strong>事件循环</strong> <em>event loop</em> 是一种计算机系统运行机制。作为单线程的 <code>js</code> 来说，事件循环是来 <strong>解决当执行耗时任务时不阻塞主线程的调度机制</strong>。<a href="https://zh.wikipedia.org/zh-tw/%E4%BA%8B%E4%BB%B6%E7%8E%AF">来自维基百科的解释</a></p>
 <h2 id="事件循环工作流程">事件循环工作流程<a hidden class="anchor" aria-hidden="true" href="#事件循环工作流程">#</a></h2>
 <blockquote>
-<p>以当前最新版 chrome_v98.0 浏览器为准</p></blockquote>
+<p>以当前最新版 <em><em>Chrome_v98.0</em></em> 浏览器为准</p></blockquote>
 <p><code>js</code> 中的任务可分为</p>
 <ul>
 <li><strong>同步任务</strong></li>
@@ -418,7 +418,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
 </ul>
 <h2 id="最后整一道经典面试题"><strong>最后整一道经典面试题</strong><a hidden class="anchor" aria-hidden="true" href="#最后整一道经典面试题">#</a></h2>
 <blockquote>
-<p>基于 chrome_v98.0 浏览器环境</p></blockquote>
+<p>基于 <em>Chrome_v98.0</em> 浏览器环境</p></blockquote>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">async1</span>() {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;async1 start&#34;</span>);
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">async2</span>();
@@ -439,10 +439,10 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;promise2&#34;</span>);
 </span></span><span style="display:flex;"><span>});
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;script end&#34;</span>);
-</span></span></code></pre></div><p>解析：按照从上往下顺序先执行同步代码，前两个函数<strong>async</strong>和<strong>async2</strong>是函数声明，忽略。然后第 1 个输出的是<strong>script start</strong>，然后看到<strong>setTimeout</strong>, 由于它是异步且属于宏任务，放到最后执行。然后看到 async1 函数被执行了，进入<strong>async1</strong>函数体。</p>
-<p>第 2 个输出的是<strong>async1 start</strong>, 看到 await 规则是：await 右的语句被同步执行，所以第 3 个输出的是<strong>async2</strong>，await 下的语句(函数体内)被当作 async 函数返回一个 promsise 的回调函数体的语句去处理，且被放入了异步任务队列中，等待中。</p>
-<p>然后跳出 async1 函数体，继续执行同步代码，遇到 new Promise，第 4 次输出<strong>promise</strong>，看到 resolve，就把 then 中回调，放入任务队列中，然后继续向下执行同步代码，第 5 次输出的最后的<strong>script end</strong>。</p>
-<p>至此同步执行栈空了，开始把任务队列中的上下文拿到执行栈执行，由于队列先进先出，所以第一个被入栈的是 async1 的回调，也就是第 6 次输出的是<strong>async1 end</strong>，然后把第二个队列中的上下文放入执行栈，也就是 promise 的 resolve，所以第 7 次输出<strong>promise2</strong>，至此微任务执行完成，现在执行宏任务，也就是 timeout，所以第 8 次输出为<strong>setTimeout</strong>。</p>
+</span></span></code></pre></div><p>解析：按照从上往下顺序先执行同步代码，前两个函数 <strong>async</strong> 和 <strong>async2</strong> 是函数声明，忽略。然后第 1 个输出的是 <strong>script start</strong>，然后看到 <strong>setTimeout</strong>, 由于它是异步且属于宏任务，放到最后执行。然后看到 async1 函数被执行了，进入 <strong>async1</strong> 函数体。</p>
+<p>第 2 个输出的是 <strong>async1 start</strong>, 看到 await 规则是：await 右的语句被同步执行，所以第 3 个输出的是 <strong>async2</strong>，await 下的语句(函数体内)被当作 async 函数返回一个 promsise 的回调函数体的语句去处理，且被放入了异步任务队列中，等待中。</p>
+<p>然后跳出 async1 函数体，继续执行同步代码，遇到 new Promise，第 4 次输出 <strong>promise</strong>，看到 resolve，就把 then 中回调，放入任务队列中，然后继续向下执行同步代码，第 5 次输出的最后的 <strong>script end</strong>。</p>
+<p>至此同步执行栈空了，开始把任务队列中的上下文拿到执行栈执行，由于队列先进先出，所以第一个被入栈的是 async1 的回调，也就是第 6 次输出的是 <strong>async1 end</strong>，然后把第二个队列中的上下文放入执行栈，也就是 promise 的 resolve，所以第 7 次输出 <strong>promise2</strong>，至此微任务执行完成，现在执行宏任务，也就是 timeout，所以第 8 次输出为 <strong>setTimeout</strong>。</p>
 <p>最终结果</p>
 <pre tabindex="0"><code class="language-javascipt" data-lang="javascipt">script start
 async1 start
