@@ -86,18 +86,7 @@
       <link>https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/</link>
       <pubDate>Mon, 26 Oct 2020 16:41:13 +0800</pubDate>
       <guid>https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/</guid>
-      <description>&lt;h2 id=&#34;环境&#34;&gt;环境&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;macos 10.14&lt;/li&gt;
-&lt;li&gt;iterm 2&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;使用&#34;&gt;使用&lt;/h2&gt;
-&lt;h3 id=&#34;生成密钥&#34;&gt;生成密钥&lt;/h3&gt;
-&lt;p&gt;keytool -genkeypair -alias &amp;lt;别名&amp;gt; -keystore &amp;lt;密钥库存储位置和名称&amp;gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;keytool -genkeypair -alias demokey -keystore demo.keystore
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;内容填写后，生成完毕&lt;/p&gt;
-&lt;h3 id=&#34;生成签名&#34;&gt;生成签名&lt;/h3&gt;
-&lt;p&gt;jarsigner -verbose -keystore &amp;lt;使用密钥库位置&amp;gt; -signedjar &amp;lt;签名后的包保存位置和名字&amp;gt; &amp;lt;要签名的包保存位置和名字&amp;gt; &amp;lt;别名，对应上面的别名&amp;gt;&lt;/p&gt;</description>
+      <description>该文章介绍了在 macOS 10.14 系统下，借助 iTerm 2 工具进行密钥生成与签名操作的步骤</description>
     </item>
     <item>
       <title>函数柯里化(currying)</title>

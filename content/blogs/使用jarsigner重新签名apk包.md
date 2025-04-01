@@ -7,6 +7,7 @@ tags:
 ShowToc: true
 TocOpen: true
 ShowWordCount: true
+summary: 该文章介绍了在 macOS 10.14 系统下，借助 iTerm 2 工具进行密钥生成与签名操作的步骤
 cover:
   image: "/images/使用jarsigner重新签名apk包/cover.jpg"
   alt: "cover image"

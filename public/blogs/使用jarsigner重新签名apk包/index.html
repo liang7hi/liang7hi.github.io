@@ -14,18 +14,7 @@
 <meta
   name="keywords"
   content="计算机科学"
-/> <meta name="description" content="环境
-
-macos 10.14
-iterm 2
-
-使用
-生成密钥
-keytool -genkeypair -alias &lt;别名&gt; -keystore &lt;密钥库存储位置和名称&gt;
-keytool -genkeypair -alias demokey -keystore demo.keystore
-内容填写后，生成完毕
-生成签名
-jarsigner -verbose -keystore &lt;使用密钥库位置&gt; -signedjar &lt;签名后的包保存位置和名字&gt; &lt;要签名的包保存位置和名字&gt; &lt;别名，对应上面的别名&gt;"> <meta name="author" content=""> <link rel="canonical" href="https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/">
+/> <meta name="description" content="该文章介绍了在 macOS 10.14 系统下，借助 iTerm 2 工具进行密钥生成与签名操作的步骤"> <meta name="author" content=""> <link rel="canonical" href="https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/">
 <link
   crossorigin="anonymous"
   href="/assets/css/stylesheet.827105c01d23722ecb5d67f525f091354069903906f2a2e3a7b7aaff76a6c3bc.css"
@@ -90,9 +79,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
 <meta property="og:url" content="https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/">
   <meta property="og:site_name" content="slc3a2">
   <meta property="og:title" content="使用 jarsigner 重新签名 apk 包">
-  <meta property="og:description" content="环境 macos 10.14 iterm 2 使用 生成密钥 keytool -genkeypair -alias &lt;别名&gt; -keystore &lt;密钥库存储位置和名称&gt;
-keytool -genkeypair -alias demokey -keystore demo.keystore 内容填写后，生成完毕
-生成签名 jarsigner -verbose -keystore &lt;使用密钥库位置&gt; -signedjar &lt;签名后的包保存位置和名字&gt; &lt;要签名的包保存位置和名字&gt; &lt;别名，对应上面的别名&gt;">
+  <meta property="og:description" content="该文章介绍了在 macOS 10.14 系统下，借助 iTerm 2 工具进行密钥生成与签名操作的步骤">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blogs">
@@ -103,18 +90,7 @@ keytool -genkeypair -alias demokey -keystore demo.keystore 内容填写后，生
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://slc3a2.github.io/images/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/cover.jpg">
 <meta name="twitter:title" content="使用 jarsigner 重新签名 apk 包">
-<meta name="twitter:description" content="环境
-
-macos 10.14
-iterm 2
-
-使用
-生成密钥
-keytool -genkeypair -alias &lt;别名&gt; -keystore &lt;密钥库存储位置和名称&gt;
-keytool -genkeypair -alias demokey -keystore demo.keystore
-内容填写后，生成完毕
-生成签名
-jarsigner -verbose -keystore &lt;使用密钥库位置&gt; -signedjar &lt;签名后的包保存位置和名字&gt; &lt;要签名的包保存位置和名字&gt; &lt;别名，对应上面的别名&gt;">
+<meta name="twitter:description" content="该文章介绍了在 macOS 10.14 系统下，借助 iTerm 2 工具进行密钥生成与签名操作的步骤">
 
 
 <script type="application/ld+json">
@@ -143,7 +119,7 @@ jarsigner -verbose -keystore &lt;使用密钥库位置&gt; -signedjar &lt;签名
   "@type": "BlogPosting",
   "headline": "使用 jarsigner 重新签名 apk 包",
   "name": "使用 jarsigner 重新签名 apk 包",
-  "description": "环境 macos 10.14 iterm 2 使用 生成密钥 keytool -genkeypair -alias \u0026lt;别名\u0026gt; -keystore \u0026lt;密钥库存储位置和名称\u0026gt;\nkeytool -genkeypair -alias demokey -keystore demo.keystore 内容填写后，生成完毕\n生成签名 jarsigner -verbose -keystore \u0026lt;使用密钥库位置\u0026gt; -signedjar \u0026lt;签名后的包保存位置和名字\u0026gt; \u0026lt;要签名的包保存位置和名字\u0026gt; \u0026lt;别名，对应上面的别名\u0026gt;\n",
+  "description": "该文章介绍了在 macOS 10.14 系统下，借助 iTerm 2 工具进行密钥生成与签名操作的步骤",
   "keywords": [
     "计算机科学"
   ],
