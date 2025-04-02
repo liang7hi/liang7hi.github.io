@@ -69,4 +69,7 @@ imageData:
   - src: "/images/wall/x2531230417.jpg"
     date: "2016年冬天"
     description: "PBP2016-200KM骑行挑战赛"
+  - src: "/images/wall/1391743560601_.pic.jpg"
+    date: "2025-04-01"
+    description: "北京·海棠花"
 ---
