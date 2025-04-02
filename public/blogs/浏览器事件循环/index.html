@@ -229,6 +229,14 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
     </nav>
 </header>
 <main class="main">
+<head>
+  
+  <style>
+    main.main img {
+      cursor: zoom-in;
+    }
+  </style>
+</head>
 
 <article class="post-single">
   <header class="post-header">
@@ -548,6 +556,11 @@ setTimeout
 </script>
 
 </article>
+
+<script src="/js/view-image.min.js"></script>
+<script>
+  window.ViewImage && ViewImage.init("main.main img");
+</script>
     </main>
     
 <footer class="footer">

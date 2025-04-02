@@ -1,4 +1,12 @@
 {{- define "main" }}
+<head>
+  <!-- <link href="/js/photos.css" rel="stylesheet" /> -->
+  <style>
+    main.main img {
+      cursor: zoom-in;
+    }
+  </style>
+</head>
 
 <article class="post-single">
   <header class="post-header">
@@ -61,5 +69,10 @@
 
   {{- if (.Param "comments") }} {{- partial "comments.html" . }} {{- end }}
 </article>
+
+<script src="/js/view-image.min.js"></script>
+<script>
+  window.ViewImage && ViewImage.init("main.main img");
+</script>
 
 {{- end }}{{/* end main */}}

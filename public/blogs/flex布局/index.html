@@ -231,6 +231,14 @@ flex布局通常被叫做flex box，也叫弹性盒子或容器，是一种一�
     </nav>
 </header>
 <main class="main">
+<head>
+  
+  <style>
+    main.main img {
+      cursor: zoom-in;
+    }
+  </style>
+</head>
 
 <article class="post-single">
   <header class="post-header">
@@ -610,6 +618,11 @@ flex布局通常被叫做flex box，也叫弹性盒子或容器，是一种一�
 </script>
 
 </article>
+
+<script src="/js/view-image.min.js"></script>
+<script>
+  window.ViewImage && ViewImage.init("main.main img");
+</script>
     </main>
     
 <footer class="footer">
