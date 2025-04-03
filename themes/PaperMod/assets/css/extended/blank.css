@@ -58,6 +58,7 @@ body {
   text-align: center;
   font-size: 12px;
   margin-bottom: 20px;
+  margin-top: 5px;
   color: var(--secondary);
 }
 
