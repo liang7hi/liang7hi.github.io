@@ -14,6 +14,10 @@ cover:
   relative: false
 ---
 
+## 应用介绍
+
+ClashX Pro 是 MacOS 系统即苹果电脑系统下的代理软件客户端，功能强大且支持多种代理协议，如 Shadowsocks(SS)、ShadowsocksR(SSR)、Socks、Snell、V2Ray、Trojan 等代理协议
+
 ## 问题剖析
 
 在使用 ClashX Pro 过程中，若设置内网 host 以实现自定义解析域名，却发现该设置失效。这是由于 ClashX Pro 启动后会自动接管 DNS，进而导致自定义解析域名功能无法正常运作。解决此问题的关键在于设置白名单
