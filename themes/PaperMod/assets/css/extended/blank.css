@@ -80,5 +80,5 @@ header.header {
   background-image: radial-gradient(transparent 3px, #ffffff 2px);
   background-size: 4px 4px;
   backdrop-filter: saturate(50%) blur(4px);
-  z-index: 2;
+  z-index: 3;
 }

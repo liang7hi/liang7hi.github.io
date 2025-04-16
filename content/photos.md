@@ -72,4 +72,10 @@ imageData:
   - src: "/images/wall/1391743560601_.pic.jpg"
     date: "2025-04-01"
     description: "北京·海棠花"
+  - src: "/images/wall/haerbin-zhongyangdajie.jpg"
+    date: "2025-04-13"
+    description: "哈尔滨·中央大街"
+  - src: "/images/wall/haerbin-sidalinpark.jpg"
+    date: "2025-04-13"
+    description: "哈尔滨·斯大林公园"
 ---

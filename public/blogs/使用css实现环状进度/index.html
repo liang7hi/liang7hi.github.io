@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto">
 
-<head><meta charset="utf-8" />
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content="noindex, nofollow" />
 <title>
   使用 css 实现环状进度 | slc3a2
 </title>
 <meta
   name="keywords"
   content="前端"
-/> <meta name="description" content="使用纯 css 实现一个圆环的进度效果，主要使用了background-image渐变属性和动画状态的伪元素遮盖来实现"> <meta name="author" content=""> <link rel="canonical" href="https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/">
+/> <meta name="description" content="使用纯 css 实现一个圆环的进度效果，主要使用了background-image渐变属性和动画状态的伪元素遮盖来实现"> <meta name="author" content=""> <link rel="canonical" href="http://localhost:1313/blogs/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/">
 <link
   crossorigin="anonymous"
   href="/assets/css/stylesheet.c405402e2da5eb3c4c1c153b39751b2f1aa6a8e8433b86574ec2c5970f00744d.css"
   integrity="sha256-xAVALi2l6zxMHBU7OXUbLxqmqOhDO4ZXTsLFlw8AdE0="
   rel="preload stylesheet"
   as="style"
-/> <link rel="icon" href="https://slc3a2.github.io/favicon.ico"> <link
-rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://slc3a2.github.io/apple-touch-icon.png"> <link rel="mask-icon" href="https://slc3a2.github.io/safari-pinned-tab.svg"> <meta name="theme-color" content="#2e2e33"> <meta name="msapplication-TileColor" content="#2e2e33"> <link rel="alternate" hreflang="zh" href="https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/" />
+/> <link rel="icon" href="http://localhost:1313/favicon.ico"> <link
+rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png"> <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg"> <meta name="theme-color" content="#2e2e33"> <meta name="msapplication-TileColor" content="#2e2e33"> <link rel="alternate" hreflang="zh" href="http://localhost:1313/blogs/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/" />
 <noscript>
   <style>
     #theme-toggle,
@@ -76,72 +76,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
   });
 </script>
  
-<meta property="og:url" content="https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/">
-  <meta property="og:site_name" content="slc3a2">
-  <meta property="og:title" content="使用 css 实现环状进度">
-  <meta property="og:description" content="使用纯 css 实现一个圆环的进度效果，主要使用了background-image渐变属性和动画状态的伪元素遮盖来实现">
-  <meta property="og:locale" content="zh">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="blogs">
-    <meta property="article:published_time" content="2020-08-22T09:44:03+08:00">
-    <meta property="article:modified_time" content="2020-08-22T09:44:03+08:00">
-    <meta property="article:tag" content="前端">
-    <meta property="og:image" content="https://slc3a2.github.io/images/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/cover.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://slc3a2.github.io/images/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/cover.jpg">
-<meta name="twitter:title" content="使用 css 实现环状进度">
-<meta name="twitter:description" content="使用纯 css 实现一个圆环的进度效果，主要使用了background-image渐变属性和动画状态的伪元素遮盖来实现">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "日志",
-      "item": "https://slc3a2.github.io/blogs/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "使用 css 实现环状进度",
-      "item": "https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "使用 css 实现环状进度",
-  "name": "使用 css 实现环状进度",
-  "description": "使用纯 css 实现一个圆环的进度效果，主要使用了background-image渐变属性和动画状态的伪元素遮盖来实现",
-  "keywords": [
-    "前端"
-  ],
-  "articleBody": "html \u003cdiv class=\"round\"\u003e\u003c/div\u003e css 使用background-image渐变属性和动画状态的伪元素遮盖来实现：\n.round { width: 150px; height: 150px; border-radius: 50%; background-color: #eee; background-image: linear-gradient(to right, transparent 50%, blue 0); position: relative; } .round::before { width: 50%; height: 100%; content: \"\"; position: absolute; top: 0; left: 50%; border-radius: 0 100% 100% 0 / 50%; background-color: inherit; transform-origin: left; animation: spin 5s linear infinite, dye 10s step-end infinite; } @keyframes spin { to { transform: rotate(0.5turn); } } @keyframes dye { 50% { background: blue; } }s 效果 ",
-  "wordCount" : "116",
-  "inLanguage": "zh",
-  "image":"https://slc3a2.github.io/images/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/cover.jpg","datePublished": "2020-08-22T09:44:03+08:00",
-  "dateModified": "2020-08-22T09:44:03+08:00",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "slc3a2",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://slc3a2.github.io/favicon.ico"
-    }
-  }
-}
-</script><script
+<script
   async
   src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
 ></script>
@@ -163,7 +98,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://slc3a2.github.io/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
+            <a href="http://localhost:1313/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -189,37 +124,37 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
         </div>
         <ul id="menu">
             <li>
-                <a href="https://slc3a2.github.io/" title="🏠 首页">
+                <a href="http://localhost:1313/" title="🏠 首页">
                     <span>🏠 首页</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/blogs/" title="📚 日志">
+                <a href="http://localhost:1313/blogs/" title="📚 日志">
                     <span>📚 日志</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/photos/" title="🖼️ 照片">
+                <a href="http://localhost:1313/photos/" title="🖼️ 照片">
                     <span>🖼️ 照片</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/apps/" title="🚀 应用">
+                <a href="http://localhost:1313/apps/" title="🚀 应用">
                     <span>🚀 应用</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/search/" title="🔍 搜索">
+                <a href="http://localhost:1313/search/" title="🔍 搜索">
                     <span>🔍 搜索</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/tags/" title="🧩 分类">
+                <a href="http://localhost:1313/tags/" title="🧩 分类">
                     <span>🧩 分类</span>
                 </a>
             </li>
             <li>
-                <a href="https://slc3a2.github.io/archives/" title="⏱ 时间轴">
+                <a href="http://localhost:1313/archives/" title="⏱ 时间轴">
                     <span>⏱ 时间轴</span>
                 </a>
             </li>
@@ -252,7 +187,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
     </div>
   </header> 
 <figure class="entry-cover1">
-    <img loading="eager" src="https://slc3a2.github.io/images/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Pankaj Patel</figcaption>
+    <img loading="eager" src="http://localhost:1313/images/%E4%BD%BF%E7%94%A8css%E5%AE%9E%E7%8E%B0%E7%8E%AF%E7%8A%B6%E8%BF%9B%E5%BA%A6/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Pankaj Patel</figcaption>
 </figure><aside id="toc-container" class="toc-container wide">
     <div class="toc">
         <details  open>
@@ -413,15 +348,15 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://slc3a2.github.io/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
+      <li><a href="http://localhost:1313/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://slc3a2.github.io/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/">
+  <a class="prev" href="http://localhost:1313/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/">
     <span class="title">« 上一页</span>
     <br>
     <span>常用4种排序介绍</span>
   </a>
-  <a class="next" href="https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/">
+  <a class="next" href="http://localhost:1313/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/">
     <span class="title">下一页 »</span>
     <br>
     <span>Linux 中内存交换空间(swap)的使用</span>
@@ -511,7 +446,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon
     </main>
     
 <footer class="footer">
-        <span>&copy; 2016 - 2025 <a href="https://slc3a2.github.io/">slc3a2</a></span> · 
+        <span>&copy; 2016 - 2025 <a href="http://localhost:1313/">slc3a2</a></span> · 
 
     <span>
         Powered by
