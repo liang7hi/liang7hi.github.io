@@ -78,4 +78,13 @@ imageData:
   - src: "/images/wall/haerbin-sidalinpark.jpg"
     date: "2025-04-13"
     description: "哈尔滨·斯大林公园"
+  - src: "/images/wall/lanzhout3.jpg"
+    date: "2025-04-29"
+    description: "兰州·新 T3 航站楼"
+  - src: "/images/wall/dalianbeach.jpg"
+    date: "2025-05-01"
+    description: "大连·银沙滩"
+  - src: "/images/wall/daxing3.jpg"
+    date: "2025-04-28"
+    description: "大兴机场三件套"
 ---
