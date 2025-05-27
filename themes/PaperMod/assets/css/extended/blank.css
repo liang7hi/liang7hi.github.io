@@ -76,7 +76,6 @@ header.header {
   position: sticky;
   top: 0;
   width: 100%;
-  height: 50px;
   background-image: radial-gradient(transparent 3px, #ffffff 2px);
   background-size: 4px 4px;
   backdrop-filter: saturate(50%) blur(4px);

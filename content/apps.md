@@ -15,8 +15,7 @@ TocOpen: true
 ## Colora
 
 > Colora 是⼀款基于 Chrome 的扩展程序，它⾮常的轻量级、纯粹并且免费的截图美化⼯具，不滥⽤权限、使⽤最原始、恰到好处的技术实现，并且没有任何⼴告。核⼼逻辑只有不到 5 KB，Chrome 扩展商店搜索「Colora」
-
-⽆需繁琐⽆聊的设计技巧。只需⼀次点击，就可以获得精美绝伦、惊⼈震撼的图⽚，让图⽚编辑变得更有趣，那就是 Colora，快来享受它吧！
+> ⽆需繁琐⽆聊的设计技巧。只需⼀次点击，就可以获得精美绝伦、惊⼈震撼的图⽚，让图⽚编辑变得更有趣，那就是 Colora，快来享受它吧！
 
 ![introduction image01](/images/apps/colora/img1.jpg)
 
@@ -71,13 +70,12 @@ TocOpen: true
 
 ## OhMyBox
 
-> 基于 vue 的移动端滑动组件，类似抖⾳⾸⻚滑屏效果。npm 商店搜「ohmybox」
+> 基于 vue 的移动端滑动组件，类似抖⾳滑屏效果。npm 商店搜「ohmybox」
 
 - 内部单元组件使⽤ Slot 插槽，可⾼度⾃定义内容
 - ⽀持 六种参数 和 两种事件 设置：翻⻚⾼度，持续滚动时⻓，快速翻⻚⾼度、模拟点击 ⽅法等
 
 <img src="/images/apps/ohmybox/img1.gif" width="300">
-<!-- ![introduction image01](/images/apps/ohmybox/img1.gif =300x) -->
 
 [开源仓库地址](https://github.com/slc3a2/oh-my-box)
 
