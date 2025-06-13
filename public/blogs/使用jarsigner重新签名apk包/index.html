@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8" />
+<head><meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 />
-<meta name="robots" content="noindex, nofollow" />
+<meta name="robots" content="index, follow" />
 <title>
   使用 jarsigner 重新签名 apk 包 | slc3a2
 </title>
 <meta
   name="keywords"
   content="计算机科学"
-/> <meta name="description" content="该文章介绍了在 macOS 10.14 系统下，借助 iTerm 2 工具进行密钥生成与签名操作的步骤"> <meta name="author" content=""> <link rel="canonical" href="http://localhost:1313/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/">
+/> <meta name="description" content="该文章介绍了在 macOS 10.14 系统下，借助 iTerm 2 工具进行密钥生成与签名操作的步骤"> <meta name="author" content=""> <link rel="canonical" href="https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/">
 <link
   crossorigin="anonymous"
   href="/assets/css/stylesheet.7bed06a6305d602638b3ba5473f3abb8ff5ad5b3002c8c0716de50690d3b93f6.css"
   integrity="sha256-e&#43;0GpjBdYCY4s7pUc/OruP9a1bMALIwHFt5QaQ07k/Y="
   rel="preload stylesheet"
   as="style"
-/> <link rel="icon" href="http://localhost:1313/favicon.ico"> <link
-rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png"> <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg"> <meta name="theme-color" content="#2e2e33"> <meta name="msapplication-TileColor" content="#2e2e33"> <link rel="alternate" hreflang="zh" href="http://localhost:1313/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/" />
+/> <link rel="icon" href="https://slc3a2.github.io/favicon.ico"> <link
+rel="icon" type="image/png" sizes="16x16" href="https://slc3a2.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://slc3a2.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://slc3a2.github.io/apple-touch-icon.png"> <link rel="mask-icon" href="https://slc3a2.github.io/safari-pinned-tab.svg"> <meta name="theme-color" content="#2e2e33"> <meta name="msapplication-TileColor" content="#2e2e33"> <link rel="alternate" hreflang="zh" href="https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/" />
 <noscript>
   <style>
     #theme-toggle,
@@ -76,7 +76,72 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
   });
 </script>
  
-<script
+<meta property="og:url" content="https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/">
+  <meta property="og:site_name" content="slc3a2">
+  <meta property="og:title" content="使用 jarsigner 重新签名 apk 包">
+  <meta property="og:description" content="该文章介绍了在 macOS 10.14 系统下，借助 iTerm 2 工具进行密钥生成与签名操作的步骤">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blogs">
+    <meta property="article:published_time" content="2020-10-26T16:41:13+08:00">
+    <meta property="article:modified_time" content="2020-10-26T16:41:13+08:00">
+    <meta property="article:tag" content="计算机科学">
+    <meta property="og:image" content="https://slc3a2.github.io/images/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://slc3a2.github.io/images/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/cover.jpg">
+<meta name="twitter:title" content="使用 jarsigner 重新签名 apk 包">
+<meta name="twitter:description" content="该文章介绍了在 macOS 10.14 系统下，借助 iTerm 2 工具进行密钥生成与签名操作的步骤">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "日志",
+      "item": "https://slc3a2.github.io/blogs/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "使用 jarsigner 重新签名 apk 包",
+      "item": "https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "使用 jarsigner 重新签名 apk 包",
+  "name": "使用 jarsigner 重新签名 apk 包",
+  "description": "该文章介绍了在 macOS 10.14 系统下，借助 iTerm 2 工具进行密钥生成与签名操作的步骤",
+  "keywords": [
+    "计算机科学"
+  ],
+  "articleBody": "环境 macos 10.14 iterm 2 使用 生成密钥 keytool -genkeypair -alias \u003c别名\u003e -keystore \u003c密钥库存储位置和名称\u003e\nkeytool -genkeypair -alias demokey -keystore demo.keystore 内容填写后，生成完毕\n生成签名 jarsigner -verbose -keystore \u003c使用密钥库位置\u003e -signedjar \u003c签名后的包保存位置和名字\u003e \u003c要签名的包保存位置和名字\u003e \u003c别名，对应上面的别名\u003e\njarsigner -verbose -keystore /Users/liangqi/Desktop/apk/demo.keystore -signedjar ./tap_signed.apk ./tap_unsign.apk demokey 即可拿到签名后的包\n",
+  "wordCount" : "158",
+  "inLanguage": "zh",
+  "image":"https://slc3a2.github.io/images/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/cover.jpg","datePublished": "2020-10-26T16:41:13+08:00",
+  "dateModified": "2020-10-26T16:41:13+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "slc3a2",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://slc3a2.github.io/favicon.ico"
+    }
+  }
+}
+</script><script
   async
   src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
 ></script>
@@ -98,7 +163,7 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
+            <a href="https://slc3a2.github.io/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -124,37 +189,37 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="🏠 首页">
+                <a href="https://slc3a2.github.io/" title="🏠 首页">
                     <span>🏠 首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/blogs/" title="📚 日志">
+                <a href="https://slc3a2.github.io/blogs/" title="📚 日志">
                     <span>📚 日志</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/photos/" title="🖼️ 照片">
+                <a href="https://slc3a2.github.io/photos/" title="🖼️ 照片">
                     <span>🖼️ 照片</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/apps/" title="🚀 应用">
+                <a href="https://slc3a2.github.io/apps/" title="🚀 应用">
                     <span>🚀 应用</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="🔍 搜索">
+                <a href="https://slc3a2.github.io/search/" title="🔍 搜索">
                     <span>🔍 搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="🧩 分类">
+                <a href="https://slc3a2.github.io/tags/" title="🧩 分类">
                     <span>🧩 分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="⏱ 时间轴">
+                <a href="https://slc3a2.github.io/archives/" title="⏱ 时间轴">
                     <span>⏱ 时间轴</span>
                 </a>
             </li>
@@ -187,7 +252,7 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
     </div>
   </header> 
 <figure class="entry-cover1">
-    <img loading="eager" src="http://localhost:1313/images/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 iMattSmart</figcaption>
+    <img loading="eager" src="https://slc3a2.github.io/images/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 iMattSmart</figcaption>
 </figure><aside id="toc-container" class="toc-container wide">
     <div class="toc">
         <details  open>
@@ -331,15 +396,15 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a></li>
+      <li><a href="https://slc3a2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://localhost:1313/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+  <a class="prev" href="https://slc3a2.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
     <span class="title">« 上一页</span>
     <br>
     <span>基于 Vue 思想的 MVVM 实现</span>
   </a>
-  <a class="next" href="http://localhost:1313/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">
+  <a class="next" href="https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">
     <span class="title">下一页 »</span>
     <br>
     <span>函数的防抖和节流</span>
@@ -429,7 +494,7 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
     </main>
     
 <footer class="footer">
-        <span>&copy; 2016 - 2025 <a href="http://localhost:1313/">slc3a2</a></span> · 
+        <span>&copy; 2016 - 2025 <a href="https://slc3a2.github.io/">slc3a2</a></span> · 
 
     <span>
         Powered by
