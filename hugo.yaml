@@ -1,6 +1,6 @@
-baseURL: "https://slc3a2.github.io"
+baseURL: "https://liang7hi.github.io"
 languageCode: "zh-cn"
-title: "slc3a2"
+title: "liang7hi"
 theme: "PaperMod"
 hasCJKLanguage: true
 defaultTheme: auto
@@ -49,8 +49,8 @@ caches:
     dir: :cacheDir/images
 
 params:
-  description: 'slc3a2 bolg 博客'
-  keywords: [blog, paperMod, Hugo, slc3a2, 博客, 个人博客, 个人网站, 前端]
+  description: 'liang7hi bolg 博客'
+  keywords: [blog, paperMod, Hugo, liang7hi, 博客, 个人博客, 个人网站, 前端]
   math: true
   showReadingTime: true
   ShowPostNavLinks: true
@@ -69,23 +69,23 @@ params:
     imageUrl: "/images/avatar.png"
     imageWidth: 120
     imageHeight: 120
-    imageTitle: "slc3a2"
-    imageAlt: "slc3a2"
-    Title: "slc3a2 部落格"
+    imageTitle: "liang7hi"
+    imageAlt: "liang7hi"
+    Title: "liang7hi 部落格"
     Content: 👋 探索技术，也探索自我!
 
   socialIcons:
   - name: github
-    url: "https://github.com/slc3a2"
+    url: "https://github.com/liang7hi"
 
   - name: dribbble
-    url: "https://dribbble.com/slc3a2"
+    url: "https://dribbble.com/liang7hi"
 
   - name: leetcode
-    url: "https://leetcode.cn/u/slc3a2/"
+    url: "https://leetcode.cn/u/liang7hi/"
 
   - name: email
-    url: "mailto:slc3a2@gmail.com"
+    url: "mailto:liang7hi@gmail.com"
 
   
     

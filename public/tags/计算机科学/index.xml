@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>计算机科学 on slc3a2</title>
-    <link>https://slc3a2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/</link>
-    <description>Recent content in 计算机科学 on slc3a2</description>
+    <title>计算机科学 on liang7hi</title>
+    <link>http://localhost:1313/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/</link>
+    <description>Recent content in 计算机科学 on liang7hi</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 03 Apr 2025 11:18:19 +0800</lastBuildDate>
-    <atom:link href="https://slc3a2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ClashX Pro 自定义域名解析失败</title>
-      <link>https://slc3a2.github.io/blogs/clashx-pro-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E5%A4%B1%E8%B4%A5/</link>
+      <link>http://localhost:1313/blogs/clashx-pro-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E5%A4%B1%E8%B4%A5/</link>
       <pubDate>Thu, 03 Apr 2025 11:18:19 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/clashx-pro-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E5%A4%B1%E8%B4%A5/</guid>
+      <guid>http://localhost:1313/blogs/clashx-pro-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E5%A4%B1%E8%B4%A5/</guid>
       <description>&lt;h2 id=&#34;应用介绍&#34;&gt;应用介绍&lt;/h2&gt;
 &lt;p&gt;ClashX Pro 是 MacOS 系统即苹果电脑系统下的代理软件客户端，功能强大且支持多种代理协议，如 Shadowsocks(SS)、ShadowsocksR(SSR)、Socks、Snell、V2Ray、Trojan 等代理协议&lt;/p&gt;</description>
     </item>
     <item>
       <title>命题逻辑真值表</title>
-      <link>https://slc3a2.github.io/blogs/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/</link>
+      <link>http://localhost:1313/blogs/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/</link>
       <pubDate>Wed, 11 Oct 2023 18:23:09 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/</guid>
+      <guid>http://localhost:1313/blogs/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E7%9C%9F%E5%80%BC%E8%A1%A8/</guid>
       <description>这篇文章先给出离散数学中命题逻辑真值表，介绍了合取、析取、否定、蕴含、等价运算规则及结果，后分别以具体生活实例对每种运算进行详细说明，并特别指出蕴含运算中逻辑关系与因果关系的区别</description>
     </item>
     <item>
       <title>从 OSI 七层模型到 TCP</title>
-      <link>https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/</link>
+      <link>http://localhost:1313/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/</link>
       <pubDate>Tue, 22 Feb 2022 23:15:06 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/</guid>
+      <guid>http://localhost:1313/blogs/%E4%BB%8Eosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E5%88%B0tcp/</guid>
       <description>&lt;h2 id=&#34;为什么要写这篇博客&#34;&gt;为什么要写这篇博客&lt;/h2&gt;
 &lt;p&gt;一个是感觉自己的计算机网络基础薄弱，关于七层模型和 tcp、udp 看过几次了，都不够透彻，知其然不知其所以然。再一个，最近和同事有聊到这个事，感觉自己也说不明白，又意识到很重要，所以决定整理一下，自己感觉自己会了和可以给别人讲明白这个事儿，区别还是很大的啊。就参考资料和自己理解记录一下。&lt;/p&gt;</description>
     </item>
     <item>
       <title>记发布订阅和观察者模式</title>
-      <link>https://slc3a2.github.io/blogs/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+      <link>http://localhost:1313/blogs/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Tue, 01 Jun 2021 11:40:03 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>http://localhost:1313/blogs/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
       <description>&lt;hr&gt;
 &lt;h2 id=&#34;发布订阅模式&#34;&gt;发布订阅模式&lt;/h2&gt;
 &lt;p&gt;简单来说，需要三个角色&lt;/p&gt;
@@ -84,30 +84,30 @@
     </item>
     <item>
       <title>手写代码面试题合集</title>
-      <link>https://slc3a2.github.io/blogs/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/</link>
+      <link>http://localhost:1313/blogs/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Fri, 30 Apr 2021 18:46:45 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/</guid>
+      <guid>http://localhost:1313/blogs/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/</guid>
       <description>&lt;p&gt;持续更新，为了高效率访问，也算自己复习！！把遇到的手写题，抽空都撸了一遍。满满干货，不墨迹，直接上代码。总结道这篇博客里，下次面试前快速过一遍，临阵磨刀～&lt;/p&gt;</description>
     </item>
     <item>
       <title>使用 jarsigner 重新签名 apk 包</title>
-      <link>https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/</link>
+      <link>http://localhost:1313/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/</link>
       <pubDate>Mon, 26 Oct 2020 16:41:13 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/</guid>
+      <guid>http://localhost:1313/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/</guid>
       <description>该文章介绍了在 macOS 10.14 系统下，借助 iTerm 2 工具进行密钥生成与签名操作的步骤</description>
     </item>
     <item>
       <title>函数柯里化(currying)</title>
-      <link>https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/</link>
+      <link>http://localhost:1313/blogs/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/</link>
       <pubDate>Wed, 09 Sep 2020 13:13:04 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/</guid>
+      <guid>http://localhost:1313/blogs/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/</guid>
       <description>文章介绍函数柯里化，说明其将多参函数转为单参函数的概念，以 JavaScript 举例阐述原理，讲解参数复用等好处并给出 ajax 请求示例，还提供了完整实现代码及用法</description>
     </item>
     <item>
       <title>常用4种排序介绍</title>
-      <link>https://slc3a2.github.io/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/</link>
+      <link>http://localhost:1313/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/</link>
       <pubDate>Wed, 02 Sep 2020 16:07:43 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/</guid>
+      <guid>http://localhost:1313/blogs/%E5%B8%B8%E7%94%A84%E7%A7%8D%E6%8E%92%E5%BA%8F%E4%BB%8B%E7%BB%8D/</guid>
       <description>&lt;h2 id=&#34;冒泡排序bubble-sort&#34;&gt;冒泡排序（Bubble sort）&lt;/h2&gt;
 &lt;h3 id=&#34;原理和演示&#34;&gt;原理和演示：&lt;/h3&gt;
 &lt;ul&gt;
@@ -130,9 +130,9 @@
     </item>
     <item>
       <title>Linux 中内存交换空间(swap)的使用</title>
-      <link>https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</link>
+      <link>http://localhost:1313/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Fri, 21 Aug 2020 16:48:04 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</guid>
+      <guid>http://localhost:1313/blogs/linux%E4%B8%AD%E5%86%85%E5%AD%98%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4swap%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</guid>
       <description>&lt;hr&gt;
 &lt;h2 id=&#34;什么是-swap&#34;&gt;什么是 swap&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;swap 分区&lt;/strong&gt; 是 Linux 中特殊的一种存储，他在安装系统时被自动创建。&lt;/p&gt;

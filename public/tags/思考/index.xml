@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>思考 on slc3a2</title>
-    <link>https://slc3a2.github.io/tags/%E6%80%9D%E8%80%83/</link>
-    <description>Recent content in 思考 on slc3a2</description>
+    <title>思考 on liang7hi</title>
+    <link>http://localhost:1313/tags/%E6%80%9D%E8%80%83/</link>
+    <description>Recent content in 思考 on liang7hi</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>zh</language>
     <lastBuildDate>Fri, 13 Jun 2025 18:16:42 +0800</lastBuildDate>
-    <atom:link href="https://slc3a2.github.io/tags/%E6%80%9D%E8%80%83/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E6%80%9D%E8%80%83/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>中国民航和铁路致命事故对比</title>
-      <link>https://slc3a2.github.io/blogs/%E4%B8%AD%E5%9B%BD%E6%B0%91%E8%88%AA%E4%BA%8B%E6%95%85%E7%BB%9F%E8%AE%A12008-2025/</link>
+      <link>http://localhost:1313/blogs/%E4%B8%AD%E5%9B%BD%E6%B0%91%E8%88%AA%E4%BA%8B%E6%95%85%E7%BB%9F%E8%AE%A12008-2025/</link>
       <pubDate>Fri, 13 Jun 2025 18:16:42 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/%E4%B8%AD%E5%9B%BD%E6%B0%91%E8%88%AA%E4%BA%8B%E6%95%85%E7%BB%9F%E8%AE%A12008-2025/</guid>
+      <guid>http://localhost:1313/blogs/%E4%B8%AD%E5%9B%BD%E6%B0%91%E8%88%AA%E4%BA%8B%E6%95%85%E7%BB%9F%E8%AE%A12008-2025/</guid>
       <description>2008 年 1 月至 2025 年 6 月中国民航和铁路客运事故及死亡人数统计与对比分析</description>
     </item>
     <item>
       <title>有意思的命名</title>
-      <link>https://slc3a2.github.io/blogs/%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%E5%91%BD%E5%90%8D/</link>
+      <link>http://localhost:1313/blogs/%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%E5%91%BD%E5%90%8D/</link>
       <pubDate>Mon, 27 Nov 2023 18:27:03 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%E5%91%BD%E5%90%8D/</guid>
+      <guid>http://localhost:1313/blogs/%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%E5%91%BD%E5%90%8D/</guid>
       <description>&lt;p&gt;如果有一个布尔变量，来控制某个按钮的显示隐藏，就有两种命名方法：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;show = 布尔值&lt;/li&gt;

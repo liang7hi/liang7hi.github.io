@@ -45,9 +45,9 @@ TocOpen: true
 
 ![introduction image01](/images/apps/dimmer/intro-2.jpg)
 
-[关于「关灯」的更多](https://github.com/slc3a2/dimmer?tab=readme-ov-file#%E5%88%9D%E8%A1%B7)
+[关于「关灯」的更多](https://github.com/liang7hi/dimmer?tab=readme-ov-file#%E5%88%9D%E8%A1%B7)
 
-[开源仓库地址](https://github.com/slc3a2/dimmer)
+[开源仓库地址](https://github.com/liang7hi/dimmer)
 
 [在 Chrome 扩展商店查看 「关灯」](https://chromewebstore.google.com/detail/lights-off%E5%85%B3%E7%81%AF/dnidbhhpcjgffjophhebfelbcnonoclh)
 
@@ -62,7 +62,7 @@ TocOpen: true
 
 ![introduction image01](/images/apps/ohmycookie/img1.jpeg)
 
-[开源仓库地址](https://github.com/slc3a2/oh-my-cookie)
+[开源仓库地址](https://github.com/liang7hi/oh-my-cookie)
 
 [在 Chrome 扩展商店查看 「OhMyCookie」](https://chromewebstore.google.com/detail/ohmycookie/edkfjjgklckogiepbhmmdlaohebiaigm)
 
@@ -77,6 +77,6 @@ TocOpen: true
 
 <img src="/images/apps/ohmybox/img1.gif" width="300">
 
-[开源仓库地址](https://github.com/slc3a2/oh-my-box)
+[开源仓库地址](https://github.com/liang7hi/oh-my-box)
 
 [在 npm 商店查看 「OhMyBox」](https://www.npmjs.com/package/ohmybox)

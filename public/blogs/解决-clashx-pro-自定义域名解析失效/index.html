@@ -1,543 +1,714 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto">
+  <head>
+    <script
+      src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload"
+      data-no-instant
+      defer
+    ></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>ClashX Pro 自定义域名解析失败 | liang7hi</title>
+    <meta name="keywords" content="计算机科学" />
+    <meta
+      name="description"
+      content="问题剖析
+在使用 ClashX Pro 过程中，若设置内网 host 以实现自定义解析域名，却发现该设置失效。这是由于 ClashX Pro 启动后会自动接管 DNS，进而导致自定义解析域名功能无法正常运作。解决此问题的关键在于设置白名单"
+    />
+    <meta name="author" content="" />
+    <link
+      rel="canonical"
+      href="http://localhost:1313/blogs/%E8%A7%A3%E5%86%B3-clashx-pro-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E5%A4%B1%E6%95%88/"
+    />
+    <link
+      crossorigin="anonymous"
+      href="/assets/css/stylesheet.827105c01d23722ecb5d67f525f091354069903906f2a2e3a7b7aaff76a6c3bc.css"
+      integrity="sha256-gnEFwB0jci7LXWf1JfCRNUBpkDkG8qLjp7eq/3amw7w="
+      rel="preload stylesheet"
+      as="style"
+    />
+    <link rel="icon" href="http://localhost:1313/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="http://localhost:1313/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="http://localhost:1313/favicon-32x32.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="http://localhost:1313/apple-touch-icon.png"
+    />
+    <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg" />
+    <meta name="theme-color" content="#2e2e33" />
+    <meta name="msapplication-TileColor" content="#2e2e33" />
+    <link
+      rel="alternate"
+      hreflang="zh"
+      href="http://localhost:1313/blogs/%E8%A7%A3%E5%86%B3-clashx-pro-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E5%A4%B1%E6%95%88/"
+    />
+    <noscript>
+      <style>
+        #theme-toggle,
+        .top-link {
+          display: none;
+        }
+      </style>
+      <style>
+        @media (prefers-color-scheme: dark) {
+          :root {
+            --theme: rgb(29, 30, 32);
+            --entry: rgb(46, 46, 51);
+            --primary: rgb(218, 218, 219);
+            --secondary: rgb(155, 156, 157);
+            --tertiary: rgb(65, 66, 68);
+            --content: rgb(196, 196, 197);
+            --code-block-bg: rgb(46, 46, 51);
+            --code-bg: rgb(55, 56, 62);
+            --border: rgb(51, 51, 51);
+          }
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1, shrink-to-fit=no"
-/>
-<meta name="robots" content="noindex, nofollow" />
-<title>
-  ClashX Pro 自定义域名解析失败 | slc3a2
-</title>
-<meta
-  name="keywords"
-  content="计算机科学"
-/> <meta name="description" content="问题剖析
-在使用 ClashX Pro 过程中，若设置内网 host 以实现自定义解析域名，却发现该设置失效。这是由于 ClashX Pro 启动后会自动接管 DNS，进而导致自定义解析域名功能无法正常运作。解决此问题的关键在于设置白名单"> <meta name="author" content=""> <link rel="canonical" href="http://localhost:1313/blogs/%E8%A7%A3%E5%86%B3-clashx-pro-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E5%A4%B1%E6%95%88/">
-<link
-  crossorigin="anonymous"
-  href="/assets/css/stylesheet.827105c01d23722ecb5d67f525f091354069903906f2a2e3a7b7aaff76a6c3bc.css"
-  integrity="sha256-gnEFwB0jci7LXWf1JfCRNUBpkDkG8qLjp7eq/3amw7w="
-  rel="preload stylesheet"
-  as="style"
-/> <link rel="icon" href="http://localhost:1313/favicon.ico"> <link
-rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png"> <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg"> <meta name="theme-color" content="#2e2e33"> <meta name="msapplication-TileColor" content="#2e2e33"> <link rel="alternate" hreflang="zh" href="http://localhost:1313/blogs/%E8%A7%A3%E5%86%B3-clashx-pro-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E5%A4%B1%E6%95%88/" />
-<noscript>
-  <style>
-    #theme-toggle,
-    .top-link {
-      display: none;
-    }
-  </style>
-  <style>
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --theme: rgb(29, 30, 32);
-        --entry: rgb(46, 46, 51);
-        --primary: rgb(218, 218, 219);
-        --secondary: rgb(155, 156, 157);
-        --tertiary: rgb(65, 66, 68);
-        --content: rgb(196, 196, 197);
-        --code-block-bg: rgb(46, 46, 51);
-        --code-bg: rgb(55, 56, 62);
-        --border: rgb(51, 51, 51);
+          .list {
+            background: var(--theme);
+          }
+
+          .list:not(.dark)::-webkit-scrollbar-track {
+            background: 0 0;
+          }
+
+          .list:not(.dark)::-webkit-scrollbar-thumb {
+            border-color: var(--theme);
+          }
+        }
+      </style>
+    </noscript>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+          ],
+        });
+      });
+    </script>
+
+    <script
+      async
+      src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+    ></script>
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+  </head>
+
+  <body class="" id="top">
+    <script>
+      if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add("dark");
+      } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove("dark");
+      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.body.classList.add("dark");
       }
+    </script>
 
-      .list {
-        background: var(--theme);
-      }
-
-      .list:not(.dark)::-webkit-scrollbar-track {
-        background: 0 0;
-      }
-
-      .list:not(.dark)::-webkit-scrollbar-thumb {
-        border-color: var(--theme);
-      }
-    }
-  </style>
-</noscript> <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
-/>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    renderMathInElement(document.body, {
-      delimiters: [
-        { left: "$$", right: "$$", display: true },
-        { left: "$", right: "$", display: false },
-      ],
-    });
-  });
-</script>
- 
-<script
-  async
-  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
-></script>
-<meta name="referrer" content="no-referrer-when-downgrade" />
-</head>
-
-<body class="" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-
-<header class="header">
-    <nav class="nav">
+    <header class="header">
+      <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="slc3a2 (Alt + H)">slc3a2</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
+          <a
+            href="http://localhost:1313/"
+            accesskey="h"
+            title="liang7hi (Alt + H)"
+            >liang7hi</a
+          >
+          <div class="logo-switches">
+            <button
+              id="theme-toggle"
+              accesskey="t"
+              title="(Alt + T)"
+              aria-label="Toggle theme"
+            >
+              <svg
+                id="moon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                ></path>
+              </svg>
+              <svg
+                id="sun"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            </button>
+          </div>
         </div>
         <ul id="menu">
-            <li>
-                <a href="http://localhost:1313/" title="🏠 首页">
-                    <span>🏠 首页</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://localhost:1313/blogs/" title="📚 日志">
-                    <span>📚 日志</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://localhost:1313/photos/" title="🖼️ 照片">
-                    <span>🖼️ 照片</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://localhost:1313/apps/" title="🚀 应用">
-                    <span>🚀 应用</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://localhost:1313/search/" title="🔍 搜索">
-                    <span>🔍 搜索</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://localhost:1313/tags/" title="🧩 分类">
-                    <span>🧩 分类</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://localhost:1313/archives/" title="⏱ 时间轴">
-                    <span>⏱ 时间轴</span>
-                </a>
-            </li>
+          <li>
+            <a href="http://localhost:1313/" title="🏠 首页">
+              <span>🏠 首页</span>
+            </a>
+          </li>
+          <li>
+            <a href="http://localhost:1313/blogs/" title="📚 日志">
+              <span>📚 日志</span>
+            </a>
+          </li>
+          <li>
+            <a href="http://localhost:1313/photos/" title="🖼️ 照片">
+              <span>🖼️ 照片</span>
+            </a>
+          </li>
+          <li>
+            <a href="http://localhost:1313/apps/" title="🚀 应用">
+              <span>🚀 应用</span>
+            </a>
+          </li>
+          <li>
+            <a href="http://localhost:1313/search/" title="🔍 搜索">
+              <span>🔍 搜索</span>
+            </a>
+          </li>
+          <li>
+            <a href="http://localhost:1313/tags/" title="🧩 分类">
+              <span>🧩 分类</span>
+            </a>
+          </li>
+          <li>
+            <a href="http://localhost:1313/archives/" title="⏱ 时间轴">
+              <span>⏱ 时间轴</span>
+            </a>
+          </li>
         </ul>
-    </nav>
-</header>
-<main class="main">
-<head>
-  <style>
-    main.main img {
-      cursor: zoom-in;
-    }
-  </style>
-</head>
+      </nav>
+    </header>
+    <main class="main">
+      <head>
+        <style>
+          main.main img {
+            cursor: zoom-in;
+          }
+        </style>
+      </head>
 
-<article class="post-single">
-  <header class="post-header">
-    
-    <h1 class="post-title entry-hint-parent">
-      ClashX Pro 自定义域名解析失败
-    </h1>
-    <div class="post-meta"><span title='2025-04-03 11:18:19 +0800 CST'>2025-04-03</span>&nbsp; ｜ &nbsp;1 分钟&nbsp; ｜ &nbsp;334 字
+      <article class="post-single">
+        <header class="post-header">
+          <h1 class="post-title entry-hint-parent">
+            ClashX Pro 自定义域名解析失败
+          </h1>
+          <div class="post-meta">
+            <span title="2025-04-03 11:18:19 +0800 CST">2025-04-03</span>&nbsp;
+            ｜ &nbsp;1 分钟&nbsp; ｜ &nbsp;334 字
 
-
-      <span id="busuanzi_container_page_pv">
-        &nbsp; ｜ 被阅读
-        <span id="busuanzi_value_page_pv"></span>
-        次
-      </span>
-    </div>
-  </header> 
-<figure class="entry-cover1">
-    <img loading="eager" src="http://localhost:1313/images/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Kier in Sight Archives</figcaption>
-</figure><aside id="toc-container" class="toc-container wide">
-    <div class="toc">
-        <details  open>
-            <summary accesskey="c" title="(Alt + C)">
+            <span id="busuanzi_container_page_pv">
+              &nbsp; ｜ 被阅读
+              <span id="busuanzi_value_page_pv"></span>
+              次
+            </span>
+          </div>
+        </header>
+        <figure class="entry-cover1">
+          <img
+            loading="eager"
+            src="http://localhost:1313/images/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/cover.jpg"
+            alt="cover image"
+          />
+          <figcaption>
+            封面图来自 Unsplash | 作者 Kier in Sight Archives
+          </figcaption>
+        </figure>
+        <aside id="toc-container" class="toc-container wide">
+          <div class="toc">
+            <details open>
+              <summary accesskey="c" title="(Alt + C)">
                 <span class="details">目录</span>
-            </summary>
+              </summary>
 
-            <div class="inner"><ul>
-                    <li>
-                        <a href="#%e9%97%ae%e9%a2%98%e5%89%96%e6%9e%90" aria-label="问题剖析">问题剖析</a></li>
-                    <li>
-                        <a href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" aria-label="解决方案">解决方案</a>
-                    </li>
+              <div class="inner">
+                <ul>
+                  <li>
+                    <a
+                      href="#%e9%97%ae%e9%a2%98%e5%89%96%e6%9e%90"
+                      aria-label="问题剖析"
+                      >问题剖析</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88"
+                      aria-label="解决方案"
+                      >解决方案</a
+                    >
+                  </li>
                 </ul>
-            </div>
-        </details>
-    </div>
-</aside>
-<script>
-    let activeElement;
-    let elements;
-    
-    document.addEventListener('DOMContentLoaded', function (event) {
-        checkTocPosition();
-    
-        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
-        if (elements.length > 0) {
-            
-            activeElement = elements[0];
-            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
-            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
-        }
-    
-        
-        const topLink = document.getElementById('top-link');
-        if (topLink) {
-            topLink.addEventListener('click', (event) => {
-                
-                event.preventDefault();
-    
-                
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-    }, false);
-    
-    window.addEventListener('resize', function(event) {
-        checkTocPosition();
-    }, false);
-    
-    window.addEventListener('scroll', () => {
-        
-        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-    
-        
-        if (scrollPosition === 0) {
-            return;
-        }
-    
-        
-        if (elements && elements.length > 0) {
-            
-            activeElement = Array.from(elements).find((element) => {
-                if ((getOffsetTop(element) - scrollPosition) > 0 && 
-                    (getOffsetTop(element) - scrollPosition) < window.innerHeight / 2) {
-                    return element;
-                }
-            }) || activeElement;
-    
-            elements.forEach(element => {
-                const id = encodeURI(element.getAttribute('id')).toLowerCase();
-                const tocLink = document.querySelector(`.inner ul li a[href="#${id}"]`);
-                if (element === activeElement){
-                    tocLink.classList.add('active');
-    
-                    
-                    const tocContainer = document.querySelector('.toc .inner');
+              </div>
+            </details>
+          </div>
+        </aside>
+        <script>
+          let activeElement;
+          let elements;
+
+          document.addEventListener(
+            "DOMContentLoaded",
+            function (event) {
+              checkTocPosition();
+
+              elements = document.querySelectorAll(
+                "h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]"
+              );
+              if (elements.length > 0) {
+                activeElement = elements[0];
+                const id = encodeURI(
+                  activeElement.getAttribute("id")
+                ).toLowerCase();
+                document
+                  .querySelector(`.inner ul li a[href="#${id}"]`)
+                  .classList.add("active");
+              }
+
+              const topLink = document.getElementById("top-link");
+              if (topLink) {
+                topLink.addEventListener("click", (event) => {
+                  event.preventDefault();
+
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                });
+              }
+            },
+            false
+          );
+
+          window.addEventListener(
+            "resize",
+            function (event) {
+              checkTocPosition();
+            },
+            false
+          );
+
+          window.addEventListener(
+            "scroll",
+            () => {
+              const scrollPosition =
+                window.pageYOffset || document.documentElement.scrollTop;
+
+              if (scrollPosition === 0) {
+                return;
+              }
+
+              if (elements && elements.length > 0) {
+                activeElement =
+                  Array.from(elements).find((element) => {
+                    if (
+                      getOffsetTop(element) - scrollPosition > 0 &&
+                      getOffsetTop(element) - scrollPosition <
+                        window.innerHeight / 2
+                    ) {
+                      return element;
+                    }
+                  }) || activeElement;
+
+                elements.forEach((element) => {
+                  const id = encodeURI(
+                    element.getAttribute("id")
+                  ).toLowerCase();
+                  const tocLink = document.querySelector(
+                    `.inner ul li a[href="#${id}"]`
+                  );
+                  if (element === activeElement) {
+                    tocLink.classList.add("active");
+
+                    const tocContainer = document.querySelector(".toc .inner");
                     const linkOffsetTop = tocLink.offsetTop;
                     const containerHeight = tocContainer.clientHeight;
                     const linkHeight = tocLink.clientHeight;
-    
-                    
-                    const scrollPosition = linkOffsetTop - (containerHeight / 2) + (linkHeight / 2);
-                    tocContainer.scrollTo({ top: scrollPosition, behavior: 'smooth' });
-                } else {
-                    tocLink.classList.remove('active');
-                }
+
+                    const scrollPosition =
+                      linkOffsetTop - containerHeight / 2 + linkHeight / 2;
+                    tocContainer.scrollTo({
+                      top: scrollPosition,
+                      behavior: "smooth",
+                    });
+                  } else {
+                    tocLink.classList.remove("active");
+                  }
+                });
+              }
+            },
+            false
+          );
+
+          const main = parseInt(
+            getComputedStyle(document.body).getPropertyValue("--article-width"),
+            10
+          );
+          const toc = parseInt(
+            getComputedStyle(document.body).getPropertyValue("--toc-width"),
+            10
+          );
+          const gap = parseInt(
+            getComputedStyle(document.body).getPropertyValue("--gap"),
+            10
+          );
+
+          function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - toc * 2 - gap * 4 > 0) {
+              document.getElementById("toc-container").classList.add("wide");
+            } else {
+              document.getElementById("toc-container").classList.remove("wide");
+            }
+          }
+
+          function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+              return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+          }
+        </script>
+
+        <div class="post-content">
+          <h2 id="问题剖析">
+            问题剖析<a hidden class="anchor" aria-hidden="true" href="#问题剖析"
+              >#</a
+            >
+          </h2>
+          <p>
+            在使用 ClashX Pro 过程中，若设置内网 host
+            以实现自定义解析域名，却发现该设置失效。这是由于 ClashX Pro
+            启动后会自动接管
+            DNS，进而导致自定义解析域名功能无法正常运作。解决此问题的关键在于设置白名单
+          </p>
+          <h2 id="解决方案">
+            解决方案<a hidden class="anchor" aria-hidden="true" href="#解决方案"
+              >#</a
+            >
+          </h2>
+          <blockquote>
+            <p>MacOS Big Sur 11.7.10 ClashX Pro 1.97.0.4</p>
+          </blockquote>
+          <ol>
+            <li>
+              操作路径：点击顶栏的 ClashX Pro 图标，依次选择 “配置” =&gt;
+              “更多配置”，随即会弹出一个设置窗口
+            </li>
+            <li>
+              白名单设置：在窗口底部，找到标题为 “忽略这些主机与域的代理设置”
+              的输入框，在此处添加需要忽略的自定义域名。多个域名之间用逗号分隔，同时支持使用通配符，完成添加后记得保存设置
+            </li>
+            <li>
+              生效验证：进入 “网络” =&gt; “当前你的网络” =&gt; “高级” =&gt;
+              “代理”，查看 “忽略这些主机与域的代理设置”
+              中是否已包含所设置的域名。若存在，则代表配置生效。需特别留意，必须关闭
+              ClashX Pro 的
+              <a href="https://github.com/Semporia/Clash/issues/5">增强模式</a
+              >，否则白名单将无法发挥作用
+            </li>
+          </ol>
+        </div>
+
+        <footer class="post-footer">
+          <ul class="post-tags">
+            <li>
+              <a
+                href="http://localhost:1313/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"
+                >计算机科学</a
+              >
+            </li>
+          </ul>
+          <nav class="paginav">
+            <a
+              class="next"
+              href="http://localhost:1313/blogs/%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%E5%91%BD%E5%90%8D/"
+            >
+              <span class="title">下一页 »</span>
+              <br />
+              <span>有意思的命名</span>
+            </a>
+          </nav>
+        </footer>
+        <script>
+          function createGiscusScript(data) {
+            const giscusScript = document.createElement("script");
+
+            Object.entries(data).forEach(([key, value]) =>
+              giscusScript.setAttribute(key, value)
+            );
+
+            document.querySelector("article").appendChild(giscusScript);
+
+            const toggle = document.querySelector(
+              'label[for="switch_default"]'
+            );
+            if (toggle) {
+              toggle.addEventListener("click", function () {
+                const theme = document.body.classList.contains("dark")
+                  ? "transparent_dark"
+                  : "light";
+
+                console.log(theme);
+                giscusScript.setAttribute("data-theme", theme);
+
+                sendMessage({ setConfig: { theme } });
+              });
+            }
+          }
+
+          function sendMessage(message) {
+            const iframe = document.querySelector("iframe.giscus-frame");
+            if (iframe) {
+              iframe.contentWindow.postMessage(
+                { giscus: message },
+                "https://giscus.app"
+              );
+            }
+          }
+
+          document.addEventListener("DOMContentLoaded", function () {
+            const giscusAttributes = {
+              src: "https://giscus.app/client.js",
+              "data-repo": "liang7hi/liang7hi.github.io",
+              "data-repo-id": "R_kgDOOOP9Qg",
+              "data-category": "Announcements",
+              "data-category-id": "DIC_kwDOOOP9Qs4Cof61",
+              "data-mapping": "title",
+              "data-strict": "0",
+              "data-reactions-enabled": "1",
+              "data-emit-metadata": "0",
+              "data-input-position": "top",
+              "data-theme": "preferred_color_scheme",
+              "data-lang": "zh-CN",
+              crossorigin: "anonymous",
+              async: "",
+            };
+
+            giscusAttributes["data-theme"] = document.body.classList.contains(
+              "dark"
+            )
+              ? "transparent_dark"
+              : "light";
+
+            createGiscusScript(giscusAttributes);
+
+            const bodyObserver = new MutationObserver(() => {
+              const theme = document.body.classList.contains("dark")
+                ? "transparent_dark"
+                : "light";
+              sendMessage({ setConfig: { theme } });
             });
-        }
-    }, false);
-    
-    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
-    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
-    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
-    
-    function checkTocPosition() {
-        const width = document.body.scrollWidth;
-    
-        if (width - main - (toc * 2) - (gap * 4) > 0) {
-            document.getElementById("toc-container").classList.add("wide");
-        } else {
-            document.getElementById("toc-container").classList.remove("wide");
-        }
-    }
-    
-    function getOffsetTop(element) {
-        if (!element.getClientRects().length) {
-            return 0;
-        }
-        let rect = element.getBoundingClientRect();
-        let win = element.ownerDocument.defaultView;
-        return rect.top + win.pageYOffset;   
-    }
-    
-</script>
 
-  <div class="post-content"><h2 id="问题剖析">问题剖析<a hidden class="anchor" aria-hidden="true" href="#问题剖析">#</a></h2>
-<p>在使用 ClashX Pro 过程中，若设置内网 host 以实现自定义解析域名，却发现该设置失效。这是由于 ClashX Pro 启动后会自动接管 DNS，进而导致自定义解析域名功能无法正常运作。解决此问题的关键在于设置白名单</p>
-<h2 id="解决方案">解决方案<a hidden class="anchor" aria-hidden="true" href="#解决方案">#</a></h2>
-<blockquote>
-<p>MacOS Big Sur 11.7.10
-ClashX Pro 1.97.0.4</p></blockquote>
-<ol>
-<li>操作路径：点击顶栏的 ClashX Pro 图标，依次选择 “配置” =&gt; “更多配置”，随即会弹出一个设置窗口</li>
-<li>白名单设置：在窗口底部，找到标题为 “忽略这些主机与域的代理设置” 的输入框，在此处添加需要忽略的自定义域名。多个域名之间用逗号分隔，同时支持使用通配符，完成添加后记得保存设置</li>
-<li>生效验证：进入 “网络” =&gt; “当前你的网络” =&gt; “高级” =&gt; “代理”，查看 “忽略这些主机与域的代理设置” 中是否已包含所设置的域名。若存在，则代表配置生效。需特别留意，必须关闭 ClashX Pro 的 <a href="https://github.com/Semporia/Clash/issues/5">增强模式</a>，否则白名单将无法发挥作用</li>
-</ol>
+            bodyObserver.observe(document.body, {
+              attributes: true,
+              attributeFilter: ["class"],
+            });
+          });
+        </script>
+      </article>
 
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="next" href="http://localhost:1313/blogs/%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%E5%91%BD%E5%90%8D/">
-    <span class="title">下一页 »</span>
-    <br>
-    <span>有意思的命名</span>
-  </a>
-</nav>
-
-  </footer><script>
-  function createGiscusScript(data) {
-    const giscusScript = document.createElement("script");
-
-    Object.entries(data).forEach(([key, value]) =>
-      giscusScript.setAttribute(key, value)
-    );
-
-    document.querySelector("article").appendChild(giscusScript);
-
-    const toggle = document.querySelector('label[for="switch_default"]');
-    if (toggle) {
-      toggle.addEventListener("click", function () {
-        const theme = document.body.classList.contains("dark")
-          ? "transparent_dark"
-          : "light";
-
-        console.log(theme);
-        giscusScript.setAttribute("data-theme", theme);
-
-        sendMessage({ setConfig: { theme } });
-      });
-    }
-  }
-
-  function sendMessage(message) {
-    const iframe = document.querySelector("iframe.giscus-frame");
-    if (iframe) {
-      iframe.contentWindow.postMessage(
-        { giscus: message },
-        "https://giscus.app"
-      );
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-    
-    const giscusAttributes = {
-      src: "https://giscus.app/client.js",
-      "data-repo": "slc3a2/slc3a2.github.io",
-      "data-repo-id": "R_kgDOOOP9Qg",
-      "data-category": "Announcements",
-      "data-category-id": "DIC_kwDOOOP9Qs4Cof61",
-      "data-mapping": "title",
-      "data-strict": "0",
-      "data-reactions-enabled": "1",
-      "data-emit-metadata": "0",
-      "data-input-position": "top",
-      "data-theme": "preferred_color_scheme",
-      "data-lang": "zh-CN",
-      crossorigin: "anonymous",
-      async: "",
-    };
-
-    giscusAttributes["data-theme"] = document.body.classList.contains("dark")
-      ? "transparent_dark"
-      : "light";
-
-    createGiscusScript(giscusAttributes);
-
-    const bodyObserver = new MutationObserver(() => {
-      const theme = document.body.classList.contains("dark")
-        ? "transparent_dark"
-        : "light";
-      sendMessage({ setConfig: { theme } });
-    });
-
-    bodyObserver.observe(document.body, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-  });
-</script>
-
-</article>
-
-<script src="/js/view-image.min.js"></script>
-<script>
-  window.ViewImage && ViewImage.init("main.main img");
-</script>
+      <script src="/js/view-image.min.js"></script>
+      <script>
+        window.ViewImage && ViewImage.init("main.main img");
+      </script>
     </main>
-    
-<footer class="footer">
-        <span>&copy; 2016 - 2025 <a href="http://localhost:1313/">slc3a2</a></span> · 
 
-    <span>
+    <footer class="footer">
+      <span
+        >&copy; 2016 - 2025 <a href="http://localhost:1313/">liang7hi</a></span
+      >
+      ·
+
+      <span>
         Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-    
-    <div class="busuanzi-footer">
-    <span id="busuanzi_container_site_pv">
-        本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
-    </span>
-    <span id="busuanzi_container_site_uv">
-        本站访客数 <span id="busuanzi_value_site_uv"></span> 人次
-    </span>
-    </div></footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank"
+          >Hugo</a
+        >
+        &
+        <a
+          href="https://github.com/adityatelange/hugo-PaperMod/"
+          rel="noopener"
+          target="_blank"
+          >PaperMod</a
+        >
+      </span>
 
-<script>
-    let menu = document.getElementById('menu')
-    if (menu) {
+      <div class="busuanzi-footer">
+        <span id="busuanzi_container_site_pv">
+          本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+        </span>
+        <span id="busuanzi_container_site_uv">
+          本站访客数 <span id="busuanzi_value_site_uv"></span> 人次
+        </span>
+      </div>
+    </footer>
+    <a
+      href="#top"
+      aria-label="go to top"
+      title="Go to Top (Alt + G)"
+      class="top-link"
+      id="top-link"
+      accesskey="g"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 12 6"
+        fill="currentColor"
+      >
+        <path d="M12 6H0l6-6z" />
+      </svg>
+    </a>
+
+    <script>
+      let menu = document.getElementById("menu");
+      if (menu) {
         menu.scrollLeft = localStorage.getItem("menu-scroll-position");
         menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
+          localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        };
+      }
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
+          e.preventDefault();
+          var id = this.getAttribute("href").substr(1);
+          if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            document
+              .querySelector(`[id='${decodeURIComponent(id)}']`)
+              .scrollIntoView({
+                behavior: "smooth",
+              });
+          } else {
+            document
+              .querySelector(`[id='${decodeURIComponent(id)}']`)
+              .scrollIntoView();
+          }
+          if (id === "top") {
+            history.replaceState(null, null, " ");
+          } else {
+            history.pushState(null, null, `#${id}`);
+          }
         });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
+      });
+    </script>
+    <script>
+      var mybutton = document.getElementById("top-link");
+      window.onscroll = function () {
+        if (
+          document.body.scrollTop > 800 ||
+          document.documentElement.scrollTop > 800
+        ) {
+          mybutton.style.visibility = "visible";
+          mybutton.style.opacity = "1";
         } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
+          mybutton.style.visibility = "hidden";
+          mybutton.style.opacity = "0";
         }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
+      };
+    </script>
+    <script>
+      document.getElementById("theme-toggle").addEventListener("click", () => {
         if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
+          document.body.classList.remove("dark");
+          localStorage.setItem("pref-theme", "light");
         } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
+          document.body.classList.add("dark");
+          localStorage.setItem("pref-theme", "dark");
         }
-    })
-
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
+      });
+    </script>
+    <script>
+      document.querySelectorAll("pre > code").forEach((codeblock) => {
         const container = codeblock.parentNode.parentNode;
 
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = '复制';
+        const copybutton = document.createElement("button");
+        copybutton.classList.add("copy-code");
+        copybutton.innerHTML = "复制";
 
         function copyingDone() {
-            copybutton.innerHTML = '已复制！';
-            setTimeout(() => {
-                copybutton.innerHTML = '复制';
-            }, 2000);
+          copybutton.innerHTML = "已复制！";
+          setTimeout(() => {
+            copybutton.innerHTML = "复制";
+          }, 2000);
         }
 
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
+        copybutton.addEventListener("click", (cb) => {
+          if ("clipboard" in navigator) {
+            navigator.clipboard.writeText(codeblock.textContent);
+            copyingDone();
+            return;
+          }
 
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
+          const range = document.createRange();
+          range.selectNodeContents(codeblock);
+          const selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+          try {
+            document.execCommand("copy");
+            copyingDone();
+          } catch (e) {}
+          selection.removeRange(range);
         });
 
         if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
+          container.appendChild(copybutton);
         } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else if (
+          codeblock.parentNode.parentNode.parentNode.parentNode.parentNode
+            .nodeName == "TABLE"
+        ) {
+          codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(
+            copybutton
+          );
         } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
+          codeblock.parentNode.appendChild(copybutton);
         }
-    });
-</script>
-</body>
-
+      });
+    </script>
+  </body>
 </html>

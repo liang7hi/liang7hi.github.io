@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>生活 on slc3a2</title>
-    <link>https://slc3a2.github.io/tags/%E7%94%9F%E6%B4%BB/</link>
-    <description>Recent content in 生活 on slc3a2</description>
+    <title>生活 on liang7hi</title>
+    <link>http://localhost:1313/tags/%E7%94%9F%E6%B4%BB/</link>
+    <description>Recent content in 生活 on liang7hi</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 21 May 2025 16:32:13 +0800</lastBuildDate>
-    <atom:link href="https://slc3a2.github.io/tags/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>520</title>
-      <link>https://slc3a2.github.io/blogs/520/</link>
+      <link>http://localhost:1313/blogs/520/</link>
       <pubDate>Wed, 21 May 2025 16:32:13 +0800</pubDate>
-      <guid>https://slc3a2.github.io/blogs/520/</guid>
+      <guid>http://localhost:1313/blogs/520/</guid>
       <description>&lt;h2 id=&#34;我们领证啦&#34;&gt;我们领证啦&lt;/h2&gt;
 &lt;p&gt;25 年 520 领证是我和我媳妇在 24 年底就计划好了的，我们的婚礼是在 25 年的五一举行，之后没过几天就 520 了。这是一个有特殊纪念、好记的日子。沾沾喜气，而且我发现 20250520 算是一种伪回文串了，只出现了 0 2 5 三种数字。&lt;/p&gt;</description>
     </item>
