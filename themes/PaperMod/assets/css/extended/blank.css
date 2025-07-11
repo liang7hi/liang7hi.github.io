@@ -96,4 +96,10 @@ header.header {
   #menu li:has(a[title="⏱ 时间轴"]) {
     display: none;
   }
+  .logo {
+    margin-right: 0 !important;
+  }
+  #menu {
+    margin-left: 0 !important;
+  }
 }
