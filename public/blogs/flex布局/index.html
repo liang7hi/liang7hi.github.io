@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8" />
+<head><meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 />
-<meta name="robots" content="noindex, nofollow" />
+<meta name="robots" content="index, follow" />
 <title>
   flex 布局介绍 | liang7hi
 </title>
@@ -16,17 +16,17 @@
   content="前端"
 /> <meta name="description" content="flex 布局概念
 
-flex布局通常被叫做flex box，也叫弹性盒子或容器，是一种一维的布局模型，它能子元素(flex item)之间提供了强大的空间分布和对齐能力。"> <meta name="author" content=""> <link rel="canonical" href="http://localhost:1313/blogs/flex%E5%B8%83%E5%B1%80/">
+flex布局通常被叫做flex box，也叫弹性盒子或容器，是一种一维的布局模型，它能子元素(flex item)之间提供了强大的空间分布和对齐能力。"> <meta name="author" content=""> <link rel="canonical" href="https://liang7hi.github.io/blogs/flex%E5%B8%83%E5%B1%80/">
 <link
   crossorigin="anonymous"
-  href="/assets/css/stylesheet.3255e647fb543032856d99fbfd5e1004c654e5b91206f3400f8b380728e72d6e.css"
-  integrity="sha256-MlXmR/tUMDKFbZn7/V4QBMZU5bkSBvNAD4s4ByjnLW4="
+  href="/assets/css/stylesheet.8d9436957277095ea1884338a1db7446284958695fc8da29218be31c248756f4.css"
+  integrity="sha256-jZQ2lXJ3CV6hiEM4odt0RihJWGlfyNopIYvjHCSHVvQ="
   rel="preload stylesheet"
   as="style"
-/> <link rel="icon" href="http://localhost:1313/favicon.ico"> <link
-rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png"> <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg"> <meta name="theme-color" content="#2e2e33"> <meta name="msapplication-TileColor" content="#2e2e33"> <link rel="alternate" hreflang="zh" href="http://localhost:1313/blogs/flex%E5%B8%83%E5%B1%80/" />
+/> <link rel="icon" href="https://liang7hi.github.io/favicon.ico"> <link
+rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://liang7hi.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://liang7hi.github.io/apple-touch-icon.png"> <link rel="mask-icon" href="https://liang7hi.github.io/safari-pinned-tab.svg"> <meta name="theme-color" content="#2e2e33"> <meta name="msapplication-TileColor" content="#2e2e33"> <link rel="alternate" hreflang="zh" href="https://liang7hi.github.io/blogs/flex%E5%B8%83%E5%B1%80/" />
 <noscript>
   <style>
     #theme-toggle,
@@ -78,7 +78,74 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
   });
 </script>
  
-<script
+<meta property="og:url" content="https://liang7hi.github.io/blogs/flex%E5%B8%83%E5%B1%80/">
+  <meta property="og:site_name" content="liang7hi">
+  <meta property="og:title" content="flex 布局介绍">
+  <meta property="og:description" content="flex 布局概念 flex布局通常被叫做flex box，也叫弹性盒子或容器，是一种一维的布局模型，它能子元素(flex item)之间提供了强大的空间分布和对齐能力。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blogs">
+    <meta property="article:published_time" content="2020-09-11T14:03:49+08:00">
+    <meta property="article:modified_time" content="2020-09-11T14:03:49+08:00">
+    <meta property="article:tag" content="前端">
+    <meta property="og:image" content="https://liang7hi.github.io/images/flex%E5%B8%83%E5%B1%80/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://liang7hi.github.io/images/flex%E5%B8%83%E5%B1%80/cover.jpg">
+<meta name="twitter:title" content="flex 布局介绍">
+<meta name="twitter:description" content="flex 布局概念
+
+flex布局通常被叫做flex box，也叫弹性盒子或容器，是一种一维的布局模型，它能子元素(flex item)之间提供了强大的空间分布和对齐能力。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "日志",
+      "item": "https://liang7hi.github.io/blogs/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "flex 布局介绍",
+      "item": "https://liang7hi.github.io/blogs/flex%E5%B8%83%E5%B1%80/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "flex 布局介绍",
+  "name": "flex 布局介绍",
+  "description": "flex 布局概念 flex布局通常被叫做flex box，也叫弹性盒子或容器，是一种一维的布局模型，它能子元素(flex item)之间提供了强大的空间分布和对齐能力。\n",
+  "keywords": [
+    "前端"
+  ],
+  "articleBody": "flex 布局概念 flex布局通常被叫做flex box，也叫弹性盒子或容器，是一种一维的布局模型，它能子元素(flex item)之间提供了强大的空间分布和对齐能力。\nflex容器中存在两个轴，一个水平方向main axis，一个竖直方向cross axis，这是flex布局最重要的点，内部元素flex item都是根据这个轴来排列对齐的。\nflex 布局好处 在一个html元素和内部多个子元的组合中。要实现子元素有序的，高度自定义的布局，在传统布局方式中，会使用position，float方式实现，比如多个子元素在父元素中垂直水平居中，比较困难。这个时候就可以用flex布局，只需要简单几句代码就可以优雅的实现。\nflex 容器属性 设置一个盒子为flex容器，首先设置display: flex;\nflex-direction flex-wrap justify-content align-items align-content flex-direction flex-direction属性规定所有flex item在flex容器从 第一个元素 开始的排列方式\nflex-direction: row(默认) | row-reverse | column | column-reverse; row： 从左往右水平展示\nrow-reverse： 从右向左(反向)水平展示\ncolumn： 从上往下垂直展示\ncolumn-reverse： 从下往上(反向)垂直展示\nflex-wrap flex-wrap属性规定flex容器内所有flex item总宽度超出flex容器时换行方式\nflex-wrap: nowrap(默认) | wrap | wrap-reverse; nowrap： 不换行，只展示一行。如果容器不够宽，平均缩小每个item的宽度\nwrap： 换行，向下换行\nwrap-reverse： 以相反方向换行，向上换行\njustify-content justify-content属性规定所有flex item作为一个整体在flex容器在主轴(默认为水平轴，通过flex-direcation设置)上的排列方式\njustify-content: flex-start(默认值) | flex-end | center | space-between | space-around; flex-start： 整体位于容器开头\nflex-end： 整体位于容器结尾\ncenter： 整体位于容器中心\nspace-between： 每个flex item平均分布在容器内； 第一个item和容器开头，最后一个item和容器结尾都无间距\nspace-around： 每个flex item平均分布在容器内， 第一个item和容器开头，最后一个item和容器结尾的间距都为每个item间距的一半\nalign-items align-items属性规定所有flex item作为一个整体在flex容器在副轴(非主轴，和justify-content相反)上的排列方式\nalign-items: stretch(默认值) | center | flex-start | flex-end | baseline; stretch： 整体占满整个主轴的高度, 前提必须是你没有设置 item 的高度(宽度)，否则不生效\ncenter： 整体位于主轴中心\nflex-start： 整体位于主轴开头\nflex-end： 整体位于主轴结尾\nbaseline： 主轴位于item中第一行文字 基线 对齐\n基线的概念：英文中大概就是一个小写字母 x 的最底部，f 的中下部；而中文大概就汉字中下部，不太准确，我没深入了解，有兴趣可以网上了解。\nalign-content align-content属性规定了多条主轴的情况下(只有item换行了，才会产生多条主轴)，这些主轴作为一个整体在他们的排列方向中的排列方式；注意：只有一条主轴(item不换行)不生效\nalign-content: stretch(默认) | center | flex-start | flex-end | space-between | space-around; stretch： 整体被拉伸以适应容器\ncenter： 整体内各个轴紧靠，并且位于容器中心，头尾留白\nflex-start： 整体内各个轴紧靠，并且位于容器头部\nflex-end： 整体内各个轴紧靠，并且位于容器尾部\nspace-between： 整体平分，其中头尾和容器头尾紧靠，中间间隙平分\nspace-around： 整体平分，其中头尾和容器头尾距离为中间 item 的空隙的一半，中间间隙平分\nflex item 属性 order flex-basis flex-grow flex-shrink align-self order order 属性规定了当前flex item排列前后顺序，越小排列越靠前，可以为负数\norder: 0 (默认值) | \u003cnumber\u003e; flex-basis flex-basis 属性规定了当前flex item的高度(主轴为水平轴则是高度，如果主轴为竖直轴则是宽度，主轴通过flex-direction设置)的伸缩比例或大小\nflex-basis: auto(默认) | number; number： 可以是具体的像素值，如 30px；也可以是 auto 大小百分比\nflex-grow flex-grow属性 前提在所有项目以flex-basis的值排列完如有剩余空间，则规定当前flex item的高度(主轴为水平轴则是高度，如果主轴为竖直轴则是宽度，主轴通过flex-direction设置)的剩余空间份比例\nflex-grow: 0 (默认值) | \u003cnumber\u003e; number：当剩余空间足够时，如果值为1那么高度(宽度)放大剩余空间1份，如果只有一个元素设置了此属性，那么剩余全部全部分给他；如果多个元素设置了此属性，比如a:1 b:2 c:3则会把剩余空间分成6份，a 在本身的大小基础上增加剩余空间的1/6份 a 则是2/6份 c 则是3/6份，如果剩余空间不足，则取剩余空间最大值，不支持负数\nflex-shrink flex-shrink属性规定了当剩余空间不足时候，当前flex item的高度(主轴为水平轴则是高度，如果主轴为竖直轴则是宽度，主轴通过flex-direction设置)的缩小超出空间份比例，和上面的flex-grow是相反的，一个放大，一个缩小\nflex-shrink: 1 (默认值) | \u003cnumber\u003e; number：当剩余空间不足时，默认按照比例 1 缩小，如果值为2那么高度(宽度)缩小超出空间2份\nalign-self flex-shrink属性规定当前flex item作为一个整体在flex容器在副轴(非主轴，和justify-content相反)上的排列方式\n注意：这个属性和align-item的区别是align-item影响全部flex item，而align-self只影响当前flex item\nalign-self: auto(默认值) | stretch | center | flex-start | flex-end | baseline; auto：继承父亲align-item的value\nstretch： 占满整个主轴的高度, 前提必须是你没有设置 item 的高度(宽度)，否则不生效\ncenter： 位于主轴中心\nflex-start： 位于主轴开头\nflex-end： 位于主轴结尾\nbaseline： 位于item中第一行文字 基线 对齐\n扩展一道面试题 实现一个元素包含内部两个元素。当 flex 水平轴为主轴，实现左固定，右自适应：\n\u003cdiv class=\"flex2\"\u003e \u003cp\u003e1\u003c/p\u003e \u003cp\u003e2\u003c/p\u003e \u003c/div\u003e div.flex2 { display: flex; border: 1px solid red; width: 100%; height: 300px; } .flex2 p { width: 100px; height: 100px; background-color: skyblue; line-height: 100px; text-align: center; font-size: 80px; border: 1px solid blue; } .flex2 p:nth-child(1) { width: 200px; // 左侧元素固定为200px宽 } .flex2 p:nth-child(2) { flex-grow: 1; // 右侧元素自适应 } ",
+  "wordCount" : "2524",
+  "inLanguage": "zh",
+  "image":"https://liang7hi.github.io/images/flex%E5%B8%83%E5%B1%80/cover.jpg","datePublished": "2020-09-11T14:03:49+08:00",
+  "dateModified": "2020-09-11T14:03:49+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://liang7hi.github.io/blogs/flex%E5%B8%83%E5%B1%80/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "liang7hi",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://liang7hi.github.io/favicon.ico"
+    }
+  }
+}
+</script><script
   async
   src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
 ></script>
@@ -100,7 +167,7 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="liang7hi (Alt + H)">liang7hi</a>
+            <a href="https://liang7hi.github.io/" accesskey="h" title="liang7hi (Alt + H)">liang7hi</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -126,37 +193,37 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="🏠 首页">
+                <a href="https://liang7hi.github.io/" title="🏠 首页">
                     <span>🏠 首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/blogs/" title="📚 日志">
+                <a href="https://liang7hi.github.io/blogs/" title="📚 日志">
                     <span>📚 日志</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/photos/" title="🖼️ 照片">
+                <a href="https://liang7hi.github.io/photos/" title="🖼️ 照片">
                     <span>🖼️ 照片</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/apps/" title="🚀 应用">
+                <a href="https://liang7hi.github.io/apps/" title="🚀 应用">
                     <span>🚀 应用</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="🔍 搜索">
+                <a href="https://liang7hi.github.io/search/" title="🔍 搜索">
                     <span>🔍 搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="🧩 分类">
+                <a href="https://liang7hi.github.io/tags/" title="🧩 分类">
                     <span>🧩 分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="⏱ 时间轴">
+                <a href="https://liang7hi.github.io/archives/" title="⏱ 时间轴">
                     <span>⏱ 时间轴</span>
                 </a>
             </li>
@@ -189,7 +256,7 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
     </div>
   </header> 
 <figure class="entry-cover1">
-    <img loading="eager" src="http://localhost:1313/images/flex%E5%B8%83%E5%B1%80/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Shubham Dhage</figcaption>
+    <img loading="eager" src="https://liang7hi.github.io/images/flex%E5%B8%83%E5%B1%80/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Shubham Dhage</figcaption>
 </figure><aside id="toc-container" class="toc-container wide">
     <div class="toc">
         <details  open>
@@ -460,15 +527,15 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
+      <li><a href="https://liang7hi.github.io/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://localhost:1313/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">
+  <a class="prev" href="https://liang7hi.github.io/blogs/%E5%87%BD%E6%95%B0%E7%9A%84%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">
     <span class="title">« 上一页</span>
     <br>
     <span>函数的防抖和节流</span>
   </a>
-  <a class="next" href="http://localhost:1313/blogs/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/">
+  <a class="next" href="https://liang7hi.github.io/blogs/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/">
     <span class="title">下一页 »</span>
     <br>
     <span>函数柯里化(currying)</span>
@@ -558,7 +625,7 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
     </main>
     
 <footer class="footer">
-        <span>&copy; 2016 - 2025 <a href="http://localhost:1313/">liang7hi</a></span> · 
+        <span>&copy; 2016 - 2025 <a href="https://liang7hi.github.io/">liang7hi</a></span> · 
 
     <span>
         Powered by
