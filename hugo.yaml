@@ -8,7 +8,7 @@ ShowWordCount: true
 languageCode: zh
 defaultContentLanguage: zh
 
-# 允许在markdown使用html
+# 允许在 markdown 中使用 html 
 markup:
   goldmark:
     renderer:

@@ -81,3 +81,19 @@ header.header {
   backdrop-filter: saturate(50%) blur(4px);
   z-index: 3;
 }
+
+/* 手机端（屏幕宽度 ≤ 768px） */
+@media (max-width: 768px) {
+  #menu li:has(a[title="📚 日志"]) {
+    display: none;
+  }
+  #menu li:has(a[title="🔍 搜索"]) {
+    display: none;
+  }
+  #menu li:has(a[title="🧩 分类"]) {
+    display: none;
+  }
+  #menu li:has(a[title="⏱ 时间轴"]) {
+    display: none;
+  }
+}
