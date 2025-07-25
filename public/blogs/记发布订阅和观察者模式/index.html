@@ -25,9 +25,9 @@
 发布者 -&gt; 事件队列 &lt;=&gt; 订阅者
 一次完整流程
 
-订阅者向事件队列订阅事件E
-发布者向事件队列发布事件E
-事件队列通知事件E的所有订阅者，订阅者接收
+订阅者 向事件队列订阅 事件 E
+发布者 向事件队列发布 事件 E
+事件队列通知 事件 E 的所有 订阅者，订阅者 接收
 
 class Event {
   constructor() {
@@ -61,8 +61,8 @@ event.emit(&#34;open&#34;, { open: true });
 需要两个角色"> <meta name="author" content=""> <link rel="canonical" href="https://liang7hi.github.io/blogs/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/">
 <link
   crossorigin="anonymous"
-  href="/assets/css/stylesheet.8d9436957277095ea1884338a1db7446284958695fc8da29218be31c248756f4.css"
-  integrity="sha256-jZQ2lXJ3CV6hiEM4odt0RihJWGlfyNopIYvjHCSHVvQ="
+  href="/assets/css/stylesheet.99a87cbdd7c10cafa9f1ae144b322f5f35a833f573b80a6d0789f5fb2fc6d750.css"
+  integrity="sha256-mah8vdfBDK&#43;p8a4USzIvXzWoM/VzuAptB4n1&#43;y/G11A="
   rel="preload stylesheet"
   as="style"
 /> <link rel="icon" href="https://liang7hi.github.io/favicon.ico"> <link
@@ -126,7 +126,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favic
   <meta property="og:description" content=" 发布订阅模式 简单来说，需要三个角色
 发布者 事件队列 订阅者 发布者 -&gt; 事件队列 &lt;=&gt; 订阅者
 一次完整流程
-订阅者向事件队列订阅事件E 发布者向事件队列发布事件E 事件队列通知事件E的所有订阅者，订阅者接收 class Event { constructor() { // 事件队列 this.listeners = {}; } // 订阅方法 on(eventType, listener) { if (!this.listeners[eventType]) { this.listeners[eventType] = []; } this.listeners[eventType].push(listener); } // 发布方法 emit(eventType, data) { const callbacks = this.listeners[eventType]; if (callbacks) { callbacks.forEach((c) =&gt; { c(data); }); } } } const event = new Event(); event.on(&#34;open&#34;, (data) =&gt; { console.log(data); }); event.emit(&#34;open&#34;, { open: true }); 观察者模式 需要两个角色">
+订阅者 向事件队列订阅 事件 E 发布者 向事件队列发布 事件 E 事件队列通知 事件 E 的所有 订阅者，订阅者 接收 class Event { constructor() { // 事件队列 this.listeners = {}; } // 订阅方法 on(eventType, listener) { if (!this.listeners[eventType]) { this.listeners[eventType] = []; } this.listeners[eventType].push(listener); } // 发布方法 emit(eventType, data) { const callbacks = this.listeners[eventType]; if (callbacks) { callbacks.forEach((c) =&gt; { c(data); }); } } } const event = new Event(); event.on(&#34;open&#34;, (data) =&gt; { console.log(data); }); event.emit(&#34;open&#34;, { open: true }); 观察者模式 需要两个角色">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blogs">
@@ -148,9 +148,9 @@ rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favic
 发布者 -&gt; 事件队列 &lt;=&gt; 订阅者
 一次完整流程
 
-订阅者向事件队列订阅事件E
-发布者向事件队列发布事件E
-事件队列通知事件E的所有订阅者，订阅者接收
+订阅者 向事件队列订阅 事件 E
+发布者 向事件队列发布 事件 E
+事件队列通知 事件 E 的所有 订阅者，订阅者 接收
 
 class Event {
   constructor() {
@@ -210,11 +210,11 @@ event.emit(&#34;open&#34;, { open: true });
   "@type": "BlogPosting",
   "headline": "记发布订阅和观察者模式",
   "name": "记发布订阅和观察者模式",
-  "description": " 发布订阅模式 简单来说，需要三个角色\n发布者 事件队列 订阅者 发布者 -\u0026gt; 事件队列 \u0026lt;=\u0026gt; 订阅者\n一次完整流程\n订阅者向事件队列订阅事件E 发布者向事件队列发布事件E 事件队列通知事件E的所有订阅者，订阅者接收 class Event { constructor() { // 事件队列 this.listeners = {}; } // 订阅方法 on(eventType, listener) { if (!this.listeners[eventType]) { this.listeners[eventType] = []; } this.listeners[eventType].push(listener); } // 发布方法 emit(eventType, data) { const callbacks = this.listeners[eventType]; if (callbacks) { callbacks.forEach((c) =\u0026gt; { c(data); }); } } } const event = new Event(); event.on(\u0026#34;open\u0026#34;, (data) =\u0026gt; { console.log(data); }); event.emit(\u0026#34;open\u0026#34;, { open: true }); 观察者模式 需要两个角色\n",
+  "description": " 发布订阅模式 简单来说，需要三个角色\n发布者 事件队列 订阅者 发布者 -\u0026gt; 事件队列 \u0026lt;=\u0026gt; 订阅者\n一次完整流程\n订阅者 向事件队列订阅 事件 E 发布者 向事件队列发布 事件 E 事件队列通知 事件 E 的所有 订阅者，订阅者 接收 class Event { constructor() { // 事件队列 this.listeners = {}; } // 订阅方法 on(eventType, listener) { if (!this.listeners[eventType]) { this.listeners[eventType] = []; } this.listeners[eventType].push(listener); } // 发布方法 emit(eventType, data) { const callbacks = this.listeners[eventType]; if (callbacks) { callbacks.forEach((c) =\u0026gt; { c(data); }); } } } const event = new Event(); event.on(\u0026#34;open\u0026#34;, (data) =\u0026gt; { console.log(data); }); event.emit(\u0026#34;open\u0026#34;, { open: true }); 观察者模式 需要两个角色\n",
   "keywords": [
     "计算机科学"
   ],
-  "articleBody": " 发布订阅模式 简单来说，需要三个角色\n发布者 事件队列 订阅者 发布者 -\u003e 事件队列 \u003c=\u003e 订阅者\n一次完整流程\n订阅者向事件队列订阅事件E 发布者向事件队列发布事件E 事件队列通知事件E的所有订阅者，订阅者接收 class Event { constructor() { // 事件队列 this.listeners = {}; } // 订阅方法 on(eventType, listener) { if (!this.listeners[eventType]) { this.listeners[eventType] = []; } this.listeners[eventType].push(listener); } // 发布方法 emit(eventType, data) { const callbacks = this.listeners[eventType]; if (callbacks) { callbacks.forEach((c) =\u003e { c(data); }); } } } const event = new Event(); event.on(\"open\", (data) =\u003e { console.log(data); }); event.emit(\"open\", { open: true }); 观察者模式 需要两个角色\n目标 观察者 目标 \u003c=\u003e 观察者\n一次完整流程\n观察者观察目标 一旦目标发生变化，目标会主动通知观察者 function observer(obj, target, callback) { if (!obj.data) { obj.data = {}; } Object.defineProperty(obj, target, { get() { return this.data[target]; }, set(val) { this.data[target] = val; // 目标通知观察者 callback \u0026\u0026 callback(val); }, }); if (obj.data[target]) { callback \u0026\u0026 callback(obj.data[target]); } } ",
+  "articleBody": " 发布订阅模式 简单来说，需要三个角色\n发布者 事件队列 订阅者 发布者 -\u003e 事件队列 \u003c=\u003e 订阅者\n一次完整流程\n订阅者 向事件队列订阅 事件 E 发布者 向事件队列发布 事件 E 事件队列通知 事件 E 的所有 订阅者，订阅者 接收 class Event { constructor() { // 事件队列 this.listeners = {}; } // 订阅方法 on(eventType, listener) { if (!this.listeners[eventType]) { this.listeners[eventType] = []; } this.listeners[eventType].push(listener); } // 发布方法 emit(eventType, data) { const callbacks = this.listeners[eventType]; if (callbacks) { callbacks.forEach((c) =\u003e { c(data); }); } } } const event = new Event(); event.on(\"open\", (data) =\u003e { console.log(data); }); event.emit(\"open\", { open: true }); 观察者模式 需要两个角色\n目标 观察者 目标 \u003c=\u003e 观察者\n一次完整流程\n观察者观察目标 一旦目标发生变化，目标会主动通知观察者 function observer(obj, target, callback) { if (!obj.data) { obj.data = {}; } Object.defineProperty(obj, target, { get() { return this.data[target]; }, set(val) { this.data[target] = val; // 目标通知观察者 callback \u0026\u0026 callback(val); }, }); if (obj.data[target]) { callback \u0026\u0026 callback(obj.data[target]); } } ",
   "wordCount" : "262",
   "inLanguage": "zh",
   "image":"https://liang7hi.github.io/images/%E8%AE%B0%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/cover.jpg","datePublished": "2021-06-01T11:40:03+08:00",
@@ -471,9 +471,9 @@ event.emit(&#34;open&#34;, { open: true });
 <p><strong>发布者</strong> -&gt; <strong>事件队列</strong> &lt;=&gt; <strong>订阅者</strong></p>
 <p>一次完整流程</p>
 <ul>
-<li><code>订阅者</code>向事件队列订阅<code>事件E</code></li>
-<li><code>发布者</code>向事件队列发布<code>事件E</code></li>
-<li>事件队列通知<code>事件E</code>的所有<code>订阅者</code>，<code>订阅者</code>接收</li>
+<li>订阅者 向事件队列订阅 事件 E</li>
+<li>发布者 向事件队列发布 事件 E</li>
+<li>事件队列通知 事件 E 的所有 订阅者，订阅者 接收</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Event</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>() {
@@ -512,8 +512,8 @@ event.emit(&#34;open&#34;, { open: true });
 <p><strong>目标</strong> &lt;=&gt; <strong>观察者</strong></p>
 <p>一次完整流程</p>
 <ul>
-<li><code>观察者</code>观察目标</li>
-<li>一旦目标<code>发生</code>变化，目标会主动通知<code>观察者</code></li>
+<li>观察者观察目标</li>
+<li>一旦目标发生变化，目标会主动通知观察者</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">observer</span>(<span style="color:#a6e22e">obj</span>, <span style="color:#a6e22e">target</span>, <span style="color:#a6e22e">callback</span>) {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">data</span>) {

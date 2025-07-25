@@ -17,8 +17,8 @@
 /> <meta name="description" content="liang7hi bolg 博客"> <meta name="author" content=""> <link rel="canonical" href="https://liang7hi.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">
 <link
   crossorigin="anonymous"
-  href="/assets/css/stylesheet.8d9436957277095ea1884338a1db7446284958695fc8da29218be31c248756f4.css"
-  integrity="sha256-jZQ2lXJ3CV6hiEM4odt0RihJWGlfyNopIYvjHCSHVvQ="
+  href="/assets/css/stylesheet.99a87cbdd7c10cafa9f1ae144b322f5f35a833f573b80a6d0789f5fb2fc6d750.css"
+  integrity="sha256-mah8vdfBDK&#43;p8a4USzIvXzWoM/VzuAptB4n1&#43;y/G11A="
   rel="preload stylesheet"
   as="style"
 /> <link rel="icon" href="https://liang7hi.github.io/favicon.ico"> <link
@@ -267,7 +267,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favic
          发布订阅模式 简单来说，需要三个角色
 发布者 事件队列 订阅者 发布者 -&gt; 事件队列 &lt;=&gt; 订阅者
 一次完整流程
-订阅者向事件队列订阅事件E 发布者向事件队列发布事件E 事件队列通知事件E的所有订阅者，订阅者接收 class Event { constructor() { // 事件队列 this.listeners = {}; } // 订阅方法 on(eventType, listener) { if (!this.listeners[eventType]) { this.listeners[eventType] = []; } this.listeners[eventType].push(listener); } // 发布方法 emit(eventType, data) { const callbacks = this.listeners[eventType]; if (callbacks) { callbacks.forEach((c) =&gt; { c(data); }); } } } const event = new Event(); event.on(&#34;open&#34;, (data) =&gt; { console.log(data); }); event.emit(&#34;open&#34;, { open: true }); 观察者模式 需要两个角色
+订阅者 向事件队列订阅 事件 E 发布者 向事件队列发布 事件 E 事件队列通知 事件 E 的所有 订阅者，订阅者 接收 class Event { constructor() { // 事件队列 this.listeners = {}; } // 订阅方法 on(eventType, listener) { if (!this.listeners[eventType]) { this.listeners[eventType] = []; } this.listeners[eventType].push(listener); } // 发布方法 emit(eventType, data) { const callbacks = this.listeners[eventType]; if (callbacks) { callbacks.forEach((c) =&gt; { c(data); }); } } } const event = new Event(); event.on(&#34;open&#34;, (data) =&gt; { console.log(data); }); event.emit(&#34;open&#34;, { open: true }); 观察者模式 需要两个角色
 ...
       </p>
     </div>

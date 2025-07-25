@@ -55,10 +55,10 @@ TocOpen: true
 
 ## OhMyCookie
 
-> ⽤来扩展 Chrome 浏览器中 Cookie，Local、SessionStorage 的增删改查、导出操作。Chrome 扩展商店搜 「ohmycookie」
+> ⽤来扩展 Chrome 浏览器中 Cookie，Local、SessionStorage 的增删改查、导出操作。Chrome 扩展商店搜 「OhMyCookie」
 
 - 基于开源脚⼿架⼯具 vtemp-chrome-extension， 来实现使⽤ Vue 开发
-- 可编辑 Cookie 8 种属性，并⽀持以 JSON 导出 本⻚⾯全部 Cookie
+- 可编辑 Cookie 8 种属性，并⽀持以 JSON 导出 本页面全部 Cookie
 
 ![introduction image01](/images/apps/ohmycookie/img1.jpeg)
 
@@ -70,7 +70,7 @@ TocOpen: true
 
 ## OhMyBox
 
-> 基于 vue 的移动端滑动组件，类似抖⾳滑屏效果。npm 商店搜「ohmybox」
+> 基于 vue 的移动端滑动组件，类似抖⾳滑屏效果。npm 商店搜「OhMyBox」
 
 - 内部单元组件使⽤ Slot 插槽，可⾼度⾃定义内容
 - ⽀持 六种参数 和 两种事件 设置：翻⻚⾼度，持续滚动时⻓，快速翻⻚⾼度、模拟点击 ⽅法等

@@ -91,9 +91,9 @@
 &lt;p&gt;&lt;strong&gt;发布者&lt;/strong&gt; -&amp;gt; &lt;strong&gt;事件队列&lt;/strong&gt; &amp;lt;=&amp;gt; &lt;strong&gt;订阅者&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;一次完整流程&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;订阅者&lt;/code&gt;向事件队列订阅&lt;code&gt;事件E&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;发布者&lt;/code&gt;向事件队列发布&lt;code&gt;事件E&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;事件队列通知&lt;code&gt;事件E&lt;/code&gt;的所有&lt;code&gt;订阅者&lt;/code&gt;，&lt;code&gt;订阅者&lt;/code&gt;接收&lt;/li&gt;
+&lt;li&gt;订阅者 向事件队列订阅 事件 E&lt;/li&gt;
+&lt;li&gt;发布者 向事件队列发布 事件 E&lt;/li&gt;
+&lt;li&gt;事件队列通知 事件 E 的所有 订阅者，订阅者 接收&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Event&lt;/span&gt; {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;constructor&lt;/span&gt;() {
@@ -132,7 +132,7 @@
       <pubDate>Sat, 15 May 2021 21:22:57 +0800</pubDate>
       <guid>https://liang7hi.github.io/blogs/%E6%97%85%E8%A1%8C%E8%80%851%E5%8F%B7/</guid>
       <description>&lt;h2 id=&#34;旅行者计划&#34;&gt;旅行者计划&lt;/h2&gt;
-&lt;p&gt;30 多年前，美国发起了一项太空计划：&lt;strong&gt;旅行者计划&lt;/strong&gt;。目的是为了探测木星和土星，其中包含&lt;code&gt;旅行者1号&lt;/code&gt;和&lt;code&gt;旅行者2号&lt;/code&gt;，在 1977 年，美国向太空发射了这两颗探测器。&lt;/p&gt;</description>
+&lt;p&gt;30 多年前，美国发起了一项太空计划：&lt;strong&gt;旅行者计划&lt;/strong&gt;。目的是为了探测木星和土星，其中包含 &lt;strong&gt;旅行者 1 号&lt;/strong&gt; 和 &lt;strong&gt;旅行者 2 号&lt;/strong&gt;，在 1977 年，美国向太空发射了这两颗探测器。&lt;/p&gt;</description>
     </item>
     <item>
       <title>手写代码面试题合集</title>
