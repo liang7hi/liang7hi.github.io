@@ -82,7 +82,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favic
   <meta property="og:site_name" content="liang7hi">
   <meta property="og:title" content="flex 布局介绍">
   <meta property="og:description" content="flex 布局概念 flex布局通常被叫做flex box，也叫弹性盒子或容器，是一种一维的布局模型，它能子元素(flex item)之间提供了强大的空间分布和对齐能力。">
-  <meta property="og:locale" content="zh">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blogs">
     <meta property="article:published_time" content="2020-09-11T14:03:49+08:00">
@@ -405,14 +405,16 @@ flex布局通常被叫做flex box，也叫弹性盒子或容器，是一种一�
 
   <div class="post-content"><h2 id="flex-布局概念">flex 布局概念<a hidden class="anchor" aria-hidden="true" href="#flex-布局概念">#</a></h2>
 <blockquote>
-<p><code>flex</code>布局通常被叫做<code>flex box</code>，也叫<code>弹性盒子</code>或<code>容器</code>，是一种一维的<code>布局模型</code>，它能子元素(<code>flex item</code>)之间提供了强大的空间分布和对齐能力。</p></blockquote>
+<p><code>flex</code>布局通常被叫做<code>flex box</code>，也叫<code>弹性盒子</code>或<code>容器</code>，是一种一维的<code>布局模型</code>，它能子元素(<code>flex item</code>)之间提供了强大的空间分布和对齐能力。</p>
+</blockquote>
 <p><img alt="v2-54a0fc96ef4f455aefb8ee4bc133291b_720w.png" loading="lazy" src="/images/flex%E5%B8%83%E5%B1%80/WBQ8RSuH7norCs4.png"></p>
 <p><code>flex容器</code>中存在两个轴，一个<code>水平方向</code>main axis，一个<code>竖直方向</code>cross axis，这是<code>flex</code>布局最重要的点，内部元素<code>flex item</code>都是根据这个轴来排列对齐的。</p>
 <h2 id="flex-布局好处">flex 布局好处<a hidden class="anchor" aria-hidden="true" href="#flex-布局好处">#</a></h2>
 <p>在一个<code>html元素</code>和内部<code>多个子元</code>的组合中。要实现子元素有序的，高度自定义的布局，在传统布局方式中，会使用<code>position</code>，<code>float</code>方式实现，比如多个子元素在父元素中<code>垂直水平居中</code>，比较困难。这个时候就可以用<code>flex</code>布局，只需要简单几句代码就可以优雅的实现。</p>
 <h2 id="flex-容器属性">flex 容器属性<a hidden class="anchor" aria-hidden="true" href="#flex-容器属性">#</a></h2>
 <blockquote>
-<p>设置一个盒子为<code>flex</code>容器，首先设置<code>display: flex</code>;</p></blockquote>
+<p>设置一个盒子为<code>flex</code>容器，首先设置<code>display: flex</code>;</p>
+</blockquote>
 <ul>
 <li><strong>flex-direction</strong></li>
 <li><strong>flex-wrap</strong></li>
@@ -450,7 +452,8 @@ flex布局通常被叫做flex box，也叫弹性盒子或容器，是一种一�
 <strong>flex-end</strong>： 整体位于主轴结尾<br>
 <strong>baseline</strong>： 主轴位于<code>item</code>中第一行文字 <em>基线</em> 对齐</p>
 <blockquote>
-<p>基线的概念：英文中大概就是一个小写字母 <em>x</em> 的最底部，<em>f</em> 的中下部；而中文大概就汉字中下部，不太准确，我没深入了解，有兴趣可以网上了解。</p></blockquote>
+<p>基线的概念：英文中大概就是一个小写字母 <em>x</em> 的最底部，<em>f</em> 的中下部；而中文大概就汉字中下部，不太准确，我没深入了解，有兴趣可以网上了解。</p>
+</blockquote>
 <h3 id="align-content">align-content<a hidden class="anchor" aria-hidden="true" href="#align-content">#</a></h3>
 <p><code>align-content</code>属性规定了多条主轴的情况下(只有<code>item</code>换行了，才会产生多条主轴)，这些主轴作为一个整体在他们的排列方向中的排列方式；注意：只有一条主轴(<code>item</code>不换行)不生效</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#f92672">align-content</span><span style="color:#f92672">:</span> <span style="color:#f92672">stretch</span><span style="color:#f92672">(</span><span style="color:#f92672">默认</span><span style="color:#f92672">)</span> <span style="color:#f92672">|</span> <span style="color:#f92672">center</span> <span style="color:#f92672">|</span> <span style="color:#f92672">flex-start</span> <span style="color:#f92672">|</span> <span style="color:#f92672">flex-end</span> <span style="color:#f92672">|</span> <span style="color:#f92672">space-between</span> <span style="color:#f92672">|</span> <span style="color:#f92672">space-around</span><span style="color:#f92672">;</span>
@@ -486,7 +489,8 @@ flex布局通常被叫做flex box，也叫弹性盒子或容器，是一种一�
 <h3 id="align-self">align-self<a hidden class="anchor" aria-hidden="true" href="#align-self">#</a></h3>
 <p><code>flex-shrink</code>属性规定当前<code>flex item</code>作为一个整体在<code>flex</code>容器在副轴(非主轴，和<code>justify-content</code>相反)上的排列方式</p>
 <blockquote>
-<p>注意：这个属性和<code>align-item</code>的区别是<code>align-item</code>影响全部<code>flex item</code>，而<code>align-self</code>只影响当前<code>flex item</code></p></blockquote>
+<p>注意：这个属性和<code>align-item</code>的区别是<code>align-item</code>影响全部<code>flex item</code>，而<code>align-self</code>只影响当前<code>flex item</code></p>
+</blockquote>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#f92672">align-self</span><span style="color:#f92672">:</span> <span style="color:#f92672">auto</span><span style="color:#f92672">(</span><span style="color:#f92672">默认值</span><span style="color:#f92672">)</span> <span style="color:#f92672">|</span> <span style="color:#f92672">stretch</span> <span style="color:#f92672">|</span> <span style="color:#f92672">center</span> <span style="color:#f92672">|</span> <span style="color:#f92672">flex-start</span> <span style="color:#f92672">|</span> <span style="color:#f92672">flex-end</span> <span style="color:#f92672">|</span> <span style="color:#f92672">baseline</span><span style="color:#f92672">;</span>
 </span></span></code></pre></div><p><strong>auto</strong>：继承父亲<code>align-item</code>的<code>value</code><br>
 <strong>stretch</strong>： 占满整个主轴的高度, 前提必须是你没有设置 item 的高度(宽度)，否则不生效<br>

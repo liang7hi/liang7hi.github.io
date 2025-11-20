@@ -84,7 +84,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favic
   <meta property="og:site_name" content="liang7hi">
   <meta property="og:title" content="前端面试题总结">
   <meta property="og:description" content=" HTML 和 CSS BFC 全称「块格式化上下文」(Block Formatting Context), 是一块独立的 css 作用域，外部如何变化都影响不到他。">
-  <meta property="og:locale" content="zh">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blogs">
     <meta property="article:published_time" content="2020-12-21T19:06:55+08:00">
@@ -609,7 +609,8 @@ BFC
 <h1 id="html-和-css">HTML 和 CSS<a hidden class="anchor" aria-hidden="true" href="#html-和-css">#</a></h1>
 <h2 id="bfc">BFC<a hidden class="anchor" aria-hidden="true" href="#bfc">#</a></h2>
 <blockquote>
-<p>全称「块格式化上下文」(Block Formatting Context), 是一块独立的 css 作用域，外部如何变化都影响不到他。</p></blockquote>
+<p>全称「块格式化上下文」(Block Formatting Context), 是一块独立的 css 作用域，外部如何变化都影响不到他。</p>
+</blockquote>
 <h3 id="如何触发">如何触发<a hidden class="anchor" aria-hidden="true" href="#如何触发">#</a></h3>
 <ul>
 <li>根元素 body</li>
@@ -851,7 +852,8 @@ BFC
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">match</span>(<span style="color:#e6db74">/hello/g</span>); <span style="color:#75715e">// [&#34;hello&#34;] 匹配字符串返回一个数组，参数常是正则
 </span></span></span></code></pre></div><h2 id="js-垃圾回收机制">js 垃圾回收机制<a hidden class="anchor" aria-hidden="true" href="#js-垃圾回收机制">#</a></h2>
 <blockquote>
-<p>当内存中的数据不需要时候，js 会自动使用垃圾回收算法释放掉</p></blockquote>
+<p>当内存中的数据不需要时候，js 会自动使用垃圾回收算法释放掉</p>
+</blockquote>
 <ul>
 <li><strong>引用计算</strong> : 此算法把“对象是否不再需要”简化定义为“对象有没有其他对象引用到它”。如果没有引用指向该对象（零引用），对象将被垃圾回收机制回收。这是最初级的垃圾收集算法。 该算法有个限制：无法处理引用循环，两个对象互相引用的情况下，引用次数至少是 1，所以不会被回收掉</li>
 <li><strong>标记清除</strong> : 此算法把“对象是否不再需要”简化定义为“对象是否可以获得”。这个算法从根（root）全局对象开始先下查找，找到不可以被获得的对象，然后清除掉</li>
@@ -904,7 +906,8 @@ BFC
 </span></span></code></pre></div><h2 id="proxy-和-reflect">proxy 和 reflect<a hidden class="anchor" aria-hidden="true" href="#proxy-和-reflect">#</a></h2>
 <h3 id="proxy">proxy<a hidden class="anchor" aria-hidden="true" href="#proxy">#</a></h3>
 <blockquote>
-<p>对目标读取、函数调用等操作进行拦截，然后操作处理。它不直接操作对象，而是像代理模式。</p></blockquote>
+<p>对目标读取、函数调用等操作进行拦截，然后操作处理。它不直接操作对象，而是像代理模式。</p>
+</blockquote>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">target</span> <span style="color:#f92672">=</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Tom&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">24</span>,
@@ -923,7 +926,8 @@ BFC
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">proxy</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Proxy(<span style="color:#a6e22e">target</span>, <span style="color:#a6e22e">handler</span>);
 </span></span></code></pre></div><h3 id="reflect">reflect<a hidden class="anchor" aria-hidden="true" href="#reflect">#</a></h3>
 <blockquote>
-<p>优化了 object 内部操作，修改一些函数的返回值，如 Object.defineProperty，Reflect 与 Proxy 是一一对应的对象，是 Proxy 的方法也是 Reflect 的方法，Proxy 修改的过的方法可以在 Reflect 获取默认值。</p></blockquote>
+<p>优化了 object 内部操作，修改一些函数的返回值，如 Object.defineProperty，Reflect 与 Proxy 是一一对应的对象，是 Proxy 的方法也是 Reflect 的方法，Proxy 修改的过的方法可以在 Reflect 获取默认值。</p>
+</blockquote>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// 修改某些Object方法的返回结果，让其变得更合理。比如，Object.defineProperty(obj, name, desc)在无法定义属性时，会抛出一个错误，而Reflect.defineProperty(obj, name, desc)则会返回false。
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Object.<span style="color:#a6e22e">defineProperty</span>(<span style="color:#a6e22e">target</span>, <span style="color:#a6e22e">property</span>, <span style="color:#a6e22e">attributes</span>) <span style="color:#75715e">// 报错
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">Reflect</span>.<span style="color:#a6e22e">defineProperty</span>(<span style="color:#a6e22e">target</span>, <span style="color:#a6e22e">property</span>, <span style="color:#a6e22e">attributes</span> <span style="color:#75715e">// false
@@ -1038,7 +1042,8 @@ setTimeout
 <h2 id="事件委托与冒泡和捕获">事件委托与冒泡和捕获<a hidden class="anchor" aria-hidden="true" href="#事件委托与冒泡和捕获">#</a></h2>
 <blockquote>
 <p>什么是事件委托：事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。</p>
-<p>什么是冒泡和捕获：其实都是事件传播路径。冒泡：从外到事件源进行事件传播；捕获：从内向事件源进行事件传播；</p></blockquote>
+<p>什么是冒泡和捕获：其实都是事件传播路径。冒泡：从外到事件源进行事件传播；捕获：从内向事件源进行事件传播；</p>
+</blockquote>
 <p>DOM 标准事件流的触发的先后顺序为：先捕获再冒泡。即当触发 dom 事件时，会先进行事件捕获，捕获到事件源之后通过事件传播进行事件冒泡。
 <code>addEventListener</code>事件监听方法的第三个参数默认值是<code>false</code>，表示冒泡阶段调用，<code>true</code>为捕获阶段调用</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
@@ -1071,7 +1076,8 @@ setTimeout
 <h2 id="实现-instanceof">实现 instanceof<a hidden class="anchor" aria-hidden="true" href="#实现-instanceof">#</a></h2>
 <blockquote>
 <p>instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。
-<img alt="6D190A1F-A82A-4F86-BC85-3AD9F5EA672B.png" loading="lazy" src="/images/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/bB3Sj9h8nyoOIVs.png"></p></blockquote>
+<img alt="6D190A1F-A82A-4F86-BC85-3AD9F5EA672B.png" loading="lazy" src="/images/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/bB3Sj9h8nyoOIVs.png"></p>
+</blockquote>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">objProto</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">__proto__</span>;
 </span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">objProto</span>) {
 </span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">objProto</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">ctor</span>.<span style="color:#a6e22e">prototype</span>) {
@@ -1453,7 +1459,8 @@ setTimeout
 </ul>
 <h2 id="babel-工作原理">babel 工作原理<a hidden class="anchor" aria-hidden="true" href="#babel-工作原理">#</a></h2>
 <blockquote>
-<p>在计算机科学中，抽象语法树（Abstract Syntax Tree，AST），或简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。简单来说就是一种描述源代码的结构，用于被计算机识别到，并成语言引擎执行</p></blockquote>
+<p>在计算机科学中，抽象语法树（Abstract Syntax Tree，AST），或简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。简单来说就是一种描述源代码的结构，用于被计算机识别到，并成语言引擎执行</p>
+</blockquote>
 <p>工作原理大致可以理解成，<code>字符串输入</code>=&gt;<code>转换</code>=&gt;<code>输出</code></p>
 <ul>
 <li>根据 babylon 解析器，把 js 代码按照规范解析成 AST 语法树</li>
@@ -1462,7 +1469,8 @@ setTimeout
 </ul>
 <h2 id="npmcnpmpnpmyarn-区别和优点">npm、cnpm、pnpm、yarn 区别和优点<a hidden class="anchor" aria-hidden="true" href="#npmcnpmpnpmyarn-区别和优点">#</a></h2>
 <blockquote>
-<p>npm、cnpm、pnpm 和 yarn 都是 JavaScript 生态中用于管理依赖包的工具</p></blockquote>
+<p>npm、cnpm、pnpm 和 yarn 都是 JavaScript 生态中用于管理依赖包的工具</p>
+</blockquote>
 <ul>
 <li>npm: 官方默认、在 npm3+ 支持了扁平化依赖树，减少重复依赖安装，兼容性好</li>
 <li>yarn: 2016 年由 Facebook 推出，引入了 yarn.lock 文件（后被 npm 借鉴），和并行安装机制（多个包同时发起安装请求），解决早期 npm 安装速度问题</li>

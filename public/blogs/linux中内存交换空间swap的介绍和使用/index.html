@@ -84,7 +84,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favic
   <meta property="og:title" content="Linux 中内存交换空间(swap)的使用">
   <meta property="og:description" content=" 什么是 swap swap 分区 是 Linux 中特殊的一种存储，他在安装系统时被自动创建。
 用于当内存不够时，操作系统会取出内存中不活跃或不常用的一部分放到 swap 分区 中，使内存空闲出一部分空间用于执行其他程序。相当于临时充当一部分内存，当操作系统想要访问 swap 空间上的的数据时，swap 会把数据放回内存中供操作系统使用。">
-  <meta property="og:locale" content="zh">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blogs">
     <meta property="article:published_time" content="2020-08-21T16:48:04+08:00">
@@ -394,7 +394,8 @@ swap 分区 是 Linux 中特殊的一种存储，他在安装系统时被自动�
 <p>由于 <strong>swap 分区</strong> 需要一个新的磁盘，当你的磁盘已经装了不少内容，不方便重新规划的话，也只好使用 swap 文件了。本文使用 swap 文件方式。</p>
 <h2 id="查看-swap-信息">查看 swap 信息<a hidden class="anchor" aria-hidden="true" href="#查看-swap-信息">#</a></h2>
 <blockquote>
-<p>基于 Cent OS 7.6</p></blockquote>
+<p>基于 Cent OS 7.6</p>
+</blockquote>
 <p>使用<code>swapon -s</code>命令查看系统中当前 <strong>swap</strong> 信息：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>swapon -s
 </span></span><span style="display:flex;"><span>

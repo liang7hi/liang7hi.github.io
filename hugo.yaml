@@ -5,10 +5,9 @@ theme: "PaperMod"
 hasCJKLanguage: true
 defaultTheme: auto
 ShowWordCount: true
-languageCode: zh
 defaultContentLanguage: zh
 
-# 允许在 markdown 中使用 html 
+# 允许在 markdown 中使用 html
 markup:
   goldmark:
     renderer:
@@ -49,7 +48,7 @@ caches:
     dir: :cacheDir/images
 
 params:
-  description: 'liang7hi bolg 博客'
+  description: "liang7hi bolg 博客"
   keywords: [blog, paperMod, Hugo, liang7hi, 博客, 个人博客, 个人网站, 前端]
   math: true
   showReadingTime: true
@@ -62,7 +61,7 @@ params:
   busuanzi:
     enable: true
 
-  permalinks: 
+  permalinks:
     post: "/:year/:month/:day/:title/"
 
   homeInfoParams:
@@ -75,17 +74,14 @@ params:
     Content: 👋 探索技术，也探索自我!
 
   socialIcons:
-  - name: github
-    url: "https://github.com/liang7hi"
+    - name: github
+      url: "https://github.com/liang7hi"
 
-  - name: dribbble
-    url: "https://dribbble.com/liang7hi"
+    - name: dribbble
+      url: "https://dribbble.com/liang7hi"
 
-  - name: leetcode
-    url: "https://leetcode.cn/u/liang7hi/"
+    - name: leetcode
+      url: "https://leetcode.cn/u/liang7hi/"
 
-  - name: email
-    url: "mailto:liang7hi@gmail.com"
-
-  
-    
+    - name: email
+      url: "mailto:liang7hi@gmail.com"

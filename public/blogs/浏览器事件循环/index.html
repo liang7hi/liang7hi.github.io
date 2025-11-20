@@ -81,7 +81,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favic
   <meta property="og:site_name" content="liang7hi">
   <meta property="og:title" content="浏览器事件循环">
   <meta property="og:description" content="为什么要总结这个问题 这几天和我的同事聊到这个问题，他提出了一些考虑比较深入的观点，我想了想，也有相同的疑问。真是验证了那句话，了解的越多就发现自己了解的越少！所以被迫研究了下这个问题总结起来。便于以后查看和补充。">
-  <meta property="og:locale" content="zh">
+  <meta property="og:locale" content="zh-cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blogs">
     <meta property="article:published_time" content="2022-03-06T10:53:20+08:00">
@@ -387,7 +387,8 @@ rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favic
 <p>因为多线程会产生共享资源，修改彼此，等复杂问题。并且早期 <code>js</code> 只是来显示简单页面的，但今非昔比，或许 <code>js</code> 作者可能都没想到现在的 <code>js</code> 发展的如此迅猛！所以单线程更适合 <code>js</code> ，一直延续至今。那问题来了，只有单线程是如何处理耗时任务且实现不阻塞的呢，这里就用到了事件循环。<strong>事件循环</strong> <em>event loop</em> 是一种计算机系统运行机制。作为单线程的 <code>js</code> 来说，事件循环是来 <strong>解决当执行耗时任务时不阻塞主线程的调度机制</strong>。<a href="https://zh.wikipedia.org/zh-tw/%E4%BA%8B%E4%BB%B6%E7%8E%AF">来自维基百科的解释</a></p>
 <h2 id="事件循环工作流程">事件循环工作流程<a hidden class="anchor" aria-hidden="true" href="#事件循环工作流程">#</a></h2>
 <blockquote>
-<p>以当前最新版 <em><em>Chrome_v98.0</em></em> 浏览器为准</p></blockquote>
+<p>以当前最新版 <em><em>Chrome_v98.0</em></em> 浏览器为准</p>
+</blockquote>
 <p><code>js</code> 中的任务可分为</p>
 <ul>
 <li><strong>同步任务</strong></li>
@@ -425,7 +426,8 @@ rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favic
 </ul>
 <h2 id="最后整一道经典面试题"><strong>最后整一道经典面试题</strong><a hidden class="anchor" aria-hidden="true" href="#最后整一道经典面试题">#</a></h2>
 <blockquote>
-<p>基于 <em>Chrome_v98.0</em> 浏览器环境</p></blockquote>
+<p>基于 <em>Chrome_v98.0</em> 浏览器环境</p>
+</blockquote>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">async1</span>() {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;async1 start&#34;</span>);
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">async2</span>();
