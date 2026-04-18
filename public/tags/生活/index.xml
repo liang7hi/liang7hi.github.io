@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>生活 on liang7hi</title>
-    <link>https://liang7hi.github.io/tags/%E7%94%9F%E6%B4%BB/</link>
+    <link>http://localhost:1313/tags/%E7%94%9F%E6%B4%BB/</link>
     <description>Recent content in 生活 on liang7hi</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 19 Nov 2025 18:33:09 +0800</lastBuildDate>
-    <atom:link href="https://liang7hi.github.io/tags/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>挖掘机百变头部属具</title>
-      <link>https://liang7hi.github.io/blogs/%E6%8C%96%E6%8E%98%E6%9C%BA%E7%9A%84%E7%99%BE%E5%8F%98%E5%A4%B4%E9%83%A8%E5%B1%9E%E5%85%B7/</link>
+      <link>http://localhost:1313/blogs/%E6%8C%96%E6%8E%98%E6%9C%BA%E7%9A%84%E7%99%BE%E5%8F%98%E5%A4%B4%E9%83%A8%E5%B1%9E%E5%85%B7/</link>
       <pubDate>Wed, 19 Nov 2025 18:33:09 +0800</pubDate>
-      <guid>https://liang7hi.github.io/blogs/%E6%8C%96%E6%8E%98%E6%9C%BA%E7%9A%84%E7%99%BE%E5%8F%98%E5%A4%B4%E9%83%A8%E5%B1%9E%E5%85%B7/</guid>
+      <guid>http://localhost:1313/blogs/%E6%8C%96%E6%8E%98%E6%9C%BA%E7%9A%84%E7%99%BE%E5%8F%98%E5%A4%B4%E9%83%A8%E5%B1%9E%E5%85%B7/</guid>
       <description>这篇文章介绍挖掘机的可拆卸头部属具，原来除了常见的挖斗，还有破碎锤、液压剪、抓木器等十多种神奇工具，让挖掘机化身工程多面手。</description>
     </item>
     <item>
       <title>520</title>
-      <link>https://liang7hi.github.io/blogs/520/</link>
+      <link>http://localhost:1313/blogs/520/</link>
       <pubDate>Wed, 21 May 2025 16:32:13 +0800</pubDate>
-      <guid>https://liang7hi.github.io/blogs/520/</guid>
+      <guid>http://localhost:1313/blogs/520/</guid>
       <description>&lt;h2 id=&#34;我们领证啦&#34;&gt;我们领证啦&lt;/h2&gt;
 &lt;p&gt;25 年 520 领证是我和我媳妇在 24 年底就计划好了的，我们的婚礼是在 25 年的五一举行，之后没过几天就 520 了。这是一个有特殊纪念、好记的日子。沾沾喜气，而且我发现 20250520 算是一种伪回文串了，只出现了 0 2 5 三种数字。&lt;/p&gt;</description>
     </item>

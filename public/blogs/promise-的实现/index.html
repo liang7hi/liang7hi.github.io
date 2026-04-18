@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto">
 
-<head><meta charset="utf-8" />
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content="noindex, nofollow" />
 <title>
   Promise 的实现 | liang7hi
 </title>
 <meta
   name="keywords"
   content="前端"
-/> <meta name="description" content="实现了一个简易的 Promise 类，并对 Promise.all 和 Promise.race 方法进行了自定义实现"> <meta name="author" content=""> <link rel="canonical" href="https://liang7hi.github.io/blogs/promise-%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+/> <meta name="description" content="实现了一个简易的 Promise 类，并对 Promise.all 和 Promise.race 方法进行了自定义实现"> <meta name="author" content=""> <link rel="canonical" href="http://localhost:1313/blogs/promise-%E7%9A%84%E5%AE%9E%E7%8E%B0/">
 <link
   crossorigin="anonymous"
   href="/assets/css/stylesheet.99a87cbdd7c10cafa9f1ae144b322f5f35a833f573b80a6d0789f5fb2fc6d750.css"
   integrity="sha256-mah8vdfBDK&#43;p8a4USzIvXzWoM/VzuAptB4n1&#43;y/G11A="
   rel="preload stylesheet"
   as="style"
-/> <link rel="icon" href="https://liang7hi.github.io/favicon.ico"> <link
-rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://liang7hi.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://liang7hi.github.io/apple-touch-icon.png"> <link rel="mask-icon" href="https://liang7hi.github.io/safari-pinned-tab.svg"> <meta name="theme-color" content="#2e2e33"> <meta name="msapplication-TileColor" content="#2e2e33"> <link rel="alternate" hreflang="zh" href="https://liang7hi.github.io/blogs/promise-%E7%9A%84%E5%AE%9E%E7%8E%B0/" />
+/> <link rel="icon" href="http://localhost:1313/favicon.ico"> <link
+rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png"> <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg"> <meta name="theme-color" content="#2e2e33"> <meta name="msapplication-TileColor" content="#2e2e33"> <link rel="alternate" hreflang="zh" href="http://localhost:1313/blogs/promise-%E7%9A%84%E5%AE%9E%E7%8E%B0/" />
 <noscript>
   <style>
     #theme-toggle,
@@ -76,72 +76,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favic
   });
 </script>
  
-<meta property="og:url" content="https://liang7hi.github.io/blogs/promise-%E7%9A%84%E5%AE%9E%E7%8E%B0/">
-  <meta property="og:site_name" content="liang7hi">
-  <meta property="og:title" content="Promise 的实现">
-  <meta property="og:description" content="实现了一个简易的 Promise 类，并对 Promise.all 和 Promise.race 方法进行了自定义实现">
-  <meta property="og:locale" content="zh-cn">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="blogs">
-    <meta property="article:published_time" content="2020-10-30T16:59:53+08:00">
-    <meta property="article:modified_time" content="2020-10-30T16:59:53+08:00">
-    <meta property="article:tag" content="前端">
-    <meta property="og:image" content="https://liang7hi.github.io/images/Promise%20%E7%9A%84%E5%AE%9E%E7%8E%B0/cover.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://liang7hi.github.io/images/Promise%20%E7%9A%84%E5%AE%9E%E7%8E%B0/cover.jpg">
-<meta name="twitter:title" content="Promise 的实现">
-<meta name="twitter:description" content="实现了一个简易的 Promise 类，并对 Promise.all 和 Promise.race 方法进行了自定义实现">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "日志",
-      "item": "https://liang7hi.github.io/blogs/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "Promise 的实现",
-      "item": "https://liang7hi.github.io/blogs/promise-%E7%9A%84%E5%AE%9E%E7%8E%B0/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Promise 的实现",
-  "name": "Promise 的实现",
-  "description": "实现了一个简易的 Promise 类，并对 Promise.all 和 Promise.race 方法进行了自定义实现",
-  "keywords": [
-    "前端"
-  ],
-  "articleBody": "Promise 类 class Pro { callbacks = []; state = \"pending\"; value = null; constructor(fn) { // 初始化，把resolve作为参数传入，等待调用 fn(this.resolve.bind(this)); } // callback为回调，先注册，也就是放入callbacks数组中 then(callback) { if (this.state === \"pending\") { this.callbacks.push(callback); } else { // 由于state不是pending, 遵循promise状态只能改一次的要求，我们直接操作回调传入参数执行 callback(this.value); } return this; } // resolve也就是fn的第一次参数，循环执行所有callback resolve(value) { this.state = \"fulfilled\"; // setTimeout使内部变成异步，在同步执行完最后执行这里，处理fn是同步的情况下then中的回调函数已经注册，然后在这里去执行，不会出现callbacks是空数组的情况 setTimeout(() =\u003e { this.value = value; this.callbacks.forEach((callback) =\u003e callback(value)); }); } } 调用 new Pro((resolve) =\u003e { setTimeout(() =\u003e { console.log(0); resolve(\"resolve\"); }, 2000); }) .then((tip) =\u003e { console.log(1); console.log(tip); }) .then((tip) =\u003e { console.log(2); console.log(tip); }); Promise.all 实现 Promise.prototype.all = function (promises) { let results = []; let promiseCount = 0; let promisesLength = promises.length; return new Promise(function (resolve, reject) { for (let item of promises) { // 执行每个item Promise.resolve(item).then( function (res) { promiseCount++; // 按照顺序插入结果 results[i] = res; // 如果全部执行成功，返回成功 if (promiseCount === promisesLength) { return resolve(results); } }, function (err) { return reject(err); } ); } }); }; Promise.race 实现 Promise.prototype.race = function (promises) { return new Promise((resolve, reject) =\u003e { for (let item of promises) { Promise.resolve(item) .then((res) =\u003e { return resolve(res); }) .catch((err) =\u003e { return reject(err); }); } }); }; 简单来说就是声明 Promise 时，会执行 Promise 第一个函数参数和 then 的参数函数。 then 用来把回调传入 callback 数组中，相当于注册，规定好了 reslove 时，回调的执行，然后等待 resolve 调用，resolve 就会把 callback 数组中的函数全部执行\nthen 中 return this，用于实现 then 的链式调用 如果 Promise 是同步的，则执行 resolve 的时候 callback 还没注册 ",
-  "wordCount" : "564",
-  "inLanguage": "zh",
-  "image":"https://liang7hi.github.io/images/Promise%20%E7%9A%84%E5%AE%9E%E7%8E%B0/cover.jpg","datePublished": "2020-10-30T16:59:53+08:00",
-  "dateModified": "2020-10-30T16:59:53+08:00",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://liang7hi.github.io/blogs/promise-%E7%9A%84%E5%AE%9E%E7%8E%B0/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "liang7hi",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://liang7hi.github.io/favicon.ico"
-    }
-  }
-}
-</script><script
+<script
   async
   src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
 ></script>
@@ -163,7 +98,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favic
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://liang7hi.github.io/" accesskey="h" title="liang7hi (Alt + H)">liang7hi</a>
+            <a href="http://localhost:1313/" accesskey="h" title="liang7hi (Alt + H)">liang7hi</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -189,37 +124,37 @@ rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favic
         </div>
         <ul id="menu">
             <li>
-                <a href="https://liang7hi.github.io/" title="🏠 首页">
+                <a href="http://localhost:1313/" title="🏠 首页">
                     <span>🏠 首页</span>
                 </a>
             </li>
             <li>
-                <a href="https://liang7hi.github.io/blogs/" title="📚 日志">
+                <a href="http://localhost:1313/blogs/" title="📚 日志">
                     <span>📚 日志</span>
                 </a>
             </li>
             <li>
-                <a href="https://liang7hi.github.io/photos/" title="🖼️ 照片">
+                <a href="http://localhost:1313/photos/" title="🖼️ 照片">
                     <span>🖼️ 照片</span>
                 </a>
             </li>
             <li>
-                <a href="https://liang7hi.github.io/apps/" title="🚀 应用">
+                <a href="http://localhost:1313/apps/" title="🚀 应用">
                     <span>🚀 应用</span>
                 </a>
             </li>
             <li>
-                <a href="https://liang7hi.github.io/search/" title="🔍 搜索">
+                <a href="http://localhost:1313/search/" title="🔍 搜索">
                     <span>🔍 搜索</span>
                 </a>
             </li>
             <li>
-                <a href="https://liang7hi.github.io/tags/" title="🧩 分类">
+                <a href="http://localhost:1313/tags/" title="🧩 分类">
                     <span>🧩 分类</span>
                 </a>
             </li>
             <li>
-                <a href="https://liang7hi.github.io/archives/" title="⏱ 时间轴">
+                <a href="http://localhost:1313/archives/" title="⏱ 时间轴">
                     <span>⏱ 时间轴</span>
                 </a>
             </li>
@@ -252,7 +187,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favic
     </div>
   </header> 
 <figure class="entry-cover1">
-    <img loading="eager" src="https://liang7hi.github.io/images/Promise%20%E7%9A%84%E5%AE%9E%E7%8E%B0/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Alberto Barrera</figcaption>
+    <img loading="eager" src="http://localhost:1313/images/Promise%20%E7%9A%84%E5%AE%9E%E7%8E%B0/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Alberto Barrera</figcaption>
 </figure><aside id="toc-container" class="toc-container wide">
     <div class="toc">
         <details  open>
@@ -468,15 +403,15 @@ rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favic
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://liang7hi.github.io/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
+      <li><a href="http://localhost:1313/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://liang7hi.github.io/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
+  <a class="prev" href="http://localhost:1313/blogs/vue%E4%B8%AD%E7%9A%84diff%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
     <span class="title">« 上一页</span>
     <br>
     <span>Vue 中的 diff 算法实现</span>
   </a>
-  <a class="next" href="https://liang7hi.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+  <a class="next" href="http://localhost:1313/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
     <span class="title">下一页 »</span>
     <br>
     <span>基于 Vue 思想的 MVVM 实现</span>
@@ -566,7 +501,7 @@ rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favic
     </main>
     
 <footer class="footer">
-        <span>&copy; 2016 - 2025 <a href="https://liang7hi.github.io/">liang7hi</a></span> · 
+        <span>&copy; 2016 - 2026 <a href="http://localhost:1313/">liang7hi</a></span> · 
 
     <span>
         Powered by
