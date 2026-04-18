@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8" />
+<head><meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 />
-<meta name="robots" content="noindex, nofollow" />
+<meta name="robots" content="index, follow" />
 <title>
   基于 Vue 思想的 MVVM 实现 | liang7hi
 </title>
 <meta
   name="keywords"
   content="前端"
-/> <meta name="description" content="一个简单的基于 Vue 思想实现的 MVVM 数据架构的代码示例，这里我们将实现一个简单的响应式数据绑定功能"> <meta name="author" content=""> <link rel="canonical" href="http://localhost:1313/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+/> <meta name="description" content="一个简单的基于 Vue 思想实现的 MVVM 数据架构的代码示例，这里我们将实现一个简单的响应式数据绑定功能"> <meta name="author" content=""> <link rel="canonical" href="https://liang7hi.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
 <link
   crossorigin="anonymous"
   href="/assets/css/stylesheet.99a87cbdd7c10cafa9f1ae144b322f5f35a833f573b80a6d0789f5fb2fc6d750.css"
   integrity="sha256-mah8vdfBDK&#43;p8a4USzIvXzWoM/VzuAptB4n1&#43;y/G11A="
   rel="preload stylesheet"
   as="style"
-/> <link rel="icon" href="http://localhost:1313/favicon.ico"> <link
-rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png"> <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg"> <meta name="theme-color" content="#2e2e33"> <meta name="msapplication-TileColor" content="#2e2e33"> <link rel="alternate" hreflang="zh" href="http://localhost:1313/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/" />
+/> <link rel="icon" href="https://liang7hi.github.io/favicon.ico"> <link
+rel="icon" type="image/png" sizes="16x16" href="https://liang7hi.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://liang7hi.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://liang7hi.github.io/apple-touch-icon.png"> <link rel="mask-icon" href="https://liang7hi.github.io/safari-pinned-tab.svg"> <meta name="theme-color" content="#2e2e33"> <meta name="msapplication-TileColor" content="#2e2e33"> <link rel="alternate" hreflang="zh" href="https://liang7hi.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/" />
 <noscript>
   <style>
     #theme-toggle,
@@ -76,7 +76,72 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
   });
 </script>
  
-<script
+<meta property="og:url" content="https://liang7hi.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+  <meta property="og:site_name" content="liang7hi">
+  <meta property="og:title" content="基于 Vue 思想的 MVVM 实现">
+  <meta property="og:description" content="一个简单的基于 Vue 思想实现的 MVVM 数据架构的代码示例，这里我们将实现一个简单的响应式数据绑定功能">
+  <meta property="og:locale" content="zh-cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blogs">
+    <meta property="article:published_time" content="2020-10-27T18:46:33+08:00">
+    <meta property="article:modified_time" content="2020-10-27T18:46:33+08:00">
+    <meta property="article:tag" content="前端">
+    <meta property="og:image" content="https://liang7hi.github.io/images/%E5%9F%BA%E4%BA%8EVue%E6%80%9D%E6%83%B3%E7%9A%84MVVM%E5%AE%9E%E7%8E%B0/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://liang7hi.github.io/images/%E5%9F%BA%E4%BA%8EVue%E6%80%9D%E6%83%B3%E7%9A%84MVVM%E5%AE%9E%E7%8E%B0/cover.jpg">
+<meta name="twitter:title" content="基于 Vue 思想的 MVVM 实现">
+<meta name="twitter:description" content="一个简单的基于 Vue 思想实现的 MVVM 数据架构的代码示例，这里我们将实现一个简单的响应式数据绑定功能">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "日志",
+      "item": "https://liang7hi.github.io/blogs/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "基于 Vue 思想的 MVVM 实现",
+      "item": "https://liang7hi.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "基于 Vue 思想的 MVVM 实现",
+  "name": "基于 Vue 思想的 MVVM 实现",
+  "description": "一个简单的基于 Vue 思想实现的 MVVM 数据架构的代码示例，这里我们将实现一个简单的响应式数据绑定功能",
+  "keywords": [
+    "前端"
+  ],
+  "articleBody": "index.html 部分 \u003c!DOCTYPE html\u003e \u003chtml lang=\"en\"\u003e \u003chead\u003e \u003cmeta charset=\"UTF-8\" /\u003e \u003cmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" /\u003e \u003ctitle\u003eDocument\u003c/title\u003e \u003c/head\u003e \u003cbody\u003e \u003cdiv id=\"app\"\u003e \u003cinput type=\"text\" v-model=\"v\" /\u003e {{v}} \u003cbutton @click=\"reset\"\u003e重置\u003c/button\u003e \u003c/div\u003e \u003cscript src=\"./index.js\"\u003e\u003c/script\u003e \u003cscript\u003e const vm = new Mvvm({ el: \"#app\", data: { v: \"hello world\", }, methods: { reset() { this.v = \"\"; }, }, }); \u003c/script\u003e \u003c/body\u003e \u003c/html\u003e index.js 部分 class Mvvm { constructor(options) { const { el, data, methods } = options; this.methods = methods; this.target = null; // 监听this[data的key]所有属性，让变化可追踪 this.observe(this, data); // dom解析：提取{{}}、v-model、事件重写：@click this.compile(document.querySelector(el)); } // 数据变化监听 observe(_this, data) { Object.keys(data).forEach((key) =\u003e { let val = data[key]; Object.keys(data).forEach((key) =\u003e { // 如果val是数组或者对象，使用递归实现深层监听，直到val为简单数据类型。从而保证所有属性变化都被监听 if (typeof val === \"object\") { return this.observe(_this, val); } // dispatcher用来操作订阅者(watcher) add 或者 update。要配合Object.defineProperty的get和set来使用 const dispatcher = new Dispatcher(); Object.defineProperty(_this, key, { get: function () { console.log(\"get\"); // this.target会在compile方法中出现，把this.target(一个watcher)添加到dispatcher(将要更新的watcher的列表)中，用于未来更新这个watcher对应的dom dispatcher.add(this.target); return val; }, set: function (newV) { // 值无变化，不处理 if (newV === val) { return; } console.log(`set`); val = newV; // 因为set了，值发生变化了，所以要通知get中添加的所有订阅者(watcher)：你们要把对应的dom中使用的值更新成newV dispatcher.notify(newV); }, }); }); }); } // dom解析 compile(dom) { const childs = dom.childNodes; for (const node of childs) { // nodeType 参考 https://www.w3school.com.cn/jsref/prop_node_nodetype.asp if (node.nodeType === 1) { const attrs = node.attributes; for (const attr of attrs) { if (attr.name === \"v-model\") { const name = attr.value; // 放到订阅者列表中 this.target = new Watcher(node, \"input\"); // this[name]是为了触发observe的get，才会被监听 this[name]; // 由于是demo，假设只有input一种情况，input就会有双向绑定。使用this[name], 并且赋值input的值，来触发observe的get。实现更新信息的发布 node.addEventListener(\"input\", (e) =\u003e { this[name] = e.target.value; }); } // 使用bind传递this。并代理click事件函数到@click上。这里仅拿click事件实现，实际会有多种事件 if (attr.name === \"@click\") { const name = attr.value; node.addEventListener(\"click\", this.methods[name].bind(this)); } } } // nodeType 参考 https://www.w3school.com.cn/jsref/prop_node_nodetype.asp if (node.nodeType === 3) { // 正则匹配{{}} const reg = /\\{\\{(.*)\\}\\}/; const match = node.nodeValue.match(reg); if (match) { const name = match[1].trim(); // 放到订阅者列表中 this.target = new Watcher(node, \"text\"); // this[name]是为了触发observe的get，才会被监听 this[name]; } } } } } // 发布者 class Dispatcher { constructor() { this.watchers = []; } // 增加订阅者 add(watcher) { this.watchers.push(watcher); } // 通知所有订阅者更新 notify(value) { this.watchers.forEach((item) =\u003e { item.update(value); }); } } // 订阅者 class Watcher { constructor(node, type) { this.node = node; this.type = type; } update(value) { // 区别dom类型来赋值 if (this.type === \"input\") { this.node.value = value; } if (this.type === \"text\") { this.node.nodeValue = value; } } } 解释 vue 在初始化后，执行 Observe 函数把 data 利用 Object.defineProperty 属性监听。同时也会使用 Compile 函数循环 dom，提取 vue 相关的关键字，v-bind 或者 v-model，找到这些值，新建一个 Watcher 实例，然后手动 get 使这些 watch 放入 dep 列表中等待订阅。等待调用 Observer 的 set (input 事件，或者手动赋值)，然后通知 dep 中所有 Watcher 调用 update 方法。\n",
+  "wordCount" : "1127",
+  "inLanguage": "zh",
+  "image":"https://liang7hi.github.io/images/%E5%9F%BA%E4%BA%8EVue%E6%80%9D%E6%83%B3%E7%9A%84MVVM%E5%AE%9E%E7%8E%B0/cover.jpg","datePublished": "2020-10-27T18:46:33+08:00",
+  "dateModified": "2020-10-27T18:46:33+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://liang7hi.github.io/blogs/vue%E5%8E%9F%E7%90%86mvvm%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "liang7hi",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://liang7hi.github.io/favicon.ico"
+    }
+  }
+}
+</script><script
   async
   src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
 ></script>
@@ -98,7 +163,7 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="liang7hi (Alt + H)">liang7hi</a>
+            <a href="https://liang7hi.github.io/" accesskey="h" title="liang7hi (Alt + H)">liang7hi</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -124,37 +189,37 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="🏠 首页">
+                <a href="https://liang7hi.github.io/" title="🏠 首页">
                     <span>🏠 首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/blogs/" title="📚 日志">
+                <a href="https://liang7hi.github.io/blogs/" title="📚 日志">
                     <span>📚 日志</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/photos/" title="🖼️ 照片">
+                <a href="https://liang7hi.github.io/photos/" title="🖼️ 照片">
                     <span>🖼️ 照片</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/apps/" title="🚀 应用">
+                <a href="https://liang7hi.github.io/apps/" title="🚀 应用">
                     <span>🚀 应用</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search/" title="🔍 搜索">
+                <a href="https://liang7hi.github.io/search/" title="🔍 搜索">
                     <span>🔍 搜索</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="🧩 分类">
+                <a href="https://liang7hi.github.io/tags/" title="🧩 分类">
                     <span>🧩 分类</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/archives/" title="⏱ 时间轴">
+                <a href="https://liang7hi.github.io/archives/" title="⏱ 时间轴">
                     <span>⏱ 时间轴</span>
                 </a>
             </li>
@@ -187,7 +252,7 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
     </div>
   </header> 
 <figure class="entry-cover1">
-    <img loading="eager" src="http://localhost:1313/images/%E5%9F%BA%E4%BA%8EVue%E6%80%9D%E6%83%B3%E7%9A%84MVVM%E5%AE%9E%E7%8E%B0/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Raymond Okoro</figcaption>
+    <img loading="eager" src="https://liang7hi.github.io/images/%E5%9F%BA%E4%BA%8EVue%E6%80%9D%E6%83%B3%E7%9A%84MVVM%E5%AE%9E%E7%8E%B0/cover.jpg" alt="cover image" /> <figcaption>封面图来自 Unsplash | 作者 Raymond Okoro</figcaption>
 </figure><aside id="toc-container" class="toc-container wide">
     <div class="toc">
         <details  open>
@@ -465,15 +530,15 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
+      <li><a href="https://liang7hi.github.io/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://localhost:1313/blogs/promise-%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+  <a class="prev" href="https://liang7hi.github.io/blogs/promise-%E7%9A%84%E5%AE%9E%E7%8E%B0/">
     <span class="title">« 上一页</span>
     <br>
     <span>Promise 的实现</span>
   </a>
-  <a class="next" href="http://localhost:1313/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/">
+  <a class="next" href="https://liang7hi.github.io/blogs/%E4%BD%BF%E7%94%A8jarsigner%E9%87%8D%E6%96%B0%E7%AD%BE%E5%90%8Dapk%E5%8C%85/">
     <span class="title">下一页 »</span>
     <br>
     <span>使用 jarsigner 重新签名 apk 包</span>
@@ -563,7 +628,7 @@ rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16
     </main>
     
 <footer class="footer">
-        <span>&copy; 2016 - 2026 <a href="http://localhost:1313/">liang7hi</a></span> · 
+        <span>&copy; 2016 - 2026 <a href="https://liang7hi.github.io/">liang7hi</a></span> · 
 
     <span>
         Powered by
