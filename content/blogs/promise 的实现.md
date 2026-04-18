@@ -70,14 +70,14 @@ new Pro((resolve) => {
 ## Promise.all 实现
 
 ```javascript
-Promise.prototype.all = function (promises) {
+Promise.all = function (promises) {
   let results = [];
   let promiseCount = 0;
   let promisesLength = promises.length;
   return new Promise(function (resolve, reject) {
-    for (let item of promises) {
+    for (let i = 0; i < promisesLength; i++) {
       // 执行每个item
-      Promise.resolve(item).then(
+      Promise.resolve(promises[i]).then(
         function (res) {
           promiseCount++;
           // 按照顺序插入结果
@@ -89,7 +89,7 @@ Promise.prototype.all = function (promises) {
         },
         function (err) {
           return reject(err);
-        }
+        },
       );
     }
   });
@@ -115,7 +115,7 @@ Promise.prototype.race = function (promises) {
 ```
 
 简单来说就是声明 Promise 时，会执行 Promise 第一个函数参数和 then 的参数函数。
-`then` 用来把回调传入 callback 数组中，相当于注册，规定好了 reslove 时，回调的执行，然后等待 resolve 调用，resolve 就会把 callback 数组中的函数全部执行
+`then` 用来把回调传入 callbacks 数组中，相当于注册，规定好了 resolve 时回调的执行，然后等待 resolve 调用，resolve 就会把 callbacks 数组中的函数全部执行
 
 - then 中 `return this`，用于实现 then 的链式调用
 - 如果 Promise 是同步的，则执行 resolve 的时候 callback 还没注册
